@@ -1,3 +1,5 @@
+package com.ves;
+
 public interface FinalVariables {
     /**
      * Ages and their interval seperated to age groups.

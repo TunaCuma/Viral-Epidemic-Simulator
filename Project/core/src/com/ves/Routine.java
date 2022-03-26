@@ -1,3 +1,5 @@
+package com.ves;
+
 /**
  * An abstract class which Person class will inherit and benefit from.
  */

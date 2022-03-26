@@ -1,3 +1,5 @@
+package com.ves;
+
 /**
  * Interfaces which especially exists for Person class, will stay here.
  */

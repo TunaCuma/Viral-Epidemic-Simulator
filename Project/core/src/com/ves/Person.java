@@ -1,3 +1,5 @@
+package com.ves;
+
 /**
  * An abstract class which will be the super class of Young, Young_adult, Adult, and Old classes.
  */
@@ -27,7 +29,7 @@ abstract class Person extends Routine implements PersonInterfaces {
     //Another constructor if it's needed to construct a Young, Young_adult, Adult, or Old class especially.
     public Person(String type) {
         type = type.toUpperCase();
-        if(type.equals(YOUNG)) {
+        if(this.getClass().getName() == "YOUNG") {
             this.age = (byte) (Math.random()*YOUNG_LAST + 1);
         }
         else if(type.equals(YOUNG_ADULT_NAME)) {

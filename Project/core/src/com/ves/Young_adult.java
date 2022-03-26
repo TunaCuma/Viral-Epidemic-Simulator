@@ -1,5 +1,7 @@
+package com.ves;
+
 public class Young_adult extends Person{
     public Young_adult() {
-        super();
+        super("Young_Adult");
     }
 }

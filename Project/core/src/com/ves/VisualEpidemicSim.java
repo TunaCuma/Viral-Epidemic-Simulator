@@ -22,7 +22,7 @@ public class VisualEpidemicSim extends ApplicationAdapter {
 		ScreenUtils.clear(1, 0, 0, 1);
 		batch.begin();
 		batch.draw(img, 0, 0);
-		batch.draw(img, 20, 20);
+		batch.draw(img, 100, 220);
 		batch.end();
 	}
 	

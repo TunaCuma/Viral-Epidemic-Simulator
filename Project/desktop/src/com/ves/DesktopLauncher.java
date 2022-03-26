@@ -10,5 +10,6 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		new Lwjgl3Application(new VisualEpidemicSim(), config);
+		Person person = new Young();
 	}
 }
