@@ -1,7 +1,5 @@
-package com.ves;
+package com.mygdx.viralepidemicsim;
 
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GameGenerator {
