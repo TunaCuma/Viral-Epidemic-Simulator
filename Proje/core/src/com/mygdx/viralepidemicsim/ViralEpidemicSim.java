@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.viralepidemicsim.Screens.MainMenu;
 
 public class ViralEpidemicSim extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -18,7 +19,9 @@ public class ViralEpidemicSim extends ApplicationAdapter {
 		img = new Texture("badlogic.jpg");
 		ekremAbi = new Texture("E2OtY_EXoAAxfYb.jpg");
 		x = 0; y = 0;
+		MainMenu x = new MainMenu(this);
 	}
+
 
 	@Override
 	public void render () {
