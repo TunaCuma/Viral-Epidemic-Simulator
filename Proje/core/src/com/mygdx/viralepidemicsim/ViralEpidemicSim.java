@@ -3,16 +3,23 @@ package com.mygdx.viralepidemicsim;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.viralepidemicsim.Screens.MainMenu;
 
-public class ViralEpidemicSim extends ApplicationAdapter {
+public class ViralEpidemicSim extends ApplicationAdapter implements Screen {
 	SpriteBatch batch;
+	
+
 	Texture img, ekremAbi;
 	int x, y;
 	
+
+	
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -47,5 +54,26 @@ public class ViralEpidemicSim extends ApplicationAdapter {
 		batch.dispose();
 		img.dispose();
 		ekremAbi.dispose();
+	}
+
+
+	@Override
+	public void show() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void render(float delta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void hide() {
+		// TODO Auto-generated method stub
+		
 	}
 }
