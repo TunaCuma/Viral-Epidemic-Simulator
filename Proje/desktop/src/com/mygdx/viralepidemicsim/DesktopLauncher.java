@@ -1,8 +1,10 @@
 package com.mygdx.viralepidemicsim;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.mygdx.viralepidemicsim.SimulationV3UsedLibgdx.MyGdxGame;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class DesktopLauncher {
@@ -10,7 +12,10 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		//new Lwjgl3Application(new ViralEpidemicSim(), config);
-		config.setTitle("Pong");
-		new Lwjgl3Application(new MyGdxGame(), config);
+		config.setTitle("VIRAL EPIDEMIC SIMULATOR");
+
+		config.setWindowedMode(GameInfo.WIDTH, GameInfo.HEIGHT);
+
+		new Lwjgl3Application(new GameMain(), config);
 	}
 }

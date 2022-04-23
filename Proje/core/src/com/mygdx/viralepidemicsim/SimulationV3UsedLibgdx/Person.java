@@ -5,6 +5,7 @@ import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 
+
 public class Person extends SimulationObject{
 
 	int WIDTH = Gdx.graphics.getWidth();
@@ -15,12 +16,16 @@ public class Person extends SimulationObject{
 	int healthStatus; //0 for healthy. 1 for sick. 2 for immune.
     static final int INFECTION_TIME = 3000;
     int immunity = 0;
+
 	
 	public Person(int x, int y, int width, int height) {
 		super(x, y, width, height);
+
 	}
 
 	
+
+
 	public void reset(int WIDTH, int HEIGHT){
 		Random random = new Random();
 		

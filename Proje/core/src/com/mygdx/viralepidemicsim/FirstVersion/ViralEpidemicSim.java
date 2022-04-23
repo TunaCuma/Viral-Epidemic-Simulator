@@ -1,4 +1,4 @@
-package com.mygdx.viralepidemicsim;
+package com.mygdx.viralepidemicsim.FirstVersion;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.viralepidemicsim.Screens.MainMenu;
+import com.mygdx.viralepidemicsim.FirstVersion.Screens.MainMenu;
 
 public class ViralEpidemicSim extends ApplicationAdapter implements Screen {
 	SpriteBatch batch;

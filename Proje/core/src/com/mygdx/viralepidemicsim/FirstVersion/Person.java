@@ -1,4 +1,4 @@
-package com.mygdx.viralepidemicsim;
+package com.mygdx.viralepidemicsim.FirstVersion;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 

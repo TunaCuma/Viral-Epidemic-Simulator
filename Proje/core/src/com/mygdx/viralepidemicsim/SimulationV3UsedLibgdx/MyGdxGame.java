@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class MyGdxGame extends ApplicationAdapter {
 	
-	int WIDTH, HEIGHT;
+	static int WIDTH, HEIGHT;
 	ShapeRenderer sp;
 	SpriteBatch batch;
 	Rectangle upperLimit, lowerLimit;
@@ -51,9 +51,12 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	public void render () {
 		// Main Loop
+
+		
 		
 		for(int i = 0; i < population.length ; i++){
 			logicUpdate(population[i]);
+			//population[i].debugRenderer.render(this, population[i].box2DCamera.combined);
 		}
 		updateHealthStatus();
 		updateInfection();

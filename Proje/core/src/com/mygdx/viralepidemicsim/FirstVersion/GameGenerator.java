@@ -1,4 +1,4 @@
-package com.mygdx.viralepidemicsim;
+package com.mygdx.viralepidemicsim.FirstVersion;
 
 import java.util.ArrayList;
 

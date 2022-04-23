@@ -1,4 +1,4 @@
-package com.mygdx.viralepidemicsim;
+package com.mygdx.viralepidemicsim.FirstVersion;
 
 /**
  * Interfaces which especially exists for Person class, will stay here.

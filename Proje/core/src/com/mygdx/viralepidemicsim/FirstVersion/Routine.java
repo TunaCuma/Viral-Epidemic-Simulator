@@ -1,4 +1,4 @@
-package com.mygdx.viralepidemicsim;
+package com.mygdx.viralepidemicsim.FirstVersion;
 
 /**
  * An abstract class which Person class will inherit and benefit from.

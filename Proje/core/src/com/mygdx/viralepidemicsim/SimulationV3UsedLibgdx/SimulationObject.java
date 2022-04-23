@@ -9,6 +9,7 @@ public abstract class SimulationObject extends Sprite{
 	
 	public SimulationObject(int x, int y, int width, int height){
 		rec = new Rectangle(x, y, width, height);
+		setPosition(x - getWidth() / 2, y - getHeight() / 2);
 	}
 	
 	public abstract void initSpeed(int speed);
