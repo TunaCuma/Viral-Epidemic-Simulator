@@ -44,8 +44,8 @@ public class MainMenu implements Screen, ContactListener{
         this.game = game;
 
         box2DCamera = new OrthographicCamera();
-        box2DCamera.setToOrtho(false, GameInfo.WIDTH, GameInfo.HEIGHT);
-        box2DCamera.position.set((GameInfo.WIDTH/2f) / GameInfo.PPM , (GameInfo.HEIGHT/2f) / GameInfo.PPM,0);
+        box2DCamera.setToOrtho(false, GameInfo.WIDTH/GameInfo.PPM, GameInfo.HEIGHT/GameInfo.PPM);
+        box2DCamera.position.set((GameInfo.WIDTH/2f)/GameInfo.PPM , (GameInfo.HEIGHT/2f)/GameInfo.PPM,0);
 
         debugRenderer = new Box2DDebugRenderer(); 
 
@@ -58,7 +58,7 @@ public class MainMenu implements Screen, ContactListener{
         population = new Population(world,50);
 
         population.getPopulation()[0].getSick();
-
+        box2DCamera.update();
     }
 
     @Override
@@ -88,11 +88,12 @@ public class MainMenu implements Screen, ContactListener{
 
 
         game.getBatch().end();
-
+        
         debugRenderer.render(world, box2DCamera.combined);
 
         world.step(Gdx.graphics.getDeltaTime(), 6, 2);
-        
+        box2DCamera.update();
+
     }
 
     @Override

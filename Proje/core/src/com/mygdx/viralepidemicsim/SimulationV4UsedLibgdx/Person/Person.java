@@ -89,7 +89,6 @@ public class Person extends Sprite{
         }
         else if(body.getLinearVelocity().x < 0){
             setPosition((body.getPosition().x )* GameInfo.PPM, body.getPosition().y * GameInfo.PPM);
-            
         }
     }
 
