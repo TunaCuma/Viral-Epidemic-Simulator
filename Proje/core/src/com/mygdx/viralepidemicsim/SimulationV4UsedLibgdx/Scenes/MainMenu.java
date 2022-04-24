@@ -60,6 +60,7 @@ public class MainMenu implements Screen, ContactListener{
         population.getPopulation()[0].makePatientZero();
         box2DCamera.update();
         sound.play();
+        sound.loop();
     }
 
     @Override
