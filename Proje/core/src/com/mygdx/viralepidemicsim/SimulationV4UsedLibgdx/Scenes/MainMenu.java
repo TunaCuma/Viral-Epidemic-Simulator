@@ -3,6 +3,7 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -34,6 +35,7 @@ public class MainMenu implements Screen, ContactListener{
 
     private OrthographicCamera box2DCamera;
     private Box2DDebugRenderer debugRenderer;
+    private Sound sound;
 
     float clock = 0;
 
@@ -54,9 +56,10 @@ public class MainMenu implements Screen, ContactListener{
         bg = new Texture("BlackBg.png");
 
         population = new Population(world,50);
-
+        sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         population.getPopulation()[0].makePatientZero();
         box2DCamera.update();
+        sound.play();
     }
 
     @Override
@@ -123,7 +126,7 @@ public class MainMenu implements Screen, ContactListener{
     @Override
     public void dispose() {
         // TODO Auto-generated method stub
-        
+        sound.stop();
     }
 
     @Override
