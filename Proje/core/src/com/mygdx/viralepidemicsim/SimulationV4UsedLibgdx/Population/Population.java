@@ -29,7 +29,7 @@ public class Population {
         for(int i = 0; i < population.length ; i++){
             randomX =  rand.nextInt(GameInfo.WIDTH);
             randomY = rand.nextInt(GameInfo.HEIGHT);
-            population[i] = new Person(world,"Healthy.png", randomX, randomY);
+            population[i] = new Person(world,"Heal.png", randomX, randomY);
         }
     }
 
@@ -50,6 +50,12 @@ public class Population {
     public void checkBorder(){
         for(int i = 0; i < population.length ; i++){
             population[i].checkBorder();
+        }
+    }
+
+    public void healthUpdate(){
+        for(int i = 0; i < population.length ; i++){
+            population[i].updateHealthCondition();
         }
     }
 }

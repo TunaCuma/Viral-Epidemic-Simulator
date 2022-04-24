@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -16,22 +17,32 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 
 public class Person extends Sprite{
+    public static int numberOfPerson = 0;
+    public int id;
 
     private World world;
     private Body body;
     BodyDef bodyDef;
-
+    Fixture fixture;
 
     String healthStatus;
 
+    
+
+
     public Person(World world,String name, float x, float y){
         super(new Texture(name));
+
+        this.id = numberOfPerson;
+        numberOfPerson++;
+
         this.world = world;
         bodyDef = new BodyDef();
 
         setPosition(x - getWidth()/2f, y- getHeight()/2f);
-        createBody();
         healthStatus = "Healthy";
+
+        createBody();
 
 
 
@@ -65,16 +76,18 @@ public class Person extends Sprite{
         bodyDef.position.set(getX() / GameInfo.PPM , getY() / GameInfo.PPM);
 
         body = world.createBody(bodyDef);
-
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox((getWidth() * 10) / GameInfo.PPM, (getWidth() * 10) / GameInfo.PPM );
+        
+        
+        CircleShape shape = new CircleShape();
+        shape.setRadius(getWidth() * 10 / GameInfo.PPM);
+        //shape.setAsBox((getWidth() * 10) / GameInfo.PPM, (getWidth() * 10) / GameInfo.PPM );
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 1;
 
-        Fixture fixture = body.createFixture(fixtureDef);
-        fixture.setUserData(healthStatus);
+        fixture = body.createFixture(fixtureDef);
+        fixture.setUserData(healthStatus + id);
         fixture.setSensor(true);
 
         shape.dispose();
@@ -92,19 +105,31 @@ public class Person extends Sprite{
         }
     }
 
-    public void getSick(){
+    public void makePatientZero(){
         healthStatus = "Sick";
+        fixture.setUserData(healthStatus);
+        setTexture(new Texture("Sick.png"));
+    }
+
+    public void getSick(){
+        healthStatus = (String)fixture.getUserData();
         setTexture(new Texture("Sick.png"));
     }
 
     public void getImmune(){
-        healthStatus = "Immune";
-        setTexture(new Texture("Immune.png"));
+        healthStatus = "Immu";
+        setTexture(new Texture("Immu.png"));
     }
 
     public void loseImmunity(){
-        healthStatus = "Healthy";
-        setTexture(new Texture("Healthy.png"));
+        healthStatus = "Heal";
+        setTexture(new Texture("Heal.png"));
+    }
+
+    public void updateHealthCondition(){
+        healthStatus = (String) fixture.getUserData();
+        String texture = healthStatus + ".png";
+        setTexture(new Texture(texture));
     }
 
     public Body getBody(){

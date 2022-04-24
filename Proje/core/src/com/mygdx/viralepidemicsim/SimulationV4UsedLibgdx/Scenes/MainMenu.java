@@ -15,7 +15,6 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.ui.Value.Fixed;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
@@ -29,8 +28,6 @@ public class MainMenu implements Screen, ContactListener{
 
     private Texture bg;
 
-    private Person player;
-
     private Population population;
     
     private World world;
@@ -38,6 +35,7 @@ public class MainMenu implements Screen, ContactListener{
     private OrthographicCamera box2DCamera;
     private Box2DDebugRenderer debugRenderer;
 
+    float clock = 0;
 
 
     public MainMenu(GameMain game){
@@ -57,7 +55,7 @@ public class MainMenu implements Screen, ContactListener{
 
         population = new Population(world,50);
 
-        population.getPopulation()[0].getSick();
+        population.getPopulation()[0].makePatientZero();
         box2DCamera.update();
     }
 
@@ -69,6 +67,8 @@ public class MainMenu implements Screen, ContactListener{
 
     @Override
     public void render(float delta) {
+        
+        
 
         population.updatePopulation();
         population.checkBorder();
@@ -130,13 +130,16 @@ public class MainMenu implements Screen, ContactListener{
     public void beginContact(Contact contact) {
         Fixture firstBody = contact.getFixtureA();
         Fixture secondBody = contact.getFixtureB();
+        
+        String healthCondition1 = ((String) firstBody.getUserData()).substring(0,4);
+        
+        String healthCondition2 = ((String) firstBody.getUserData()).substring(0,4);
 
 
-        if(firstBody.getUserData() == ("Healthy") && secondBody.getUserData() == ("Sick")){
-
+        if(healthCondition1.equals("Heal") && healthCondition2.equals("Sick")){
         }
-        else if(firstBody.getUserData() == ("Sick") && secondBody.getUserData() == ("Healthy")){
-
+        else if(firstBody.getUserData().equals("Sick") && secondBody.getUserData().equals("Heal")){
+            secondBody.setUserData("Sick");
         }
 
 
