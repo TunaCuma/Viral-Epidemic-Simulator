@@ -137,15 +137,20 @@ public class MainMenu implements Screen, ContactListener{
         
         String healthCondition1 = ((String) firstBody.getUserData()).substring(0,4);
         
-        String healthCondition2 = ((String) firstBody.getUserData()).substring(0,4);
+        String healthCondition2 = ((String) secondBody.getUserData()).substring(0,4);
 
 
-        if(healthCondition1.equals("Heal") && healthCondition2.equals("Sick")){
+
+        if(healthCondition2.equals("Sick") && healthCondition1.equals("Heal")){
+            int healsIndex = Integer.parseInt(((String)firstBody.getUserData()).substring(4)); 
+            firstBody.setUserData("Sick" + healsIndex);
+            population.getPopulation()[healsIndex].updateHealthCondition();
         }
-        else if(firstBody.getUserData().equals("Sick") && secondBody.getUserData().equals("Heal")){
-            secondBody.setUserData("Sick");
+        else if(healthCondition1.equals("Sick") && healthCondition2.equals("Heal")){
+            int healsIndex = Integer.parseInt(((String)secondBody.getUserData()).substring(4)); 
+            secondBody.setUserData("Sick" + healsIndex);
+            population.getPopulation()[healsIndex].updateHealthCondition();
         }
-
 
     }
 

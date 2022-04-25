@@ -40,7 +40,7 @@ public class Person extends Sprite{
         bodyDef = new BodyDef();
 
         setPosition(x - getWidth()/2f, y- getHeight()/2f);
-        healthStatus = "Healthy";
+        healthStatus = "Heal";
 
         createBody();
 
@@ -79,7 +79,7 @@ public class Person extends Sprite{
         
         
         CircleShape shape = new CircleShape();
-        shape.setRadius(getWidth() * 10 / GameInfo.PPM);
+        shape.setRadius(getWidth() * 5 / GameInfo.PPM);
         //shape.setAsBox((getWidth() * 10) / GameInfo.PPM, (getWidth() * 10) / GameInfo.PPM );
 
         FixtureDef fixtureDef = new FixtureDef();
@@ -107,27 +107,12 @@ public class Person extends Sprite{
 
     public void makePatientZero(){
         healthStatus = "Sick";
-        fixture.setUserData(healthStatus);
+        fixture.setUserData(healthStatus + id);
         setTexture(new Texture("Sick.png"));
-    }
-
-    public void getSick(){
-        healthStatus = (String)fixture.getUserData();
-        setTexture(new Texture("Sick.png"));
-    }
-
-    public void getImmune(){
-        healthStatus = "Immu";
-        setTexture(new Texture("Immu.png"));
-    }
-
-    public void loseImmunity(){
-        healthStatus = "Heal";
-        setTexture(new Texture("Heal.png"));
     }
 
     public void updateHealthCondition(){
-        healthStatus = (String) fixture.getUserData();
+        healthStatus = ((String) fixture.getUserData()).substring(0,4);
         String texture = healthStatus + ".png";
         setTexture(new Texture(texture));
     }
