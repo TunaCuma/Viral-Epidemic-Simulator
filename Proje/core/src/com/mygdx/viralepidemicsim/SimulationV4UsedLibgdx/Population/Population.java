@@ -7,6 +7,7 @@ import java.util.Random;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
+import com.mygdx.viralepidemicsim.FirstVersion.*;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
 
 
@@ -31,13 +32,14 @@ public class Population {
             randomX =  rand.nextInt(GameInfo.WIDTH);
             randomY = rand.nextInt(GameInfo.HEIGHT);
             double tempo = Math.random();
-            if(tempo <0.332) {
+            float percentage = FinalVariables.YOUNG_PERCENTAGE/100;
+            if(tempo < percentage) {
                 population[i] = new Person(world,"Heal.png", randomX, randomY, FinalVariables.YOUNG_IMMUNITY);
             }
-            else if( tempo < 0.631) {
+            else if( tempo < (percentage += FinalVariables.YOUNG_ADULT_PERCENTAGE/100)) {
                 population[i] = new Person(world,"Heal.png", randomX, randomY, FinalVariables.YOUNG_ADULT_IMMUNITY);
             }
-            else if( tempo < 0.862) {
+            else if( tempo < (percentage += FinalVariables.ADULT_PERCENTAGE/100)) {
                 population[i] = new Person(world,"Heal.png", randomX, randomY, FinalVariables.ADULT_IMMUNITY);
             }
             else { //Old
