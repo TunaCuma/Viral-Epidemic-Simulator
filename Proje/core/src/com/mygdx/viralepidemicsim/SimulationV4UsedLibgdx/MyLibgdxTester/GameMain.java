@@ -2,7 +2,7 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.*;
 
 public class GameMain extends Game{
 
