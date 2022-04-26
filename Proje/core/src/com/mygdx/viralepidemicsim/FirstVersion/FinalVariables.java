@@ -14,6 +14,7 @@ public interface FinalVariables {
      * Immunity level percentage and their change over time.
      * http://www.h-ls.jp/measurement07e.html
      */
+    final byte YOUNG_IMMUNITY = 92;
     final byte YOUNG_ADULT_IMMUNITY = 88;
     final byte YOUNG_ADULT_IMMUNITY_LAST = 76;
     final byte ADULT_IMMUNITY = 75;

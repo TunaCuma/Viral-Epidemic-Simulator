@@ -63,7 +63,7 @@ abstract class Person extends SpriteBatch implements PersonInterfaces {
         return this.age;
     }
 
-    public int getImmunity() {
+    public byte getImmunity() {
         return this.immunity;
     }
 

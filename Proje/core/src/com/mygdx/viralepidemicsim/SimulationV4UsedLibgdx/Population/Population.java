@@ -5,6 +5,7 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population;
 import java.util.Random;
 
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
 
@@ -29,7 +30,20 @@ public class Population {
         for(int i = 0; i < population.length ; i++){
             randomX =  rand.nextInt(GameInfo.WIDTH);
             randomY = rand.nextInt(GameInfo.HEIGHT);
-            population[i] = new Person(world,"Heal.png", randomX, randomY);
+            double tempo = Math.random();
+            if(tempo <0.332) {
+                population[i] = new Person(world,"Heal.png", randomX, randomY, FinalVariables.YOUNG_IMMUNITY);
+            }
+            else if( tempo < 0.631) {
+                population[i] = new Person(world,"Heal.png", randomX, randomY, FinalVariables.YOUNG_ADULT_IMMUNITY);
+            }
+            else if( tempo < 0.862) {
+                population[i] = new Person(world,"Heal.png", randomX, randomY, FinalVariables.ADULT_IMMUNITY);
+            }
+            else { //Old
+                population[i] = new Person(world,"Heal.png", randomX, randomY, FinalVariables.OLD_IMMUNITY);
+            }
+
         }
     }
 

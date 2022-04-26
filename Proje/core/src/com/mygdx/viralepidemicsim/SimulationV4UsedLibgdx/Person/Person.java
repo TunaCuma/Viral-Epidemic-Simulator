@@ -22,6 +22,7 @@ public class Person extends Sprite{
 
     private World world;
     private Body body;
+    private int immunity;
     BodyDef bodyDef;
     Fixture fixture;
 
@@ -30,7 +31,7 @@ public class Person extends Sprite{
     
 
 
-    public Person(World world,String name, float x, float y){
+    public Person(World world,String name, float x, float y, int immunity){
         super(new Texture(name));
 
         this.id = numberOfPerson;
@@ -38,6 +39,8 @@ public class Person extends Sprite{
 
         this.world = world;
         bodyDef = new BodyDef();
+
+        this.immunity = immunity;
 
         setPosition(x - getWidth()/2f, y- getHeight()/2f);
         healthStatus = "Heal";
@@ -128,5 +131,9 @@ public class Person extends Sprite{
         if(getY() < 0 || getY() >GameInfo.HEIGHT){
             body.setLinearVelocity(body.getLinearVelocity().x,-body.getLinearVelocity().y );
         }
+    }
+
+    public int getImmunity() {
+        return immunity;
     }
 }

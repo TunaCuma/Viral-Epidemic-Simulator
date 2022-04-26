@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
@@ -141,12 +142,12 @@ public class MainMenu implements Screen, ContactListener{
 
 
 
-        if(healthCondition2.equals("Sick") && healthCondition1.equals("Heal")){
+        if(healthCondition2.equals("Sick") && healthCondition1.equals("Heal") && Math.random()*100 > population.getPopulation()[Integer.parseInt(((String)firstBody.getUserData()).substring(4))].getImmunity()){
             int healsIndex = Integer.parseInt(((String)firstBody.getUserData()).substring(4)); 
             firstBody.setUserData("Sick" + healsIndex);
             population.getPopulation()[healsIndex].updateHealthCondition();
         }
-        else if(healthCondition1.equals("Sick") && healthCondition2.equals("Heal")){
+        else if(healthCondition1.equals("Sick") && healthCondition2.equals("Heal") && Math.random()*100 > population.getPopulation()[Integer.parseInt(((String)secondBody.getUserData()).substring(4))].getImmunity()){
             int healsIndex = Integer.parseInt(((String)secondBody.getUserData()).substring(4)); 
             secondBody.setUserData("Sick" + healsIndex);
             population.getPopulation()[healsIndex].updateHealthCondition();
