@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Buttons.OpeningScreenButtons;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 
@@ -21,9 +22,11 @@ public class OpeningScreen implements Screen{
     private Viewport gameViewport;
     private SpriteBatch spriteBatch;
     private GameMain game;
-    
+    private OpeningScreenButtons buttons;
+
     public OpeningScreen(GameMain main) {
         game = main;
+        buttons = new OpeningScreenButtons(game);
         camera = new OrthographicCamera(GameInfo.WIDTH, GameInfo.HEIGHT);
 
         background = new Texture("BackgroundMain.jpg");
@@ -43,6 +46,8 @@ public class OpeningScreen implements Screen{
         game.getBatch().begin();
         game.getBatch().draw(background, 0, 0);
         game.getBatch().end();
+        game.getBatch().setProjectionMatrix(buttons.getStage().getCamera().combined);
+        buttons.getStage().draw();
     }
 
     @Override
@@ -71,8 +76,7 @@ public class OpeningScreen implements Screen{
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
-        
-    }
-    
+        background.dispose();
+        buttons.getStage().dispose();
+    } 
 }

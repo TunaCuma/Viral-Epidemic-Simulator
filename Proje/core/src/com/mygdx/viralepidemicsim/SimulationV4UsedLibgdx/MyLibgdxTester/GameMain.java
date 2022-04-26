@@ -6,14 +6,14 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.*;
 
 public class GameMain extends Game{
 
-    SpriteBatch batch;
+    public SpriteBatch batch;
+    public OpeningScreen openingScreen;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-        setScreen(new MainMenu(this));
-        
-        
+        openingScreen = new OpeningScreen(this);
+        setScreen(openingScreen);
     }
 
     public void render() {
