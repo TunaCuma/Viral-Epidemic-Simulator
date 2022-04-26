@@ -53,20 +53,33 @@ public class Person extends Sprite{
 
     public void randomMove(){
         Random rand = new Random();
-        int randomNumber = rand.nextInt(4);
+        int randomNumber = rand.nextInt(8);
 
         if(randomNumber == 0){
-            body.setLinearVelocity(120,0);
+            body.setLinearVelocity(30,15);
         }
         else if(randomNumber == 1){
-            body.setLinearVelocity(0,120);
+            body.setLinearVelocity(15,30);
         }
         else if(randomNumber == 2){
-            body.setLinearVelocity(-120,0);
+            body.setLinearVelocity(-30,15);
         }
         else if(randomNumber == 3){
-            body.setLinearVelocity(0,-120);
+            body.setLinearVelocity(-15,-30);
         }
+        else if(randomNumber == 4){
+            body.setLinearVelocity(30,-15);
+        }
+        else if(randomNumber == 5){
+            body.setLinearVelocity(15,-30);
+        }
+        else if(randomNumber == 6){
+            body.setLinearVelocity(-30,-15);
+        }
+        else if(randomNumber == 7){
+            body.setLinearVelocity(-15,-30);
+        }
+    
         
     }
 
@@ -95,7 +108,7 @@ public class Person extends Sprite{
 
         shape.dispose();
 
-        body.setLinearVelocity(30,30);
+        randomMove();
 
     }
 

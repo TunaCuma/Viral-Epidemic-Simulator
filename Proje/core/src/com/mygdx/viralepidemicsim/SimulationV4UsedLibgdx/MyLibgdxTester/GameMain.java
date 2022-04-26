@@ -14,6 +14,7 @@ public class GameMain extends Game{
         batch = new SpriteBatch();
         openingScreen = new OpeningScreen(this);
         setScreen(openingScreen);
+        //setScreen(new MainMenu(this));
     }
 
     public void render() {

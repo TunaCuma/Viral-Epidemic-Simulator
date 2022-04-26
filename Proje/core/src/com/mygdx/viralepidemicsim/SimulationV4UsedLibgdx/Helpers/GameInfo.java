@@ -4,5 +4,5 @@ public class GameInfo {
     
     public static int WIDTH = 902;
     public static int HEIGHT = 423;
-    public static float PPM = 5;
+    public static float PPM = 50;
 }
