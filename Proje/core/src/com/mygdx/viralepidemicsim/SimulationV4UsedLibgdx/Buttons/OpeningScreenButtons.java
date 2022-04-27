@@ -50,12 +50,12 @@ public class OpeningScreenButtons {
     }
 
     void createButtons() {
-        simulation = new ImageButton(new SpriteDrawable(new Sprite(new Texture("Untitled-removebg-preview.png"))));
-        gamee = new ImageButton(new SpriteDrawable(new Sprite(new Texture("Untitled-removebg-preview.png"))));
-        howTo = new ImageButton(new SpriteDrawable(new Sprite(new Texture("Untitled-removebg-preview.png"))));
-        credits = new ImageButton(new SpriteDrawable(new Sprite(new Texture("Untitled-removebg-preview.png"))));
-        settings = new ImageButton(new SpriteDrawable(new Sprite(new Texture("Untitled-removebg-preview.png"))));
-        exit = new ImageButton(new SpriteDrawable(new Sprite(new Texture("Untitled-removebg-preview.png"))));
+        simulation = new ImageButton(new SpriteDrawable(new Sprite(new Texture("SimulationButton-modified.png"))));
+        gamee = new ImageButton(new SpriteDrawable(new Sprite(new Texture("GameButton-modified.png"))));
+        howTo = new ImageButton(new SpriteDrawable(new Sprite(new Texture("HowToButton-modified.png"))));
+        credits = new ImageButton(new SpriteDrawable(new Sprite(new Texture("CreditsButton-modified.png"))));
+        settings = new ImageButton(new SpriteDrawable(new Sprite(new Texture("SettingsButton-modified.png"))));
+        exit = new ImageButton(new SpriteDrawable(new Sprite(new Texture("ExitButton-modified.png"))));
 
         simulation.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f +100, Align.center);
         gamee.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f+60, Align.center);
