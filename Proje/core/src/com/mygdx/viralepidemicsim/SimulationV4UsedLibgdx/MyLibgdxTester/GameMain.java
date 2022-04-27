@@ -1,7 +1,9 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.*;
 
 public class GameMain extends Game{
@@ -11,7 +13,9 @@ public class GameMain extends Game{
 
     @Override
     public void create() {
+        Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         batch = new SpriteBatch();
+        GameInfo.create();
         openingScreen = new OpeningScreen(this);
         setScreen(openingScreen);
     }
