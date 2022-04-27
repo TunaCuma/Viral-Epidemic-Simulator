@@ -127,7 +127,6 @@ public class MainMenu implements Screen, ContactListener{
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
         sound.stop();
     }
 

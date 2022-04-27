@@ -72,5 +72,12 @@ public class OpeningScreenButtons {
                 game.setScreen(new MainMenu(game));
             } 
         });
+        exit.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.exit();
+                System.exit(0);
+            }
+        });
     }
 }
