@@ -27,6 +27,7 @@ public class OpeningScreenButtons {
     private ImageButton credits;
     private ImageButton settings;
     private ImageButton exit;
+    private ImageButton mapBuilder;
 
     public OpeningScreenButtons(GameMain game) {
         this.game = game;
@@ -44,25 +45,28 @@ public class OpeningScreenButtons {
         stage.addActor(credits);
         stage.addActor(settings);
         stage.addActor(exit);
+        stage.addActor(mapBuilder);
     }
     public Stage getStage() {
         return this.stage;
     }
 
     void createButtons() {
-        simulation = new ImageButton(new SpriteDrawable(new Sprite(new Texture("SimulationButton-modified.png"))));
-        gamee = new ImageButton(new SpriteDrawable(new Sprite(new Texture("GameButton-modified.png"))));
-        howTo = new ImageButton(new SpriteDrawable(new Sprite(new Texture("HowToButton-modified.png"))));
-        credits = new ImageButton(new SpriteDrawable(new Sprite(new Texture("CreditsButton-modified.png"))));
-        settings = new ImageButton(new SpriteDrawable(new Sprite(new Texture("SettingsButton-modified.png"))));
-        exit = new ImageButton(new SpriteDrawable(new Sprite(new Texture("ExitButton-modified.png"))));
+        simulation = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerSimulationButton-modified.png"))));
+        gamee = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerGameButton-modified.png"))));
+        howTo = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerHowToButton-modified.png"))));
+        credits = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerCreditsButton-modified.png"))));
+        settings = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerSettingsButton-modified.png"))));
+        mapBuilder = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMapBuilderButton-modified.png"))));
+        exit = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerExitButton-modified.png"))));
 
-        simulation.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f +100, Align.center);
-        gamee.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f+60, Align.center);
-        howTo.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f+20, Align.center);
-        credits.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f-20, Align.center);
-        settings.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f-60, Align.center);
-        exit.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f-100, Align.center);
+        simulation.setPosition(GameInfo.WIDTH/2f-200, GameInfo.HEIGHT/2f -60, Align.center);
+        gamee.setPosition(GameInfo.WIDTH/2f +200, GameInfo.HEIGHT/2f-60, Align.center);
+        howTo.setPosition(GameInfo.WIDTH/2f-200, GameInfo.HEIGHT/2f-160, Align.center);
+        credits.setPosition(GameInfo.WIDTH/2f +200, GameInfo.HEIGHT/2f-160, Align.center);
+        settings.setPosition(GameInfo.WIDTH/2f-200, GameInfo.HEIGHT/2f-260, Align.center);
+        mapBuilder.setPosition(GameInfo.WIDTH/2f +200, GameInfo.HEIGHT/2f-260, Align.center);
+        exit.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f-360, Align.center);
     }
 
     void addAllListeners() {
