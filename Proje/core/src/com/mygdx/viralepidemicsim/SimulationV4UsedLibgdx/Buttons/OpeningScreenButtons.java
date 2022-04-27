@@ -1,5 +1,7 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Buttons;
 
+import javax.xml.namespace.QName;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.CreditsScreen;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
 
 public class OpeningScreenButtons {
@@ -68,12 +71,27 @@ public class OpeningScreenButtons {
         mapBuilder.setPosition(GameInfo.WIDTH/2f +200, GameInfo.HEIGHT/2f-260, Align.center);
         exit.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f-360, Align.center);
     }
+    void dispose() {
+        simulation.clear();
+        gamee.clear();
+        howTo.clear();
+        credits.clear();
+        settings.clear();
+        mapBuilder.clear();
+        exit.clear();
+        stage.dispose();
+        gameViewport = null;
 
+                
+        game = null;
+
+    }
     void addAllListeners() {
         simulation.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(new MainMenu(game));
+                dispose();
             } 
         });
         exit.addListener(new ChangeListener() {
@@ -81,6 +99,13 @@ public class OpeningScreenButtons {
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.app.exit();
                 System.exit(0);
+            }
+        });
+        credits.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setScreen(new CreditsScreen(game));
+                dispose();
             }
         });
     }
