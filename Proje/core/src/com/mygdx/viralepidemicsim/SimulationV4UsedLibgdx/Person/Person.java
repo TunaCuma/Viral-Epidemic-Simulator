@@ -104,6 +104,8 @@ public class Person extends Sprite{
 
         fixture = body.createFixture(fixtureDef);
         fixture.setUserData(healthStatus + id);
+
+        //fikir: immuneların sensorlarını kapatalım <3 - tarik
         fixture.setSensor(true);
 
         shape.dispose();

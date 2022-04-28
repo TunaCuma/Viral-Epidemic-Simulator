@@ -104,6 +104,7 @@ public class CreditsScreen implements Screen{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(new OpeningScreen(game));
+                dispose();
             }
         });
     }
