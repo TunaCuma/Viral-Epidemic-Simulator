@@ -33,7 +33,7 @@ public class CreditsScreen implements Screen{
     private String creditsString;
     private String faik, tarik, emre, tuna, gun;
     private GameMain game;
-    private Stage stage;
+    public Stage stage;
     private Viewport gameViewport;
 
     public CreditsScreen(GameMain main) {
@@ -105,14 +105,6 @@ public class CreditsScreen implements Screen{
 
     @Override
     public void dispose() {
-        background.dispose();
-        turnBack.clear();
-        fontCredits.dispose();
-        fontNames.dispose();
-        creditsString = null;
-        faik = null; tarik = null; emre = null; tuna = null; gun = null;
-        camera = null;
-        game = null;
     } 
 
     void createButtons() {
@@ -124,10 +116,14 @@ public class CreditsScreen implements Screen{
         turnBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new OpeningScreen(game));
-                dispose();
+                GameMain.stage = GameMain.openingScreen.getButtons().stage;
+                game.setScreen(GameMain.openingScreen);
+                Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().stage);
             }
         });
+    }
+    public Object getStage() {
+        return stage;
     }
 
 }

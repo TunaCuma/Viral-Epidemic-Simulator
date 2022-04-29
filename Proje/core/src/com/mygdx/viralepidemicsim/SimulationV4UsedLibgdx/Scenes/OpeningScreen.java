@@ -35,7 +35,6 @@ public class OpeningScreen implements Screen{
     }
     @Override
     public void show() {
-        
     }
 
     @Override
@@ -78,4 +77,8 @@ public class OpeningScreen implements Screen{
     public void dispose() {
         
     } 
+
+    public OpeningScreenButtons getButtons() {
+        return buttons;
+    }
 }

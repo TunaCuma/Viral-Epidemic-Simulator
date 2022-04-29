@@ -21,7 +21,7 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
 
 public class OpeningScreenButtons {
     private GameMain game;
-    private Stage stage;
+    public Stage stage;
     private Viewport gameViewport;
 
     private ImageButton simulation;
@@ -72,26 +72,14 @@ public class OpeningScreenButtons {
         exit.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f-360, Align.center);
     }
     void dispose() {
-        simulation.clear();
-        gamee.clear();
-        howTo.clear();
-        credits.clear();
-        settings.clear();
-        mapBuilder.clear();
-        exit.clear();
-        stage.dispose();
-        gameViewport = null;
-
-                
-        game = null;
 
     }
     void addAllListeners() {
         simulation.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new MainMenu(game));
-                dispose();
+                game.setScreen(GameMain.gameScreen);
+                Gdx.input.setInputProcessor(null);
             } 
         });
         exit.addListener(new ChangeListener() {
@@ -104,8 +92,9 @@ public class OpeningScreenButtons {
         credits.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new CreditsScreen(game));
-                dispose();
+                GameMain.stage = (Stage) GameMain.creditsScreen.getStage();
+                game.setScreen(GameMain.creditsScreen);
+                Gdx.input.setInputProcessor(GameMain.creditsScreen.stage);
             }
         });
     }
