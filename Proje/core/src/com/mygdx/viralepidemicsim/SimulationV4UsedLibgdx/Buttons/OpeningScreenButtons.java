@@ -1,10 +1,9 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Buttons;
 
-import javax.xml.namespace.QName;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -16,12 +15,10 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.CreditsScreen;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
 
 public class OpeningScreenButtons {
     private GameMain game;
-    public Stage stage;
+    private Stage stage;
     private Viewport gameViewport;
 
     private ImageButton simulation;
@@ -32,6 +29,9 @@ public class OpeningScreenButtons {
     private ImageButton exit;
     private ImageButton mapBuilder;
 
+    private BitmapFont fontNames;
+    
+
     public OpeningScreenButtons(GameMain game) {
         this.game = game;
 
@@ -39,7 +39,8 @@ public class OpeningScreenButtons {
         stage = new Stage(gameViewport,game.getBatch());
         createButtons();
         addAllListeners();
-
+        
+        fontNames = new BitmapFont(Gdx.files.internal("ButtonsFont.fnt"));
         Gdx.input.setInputProcessor(stage);
 
         stage.addActor(simulation);
@@ -55,21 +56,21 @@ public class OpeningScreenButtons {
     }
 
     void createButtons() {
-        simulation = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerSimulationButton-modified.png"))));
-        gamee = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerGameButton-modified.png"))));
-        howTo = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerHowToButton-modified.png"))));
-        credits = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerCreditsButton-modified.png"))));
-        settings = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerSettingsButton-modified.png"))));
-        mapBuilder = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMapBuilderButton-modified.png"))));
-        exit = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerExitButton-modified.png"))));
+        simulation = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
+        gamee = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
+        howTo = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
+        credits = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
+        settings = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
+        mapBuilder = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
+        exit = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
 
-        simulation.setPosition(GameInfo.WIDTH/2f-200, GameInfo.HEIGHT/2f -60, Align.center);
-        gamee.setPosition(GameInfo.WIDTH/2f +200, GameInfo.HEIGHT/2f-60, Align.center);
-        howTo.setPosition(GameInfo.WIDTH/2f-200, GameInfo.HEIGHT/2f-160, Align.center);
-        credits.setPosition(GameInfo.WIDTH/2f +200, GameInfo.HEIGHT/2f-160, Align.center);
-        settings.setPosition(GameInfo.WIDTH/2f-200, GameInfo.HEIGHT/2f-260, Align.center);
-        mapBuilder.setPosition(GameInfo.WIDTH/2f +200, GameInfo.HEIGHT/2f-260, Align.center);
-        exit.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f-360, Align.center);
+        simulation.setPosition(GameInfo.WIDTH/2f-GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/20f, Align.center);
+        gamee.setPosition(GameInfo.WIDTH/2f +GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-GameInfo.HEIGHT/20f, Align.center);
+        howTo.setPosition(GameInfo.WIDTH/2f-GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-3*GameInfo.HEIGHT/20f, Align.center);
+        credits.setPosition(GameInfo.WIDTH/2f +GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-3*GameInfo.HEIGHT/20f, Align.center);
+        settings.setPosition(GameInfo.WIDTH/2f-GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-5*GameInfo.HEIGHT/20f, Align.center);
+        mapBuilder.setPosition(GameInfo.WIDTH/2f +GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2-5*GameInfo.HEIGHT/20f, Align.center);
+        exit.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f-7*GameInfo.HEIGHT/20f, Align.center);
     }
     void dispose() {
 
@@ -79,6 +80,7 @@ public class OpeningScreenButtons {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(GameMain.gameScreen);
+                GameMain.gameScreen.startMusic();
                 Gdx.input.setInputProcessor(null);
             } 
         });
@@ -94,8 +96,12 @@ public class OpeningScreenButtons {
             public void changed(ChangeEvent event, Actor actor) {
                 GameMain.stage = (Stage) GameMain.creditsScreen.getStage();
                 game.setScreen(GameMain.creditsScreen);
-                Gdx.input.setInputProcessor(GameMain.creditsScreen.stage);
+                Gdx.input.setInputProcessor(GameMain.creditsScreen.getStage());
             }
         });
+    }
+
+    public BitmapFont getFontNames() {
+        return fontNames;
     }
 }

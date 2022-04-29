@@ -1,13 +1,11 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -16,7 +14,6 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
@@ -60,8 +57,6 @@ public class MainMenu implements Screen, ContactListener{
         sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         population.getPopulation()[0].makePatientZero();
         box2DCamera.update();
-        sound.play();
-        sound.loop();
     }
 
     @Override
@@ -75,7 +70,7 @@ public class MainMenu implements Screen, ContactListener{
         
         
 
-        population.updatePopulation();
+        population.updatePopulation();  
         population.checkBorder();
 
         Gdx.gl.glClearColor(1,0,0,1);
@@ -175,5 +170,17 @@ public class MainMenu implements Screen, ContactListener{
     public World getWorld(){
         return world;
     }
-    
+
+    public void startMusic() {
+        sound.play();
+        sound.loop();
+    }
+
+    public void pauseMusic() {
+        sound.pause();
+    }
+
+    public void resumeMusic() {
+        sound.resume();
+    }
 }

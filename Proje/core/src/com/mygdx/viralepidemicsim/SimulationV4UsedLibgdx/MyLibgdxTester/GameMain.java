@@ -2,11 +2,12 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.*;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.CreditsScreen;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.OpeningScreen;
 
 public class GameMain extends Game{
 

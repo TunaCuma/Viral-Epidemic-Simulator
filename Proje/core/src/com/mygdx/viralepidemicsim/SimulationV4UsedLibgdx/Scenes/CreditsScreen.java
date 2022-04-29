@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -16,9 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Buttons.OpeningScreenButtons;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 
@@ -33,7 +30,7 @@ public class CreditsScreen implements Screen{
     private String creditsString;
     private String faik, tarik, emre, tuna, gun;
     private GameMain game;
-    public Stage stage;
+    private Stage stage;
     private Viewport gameViewport;
 
     public CreditsScreen(GameMain main) {
@@ -116,13 +113,13 @@ public class CreditsScreen implements Screen{
         turnBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                GameMain.stage = GameMain.openingScreen.getButtons().stage;
+                GameMain.stage = GameMain.openingScreen.getButtons().getStage();
                 game.setScreen(GameMain.openingScreen);
-                Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().stage);
+                Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
             }
         });
     }
-    public Object getStage() {
+    public Stage getStage() {
         return stage;
     }
 
