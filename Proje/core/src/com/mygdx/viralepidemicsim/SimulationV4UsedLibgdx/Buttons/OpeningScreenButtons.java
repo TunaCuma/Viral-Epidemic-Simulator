@@ -79,9 +79,9 @@ public class OpeningScreenButtons {
         simulation.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                Gdx.input.setInputProcessor(null);
                 game.setScreen(GameMain.gameScreen);
                 GameMain.gameScreen.startMusic();
-                Gdx.input.setInputProcessor(null);
             } 
         });
         exit.addListener(new ChangeListener() {
@@ -94,9 +94,9 @@ public class OpeningScreenButtons {
         credits.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                Gdx.input.setInputProcessor(GameMain.creditsScreen.getStage());
                 GameMain.stage = (Stage) GameMain.creditsScreen.getStage();
                 game.setScreen(GameMain.creditsScreen);
-                Gdx.input.setInputProcessor(GameMain.creditsScreen.getStage());
             }
         });
     }
