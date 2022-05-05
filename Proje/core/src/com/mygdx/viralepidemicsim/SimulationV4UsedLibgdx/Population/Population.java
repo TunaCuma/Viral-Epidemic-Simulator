@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.DirectedGraph;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.FirstVersion.*;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
@@ -17,7 +18,7 @@ public class Population {
     World world;
 
 
-    public Population(World world, int numberOfPeople){
+    public Population(World world,DirectedGraph map, int numberOfPeople){
         population = new Person[numberOfPeople];
         this.world = world; 
 
@@ -31,23 +32,33 @@ public class Population {
         for(int i = 0; i < population.length ; i++){
             randomX =  rand.nextInt(GameInfo.WIDTH);
             randomY = rand.nextInt(GameInfo.HEIGHT);
+            
+
             double tempo = Math.random();
             float percentage = FinalVariables.YOUNG_PERCENTAGE/100;
             if(tempo < percentage) {
-                population[i] = new Person(world,"Heal.png", randomX, randomY, FinalVariables.YOUNG_IMMUNITY);
+                population[i] = new Person(world,map,"Heal.png", randomX, randomY, FinalVariables.YOUNG_IMMUNITY);
             }
             else if( tempo < (percentage += FinalVariables.YOUNG_ADULT_PERCENTAGE/100)) {
-                population[i] = new Person(world,"Heal.png", randomX, randomY, FinalVariables.YOUNG_ADULT_IMMUNITY);
+                population[i] = new Person(world,map,"Heal.png", randomX, randomY, FinalVariables.YOUNG_ADULT_IMMUNITY);
             }
             else if( tempo < (percentage += FinalVariables.ADULT_PERCENTAGE/100)) {
-                population[i] = new Person(world,"Heal.png", randomX, randomY, FinalVariables.ADULT_IMMUNITY);
+                population[i] = new Person(world,map,"Heal.png", randomX, randomY, FinalVariables.ADULT_IMMUNITY);
             }
             else { //Old
-                population[i] = new Person(world,"Heal.png", randomX, randomY, FinalVariables.OLD_IMMUNITY);
+                population[i] = new Person(world,map,"Heal.png", randomX, randomY, FinalVariables.OLD_IMMUNITY);
             }
 
         }
     }
+
+    public void trackRoute(){
+        for(int i = 0; i < population.length ; i++){
+            population[i].trackRoute();
+        }
+    }
+
+
 
     public void updatePopulation(){
         for(int i = 0; i < population.length ; i++){
@@ -63,11 +74,6 @@ public class Population {
         return population;
     }
 
-    public void checkBorder(){
-        for(int i = 0; i < population.length ; i++){
-            population[i].checkBorder();
-        }
-    }
 
     public void healthUpdate(){
         for(int i = 0; i < population.length ; i++){

@@ -13,12 +13,12 @@ public class GameMain extends Game{
 
     @Override
     public void create() {
-        Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+        //Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         batch = new SpriteBatch();
         GameInfo.create();
         openingScreen = new OpeningScreen(this);
-        setScreen(openingScreen);
-        //setScreen(new MainMenu(this));
+        //setScreen(openingScreen);
+        setScreen(new MainMenu(this));
     }
 
     public void render() {
