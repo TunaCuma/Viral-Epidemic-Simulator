@@ -27,7 +27,6 @@ public class OpeningScreenButtons {
     private ImageButton credits;
     private ImageButton settings;
     private ImageButton exit;
-    private ImageButton mapBuilder;
 
     private BitmapFont fontNames;
     
@@ -49,7 +48,6 @@ public class OpeningScreenButtons {
         stage.addActor(credits);
         stage.addActor(settings);
         stage.addActor(exit);
-        stage.addActor(mapBuilder);
     }
     public Stage getStage() {
         return this.stage;
@@ -61,7 +59,6 @@ public class OpeningScreenButtons {
         howTo = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
         credits = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
         settings = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
-        mapBuilder = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
         exit = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
 
         simulation.setPosition(GameInfo.WIDTH/2f-GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/20f, Align.center);
@@ -69,8 +66,7 @@ public class OpeningScreenButtons {
         howTo.setPosition(GameInfo.WIDTH/2f-GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-3*GameInfo.HEIGHT/20f, Align.center);
         credits.setPosition(GameInfo.WIDTH/2f +GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-3*GameInfo.HEIGHT/20f, Align.center);
         settings.setPosition(GameInfo.WIDTH/2f-GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-5*GameInfo.HEIGHT/20f, Align.center);
-        mapBuilder.setPosition(GameInfo.WIDTH/2f +GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2-5*GameInfo.HEIGHT/20f, Align.center);
-        exit.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f-7*GameInfo.HEIGHT/20f, Align.center);
+        exit.setPosition(GameInfo.WIDTH/2f +GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2-5*GameInfo.HEIGHT/20f, Align.center);
     }
     void dispose() {
 

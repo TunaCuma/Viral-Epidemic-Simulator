@@ -2,7 +2,10 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music.OnCompletionListener;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -33,14 +36,15 @@ public class MainMenu implements Screen, ContactListener{
 
     private OrthographicCamera box2DCamera;
     private Box2DDebugRenderer debugRenderer;
-    private Sound sound;
+    private Music[] musics;
+    private int currentMusic;
 
     float clock = 0;
 
 
     public MainMenu(GameMain game){
         this.game = game;
-
+        createMusics();
         box2DCamera = new OrthographicCamera();
         box2DCamera.setToOrtho(false, GameInfo.WIDTH/GameInfo.PPM, GameInfo.HEIGHT/GameInfo.PPM);
         box2DCamera.position.set((GameInfo.WIDTH/2f)/GameInfo.PPM , (GameInfo.HEIGHT/2f)/GameInfo.PPM,0);
@@ -54,7 +58,6 @@ public class MainMenu implements Screen, ContactListener{
         bg = new Texture("BlackBg.png");
 
         population = new Population(world,500);
-        sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         population.getPopulation()[0].makePatientZero();
         box2DCamera.update();
     }
@@ -67,8 +70,12 @@ public class MainMenu implements Screen, ContactListener{
 
     @Override
     public void render(float delta) {
-        
-        
+
+        if(!musics[currentMusic].isPlaying()) {
+            if(currentMusic == 4)
+                currentMusic = -1;
+            musics[++currentMusic].play();
+        }
 
         population.updatePopulation();  
         population.checkBorder();
@@ -122,7 +129,7 @@ public class MainMenu implements Screen, ContactListener{
 
     @Override
     public void dispose() {
-        sound.stop();
+        musics[0].stop();
     }
 
     @Override
@@ -172,15 +179,26 @@ public class MainMenu implements Screen, ContactListener{
     }
 
     public void startMusic() {
-        sound.play();
-        sound.loop();
+        musics[currentMusic].play();
     }
 
     public void pauseMusic() {
-        sound.pause();
+        musics[currentMusic].pause();
     }
 
-    public void resumeMusic() {
-        sound.resume();
+    private void createMusics() {
+        currentMusic = 0;
+        musics = new Music[5];
+        FileHandle src = Gdx.files.internal("music1.mp3");
+        musics[0] = Gdx.audio.newMusic(src);
+        src = Gdx.files.internal("music2.mp3");
+        musics[1] = Gdx.audio.newMusic(src);
+        src = Gdx.files.internal("music3.mp3");
+        musics[2] = Gdx.audio.newMusic(src);
+        src = Gdx.files.internal("music4.mp3");
+        musics[3] = Gdx.audio.newMusic(src);
+        src = Gdx.files.internal("music5.mp3");
+        musics[4] = Gdx.audio.newMusic(src);
+        src = null;
     }
 }
