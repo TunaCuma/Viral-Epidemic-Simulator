@@ -33,6 +33,10 @@ public class CreditsScreen implements Screen{
     private Stage stage;
     private Viewport gameViewport;
 
+    /**
+     * Constructor
+     * @param main the GameMain object which will store this screen
+     */
     public CreditsScreen(GameMain main) {
         batch = new SpriteBatch();
         game = main;
@@ -53,19 +57,23 @@ public class CreditsScreen implements Screen{
         faik = "AHMET FAIK UTKU"; tarik = "AHMET TARIK UCUR"; tuna = "TUNA CUMA"; emre = "EMRE AKGUL"; gun = "GUN TASTAN";
 
     }
+
     @Override
     public void show() {
         
     }
-
+    
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        //Draws the background
         game.getBatch().begin();
         game.getBatch().draw(background, 0, 0);
         game.getBatch().end();
+
+        //Draws the names of the buttons on the buttons
         batch.begin();
         fontCredits.draw(batch, creditsString, GameInfo.WIDTH/3f, GameInfo.HEIGHT/1.2f);
         fontNames.draw(batch, faik, GameInfo.WIDTH/2.6f, GameInfo.HEIGHT/2.4f+5*GameInfo.HEIGHT/20);
@@ -74,25 +82,24 @@ public class CreditsScreen implements Screen{
         fontNames.draw(batch, gun, GameInfo.WIDTH/2.4f, GameInfo.HEIGHT/2.4f+2*GameInfo.HEIGHT/20);
         fontNames.draw(batch, tuna, GameInfo.WIDTH/2.36f, GameInfo.HEIGHT/2.4f+GameInfo.HEIGHT/20);
         batch.end();
+
+        //Draws the stage and the buttons in it
         stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -104,11 +111,17 @@ public class CreditsScreen implements Screen{
     public void dispose() {
     } 
 
+    /**
+     * Creates the buttons required to return to the OpeningScreen
+     */
     void createButtons() {
         turnBack = new ImageButton(new SpriteDrawable(new Sprite(new Texture("TurnBack.png") )));
         turnBack.setPosition(170, GameInfo.HEIGHT*2/2f-60, Align.center);
     }
 
+    /**
+     * Adds functionality to the button
+     */
     void addAllListeners() {
         turnBack.addListener(new ChangeListener() {
             @Override
@@ -119,6 +132,7 @@ public class CreditsScreen implements Screen{
             }
         });
     }
+
     public Stage getStage() {
         return stage;
     }

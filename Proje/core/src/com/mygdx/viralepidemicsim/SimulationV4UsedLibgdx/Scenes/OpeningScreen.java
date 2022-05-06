@@ -18,6 +18,10 @@ public class OpeningScreen implements Screen{
     private OpeningScreenButtons buttons;
     private SpriteBatch batch;
 
+    /**
+     * Constructor
+     * @param main the GameMain object which will store this screen
+     */
     public OpeningScreen(GameMain main) {
         game = main;
         buttons = new OpeningScreenButtons(game);
@@ -43,6 +47,7 @@ public class OpeningScreen implements Screen{
         buttons.getStage().draw();
         batch.begin();
 
+        //Drawing the names for the buttons
         buttons.getFontNames().draw(batch, "SIMULATION  ", GameInfo.WIDTH/2f-GameInfo.WIDTH/6.12f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/27f);
         buttons.getFontNames().draw(batch, "           GAME", GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/27f);
         buttons.getFontNames().draw(batch, "   HOW TO    ", GameInfo.WIDTH/2f-GameInfo.WIDTH/6.12f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/7.4f);
@@ -54,26 +59,22 @@ public class OpeningScreen implements Screen{
 
     @Override
     public void resize(int width, int height) {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override

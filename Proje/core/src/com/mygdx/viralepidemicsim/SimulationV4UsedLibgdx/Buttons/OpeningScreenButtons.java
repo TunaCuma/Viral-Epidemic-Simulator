@@ -30,7 +30,10 @@ public class OpeningScreenButtons {
 
     private BitmapFont fontNames;
     
-
+    /**
+     * Constructor
+     * @param main the GameMain object which will store this screen
+     */
     public OpeningScreenButtons(GameMain game) {
         this.game = game;
 
@@ -53,6 +56,9 @@ public class OpeningScreenButtons {
         return this.stage;
     }
 
+    /**
+     * Creating new buttons with their names and positioning them
+     */
     void createButtons() {
         simulation = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
         gamee = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
@@ -71,6 +77,9 @@ public class OpeningScreenButtons {
     void dispose() {
 
     }
+    /**
+     * Adding functionality to the buttons
+     */
     void addAllListeners() {
         simulation.addListener(new ChangeListener() {
             @Override

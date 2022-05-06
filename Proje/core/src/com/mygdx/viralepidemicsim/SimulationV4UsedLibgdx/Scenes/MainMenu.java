@@ -27,21 +27,18 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population.Population;
 public class MainMenu implements Screen, ContactListener{
 
     private GameMain game;
-
     private Texture bg;
-
     private Population population;
-    
     private World world;
-
     private OrthographicCamera box2DCamera;
     private Box2DDebugRenderer debugRenderer;
     private Music[] musics;
     private int currentMusic;
 
-    float clock = 0;
-
-
+    /**
+     * Constructor
+     * @param game the GameMain object which will store this screen
+     */
     public MainMenu(GameMain game){
         this.game = game;
         createMusics();
@@ -70,7 +67,8 @@ public class MainMenu implements Screen, ContactListener{
 
     @Override
     public void render(float delta) {
-
+        
+        //manually looping the music list
         if(!musics[currentMusic].isPlaying()) {
             if(currentMusic == 4)
                 currentMusic = -1;
@@ -83,9 +81,11 @@ public class MainMenu implements Screen, ContactListener{
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
+        //Drawing the background
         game.getBatch().begin();
         game.getBatch().draw(bg, 0, 0);
+
+        //Drawing the population one by one
         Person currentPerson;
         for(int i = 0; i < population.getNumberOfPeople(); i++){
             currentPerson = population.getPopulation()[i];
@@ -105,31 +105,27 @@ public class MainMenu implements Screen, ContactListener{
 
     @Override
     public void resize(int width, int height) {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void dispose() {
-        musics[0].stop();
+
     }
 
     @Override
@@ -142,7 +138,7 @@ public class MainMenu implements Screen, ContactListener{
         String healthCondition2 = ((String) secondBody.getUserData()).substring(0,4);
 
 
-
+        //If one of the persons that made contact is sick, the other gets a chance to get sick based on their immunity level.
         if(healthCondition2.equals("Sick") && healthCondition1.equals("Heal") && Math.random()*100+1 > population.getPopulation()[Integer.parseInt(((String)firstBody.getUserData()).substring(4))].getImmunity()){
             int healsIndex = Integer.parseInt(((String)firstBody.getUserData()).substring(4)); 
             firstBody.setUserData("Sick" + healsIndex);
@@ -158,20 +154,17 @@ public class MainMenu implements Screen, ContactListener{
 
     @Override
     public void endContact(Contact contact) {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
-        // TODO Auto-generated method stub
-        
+
     }
 
     public World getWorld(){
@@ -186,6 +179,7 @@ public class MainMenu implements Screen, ContactListener{
         musics[currentMusic].pause();
     }
 
+    //Creating and naming the music objects, and then adding them to musics array
     private void createMusics() {
         currentMusic = 0;
         musics = new Music[5];
@@ -199,6 +193,5 @@ public class MainMenu implements Screen, ContactListener{
         musics[3] = Gdx.audio.newMusic(src);
         src = Gdx.files.internal("music5.mp3");
         musics[4] = Gdx.audio.newMusic(src);
-        src = null;
     }
 }
