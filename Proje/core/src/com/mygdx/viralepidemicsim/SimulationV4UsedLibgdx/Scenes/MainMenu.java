@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
@@ -28,6 +29,7 @@ public class MainMenu implements Screen, ContactListener{
 
     private GameMain game;
     private Texture bg;
+    private Texture gui;
     private Population population;
     private World world;
     private OrthographicCamera box2DCamera;
@@ -53,6 +55,7 @@ public class MainMenu implements Screen, ContactListener{
         world.setContactListener(this);
 
         bg = new Texture("BlackBg.png");
+        gui = new Texture("GameGui.png");
 
         population = new Population(world,500);
         population.getPopulation()[0].makePatientZero();
@@ -93,6 +96,7 @@ public class MainMenu implements Screen, ContactListener{
             game.getBatch().draw(currentPerson,(currentPerson.getX() - currentPerson.getWidth()/2), (currentPerson.getY() - currentPerson.getHeight()/2));
         }
 
+        game.getBatch().draw(gui, 0, 0);
 
         game.getBatch().end();
         
