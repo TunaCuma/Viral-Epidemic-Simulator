@@ -26,7 +26,7 @@ public class OpeningScreen implements Screen{
      */
     public OpeningScreen(GameMain main) {
         game = main;
-        font = new BitmapFont(Gdx.files.internal("CreditsFont.fnt"));
+        font = new BitmapFont(Gdx.files.internal("TitleFont.fnt"));
         buttons = new OpeningScreenButtons(game);
         camera = new OrthographicCamera(GameInfo.WIDTH, GameInfo.HEIGHT);
         batch = new SpriteBatch();
@@ -50,8 +50,7 @@ public class OpeningScreen implements Screen{
         buttons.getStage().draw();
         batch.begin();
         
-        font.getData().setScale((float) 0.8, 1);
-        font.draw(batch, "VIRAL EPIDEMIC\n   SIMULATOR", GameInfo.WIDTH/4-20, GameInfo.HEIGHT/1.2f+50);
+        font.draw(batch, "VIRAL EPIDEMIC\n   SIMULATOR", GameInfo.WIDTH/3.7f, GameInfo.HEIGHT/1.2f);
         
         //Drawing the names for the buttons
         buttons.getFontNames().draw(batch, "SIMULATION  ", GameInfo.WIDTH/2f-GameInfo.WIDTH/6.12f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/27f);
