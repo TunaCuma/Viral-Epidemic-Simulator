@@ -40,7 +40,7 @@ public class GameMain extends Game{
     void createScreens() {
         creditsScreen = new CreditsScreen(this);
         gameScreen = new MainMenu(this);
-        openingScreen = new OpeningScreen(this);
         howToScreen = new HowToScreen(this);
+        openingScreen = new OpeningScreen(this);
     }
 }
