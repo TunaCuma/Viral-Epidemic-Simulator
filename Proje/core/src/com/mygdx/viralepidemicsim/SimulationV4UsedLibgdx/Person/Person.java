@@ -149,7 +149,7 @@ public class Person extends Sprite{
         }
         else{
             Vector2 targetPosition = new Vector2((float)currentRoute.target.getX(),(float)currentRoute.target.getY());
-            float targetSpeed = 10f;
+            float targetSpeed = 2.5f;
 
             Vector2 direction = targetPosition.sub(body.getPosition());
 
@@ -260,6 +260,7 @@ public class Person extends Sprite{
             setPosition((body.getPosition().x )* GameInfo.PPM, body.getPosition().y * GameInfo.PPM);
         }
         
+
     }
 
     public void makePatientZero(){

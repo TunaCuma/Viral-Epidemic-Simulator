@@ -16,9 +16,6 @@ public class DesktopLauncher {
 
 		config.setWindowedMode(GameInfo.WIDTH, GameInfo.HEIGHT);
 
-		config.setMaximized(true);
-		
-		
 		new Lwjgl3Application(new GameMain(), config);
 	}
 }
