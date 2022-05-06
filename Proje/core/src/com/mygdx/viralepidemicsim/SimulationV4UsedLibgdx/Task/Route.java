@@ -1,10 +1,9 @@
-package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Route;
+package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task;
 
 import java.awt.Point;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.Edge;
 
 public class Route {
     
@@ -15,10 +14,6 @@ public class Route {
     public Route(Point target){
         this.target = target;
         
-    }
-
-    public Route(Edge endEdge){
-        this(new Point(endEdge.xCoordinate,endEdge.yCoordinate));
     }
     
 

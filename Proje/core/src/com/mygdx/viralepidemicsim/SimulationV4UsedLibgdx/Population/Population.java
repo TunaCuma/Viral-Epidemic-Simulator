@@ -6,7 +6,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.DirectedGraph;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.FirstVersion.*;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
@@ -18,7 +18,7 @@ public class Population {
     World world;
 
 
-    public Population(World world,DirectedGraph map, int numberOfPeople){
+    public Population(World world, GridMap map, int numberOfPeople){
         population = new Person[numberOfPeople];
         this.world = world; 
 
@@ -52,11 +52,7 @@ public class Population {
         }
     }
 
-    public void trackRoute(){
-        for(int i = 0; i < population.length ; i++){
-            population[i].trackRoute();
-        }
-    }
+   
 
 
 

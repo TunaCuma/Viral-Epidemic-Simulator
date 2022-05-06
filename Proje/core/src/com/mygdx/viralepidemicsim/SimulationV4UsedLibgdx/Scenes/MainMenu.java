@@ -17,8 +17,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.DirectedGraph;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.Edge;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
@@ -42,7 +41,7 @@ public class MainMenu implements Screen, ContactListener{
 
     float clock = 0;
 
-    DirectedGraph abstractMap;
+    GridMap abstractMap;
 
     Texture hospital;
     Texture house;
@@ -64,7 +63,6 @@ public class MainMenu implements Screen, ContactListener{
 
         bg = new Texture("BlackBg.png");
 
-        createAbsMap();
 
         population = new Population(world,abstractMap,1000);
         //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
@@ -78,7 +76,6 @@ public class MainMenu implements Screen, ContactListener{
         hospital = new Texture("firsthospital.png");
         house = new Texture("firstHouse.png");
 
-        population.trackRoute();
 
 
 
@@ -165,7 +162,6 @@ public class MainMenu implements Screen, ContactListener{
     public void render(float delta) {
         
         
-        population.trackRoute();
 
         population.updatePopulation();
 
@@ -185,10 +181,6 @@ public class MainMenu implements Screen, ContactListener{
 
         
 
-        //game.getBatch().draw(hospital, 45, GameInfo.HEIGHT - 105);
-        //game.getBatch().draw(hospital, 750, 500);
-
-        //game.getBatch().draw(house, 45, GameInfo.HEIGHT - 145);
 
         
 
@@ -276,82 +268,5 @@ public class MainMenu implements Screen, ContactListener{
         return world;
     }
 
-
-    public void createAbsMap(){
-        abstractMap = new DirectedGraph(18);
-
-        boolean[] isThereVertex0 = {false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,true};
-        Edge edge0 = new Edge(abstractMap, 35 , GameInfo.HEIGHT - 35,isThereVertex0.clone() );
-
-        boolean[] isThereVertex1 = {true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
-        Edge edge1 = new Edge(abstractMap, 95 , GameInfo.HEIGHT - 35,isThereVertex1.clone() );
-
-        boolean[] isThereVertex2 = {false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
-        Edge edge2 = new Edge(abstractMap, 40 , GameInfo.HEIGHT - 40,isThereVertex2.clone() );
-
-        boolean[] isThereVertex3 = {false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false};
-        Edge edge3 = new Edge(abstractMap, 90 , GameInfo.HEIGHT - 40,isThereVertex3.clone() );
-
-        boolean[] isThereVertex4 = {false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true};
-        Edge edge4 = new Edge(abstractMap, 45 , GameInfo.HEIGHT - 75,isThereVertex4.clone() );
-
-        boolean[] isThereVertex5 = {false,false,false,false,false,false,false,true,true,false,false,false,true,false,false,false,false,false};
-        Edge edge5 = new Edge(abstractMap, 35 , GameInfo.HEIGHT - 110,isThereVertex5.clone() );
-
-        boolean[] isThereVertex6 = {false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,false};
-        Edge edge6 = new Edge(abstractMap, 40 , GameInfo.HEIGHT - 110,isThereVertex6.clone() );
-
-        boolean[] isThereVertex7 = {false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false};
-        Edge edge7 = new Edge(abstractMap, 90 , GameInfo.HEIGHT - 110,isThereVertex7.clone() );
-
-        boolean[] isThereVertex8 = {false,true,false,false,false,true,true,false,false,false,false,false,false,false,false,false,false,false};
-        Edge edge8 = new Edge(abstractMap, 95 , GameInfo.HEIGHT - 110,isThereVertex8.clone() );
-
-        boolean[] isThereVertex9 = {false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,false,false};
-        Edge edge9 = new Edge(abstractMap, 65 , GameInfo.HEIGHT - 145,isThereVertex9.clone() );
-
-        boolean[] isThereVertex10 = {false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false};
-        Edge edge10 = new Edge(abstractMap, 40 , GameInfo.HEIGHT - 150,isThereVertex10.clone() );
-
-        boolean[] isThereVertex11 = {false,false,false,false,false,false,false,false,false,false,true,false,false,false,true,false,false,false};
-        Edge edge11 = new Edge(abstractMap, 90 , GameInfo.HEIGHT - 150,isThereVertex11.clone() );
-
-        boolean[] isThereVertex12 = {false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false};
-        Edge edge12 = new Edge(abstractMap, 35 , GameInfo.HEIGHT - 155,isThereVertex12.clone() );
-
-        boolean[] isThereVertex13 = {false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false};
-        Edge edge13 = new Edge(abstractMap, 95 , GameInfo.HEIGHT - 155,isThereVertex13.clone() );
-
-        boolean[] isThereVertex14 = {false,false,false,false,false,false,false,false,false,true,false,true,false,false,false,false,false,false};
-        Edge edge14 = new Edge(abstractMap, 65 , GameInfo.HEIGHT - 150,isThereVertex14.clone() );
-
-        boolean[] isThereVertex15 = {false,false,false,false,false,false,false,false,false,true,false,false,true,false,false,false,false,false};
-        Edge edge15 = new Edge(abstractMap, 65 , GameInfo.HEIGHT - 155,isThereVertex15.clone() );
-
-        boolean[] isThereVertex16 = {false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false};
-        Edge edge16 = new Edge(abstractMap, 40 , GameInfo.HEIGHT - 75,isThereVertex16.clone() );
-
-        boolean[] isThereVertex17 = {false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false};
-        Edge edge17 = new Edge(abstractMap, 35 , GameInfo.HEIGHT - 75,isThereVertex17.clone() );
-
-        abstractMap.addEdge(edge0);
-        abstractMap.addEdge(edge1);
-        abstractMap.addEdge(edge2);
-        abstractMap.addEdge(edge3);
-        abstractMap.addEdge(edge4);
-        abstractMap.addEdge(edge5);
-        abstractMap.addEdge(edge6);
-        abstractMap.addEdge(edge7);
-        abstractMap.addEdge(edge8);
-        abstractMap.addEdge(edge9);
-        abstractMap.addEdge(edge10);
-        abstractMap.addEdge(edge11);
-        abstractMap.addEdge(edge12);
-        abstractMap.addEdge(edge13);
-        abstractMap.addEdge(edge14);
-        abstractMap.addEdge(edge15);
-        abstractMap.addEdge(edge16);
-        abstractMap.addEdge(edge17);
-    }
     
 }

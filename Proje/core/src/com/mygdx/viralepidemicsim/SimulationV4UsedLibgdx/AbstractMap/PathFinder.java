@@ -1,14 +1,15 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 
- 
 class PathFinder {
  
     private static final int NO_PARENT = -1;
  
     
-    private static void dijkstra(int[][] adjacencyMatrix,
-                                        int startVertex )
+    private static ArrayList dijkstra(int[][] adjacencyMatrix,
+                                        int startVertex , int destination)
     {
         int nVertices = adjacencyMatrix[0].length;
  
@@ -74,58 +75,38 @@ class PathFinder {
                 }
             }
         }
- 
-        printSolution(startVertex, shortestDistances, parents);
+        
+        ArrayList<Integer> res = new ArrayList<>();
+        createPath(destination, parents, res);
+
+        return res;
+
     }
- 
- 
-    private static void printSolution(int startVertex,
-                                      int[] distances,
-                                      int[] parents)
-    {
-        int nVertices = distances.length;
-        System.out.print("Vertex\t Distance\tPath");
-         
-        for (int vertexIndex = 0;
-                 vertexIndex < nVertices;
-                 vertexIndex++)
-        {
-            if (vertexIndex != startVertex)
-            {
-                System.out.print("\n" + startVertex + " -> ");
-                System.out.print(vertexIndex + " \t\t ");
-                System.out.print(distances[vertexIndex] + "\t\t");
-                printPath(vertexIndex, parents);
-            }
-        }
-    }
+
  
    
-    private static void printPath(int currentVertex,
-                                  int[] parents)
+    private static void createPath(int currentVertex,
+                                  int[] parents, ArrayList<Integer> arrL)
     {
-         
-        
         if (currentVertex == NO_PARENT)
         {
             return;
         }
-        printPath(parents[currentVertex], parents);
-        System.out.print(currentVertex + " ");
+        createPath(parents[currentVertex], parents, arrL);
+        arrL.add(currentVertex);
+
     }
  
     public static void main(String[] args)
     {
-        int[][] adjacencyMatrix = { { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
-                                    { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
-                                    { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
-                                    { 0, 0, 7, 0, 9, 14, 0, 0, 0 },
-                                    { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
-                                    { 0, 0, 4, 0, 10, 0, 2, 0, 0 },
-                                    { 0, 0, 0, 14, 0, 2, 0, 1, 6 },
-                                    { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
-                                    { 0, 0, 2, 0, 0, 0, 6, 7, 0 }};
-        dijkstra(adjacencyMatrix, 0);
+        GridMap gm = new GridMap();
+
+
+
+    
+
+    
+        System.out.println(dijkstra(gm.gridMap, 0, 155));
     }
 }
  
