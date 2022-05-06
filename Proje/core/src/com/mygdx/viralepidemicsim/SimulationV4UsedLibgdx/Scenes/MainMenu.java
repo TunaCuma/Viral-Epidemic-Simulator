@@ -66,7 +66,7 @@ public class MainMenu implements Screen, ContactListener{
 
         createAbsMap();
 
-        population = new Population(world,abstractMap,1000);
+        population = new Population(world,abstractMap,500);
         //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         population.getPopulation()[0].makePatientZero();
         box2DCamera.update();
