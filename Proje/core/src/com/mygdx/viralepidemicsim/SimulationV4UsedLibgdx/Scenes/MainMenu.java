@@ -15,7 +15,6 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
@@ -62,19 +61,18 @@ public class MainMenu implements Screen, ContactListener{
 
     @Override
     public void show() {
-        // TODO Auto-generated method stub
-        
+  
     }
 
     @Override
     public void render(float delta) {
         
         //manually looping the music list
-        //if(!musics[currentMusic].isPlaying()) {
-        //    if(currentMusic == 4)
-        //        currentMusic = -1;
-        //    musics[++currentMusic].play();
-        //}
+        if(!musics[currentMusic].isPlaying()) {
+            if(currentMusic == 4)
+                currentMusic = -1;
+            musics[++currentMusic].play();
+        }
 
         population.updatePopulation();  
         population.checkBorder();

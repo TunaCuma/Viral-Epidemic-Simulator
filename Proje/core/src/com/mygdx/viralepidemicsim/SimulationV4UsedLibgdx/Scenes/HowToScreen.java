@@ -28,11 +28,11 @@ public class HowToScreen implements Screen{
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private String[] HowToImages;
-    private ImageButton[] slides;
     private GameMain game;
     private Stage stage;
     private Viewport gameViewport;
     private int currentBackgroundIndex;
+    private Texture[] textures;
 
     /**
      * Constructor
@@ -45,6 +45,8 @@ public class HowToScreen implements Screen{
         stage = new Stage(gameViewport,game.getBatch());
         camera = new OrthographicCamera(GameInfo.WIDTH, GameInfo.HEIGHT);
         HowToImages = new String[] {"howto1.png","howto2.png","howto3.png"};
+        textures = new Texture[HowToImages.length];
+        createTextures();
         
         Gdx.input.setInputProcessor(stage);
         
@@ -135,24 +137,25 @@ public class HowToScreen implements Screen{
     public void nextSlide(){
         if(currentBackgroundIndex+1!=HowToImages.length){
             currentBackgroundIndex++;
-            background = new Texture(HowToImages[currentBackgroundIndex]);
+            background = textures[currentBackgroundIndex];
         } //If we are not at last index
         else{
             currentBackgroundIndex=0;
-            background = new Texture(HowToImages[currentBackgroundIndex]);
+            background = textures[currentBackgroundIndex];
             GameMain.stage = GameMain.openingScreen.getButtons().getStage();
             game.setScreen(GameMain.openingScreen);
             Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
         } //turn to opening screen 
     }
+
     public void previousSlide(){
         if(currentBackgroundIndex!=0){
             currentBackgroundIndex--;
-            background = new Texture(HowToImages[currentBackgroundIndex]);
+            background = textures[currentBackgroundIndex];
         } //If we are not at first index
         else{
             currentBackgroundIndex=0;
-            background = new Texture(HowToImages[currentBackgroundIndex]);
+            background = textures[currentBackgroundIndex];
             GameMain.stage = GameMain.openingScreen.getButtons().getStage();
             game.setScreen(GameMain.openingScreen);
             Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
@@ -160,6 +163,11 @@ public class HowToScreen implements Screen{
     }
     public Stage getStage() {
         return stage;
+    }
+
+    private void createTextures() {
+        for(int i = 0; i < textures.length; i++) 
+            textures[i] = new Texture(HowToImages[i]);
     }
 
 }
