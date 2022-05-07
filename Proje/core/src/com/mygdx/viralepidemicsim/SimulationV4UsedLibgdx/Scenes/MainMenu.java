@@ -70,11 +70,11 @@ public class MainMenu implements Screen, ContactListener{
     public void render(float delta) {
         
         //manually looping the music list
-        if(!musics[currentMusic].isPlaying()) {
-            if(currentMusic == 4)
-                currentMusic = -1;
-            musics[++currentMusic].play();
-        }
+        //if(!musics[currentMusic].isPlaying()) {
+        //    if(currentMusic == 4)
+        //        currentMusic = -1;
+        //    musics[++currentMusic].play();
+        //}
 
         population.updatePopulation();  
         population.checkBorder();

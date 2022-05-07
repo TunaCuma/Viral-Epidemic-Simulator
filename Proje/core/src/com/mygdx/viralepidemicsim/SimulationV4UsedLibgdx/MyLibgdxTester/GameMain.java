@@ -9,6 +9,7 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.CreditsScreen;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.HowToScreen;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.OpeningScreen;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Settings;
 
 public class GameMain extends Game{
 
@@ -17,7 +18,9 @@ public class GameMain extends Game{
     public static CreditsScreen creditsScreen;
     public static HowToScreen howToScreen;
     public static MainMenu gameScreen;
+    public static Settings settingsScreen;
     public static Stage stage;
+    
 
     @Override
     public void create() {
@@ -41,6 +44,8 @@ public class GameMain extends Game{
         creditsScreen = new CreditsScreen(this);
         gameScreen = new MainMenu(this);
         openingScreen = new OpeningScreen(this);
+        settingsScreen = new Settings(this);
         howToScreen = new HowToScreen(this);
+        
     }
 }

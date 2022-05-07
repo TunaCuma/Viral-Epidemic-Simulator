@@ -86,7 +86,7 @@ public class OpeningScreenButtons {
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.input.setInputProcessor(null);
                 game.setScreen(GameMain.gameScreen);
-                GameMain.gameScreen.startMusic();
+                //GameMain.gameScreen.startMusic();
             } 
         });
         exit.addListener(new ChangeListener() {
@@ -102,18 +102,28 @@ public class OpeningScreenButtons {
                 Gdx.input.setInputProcessor(GameMain.creditsScreen.getStage());
                 GameMain.stage = (Stage) GameMain.creditsScreen.getStage();
                 game.setScreen(GameMain.creditsScreen);
-                System.out.println("zortss");
+                
 
             }
         });
         howTo.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("zortasas");
+                
                 Gdx.input.setInputProcessor(GameMain.howToScreen.getStage());
                 GameMain.stage = (Stage) GameMain.howToScreen.getStage();
                 game.setScreen(GameMain.howToScreen);
-                System.out.println("zortsss");
+                
+
+            }
+        });
+        settings.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {                
+                Gdx.input.setInputProcessor(GameMain.settingsScreen.getStage());
+                GameMain.stage = (Stage) GameMain.settingsScreen.getStage();
+                game.setScreen(GameMain.settingsScreen);
+                
 
             }
         });
