@@ -23,6 +23,8 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain
 public class HowToScreen implements Screen{
 
     public static Texture background;
+    private ImageButton turnBack;
+    private ImageButton forward;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private String[] HowToImages;
@@ -30,6 +32,7 @@ public class HowToScreen implements Screen{
     private GameMain game;
     private Stage stage;
     private Viewport gameViewport;
+    private int currentBackgroundIndex;
 
     /**
      * Constructor
@@ -41,31 +44,28 @@ public class HowToScreen implements Screen{
         gameViewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
         stage = new Stage(gameViewport,game.getBatch());
         camera = new OrthographicCamera(GameInfo.WIDTH, GameInfo.HEIGHT);
-        HowToImages = new String[] {"howto1.png","howto2.png"};
-        slides = createSlides();
-        addAllListeners();
+        HowToImages = new String[] {"howto1.png","howto2.png","howto3.png"};
+        
         Gdx.input.setInputProcessor(stage);
+        
+        currentBackgroundIndex = 0;
+        background = new Texture(HowToImages[currentBackgroundIndex]); //initilazing first background
 
-        for(ImageButton button: slides){
-            stage.addActor(button);
-        }
-
-        background = new Texture("BackgroundMain.jpg");
+        //buttons
+        createButtons();
+        addAllListeners();
+        stage.addActor(turnBack);
+        stage.addActor(forward);
 
         camera.position.set(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f, 0);
 
 
     }
-    public ImageButton[] createSlides(){
-        ImageButton[] slides = new ImageButton[HowToImages.length];
-        int index = 0;
-        for(String file: HowToImages){
-            slides[index] = new ImageButton(new SpriteDrawable(new Sprite(new Texture(file))));
-            slides[index].setPosition(0, 0, Align.bottomLeft);
-
-            index++;
-        }
-        return slides;
+    void createButtons() {
+        turnBack = new ImageButton(new SpriteDrawable(new Sprite(new Texture("TurnBack.png") )));
+        turnBack.setPosition(170, 60, Align.center);
+        forward = new ImageButton(new SpriteDrawable(new Sprite(new Texture("Forward.png") )));
+        forward.setPosition(GameInfo.WIDTH-170, 60, Align.center);
     }
 
     @Override
@@ -118,29 +118,46 @@ public class HowToScreen implements Screen{
      * Adds functionality to the button
      */
     void addAllListeners() {
-        
-        for(int i=0; i<slides.length; i++){
-            if(i<slides.length-1){
-                slides[i].addListener(new ChangeListener() {
-                    @Override
-                    public void changed(ChangeEvent event, Actor actor) {
-                        
-                    }
-                });
+        turnBack.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                previousSlide();
             }
-            else{
-                slides[i].addListener(new ChangeListener() {
-                    @Override
-                    public void changed(ChangeEvent event, Actor actor) {
-                        GameMain.stage = GameMain.openingScreen.getButtons().getStage();
-                        game.setScreen(GameMain.openingScreen);
-                        Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
-                    }
-                });
+        });
+        forward.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                nextSlide();
             }
-        }
+        });
     }
 
+    public void nextSlide(){
+        if(currentBackgroundIndex+1!=HowToImages.length){
+            currentBackgroundIndex++;
+            background = new Texture(HowToImages[currentBackgroundIndex]);
+        } //If we are not at last index
+        else{
+            currentBackgroundIndex=0;
+            background = new Texture(HowToImages[currentBackgroundIndex]);
+            GameMain.stage = GameMain.openingScreen.getButtons().getStage();
+            game.setScreen(GameMain.openingScreen);
+            Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
+        } //turn to opening screen 
+    }
+    public void previousSlide(){
+        if(currentBackgroundIndex!=0){
+            currentBackgroundIndex--;
+            background = new Texture(HowToImages[currentBackgroundIndex]);
+        } //If we are not at first index
+        else{
+            currentBackgroundIndex=0;
+            background = new Texture(HowToImages[currentBackgroundIndex]);
+            GameMain.stage = GameMain.openingScreen.getButtons().getStage();
+            game.setScreen(GameMain.openingScreen);
+            Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
+        } //turn to opening screen 
+    }
     public Stage getStage() {
         return stage;
     }

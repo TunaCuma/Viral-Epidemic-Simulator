@@ -102,19 +102,14 @@ public class OpeningScreenButtons {
                 Gdx.input.setInputProcessor(GameMain.creditsScreen.getStage());
                 GameMain.stage = (Stage) GameMain.creditsScreen.getStage();
                 game.setScreen(GameMain.creditsScreen);
-                
-
             }
         });
         howTo.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                
                 Gdx.input.setInputProcessor(GameMain.howToScreen.getStage());
                 GameMain.stage = (Stage) GameMain.howToScreen.getStage();
                 game.setScreen(GameMain.howToScreen);
-                
-
             }
         });
         settings.addListener(new ChangeListener() {
