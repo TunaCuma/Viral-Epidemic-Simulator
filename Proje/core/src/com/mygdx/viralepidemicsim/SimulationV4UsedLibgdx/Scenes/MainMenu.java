@@ -31,7 +31,7 @@ public class MainMenu implements Screen, ContactListener{
     private World world;
     private OrthographicCamera box2DCamera;
     private Box2DDebugRenderer debugRenderer;
-    private Music[] musics;
+    protected static Music[] musics;
     private int currentMusic;
 
     /**
@@ -193,5 +193,8 @@ public class MainMenu implements Screen, ContactListener{
         musics[3] = Gdx.audio.newMusic(src);
         src = Gdx.files.internal("music5.mp3");
         musics[4] = Gdx.audio.newMusic(src);
+
+        for(int i = 0; i < musics.length; i++) 
+            musics[i].setVolume(0.5f);
     }
 }

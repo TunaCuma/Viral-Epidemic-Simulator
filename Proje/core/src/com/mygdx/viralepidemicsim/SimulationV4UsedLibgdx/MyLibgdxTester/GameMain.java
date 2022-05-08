@@ -28,8 +28,7 @@ public class GameMain extends Game{
         batch = new SpriteBatch();
         GameInfo.create();
         createScreens();
-        setScreen(openingScreen);
-        //setScreen(new MainMenu(this));
+        gameScreen.startMusic();
     }
 
     public void render() {
@@ -46,5 +45,6 @@ public class GameMain extends Game{
         settingsScreen = new Settings(this);
         howToScreen = new HowToScreen(this);
         openingScreen = new OpeningScreen(this);
+        setScreen(openingScreen);
     }
 }
