@@ -3,15 +3,22 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class PathFinder {
+public class PathFinder {
  
     private static final int NO_PARENT = -1;
- 
     
-    private static ArrayList dijkstra(int[][] adjacencyMatrix,
-                                        int startVertex , int destination)
+    ArrayList<ArrayList<Integer>> everyPath;
+    GridMap map;
+
+    public PathFinder(GridMap map){
+        everyPath = new ArrayList<>();
+        this.map = map;
+    }
+
+    
+    public ArrayList<Integer> dijkstra(int startVertex , int destination)
     {
-        int nVertices = adjacencyMatrix[0].length;
+        int nVertices = map.gridMap[0].length;
  
        
         int[] shortestDistances = new int[nVertices];
@@ -63,7 +70,7 @@ class PathFinder {
                      vertexIndex < nVertices;
                      vertexIndex++)
             {
-                int edgeDistance = adjacencyMatrix[nearestVertex][vertexIndex];
+                int edgeDistance = map.gridMap[nearestVertex][vertexIndex];
                  
                 if (edgeDistance > 0
                     && ((shortestDistance + edgeDistance) <
@@ -96,17 +103,36 @@ class PathFinder {
         arrL.add(currentVertex);
 
     }
+
+
+    public void createEveryPath(){
+        for(int i = 0; i < 31; i++){
+            for(int j = 0; j < 31; j++){
+                if(i==j){
+                    continue;
+                }
+                everyPath.add((dijkstra(i, j)));
+            }
+        }
+
+    }
+
+
  
     public static void main(String[] args)
     {
         GridMap gm = new GridMap();
 
+        PathFinder pf = new PathFinder(gm);
+
+
+        
+
+
+        System.out.println(pf.dijkstra(0, 1));
 
 
     
-
-    
-        System.out.println(dijkstra(gm.gridMap, 0, 155));
     }
 }
  

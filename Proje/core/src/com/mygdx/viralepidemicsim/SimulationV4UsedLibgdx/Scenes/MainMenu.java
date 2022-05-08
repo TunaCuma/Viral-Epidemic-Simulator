@@ -48,6 +48,9 @@ public class MainMenu implements Screen, ContactListener{
 
     Texture[] buildings;
 
+    public float timeSeconds = 0f;
+    public float period = 20f;
+
     public MainMenu(GameMain game){
         this.game = game;
 
@@ -63,8 +66,9 @@ public class MainMenu implements Screen, ContactListener{
 
         bg = new Texture("BlackBg.png");
 
+        abstractMap = new GridMap();
 
-        population = new Population(world,abstractMap,1000);
+        population = new Population(world,abstractMap,10);
         //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         population.getPopulation()[0].makePatientZero();
         box2DCamera.update();
@@ -161,9 +165,16 @@ public class MainMenu implements Screen, ContactListener{
     @Override
     public void render(float delta) {
         
-        
+        timeSeconds +=Gdx.graphics.getDeltaTime();
+        if(timeSeconds > period){
+            timeSeconds-=period;
+            timeSeconds = 0f;
+        }
+
+        System.out.println(timeSeconds);
 
         population.updatePopulation();
+        population.executeTask();
 
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

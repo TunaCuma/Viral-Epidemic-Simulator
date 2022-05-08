@@ -16,38 +16,48 @@ public class Population {
     
     Person[] population;
     World world;
+    GridMap map;
+    
 
 
     public Population(World world, GridMap map, int numberOfPeople){
         population = new Person[numberOfPeople];
         this.world = world; 
+        this.map = map;
 
         Random rand = new Random();
 
         
         
-        int randomX;
-        int randomY;
+        int randomBetween0to30;
+    
         
         for(int i = 0; i < population.length ; i++){
-            randomX =  rand.nextInt(GameInfo.WIDTH);
-            randomY = rand.nextInt(GameInfo.HEIGHT);
-            
+            //randomBetween0to30 =  rand.nextInt(31);
+            randomBetween0to30 =  0;
 
             double tempo = Math.random();
             float percentage = FinalVariables.YOUNG_PERCENTAGE/100;
+
+            int xPosition = (int)map.vertices[randomBetween0to30].getX();
+            int yPosition = (int)map.vertices[randomBetween0to30].getY();
+
             if(tempo < percentage) {
-                population[i] = new Person(world,map,"Heal.png", randomX, randomY, FinalVariables.YOUNG_IMMUNITY);
+                population[i] = new Person(world,map,"Heal.png", xPosition , yPosition , FinalVariables.YOUNG_IMMUNITY);
             }
             else if( tempo < (percentage += FinalVariables.YOUNG_ADULT_PERCENTAGE/100)) {
-                population[i] = new Person(world,map,"Heal.png", randomX, randomY, FinalVariables.YOUNG_ADULT_IMMUNITY);
+                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.YOUNG_ADULT_IMMUNITY);
             }
             else if( tempo < (percentage += FinalVariables.ADULT_PERCENTAGE/100)) {
-                population[i] = new Person(world,map,"Heal.png", randomX, randomY, FinalVariables.ADULT_IMMUNITY);
+                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.ADULT_IMMUNITY);
             }
             else { //Old
-                population[i] = new Person(world,map,"Heal.png", randomX, randomY, FinalVariables.OLD_IMMUNITY);
+                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.OLD_IMMUNITY);
             }
+
+            //population[i].assignCurrentLoc(randomBetween0to30);
+
+
 
         }
     }
@@ -59,7 +69,11 @@ public class Population {
     public void updatePopulation(){
         for(int i = 0; i < population.length ; i++){
             population[i].updatePerson();
+            population[i].executeCurrentTask();
+            
         }
+
+        
     }
 
     public int getNumberOfPeople(){
@@ -76,4 +90,10 @@ public class Population {
             population[i].updateHealthCondition();
         }
     }
+
+    public void executeTask(){
+        
+    }
+
+    
 }

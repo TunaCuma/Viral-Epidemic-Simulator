@@ -19,6 +19,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Moving;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Task;
 
 public class Person extends Sprite{
     public static int numberOfPerson = 0;
@@ -36,6 +38,13 @@ public class Person extends Sprite{
 
     GridMap map;
 
+    public Task currentTask;
+
+    Task[] taskList;
+
+    int currentLoc;
+
+    int pointer;
 
     public Person(World world, GridMap gm, String name, float x, float y, int immunity){
         super(new Texture(name));
@@ -55,11 +64,58 @@ public class Person extends Sprite{
 
         createBody();
 
+        taskList = new Moving[31];
         
+        for(int i = 0; i < 31; i++){
+            taskList[i] = new Moving(this, gm, i, i+1);
+        }
+
+        
+
+
+        currentTask = taskList[0];
     }
 
+    public void executeCurrentTask(){
+        if(isTaskEnd()){
+            nextTask();
+        }
+        else{
+            executeTask(taskList[pointer]);
+        }
+    }
 
-    private void goLocation(Point target) {
+    public void nextTask(){
+        pointer++;
+        currentTask = taskList[pointer];
+        System.out.println(pointer);
+
+    }
+    
+    public boolean isTaskEnd(){
+        return currentTask.isTaskEnd();
+    }
+
+    public void assignTask(){
+        Random rand = new Random();
+        int randNum = rand.nextInt(31);
+
+        taskList[pointer] = new Moving(this, map, currentLoc,randNum);
+        currentTask = taskList[pointer];
+        pointer++;
+    }
+
+    public void assignCurrentLoc(int currentLoc){
+        this.currentLoc = currentLoc;
+
+    }
+
+    public void executeTask(Task task){
+        task.executeTaskOnBody();
+    }
+    
+
+    public void goLocation(Point target) {
         Vector2 targetPosition = new Vector2((float)target.getX(),(float)target.getY());
         float targetSpeed = 2.5f;
 
