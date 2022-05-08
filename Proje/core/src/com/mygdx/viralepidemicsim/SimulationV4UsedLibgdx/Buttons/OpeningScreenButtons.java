@@ -84,6 +84,7 @@ public class OpeningScreenButtons {
         simulation.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.play();
                 Gdx.input.setInputProcessor(null);
                 game.setScreen(GameMain.gameScreen);
                 //GameMain.gameScreen.startMusic();
@@ -92,6 +93,7 @@ public class OpeningScreenButtons {
         exit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.play();
                 Gdx.app.exit();
                 System.exit(0);
             }
@@ -99,6 +101,7 @@ public class OpeningScreenButtons {
         credits.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.play();
                 Gdx.input.setInputProcessor(GameMain.creditsScreen.getStage());
                 GameMain.stage = (Stage) GameMain.creditsScreen.getStage();
                 game.setScreen(GameMain.creditsScreen);
@@ -107,6 +110,7 @@ public class OpeningScreenButtons {
         howTo.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.play();
                 Gdx.input.setInputProcessor(GameMain.howToScreen.getStage());
                 GameMain.stage = (Stage) GameMain.howToScreen.getStage();
                 game.setScreen(GameMain.howToScreen);
@@ -114,7 +118,8 @@ public class OpeningScreenButtons {
         });
         settings.addListener(new ChangeListener() {
             @Override
-            public void changed(ChangeEvent event, Actor actor) {                
+            public void changed(ChangeEvent event, Actor actor) { 
+                GameMain.popSound.play();               
                 Gdx.input.setInputProcessor(GameMain.settingsScreen.getStage());
                 GameMain.stage = (Stage) GameMain.settingsScreen.getStage();
                 game.setScreen(GameMain.settingsScreen);

@@ -126,6 +126,7 @@ public class CreditsScreen implements Screen{
         turnBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.play();
                 GameMain.stage = GameMain.openingScreen.getButtons().getStage();
                 game.setScreen(GameMain.openingScreen);
                 Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());

@@ -183,16 +183,11 @@ public class MainMenu implements Screen, ContactListener{
     private void createMusics() {
         currentMusic = 0;
         musics = new Music[5];
-        FileHandle src = Gdx.files.internal("music1.mp3");
-        musics[0] = Gdx.audio.newMusic(src);
-        src = Gdx.files.internal("music2.mp3");
-        musics[1] = Gdx.audio.newMusic(src);
-        src = Gdx.files.internal("music3.mp3");
-        musics[2] = Gdx.audio.newMusic(src);
-        src = Gdx.files.internal("music4.mp3");
-        musics[3] = Gdx.audio.newMusic(src);
-        src = Gdx.files.internal("music5.mp3");
-        musics[4] = Gdx.audio.newMusic(src);
+        musics[0] = Gdx.audio.newMusic(Gdx.files.internal("music1.mp3"));
+        musics[1] = Gdx.audio.newMusic(Gdx.files.internal("music2.mp3"));
+        musics[2] = Gdx.audio.newMusic(Gdx.files.internal("music3.mp3"));
+        musics[3] = Gdx.audio.newMusic(Gdx.files.internal("music4.mp3"));
+        musics[4] = Gdx.audio.newMusic(Gdx.files.internal("music5.mp3"));
 
         for(int i = 0; i < musics.length; i++) 
             musics[i].setVolume(0.5f);

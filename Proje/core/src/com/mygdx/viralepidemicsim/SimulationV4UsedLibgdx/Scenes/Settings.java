@@ -50,10 +50,9 @@ public class Settings implements Screen{
      * @param main the GameMain object which will store this screen
      */
     public Settings(GameMain main) {
-        FileHandle src = Gdx.files.internal("nuke.mp3");
-        nukeSound = Gdx.audio.newMusic(src);
+        nukeSound = Gdx.audio.newMusic(Gdx.files.internal("nuke.mp3"));
         nukeSound.setVolume(0);
-        //nukeSound.play();
+        nukeSound.play();
 
         batch = new SpriteBatch();
         game = main;
@@ -76,7 +75,6 @@ public class Settings implements Screen{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 nukeSound.setVolume(sfxSlide.getValue());
-                
             }
             
         });
@@ -166,6 +164,7 @@ public class Settings implements Screen{
         turnBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.play();
                 GameMain.stage = GameMain.openingScreen.getButtons().getStage();
                 game.setScreen(GameMain.openingScreen);
                 Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());

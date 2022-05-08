@@ -1,7 +1,11 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester;
 
+import java.io.File;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
@@ -20,10 +24,11 @@ public class GameMain extends Game{
     public static MainMenu gameScreen;
     public static Settings settingsScreen;
     public static Stage stage;
-    
+    public static Music popSound;
 
     @Override
     public void create() {
+        popSound = Gdx.audio.newMusic(Gdx.files.internal("popSound.mp3"));
         Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         batch = new SpriteBatch();
         GameInfo.create();
