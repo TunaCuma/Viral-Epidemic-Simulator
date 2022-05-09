@@ -14,6 +14,8 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.RandomRoutine;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.Routine;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Moving;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Task;
@@ -30,7 +32,7 @@ public class Person extends Sprite{
     public Body body;
     private int immunity;
     BodyDef bodyDef;
-    Fixture fixture;
+    public Fixture fixture;
 
     String healthStatus;
 
@@ -40,11 +42,13 @@ public class Person extends Sprite{
 
     Task[] taskList;
 
-    int currentLoc;
+    public int currentLoc;
 
     int pointer;
 
-    int homeLocation;
+    public int homeLocation;
+
+    public Routine routine;
 
     public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu, int home){
         super(new Texture(name));
@@ -64,16 +68,19 @@ public class Person extends Sprite{
 
         createBody();
 
-        taskList = new Task[62];
+        //taskList = new Task[62];
         
         setHome(home);
 
+        routine = new RandomRoutine(this, menu, map);
 
-        taskList[0] = new WaitTill(this, 30, menu);
+        taskList = ((RandomRoutine)routine).taskList;
 
-        taskList[1] = new Moving(this, gm, currentLoc, currentLoc - 1);
+        //taskList[0] = new WaitTill(this, 30, menu);
 
-        taskList[2] = new WaitTill(this, 100, menu);
+        //taskList[1] = new Moving(this, gm, currentLoc, currentLoc - 1);
+
+        //taskList[2] = new WaitTill(this, 100, menu);
 
         //int last= currentLoc;
         //int now = 0;
@@ -96,7 +103,11 @@ public class Person extends Sprite{
 
     public void executeCurrentTask(){
         if(isTaskEnd()){
+            if(currentTask.toString().equals("M")){
+                currentLoc = ((Moving)currentTask).targetLoc;
+            }
             nextTask();
+            
 
         }
         else{
@@ -118,28 +129,13 @@ public class Person extends Sprite{
         return currentTask.isTaskEnd();
     }
 
-    public void assignTask(){
-        Random rand = new Random();
-        int randNum = rand.nextInt(31);
-
-        taskList[pointer] = new Moving(this, map, currentLoc,randNum);
-        currentTask = taskList[pointer];
-        pointer++;
-    }
-
-    public void assignCurrentLoc(int currentLoc){
-        this.currentLoc = currentLoc;
-
-    }
-
     public void executeTask(Task task){
         task.executeTaskOnBody();
     }
     
-
     public void goLocation(Point target) {
         Vector2 targetPosition = new Vector2((float)target.getX(),(float)target.getY());
-        float targetSpeed = 2.5f;
+        float targetSpeed = 5f;
 
         Vector2 direction = targetPosition.sub(body.getPosition());
 
@@ -154,7 +150,7 @@ public class Person extends Sprite{
         // the target point. (Assuming here a step length based on 60 fps)
         float distancePerTimestep = speedToUse / 60.0f;
         if ( distancePerTimestep > distanceToTravel )
-            speedToUse *= ( distanceToTravel / distancePerTimestep ) * 2;
+            speedToUse *= ( distanceToTravel / distancePerTimestep ) * 3;
 
         // The rest is pretty much what you had already:
         Vector2 desiredVelocity = direction.scl(speedToUse);

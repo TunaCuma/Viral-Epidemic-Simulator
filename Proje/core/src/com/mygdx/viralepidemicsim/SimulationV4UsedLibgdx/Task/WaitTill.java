@@ -32,5 +32,9 @@ public class WaitTill implements Task{
         return sim.timeSeconds > targetTime;
 
     }
+
+    public String toString(){
+        return "WT";
+    }
     
 }

@@ -83,7 +83,7 @@ public class Simulation implements Screen, ContactListener{
 
         abstractMap = new GridMap();
 
-        population = new Population(world,abstractMap,1,this);
+        population = new Population(world,abstractMap,504,this);
         //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         population.getPopulation()[0].makePatientZero();
         box2DCamera.update();

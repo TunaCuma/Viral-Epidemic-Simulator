@@ -129,7 +129,7 @@ public class PathFinder {
         
 
 
-        System.out.println(pf.dijkstra(0, 1));
+        System.out.println(pf.dijkstra(30, 12));
 
 
     
