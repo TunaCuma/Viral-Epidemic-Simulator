@@ -405,15 +405,4 @@ public class GridMap {
         return res;
     }
 
-
-    public static void main(String[] args) {
-        GridMap asd = new GridMap();
-        for (int i = 0; i<157; i++) {
-            System.out.println(Arrays.toString(asd.gridMap[i]));
-        }
-        System.out.println();
-    }
-
-
-    
 }

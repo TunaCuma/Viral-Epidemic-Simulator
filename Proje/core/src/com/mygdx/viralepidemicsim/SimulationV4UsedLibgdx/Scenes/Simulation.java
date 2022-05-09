@@ -58,7 +58,7 @@ public class Simulation implements Screen, ContactListener{
     Texture[] buildings;
 
     public float timeSeconds = 0f;
-    public float period = 5000f;
+    public float period = 120f;
 
     public Simulation(GameMain game){
         this.game = game;
@@ -83,7 +83,7 @@ public class Simulation implements Screen, ContactListener{
 
         abstractMap = new GridMap();
 
-        population = new Population(world,abstractMap,100,this);
+        population = new Population(world,abstractMap,504,this);
         //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         population.getPopulation()[0].makePatientZero();
         box2DCamera.update();
@@ -203,6 +203,7 @@ public class Simulation implements Screen, ContactListener{
             musics[++currentMusic].play();
         }
         timeSeconds +=Gdx.graphics.getDeltaTime();
+        System.out.println(timeSeconds);
         if(timeSeconds > period){
             timeSeconds-=period;
             timeSeconds = 0f;
