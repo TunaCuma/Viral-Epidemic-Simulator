@@ -18,7 +18,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Moving;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Task;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Waiting;
@@ -27,7 +27,7 @@ public class Person extends Sprite{
     public static int numberOfPerson = 0;
     public int id;
 
-    public MainMenu menu;
+    public Simulation menu;
 
     private World world;
     public Body body;
@@ -51,7 +51,7 @@ public class Person extends Sprite{
 
     int pointer;
 
-    public Person(World world, GridMap gm, String name, float x, float y, int immunity, MainMenu menu){
+    public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu){
         super(new Texture(name));
         this.menu = menu;
         this.id = numberOfPerson;

@@ -9,6 +9,10 @@ public class GridMap {
     public GridMap() {
         fillVertices();
         fillGraph();
+
+        for(int i = 0; i < vertices.length ; i++){
+            vertices[i].y = vertices[i].y-90;
+        }
     }
 
     public GridMap(int[][] arr){

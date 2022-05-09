@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.CreditsScreen;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.HowToScreen;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.OpeningScreen;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Settings;
 
@@ -21,7 +21,7 @@ public class GameMain extends Game{
     public static OpeningScreen openingScreen;
     public static CreditsScreen creditsScreen;
     public static HowToScreen howToScreen;
-    public static MainMenu gameScreen;
+    public static Simulation gameScreen;
     public static Settings settingsScreen;
     public static Stage stage;
     public static Music popSound;
@@ -46,7 +46,7 @@ public class GameMain extends Game{
 
     void createScreens() {
         creditsScreen = new CreditsScreen(this);
-        gameScreen = new MainMenu(this);
+        gameScreen = new Simulation(this);
         settingsScreen = new Settings(this);
         howToScreen = new HowToScreen(this);
         openingScreen = new OpeningScreen(this);

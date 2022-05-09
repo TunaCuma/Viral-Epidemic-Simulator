@@ -24,7 +24,7 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population.Population;
 
 
 
-public class MainMenu implements Screen, ContactListener{
+public class Simulation implements Screen, ContactListener{
 
     private GameMain game;
     private Texture bg;
@@ -48,7 +48,7 @@ public class MainMenu implements Screen, ContactListener{
     public float timeSeconds = 0f;
     public float period = 5000f;
 
-    public MainMenu(GameMain game){
+    public Simulation(GameMain game){
         this.game = game;
         createMusics();
         box2DCamera = new OrthographicCamera();
@@ -120,37 +120,37 @@ public class MainMenu implements Screen, ContactListener{
 
     public void renderBuildings(){
 
-        game.getBatch().draw(buildings[0], 45, GameInfo.HEIGHT - 45 - buildings[0].getHeight());
-        game.getBatch().draw(buildings[1], 355, GameInfo.HEIGHT - 45 - buildings[1].getHeight());
-        game.getBatch().draw(buildings[2], 520, GameInfo.HEIGHT - 45- buildings[2].getHeight());
-        game.getBatch().draw(buildings[3], 685, GameInfo.HEIGHT - 45- buildings[3].getHeight());
-        game.getBatch().draw(buildings[4], 850, GameInfo.HEIGHT - 45- buildings[4].getHeight());
-        game.getBatch().draw(buildings[5], 1015, GameInfo.HEIGHT - 45- buildings[5].getHeight());
-        game.getBatch().draw(buildings[6], 1180, GameInfo.HEIGHT - 45 - buildings[6].getHeight());
-        game.getBatch().draw(buildings[7], 1540, GameInfo.HEIGHT - 45 - buildings[7].getHeight());
-        game.getBatch().draw(buildings[8], 355, GameInfo.HEIGHT -160- buildings[8].getHeight());
-        game.getBatch().draw(buildings[9], 520, GameInfo.HEIGHT -160- buildings[9].getHeight());
-        game.getBatch().draw(buildings[10], 685, GameInfo.HEIGHT -160- buildings[10].getHeight());
-        game.getBatch().draw(buildings[11], 850, GameInfo.HEIGHT -160- buildings[11].getHeight());
-        game.getBatch().draw(buildings[12], 1015, GameInfo.HEIGHT -160- buildings[12].getHeight());
-        game.getBatch().draw(buildings[13],45 , GameInfo.HEIGHT - 380 - buildings[13].getHeight());
-        game.getBatch().draw(buildings[14], 355, GameInfo.HEIGHT - 320 - buildings[14].getHeight());
-        game.getBatch().draw(buildings[15],470 , GameInfo.HEIGHT - 320 - buildings[15].getHeight());
-        game.getBatch().draw(buildings[16], 830, GameInfo.HEIGHT - 320 - buildings[16].getHeight());
-        game.getBatch().draw(buildings[17], 1095, GameInfo.HEIGHT - 320 - buildings[17].getHeight());
-        game.getBatch().draw(buildings[18],1290, GameInfo.HEIGHT - 320 - buildings[18].getHeight());
-        game.getBatch().draw(buildings[19], 1290, GameInfo.HEIGHT - 425 - buildings[19].getHeight());
-        game.getBatch().draw(buildings[20], 1540, GameInfo.HEIGHT - 320 - buildings[20].getHeight());
-        game.getBatch().draw(buildings[21],45 , GameInfo.HEIGHT - 545 - buildings[21].getHeight());
-        game.getBatch().draw(buildings[22], 45, GameInfo.HEIGHT - 635 - buildings[22].getHeight());
-        game.getBatch().draw(buildings[23],355 , GameInfo.HEIGHT - 545 - buildings[23].getHeight());
-        game.getBatch().draw(buildings[24], 470, GameInfo.HEIGHT - 545 - buildings[24].getHeight());
-        game.getBatch().draw(buildings[25],830 , GameInfo.HEIGHT - 590 - buildings[25].getHeight());
-        game.getBatch().draw(buildings[26], 1045, GameInfo.HEIGHT - 590 - buildings[26].getHeight());
-        game.getBatch().draw(buildings[27], 1290, GameInfo.HEIGHT - 590 - buildings[27].getHeight());
-        game.getBatch().draw(buildings[28], 45, GameInfo.HEIGHT - 750 - buildings[28].getHeight());
-        game.getBatch().draw(buildings[29], 355, GameInfo.HEIGHT - 750 - buildings[29].getHeight());
-        game.getBatch().draw(buildings[30], 1045, GameInfo.HEIGHT - 740 - buildings[30].getHeight());
+        game.getBatch().draw(buildings[0], 45, GameInfo.HEIGHT - 45 - buildings[0].getHeight()-90);
+        game.getBatch().draw(buildings[1], 355, GameInfo.HEIGHT - 45 - buildings[1].getHeight()-90);
+        game.getBatch().draw(buildings[2], 520, GameInfo.HEIGHT - 45- buildings[2].getHeight()-90);
+        game.getBatch().draw(buildings[3], 685, GameInfo.HEIGHT - 45- buildings[3].getHeight()-90);
+        game.getBatch().draw(buildings[4], 850, GameInfo.HEIGHT - 45- buildings[4].getHeight()-90);
+        game.getBatch().draw(buildings[5], 1015, GameInfo.HEIGHT - 45- buildings[5].getHeight()-90);
+        game.getBatch().draw(buildings[6], 1180, GameInfo.HEIGHT - 45 - buildings[6].getHeight()-90);
+        game.getBatch().draw(buildings[7], 1540, GameInfo.HEIGHT - 45 - buildings[7].getHeight()-90);
+        game.getBatch().draw(buildings[8], 355, GameInfo.HEIGHT -160- buildings[8].getHeight()-90);
+        game.getBatch().draw(buildings[9], 520, GameInfo.HEIGHT -160- buildings[9].getHeight()-90);
+        game.getBatch().draw(buildings[10], 685, GameInfo.HEIGHT -160- buildings[10].getHeight()-90);
+        game.getBatch().draw(buildings[11], 850, GameInfo.HEIGHT -160- buildings[11].getHeight()-90);
+        game.getBatch().draw(buildings[12], 1015, GameInfo.HEIGHT -160- buildings[12].getHeight()-90);
+        game.getBatch().draw(buildings[13],45 , GameInfo.HEIGHT - 380 - buildings[13].getHeight()-90);
+        game.getBatch().draw(buildings[14], 355, GameInfo.HEIGHT - 320 - buildings[14].getHeight()-90);
+        game.getBatch().draw(buildings[15],470 , GameInfo.HEIGHT - 320 - buildings[15].getHeight()-90);
+        game.getBatch().draw(buildings[16], 830, GameInfo.HEIGHT - 320 - buildings[16].getHeight()-90);
+        game.getBatch().draw(buildings[17], 1095, GameInfo.HEIGHT - 320 - buildings[17].getHeight()-90);
+        game.getBatch().draw(buildings[18],1290, GameInfo.HEIGHT - 320 - buildings[18].getHeight()-90);
+        game.getBatch().draw(buildings[19], 1290, GameInfo.HEIGHT - 425 - buildings[19].getHeight()-90);
+        game.getBatch().draw(buildings[20], 1540, GameInfo.HEIGHT - 320 - buildings[20].getHeight()-90);
+        game.getBatch().draw(buildings[21],45 , GameInfo.HEIGHT - 545 - buildings[21].getHeight()-90);
+        game.getBatch().draw(buildings[22], 45, GameInfo.HEIGHT - 635 - buildings[22].getHeight()-90);
+        game.getBatch().draw(buildings[23],355 , GameInfo.HEIGHT - 545 - buildings[23].getHeight()-90);
+        game.getBatch().draw(buildings[24], 470, GameInfo.HEIGHT - 545 - buildings[24].getHeight()-90);
+        game.getBatch().draw(buildings[25],830 , GameInfo.HEIGHT - 590 - buildings[25].getHeight()-90);
+        game.getBatch().draw(buildings[26], 1045, GameInfo.HEIGHT - 590 - buildings[26].getHeight()-90);
+        game.getBatch().draw(buildings[27], 1290, GameInfo.HEIGHT - 590 - buildings[27].getHeight()-90);
+        game.getBatch().draw(buildings[28], 45, GameInfo.HEIGHT - 750 - buildings[28].getHeight()-90);
+        game.getBatch().draw(buildings[29], 355, GameInfo.HEIGHT - 750 - buildings[29].getHeight()-90);
+        game.getBatch().draw(buildings[30], 1045, GameInfo.HEIGHT - 740 - buildings[30].getHeight()-90);
         
     }
 
@@ -174,7 +174,6 @@ public class MainMenu implements Screen, ContactListener{
             timeSeconds = 0f;
         }
 
-        System.out.println(timeSeconds);
 
         population.updatePopulation();
         population.executeTask();
@@ -195,14 +194,16 @@ public class MainMenu implements Screen, ContactListener{
             game.getBatch().draw(currentPerson,(currentPerson.getX() - currentPerson.getWidth()/2), (currentPerson.getY() - currentPerson.getHeight()/2));
         }
 
+
+
         game.getBatch().draw(gui, 0, 0);
 
 
         
 
         game.getBatch().end();
-        
         debugRenderer.render(world, box2DCamera.combined);
+
 
         world.step(Gdx.graphics.getDeltaTime(), 6, 2);
         box2DCamera.update();

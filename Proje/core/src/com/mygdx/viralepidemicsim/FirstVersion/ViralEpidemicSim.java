@@ -26,7 +26,7 @@ public class ViralEpidemicSim extends ApplicationAdapter implements Screen {
 		img = new Texture("badlogic.jpg");
 		ekremAbi = new Texture("E2OtY_EXoAAxfYb.jpg");
 		x = 0; y = 0;
-		MainMenu x = new MainMenu(this);
+		Simulation x = new Simulation(this);
 	}
 
 

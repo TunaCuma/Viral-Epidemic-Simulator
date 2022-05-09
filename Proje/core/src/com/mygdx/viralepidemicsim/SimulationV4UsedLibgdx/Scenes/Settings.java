@@ -82,8 +82,8 @@ public class Settings implements Screen{
 
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                for(int i = 0; i < MainMenu.musics.length; i++)
-                    MainMenu.musics[i].setVolume(volumeMusicSlider.getValue());
+                for(int i = 0; i < Simulation.musics.length; i++)
+                    Simulation.musics[i].setVolume(volumeMusicSlider.getValue());
             }
         });
         

@@ -17,7 +17,6 @@ public class Tester {
 
         GridMap gm = new GridMap();
 
-        System.out.println(gm.getClass().getClassNa);
     
     }
 }

@@ -9,7 +9,7 @@ import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 
 public class Population {
     
@@ -19,7 +19,7 @@ public class Population {
     
 
 
-    public Population(World world, GridMap map, int numberOfPeople, MainMenu menu){
+    public Population(World world, GridMap map, int numberOfPeople, Simulation menu){
         population = new Person[numberOfPeople];
         this.world = world; 
         this.map = map;
