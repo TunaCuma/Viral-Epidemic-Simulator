@@ -42,16 +42,16 @@ public class Population {
 
 
             if(tempo < percentage) {
-                population[i] = new Person(world,map,"Heal.png", xPosition , yPosition , FinalVariables.YOUNG_IMMUNITY,menu,houseIndexes[i/36]);
+                population[i] = new Person(world,map,"Heal.png", xPosition , yPosition , FinalVariables.YOUNG_IMMUNITY,menu,houseIndexes[i/36], FinalVariables.YOUNG);
             }
             else if( tempo < (percentage += FinalVariables.YOUNG_ADULT_PERCENTAGE/100)) {
-                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.YOUNG_ADULT_IMMUNITY,menu,houseIndexes[i/36]);
+                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.YOUNG_ADULT_IMMUNITY,menu,houseIndexes[i/36], FinalVariables.YOUNG_ADULT_NAME);
             }
             else if( tempo < (percentage += FinalVariables.ADULT_PERCENTAGE/100)) {
-                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.ADULT_IMMUNITY,menu,houseIndexes[i/36]);
+                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.ADULT_IMMUNITY,menu,houseIndexes[i/36], FinalVariables.ADULT_NAME);
             }
             else { //Old
-                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.OLD_IMMUNITY,menu,houseIndexes[i/36]);
+                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.OLD_IMMUNITY,menu,houseIndexes[i/36], FinalVariables.OLD_NAME);
             }
             
             

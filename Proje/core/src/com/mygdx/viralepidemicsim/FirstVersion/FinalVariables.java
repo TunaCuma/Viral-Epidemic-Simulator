@@ -37,7 +37,7 @@ public interface FinalVariables {
      * Age groups as string
      */
     final String YOUNG = "Young";
-    final String YOUNG_ADULT_NAME = "Young adult";
+    final String YOUNG_ADULT_NAME = "Young Adult";
     final String ADULT_NAME = "Adult";
     final String OLD_NAME = "Old";
 }

@@ -14,8 +14,12 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.AdultRoutine;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.OldRoutine;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.RandomRoutine;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.Routine;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.YoungAdultRoutine;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.YoungRoutine;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Moving;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Task;
@@ -46,15 +50,19 @@ public class Person extends Sprite{
 
     int pointer;
 
+    String type;
+
     public int homeLocation;
 
     public Routine routine;
 
-    public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu, int home){
+    public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu, int home, String type){
         super(new Texture(name));
         this.menu = menu;
         this.id = numberOfPerson;
         numberOfPerson++;
+
+        this.type = type;
 
         this.world = world;
         bodyDef = new BodyDef();
@@ -72,9 +80,28 @@ public class Person extends Sprite{
         
         setHome(home);
 
-        routine = new RandomRoutine(this, menu, map);
+        if(this.type.equals("Young")) {
+            routine = new YoungRoutine(this, menu, map);
+            taskList = ((YoungRoutine)routine).taskList;
+        }
+        else if (this.type.equals("Young Adult")) {
+            routine = new YoungAdultRoutine(this, menu, map);
+            taskList = ((YoungAdultRoutine)routine).taskList;
+        }
+        else if (this.type.equals("Adult")) {
+            routine = new AdultRoutine(this, menu, map);
+            taskList = ((AdultRoutine)routine).taskList;
+        }
+        else if (this.type.equals("Old")) {
+            routine = new OldRoutine(this, menu, map);
+            taskList = ((OldRoutine)routine).taskList;
+        }
+        else {
+            routine = new RandomRoutine(this, menu, map);
+            taskList = ((RandomRoutine)routine).taskList;
+        }        
 
-        taskList = ((RandomRoutine)routine).taskList;
+        
 
         //taskList[0] = new WaitTill(this, 30, menu);
 
