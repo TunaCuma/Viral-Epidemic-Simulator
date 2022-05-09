@@ -62,7 +62,7 @@ public class MainMenu implements Screen, ContactListener{
         world.setContactListener(this);
 
         bg = new Texture("BlackBg.png");
-        gui = new Texture("GameGui.png");
+        gui = new Texture("SimulationGui.png");
 
         abstractMap = new GridMap();
 
