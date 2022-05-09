@@ -1,13 +1,12 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -28,16 +27,14 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population.Population;
 public class MainMenu implements Screen, ContactListener{
 
     private GameMain game;
-
     private Texture bg;
-
+    private Texture gui;
     private Population population;
-    
     private World world;
-
     private OrthographicCamera box2DCamera;
     private Box2DDebugRenderer debugRenderer;
-    private Sound sound;
+    protected static Music[] musics;
+    private int currentMusic;
 
     float clock = 0;
 
@@ -53,7 +50,7 @@ public class MainMenu implements Screen, ContactListener{
 
     public MainMenu(GameMain game){
         this.game = game;
-
+        createMusics();
         box2DCamera = new OrthographicCamera();
         box2DCamera.setToOrtho(false, GameInfo.WIDTH/GameInfo.PPM, GameInfo.HEIGHT/GameInfo.PPM);
         box2DCamera.position.set((GameInfo.WIDTH/2f)/GameInfo.PPM , (GameInfo.HEIGHT/2f)/GameInfo.PPM,0);
@@ -65,6 +62,7 @@ public class MainMenu implements Screen, ContactListener{
         world.setContactListener(this);
 
         bg = new Texture("BlackBg.png");
+        gui = new Texture("GameGui.png");
 
         abstractMap = new GridMap();
 
@@ -158,13 +156,18 @@ public class MainMenu implements Screen, ContactListener{
 
     @Override
     public void show() {
-        // TODO Auto-generated method stub
-        
+  
     }
 
     @Override
     public void render(float delta) {
         
+        //manually looping the music list
+        if(!musics[currentMusic].isPlaying()) {
+            if(currentMusic == 4)
+                currentMusic = -1;
+            musics[++currentMusic].play();
+        }
         timeSeconds +=Gdx.graphics.getDeltaTime();
         if(timeSeconds > period){
             timeSeconds-=period;
@@ -179,10 +182,12 @@ public class MainMenu implements Screen, ContactListener{
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
+        //Drawing the background
         game.getBatch().begin();
         game.getBatch().draw(bg, 0, 0);
         renderBuildings();
+
+        //Drawing the population one by one
         Person currentPerson;
         for(int i = 0; i < population.getNumberOfPeople(); i++){
             currentPerson = population.getPopulation()[i];
@@ -190,7 +195,7 @@ public class MainMenu implements Screen, ContactListener{
             game.getBatch().draw(currentPerson,(currentPerson.getX() - currentPerson.getWidth()/2), (currentPerson.getY() - currentPerson.getHeight()/2));
         }
 
-        
+        game.getBatch().draw(gui, 0, 0);
 
 
         
@@ -206,31 +211,27 @@ public class MainMenu implements Screen, ContactListener{
 
     @Override
     public void resize(int width, int height) {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void dispose() {
-        sound.stop();
+
     }
 
     @Override
@@ -259,25 +260,25 @@ public class MainMenu implements Screen, ContactListener{
 
     @Override
     public void endContact(Contact contact) {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
-        // TODO Auto-generated method stub
-        
+
     }
 
     public World getWorld(){
         return world;
     }
+    public void startMusic() {
+        musics[currentMusic].play();
+    }
 
-    
+
 }

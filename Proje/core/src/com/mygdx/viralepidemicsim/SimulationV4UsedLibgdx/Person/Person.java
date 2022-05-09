@@ -3,7 +3,6 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person;
 import java.awt.Point;
 import java.util.Random;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Polygon;
@@ -14,7 +13,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
@@ -180,6 +178,8 @@ public class Person extends Sprite{
 
         fixture = body.createFixture(fixtureDef);
         fixture.setUserData(healthStatus + id);
+
+        //fikir: immuneların sensorlarını kapatalım <3 - tarik
         fixture.setSensor(true);
 
         shape.dispose();
