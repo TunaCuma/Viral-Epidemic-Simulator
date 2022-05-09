@@ -11,7 +11,8 @@ public class GridMap {
         fillGraph();
 
         for(int i = 0; i < vertices.length ; i++){
-            vertices[i].y = vertices[i].y-90;
+            vertices[i].y -= 90;
+            vertices[i].x += 45;
         }
     }
 
