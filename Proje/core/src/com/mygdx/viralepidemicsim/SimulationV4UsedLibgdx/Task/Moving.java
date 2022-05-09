@@ -64,5 +64,10 @@ public class Moving implements Task{
     }
 
 
+    @Override
+    public String toString() {
+        return "M";
+    }
+
 
 }

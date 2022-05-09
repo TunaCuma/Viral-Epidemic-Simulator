@@ -1,4 +1,4 @@
-package com.mygdx.viralepidemicsim.FirstVersion.Screens;
+/* package com.mygdx.viralepidemicsim.FirstVersion.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -58,3 +58,4 @@ public class MainMenu implements Screen{
 	}
 
 }
+ */
