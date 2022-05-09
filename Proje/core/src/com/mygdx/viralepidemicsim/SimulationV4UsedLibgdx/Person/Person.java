@@ -17,6 +17,7 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Moving;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Task;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.WaitTill;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Waiting;
 
 public class Person extends Sprite{
@@ -33,10 +34,6 @@ public class Person extends Sprite{
 
     String healthStatus;
 
-    int routeNumber = -1;
-
-
-
     GridMap map;
 
     public Task currentTask;
@@ -47,7 +44,9 @@ public class Person extends Sprite{
 
     int pointer;
 
-    public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu){
+    int homeLocation;
+
+    public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu, int home){
         super(new Texture(name));
         this.menu = menu;
         this.id = numberOfPerson;
@@ -67,19 +66,32 @@ public class Person extends Sprite{
 
         taskList = new Task[62];
         
-        int last=0;
-        int now = 0;
-        for(int i = 0; i < 31; i++){
-            now = (int)(Math.random()*31);
-            taskList[2*i] = new Moving(this, gm, last, now);
-            taskList[2*i+1] = new Waiting(this, 3, menu);
-            last = now;
-        }
+        setHome(home);
 
-        
 
+        taskList[0] = new WaitTill(this, 30, menu);
+
+        taskList[1] = new Moving(this, gm, currentLoc, currentLoc - 1);
+
+        taskList[2] = new WaitTill(this, 100, menu);
+
+        //int last= currentLoc;
+        //int now = 0;
+        //for(int i = 0; i < 31; i++){
+        //    now = (int)(Math.random()*31);
+        //    taskList[2*i] = new Moving(this, gm, last, now);
+        //    taskList[2*i+1] = new Waiting(this, 3, menu);
+        //    last = now;
+        //}
+
+    
 
         currentTask = taskList[0];
+    }
+
+    public void setHome(int buildingIndex){
+        homeLocation = buildingIndex;
+        currentLoc = homeLocation;
     }
 
     public void executeCurrentTask(){

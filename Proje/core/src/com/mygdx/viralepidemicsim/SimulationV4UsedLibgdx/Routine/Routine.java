@@ -4,15 +4,10 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.ai.btree.Task;
 
-public class Routine {
+public interface Routine {
     
-    //There will be subclasses like child, 
-    ArrayList<Task> tasks;
 
-    public Routine(){
-
-    }
-
+    
     
 
 

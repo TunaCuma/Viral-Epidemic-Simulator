@@ -29,27 +29,33 @@ public class Population {
     
         
         for(int i = 0; i < population.length ; i++){
-            //randomBetween0to30 =  rand.nextInt(31);
             randomBetween0to30 =  0;
 
             double tempo = Math.random();
             float percentage = FinalVariables.YOUNG_PERCENTAGE/100;
 
-            int xPosition = (int)map.vertices[randomBetween0to30].getX();
-            int yPosition = (int)map.vertices[randomBetween0to30].getY();
+            int[] houseIndexes = {1,2,3,4,8,9,11,12,18,19,21,23,28,30};
+
+
+            int xPosition = (int)map.vertices[houseIndexes[i/36]].getX();
+            int yPosition = (int)map.vertices[houseIndexes[i/36]].getY();
+
 
             if(tempo < percentage) {
-                population[i] = new Person(world,map,"Heal.png", xPosition , yPosition , FinalVariables.YOUNG_IMMUNITY,menu);
+                population[i] = new Person(world,map,"Heal.png", xPosition , yPosition , FinalVariables.YOUNG_IMMUNITY,menu,houseIndexes[i/36]);
             }
             else if( tempo < (percentage += FinalVariables.YOUNG_ADULT_PERCENTAGE/100)) {
-                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.YOUNG_ADULT_IMMUNITY,menu);
+                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.YOUNG_ADULT_IMMUNITY,menu,houseIndexes[i/36]);
             }
             else if( tempo < (percentage += FinalVariables.ADULT_PERCENTAGE/100)) {
-                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.ADULT_IMMUNITY,menu);
+                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.ADULT_IMMUNITY,menu,houseIndexes[i/36]);
             }
             else { //Old
-                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.OLD_IMMUNITY,menu);
+                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.OLD_IMMUNITY,menu,houseIndexes[i/36]);
             }
+            
+            
+            
 
             //population[i].assignCurrentLoc(randomBetween0to30);
 
