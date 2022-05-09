@@ -19,12 +19,17 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Moving;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Task;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Waiting;
 
 public class Person extends Sprite{
     public static int numberOfPerson = 0;
     public int id;
+
+    public MainMenu menu;
 
     private World world;
     public Body body;
@@ -36,6 +41,8 @@ public class Person extends Sprite{
 
     int routeNumber = -1;
 
+
+
     GridMap map;
 
     public Task currentTask;
@@ -46,9 +53,9 @@ public class Person extends Sprite{
 
     int pointer;
 
-    public Person(World world, GridMap gm, String name, float x, float y, int immunity){
+    public Person(World world, GridMap gm, String name, float x, float y, int immunity, MainMenu menu){
         super(new Texture(name));
-
+        this.menu = menu;
         this.id = numberOfPerson;
         numberOfPerson++;
 
@@ -64,10 +71,15 @@ public class Person extends Sprite{
 
         createBody();
 
-        taskList = new Moving[31];
+        taskList = new Task[62];
         
+        int last=0;
+        int now = 0;
         for(int i = 0; i < 31; i++){
-            taskList[i] = new Moving(this, gm, i, i+1);
+            now = (int)(Math.random()*31);
+            taskList[2*i] = new Moving(this, gm, last, now);
+            taskList[2*i+1] = new Waiting(this, 3, menu);
+            last = now;
         }
 
         
@@ -79,6 +91,7 @@ public class Person extends Sprite{
     public void executeCurrentTask(){
         if(isTaskEnd()){
             nextTask();
+
         }
         else{
             executeTask(taskList[pointer]);
@@ -88,7 +101,10 @@ public class Person extends Sprite{
     public void nextTask(){
         pointer++;
         currentTask = taskList[pointer];
-        System.out.println(pointer);
+        if(currentTask.toString().equals("W")){
+            ((Waiting) currentTask).setFirstTime();
+        }
+        getBody().setAwake(true);
 
     }
     

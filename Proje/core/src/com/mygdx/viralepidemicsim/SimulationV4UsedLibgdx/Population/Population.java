@@ -10,6 +10,7 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.FirstVersion.*;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
 
 
 public class Population {
@@ -20,7 +21,7 @@ public class Population {
     
 
 
-    public Population(World world, GridMap map, int numberOfPeople){
+    public Population(World world, GridMap map, int numberOfPeople, MainMenu menu){
         population = new Person[numberOfPeople];
         this.world = world; 
         this.map = map;
@@ -43,16 +44,16 @@ public class Population {
             int yPosition = (int)map.vertices[randomBetween0to30].getY();
 
             if(tempo < percentage) {
-                population[i] = new Person(world,map,"Heal.png", xPosition , yPosition , FinalVariables.YOUNG_IMMUNITY);
+                population[i] = new Person(world,map,"Heal.png", xPosition , yPosition , FinalVariables.YOUNG_IMMUNITY,menu);
             }
             else if( tempo < (percentage += FinalVariables.YOUNG_ADULT_PERCENTAGE/100)) {
-                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.YOUNG_ADULT_IMMUNITY);
+                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.YOUNG_ADULT_IMMUNITY,menu);
             }
             else if( tempo < (percentage += FinalVariables.ADULT_PERCENTAGE/100)) {
-                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.ADULT_IMMUNITY);
+                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.ADULT_IMMUNITY,menu);
             }
             else { //Old
-                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.OLD_IMMUNITY);
+                population[i] = new Person(world,map,"Heal.png", xPosition, yPosition, FinalVariables.OLD_IMMUNITY,menu);
             }
 
             //population[i].assignCurrentLoc(randomBetween0to30);

@@ -7,4 +7,9 @@ public interface Task {
 
     public boolean isTaskEnd();
 
+    @Override
+    String toString();
+
+    
+
 }

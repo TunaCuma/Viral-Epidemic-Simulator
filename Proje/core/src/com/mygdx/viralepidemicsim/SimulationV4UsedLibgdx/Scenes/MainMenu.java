@@ -49,7 +49,7 @@ public class MainMenu implements Screen, ContactListener{
     Texture[] buildings;
 
     public float timeSeconds = 0f;
-    public float period = 20f;
+    public float period = 5000f;
 
     public MainMenu(GameMain game){
         this.game = game;
@@ -68,7 +68,7 @@ public class MainMenu implements Screen, ContactListener{
 
         abstractMap = new GridMap();
 
-        population = new Population(world,abstractMap,10);
+        population = new Population(world,abstractMap,100,this);
         //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         population.getPopulation()[0].makePatientZero();
         box2DCamera.update();
