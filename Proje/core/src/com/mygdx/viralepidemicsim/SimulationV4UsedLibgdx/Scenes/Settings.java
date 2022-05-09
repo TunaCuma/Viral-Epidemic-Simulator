@@ -34,7 +34,7 @@ public class Settings implements Screen{
     private BitmapFont font;
     private BitmapFont musicVolume;
     private BitmapFont sfxVolume;
-    private Music nukeSound;
+    public static Music nukeSound;
 
     Skin skin = new Skin(Gdx.files.internal("pixthulhu/skin/pixthulhu-ui.json"));
     private Slider volumeMusicSlider = new Slider( 0f, 1f, 0.1f,false, skin );
@@ -165,9 +165,16 @@ public class Settings implements Screen{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 GameMain.popSound.play();
-                GameMain.stage = GameMain.openingScreen.getButtons().getStage();
-                game.setScreen(GameMain.openingScreen);
-                Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
+                if(GameMain.beforeScreen == 3) {
+                    GameMain.stage = GameMain.gameScreen.getStage();
+                    Gdx.input.setInputProcessor(GameMain.stage);
+                    game.setScreen(GameMain.gameScreen);
+                }
+                else {
+                    GameMain.stage = GameMain.openingScreen.getButtons().getStage();
+                    Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
+                    game.setScreen(GameMain.openingScreen);
+                }
             }
         });
     }

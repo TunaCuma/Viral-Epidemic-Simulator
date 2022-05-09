@@ -18,13 +18,14 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Settings;
 public class GameMain extends Game{
 
     public SpriteBatch batch;
-    public static OpeningScreen openingScreen;
-    public static CreditsScreen creditsScreen;
-    public static HowToScreen howToScreen;
-    public static Simulation gameScreen;
-    public static Settings settingsScreen;
+    public static OpeningScreen openingScreen; // 0
+    public static CreditsScreen creditsScreen; // 1
+    public static HowToScreen howToScreen; // 2
+    public static Simulation gameScreen; // 3
+    public static Settings settingsScreen; // 4
     public static Stage stage;
     public static Music popSound;
+    public static int beforeScreen;
 
     @Override
     public void create() {

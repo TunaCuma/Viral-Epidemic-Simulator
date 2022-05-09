@@ -85,15 +85,15 @@ public class OpeningScreenButtons {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 GameMain.popSound.play();
-                Gdx.input.setInputProcessor(null);
+                GameMain.beforeScreen = 0;
+                GameMain.stage = (Stage) GameMain.gameScreen.getStage();
+                Gdx.input.setInputProcessor(GameMain.stage);
                 game.setScreen(GameMain.gameScreen);
-                //GameMain.gameScreen.startMusic();
             } 
         });
         exit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                GameMain.popSound.play();
                 Gdx.app.exit();
                 System.exit(0);
             }
@@ -102,8 +102,9 @@ public class OpeningScreenButtons {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 GameMain.popSound.play();
-                Gdx.input.setInputProcessor(GameMain.creditsScreen.getStage());
+                GameMain.beforeScreen = 0;
                 GameMain.stage = (Stage) GameMain.creditsScreen.getStage();
+                Gdx.input.setInputProcessor(GameMain.stage);
                 game.setScreen(GameMain.creditsScreen);
             }
         });
@@ -111,20 +112,20 @@ public class OpeningScreenButtons {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 GameMain.popSound.play();
-                Gdx.input.setInputProcessor(GameMain.howToScreen.getStage());
+                GameMain.beforeScreen = 0;
                 GameMain.stage = (Stage) GameMain.howToScreen.getStage();
+                Gdx.input.setInputProcessor(GameMain.stage);
                 game.setScreen(GameMain.howToScreen);
             }
         });
         settings.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) { 
-                GameMain.popSound.play();               
-                Gdx.input.setInputProcessor(GameMain.settingsScreen.getStage());
+                GameMain.popSound.play();   
+                GameMain.beforeScreen = 0;            
                 GameMain.stage = (Stage) GameMain.settingsScreen.getStage();
+                Gdx.input.setInputProcessor(GameMain.stage);
                 game.setScreen(GameMain.settingsScreen);
-                
-
             }
         });
     }

@@ -7,7 +7,6 @@ import java.util.Random;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 
@@ -26,8 +25,6 @@ public class Population {
 
         Random rand = new Random();
 
-        
-        
         int randomBetween0to30;
     
         
@@ -61,18 +58,11 @@ public class Population {
         }
     }
 
-   
-
-
-
     public void updatePopulation(){
         for(int i = 0; i < population.length ; i++){
             population[i].updatePerson();
             population[i].executeCurrentTask();
-            
         }
-
-        
     }
 
     public int getNumberOfPeople(){
@@ -83,7 +73,6 @@ public class Population {
         return population;
     }
 
-
     public void healthUpdate(){
         for(int i = 0; i < population.length ; i++){
             population[i].updateHealthCondition();
@@ -93,6 +82,4 @@ public class Population {
     public void executeTask(){
         
     }
-
-    
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -15,6 +16,14 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
@@ -35,6 +44,9 @@ public class Simulation implements Screen, ContactListener{
     private Box2DDebugRenderer debugRenderer;
     protected static Music[] musics;
     private int currentMusic;
+    private Stage stage;
+    private Viewport viewport;
+    private ImageButton settings;
 
     float clock = 0;
 
@@ -50,7 +62,12 @@ public class Simulation implements Screen, ContactListener{
 
     public Simulation(GameMain game){
         this.game = game;
+        viewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
+        stage = new Stage(viewport);
         createMusics();
+        createButtons();
+        addAllListeners();
+        stage.addActor(settings);
         box2DCamera = new OrthographicCamera();
         box2DCamera.setToOrtho(false, GameInfo.WIDTH/GameInfo.PPM, GameInfo.HEIGHT/GameInfo.PPM);
         box2DCamera.position.set((GameInfo.WIDTH/2f)/GameInfo.PPM , (GameInfo.HEIGHT/2f)/GameInfo.PPM,0);
@@ -81,6 +98,24 @@ public class Simulation implements Screen, ContactListener{
 
 
 
+    }
+
+    private void addAllListeners() {
+        settings.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.play();   
+                GameMain.beforeScreen = 3;            
+                GameMain.stage = (Stage) GameMain.settingsScreen.getStage();
+                Gdx.input.setInputProcessor(GameMain.stage);
+                game.setScreen(GameMain.settingsScreen);
+            }
+        });
+    }
+
+    private void createButtons() {
+        settings = new ImageButton(new SpriteDrawable(new Sprite(new Texture("SettingsButton.png"))));
+        settings.setPosition(GameInfo.WIDTH/2f+200, GameInfo.HEIGHT/2f+460);
     }
 
     public void createBuildings(){
@@ -173,7 +208,6 @@ public class Simulation implements Screen, ContactListener{
             timeSeconds = 0f;
         }
 
-
         population.updatePopulation();
         population.executeTask();
 
@@ -207,6 +241,7 @@ public class Simulation implements Screen, ContactListener{
         world.step(Gdx.graphics.getDeltaTime(), 6, 2);
         box2DCamera.update();
 
+        stage.draw();
     }
 
     @Override
@@ -291,5 +326,9 @@ public class Simulation implements Screen, ContactListener{
 
         for(int i = 0; i < musics.length; i++) 
             musics[i].setVolume(0.5f);
+    }
+
+    public Stage getStage() {
+        return stage;
     }
 }
