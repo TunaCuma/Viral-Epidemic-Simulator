@@ -2,6 +2,7 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person;
 
 import java.awt.Point;
 import java.util.Random;
+import java.util.logging.Handler;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -55,6 +56,8 @@ public class Person extends Sprite{
     public int homeLocation;
 
     public Routine routine;
+
+    
 
     public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu, int home, String type){
         super(new Texture(name));
@@ -313,6 +316,25 @@ public class Person extends Sprite{
         setTexture(new Texture("Infe.png"));
         menu.population.infectedCount++;
     }
+    public void putMask(){
+        if (healthStatus.equals("Sick")){
+            healthStatus = "Heal";
+            fixture.setUserData(healthStatus + id);
+            new java.util.Timer().schedule( 
+             new java.util.TimerTask() {
+            @Override
+            public void run() {
+                makeImmune();
+            }
+        }, 
+        5000 
+);
+            
+            //setTexture(new Texture("Heal.png"));  Their texture will remain sick until they become immune
+        }
+        
+    }
+    
 
     public void updateHealthCondition(){
         healthStatus = (String)(((Object[])fixture.getUserData())[0]);
@@ -324,9 +346,13 @@ public class Person extends Sprite{
         return body;
     }
 
+
+
     public int getImmunity() {
         return immunity;
     }
-
-   
+       
+    public void makeImmune(){
+        fixture.setUserData("Immu"+ id);
+    }
 }

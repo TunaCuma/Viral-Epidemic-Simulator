@@ -13,7 +13,7 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 public class Population {
     
     public int infectedCount, immuneCount, deadCount;
-    Person[] population;
+    public Person[] population;
     World world;
     GridMap map;
     
@@ -94,5 +94,10 @@ public class Population {
 
     public void executeTask(){
         
+    }
+    public void wearMask(){
+        for (Person humans : population){
+            humans.putMask();
+        }
     }
 }

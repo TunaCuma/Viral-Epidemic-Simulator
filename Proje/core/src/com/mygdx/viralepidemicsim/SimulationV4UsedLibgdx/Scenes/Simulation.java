@@ -48,6 +48,7 @@ public class Simulation implements Screen, ContactListener{
     private Stage stage;
     private Viewport viewport;
     private ImageButton settings;
+    private ImageButton mask;
 
     float clock = 0;
 
@@ -71,7 +72,9 @@ public class Simulation implements Screen, ContactListener{
         createMusics();
         createButtons();
         addAllListeners();
+        addMaskButton();
         stage.addActor(settings);
+        stage.addActor(mask);
         box2DCamera = new OrthographicCamera();
         box2DCamera.setToOrtho(false, GameInfo.WIDTH/GameInfo.PPM, GameInfo.HEIGHT/GameInfo.PPM);
         box2DCamera.position.set((GameInfo.WIDTH/2f)/GameInfo.PPM , (GameInfo.HEIGHT/2f)/GameInfo.PPM,0);
@@ -382,4 +385,17 @@ public class Simulation implements Screen, ContactListener{
     public Stage getStage() {
         return stage;
     }
+
+    void addMaskButton(){
+        mask = new ImageButton(new SpriteDrawable(new Sprite(new Texture("maskbutton.png") )));
+        mask.setPosition(100,20);
+        
+        mask.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                population.wearMask();
+            }
+        });
+    }
+
 }
