@@ -16,6 +16,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.AdultRoutine;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.CurfewRoutine;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.InfectedRoutine;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.OldRoutine;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.RandomRoutine;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.Routine;
@@ -60,6 +62,8 @@ public class Person extends Sprite{
 
     public double maskValue =1;
 
+    public static int firstPatient = GameInfo.randomBetween(0, 504);
+
     
 
     public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu, int home, String type){
@@ -84,29 +88,20 @@ public class Person extends Sprite{
 
         createBody();
 
-        //taskList = new Task[62];
+       
         
         setHome(home);
 
         enterBuilding(home);
 
+        if(id == firstPatient){
+            firstInfection();
+        }
+
         startDay();
         
 
-        //taskList[0] = new WaitTill(this, 30, menu);
 
-        //taskList[1] = new Moving(this, gm, currentLoc, currentLoc - 1);
-
-        //taskList[2] = new WaitTill(this, 100, menu);
-
-        //int last= currentLoc;
-        //int now = 0;
-        //for(int i = 0; i < 31; i++){
-        //    now = (int)(Math.random()*31);
-        //    taskList[2*i] = new Moving(this, gm, last, now);
-        //    taskList[2*i+1] = new Waiting(this, 3, menu);
-        //    last = now;
-        //}
 
     
 
@@ -115,9 +110,9 @@ public class Person extends Sprite{
     public void startDay(){
         Object[] userData = (Object[])fixture.getUserData();
         healthStatus = (String)((userData)[0]);
+        
         if(healthStatus.equals("Expo")){
             
-            System.out.println("Emre");
             double possiblity = 100 * maskValue;
 
             boolean isInfected = false;
@@ -156,26 +151,42 @@ public class Person extends Sprite{
 
 
     private void assignRoutine() {
-        if(this.type.equals("Young")) {
-            routine = new YoungRoutine(this, menu, map);
-            taskList = ((YoungRoutine)routine).taskList;
+        Object[] userData = (Object[])fixture.getUserData();
+        healthStatus = (String)((userData)[0]);
+
+        boolean isInCurfew = false;
+        if(healthStatus.equals("Infe")){
+            routine = new InfectedRoutine(this, menu, map);
+            taskList =  ((InfectedRoutine)routine).taskList;
         }
-        else if (this.type.equals("Young Adult")) {
-            routine = new YoungAdultRoutine(this, menu, map);
-            taskList = ((YoungAdultRoutine)routine).taskList;
+        else if(isInCurfew){
+            routine = new CurfewRoutine(this, menu, map);
+            taskList =  ((CurfewRoutine)routine).taskList;
         }
-        else if (this.type.equals("Adult")) {
-            routine = new AdultRoutine(this, menu, map);
-            taskList = ((AdultRoutine)routine).taskList;
+        else{
+            if(this.type.equals("Young")) {
+                routine = new YoungRoutine(this, menu, map);
+                taskList = ((YoungRoutine)routine).taskList;
+            }
+            else if (this.type.equals("Young Adult")) {
+                routine = new YoungAdultRoutine(this, menu, map);
+                taskList = ((YoungAdultRoutine)routine).taskList;
+            }
+            else if (this.type.equals("Adult")) {
+                routine = new AdultRoutine(this, menu, map);
+                taskList = ((AdultRoutine)routine).taskList;
+            }
+            else if (this.type.equals("Old")) {
+                routine = new OldRoutine(this, menu, map);
+                taskList = ((OldRoutine)routine).taskList;
+            }
+            else {
+                routine = new RandomRoutine(this, menu, map);
+                taskList = ((RandomRoutine)routine).taskList;
+            }
         }
-        else if (this.type.equals("Old")) {
-            routine = new OldRoutine(this, menu, map);
-            taskList = ((OldRoutine)routine).taskList;
-        }
-        else {
-            routine = new RandomRoutine(this, menu, map);
-            taskList = ((RandomRoutine)routine).taskList;
-        }
+
+        
     }
 
     public void setHome(int buildingIndex){
@@ -318,6 +329,18 @@ public class Person extends Sprite{
     
     }
 
+    public void firstInfection(){
+        Object[] userData = (Object[])fixture.getUserData();
+
+        
+        userData[0] = "Infe";
+        
+    
+        fixture.setUserData(userData);
+
+        updateHealthCondition();
+    }
+
     public void getInfected(){
         Object[] userData = (Object[])fixture.getUserData();
 
@@ -330,12 +353,12 @@ public class Person extends Sprite{
         updateHealthCondition();
 
 
-        
-
         menu.population.infectedCount++;
 
 
     }
+
+
     public void putMask(){
         this.maskValue = 0.1;        
     }
