@@ -73,7 +73,7 @@ public class Person extends Sprite{
         this.map = gm;
 
         setPosition(x - getWidth()/2f, y- getHeight()/2f);
-        healthStatus = "Heal";
+        healthStatus = "Susp";
 
         createBody();
 
@@ -106,10 +106,40 @@ public class Person extends Sprite{
     }
 
     public void startDay(){
+        Object[] userData = (Object[])fixture.getUserData();
+        healthStatus = (String)((userData)[0]);
+        if(healthStatus.equals("Expo")){
+            
+        
+            int possiblity = 10;
+
+            for(int i = 0; i < (int)userData[2]; i++){
+                if(randomBetween(0, 100) < possiblity){
+                    getInfected();
+                    break;
+                }
+            }
+
+            userData[0] = "Susp";
+            userData[2] = 0;
+            
+            fixture.setUserData(userData);
+
+        }
+        
+        
+        
         currentLoc = homeLocation;
         assignRoutine();
         pointer=0;
         currentTask = taskList[0];
+
+
+    }
+
+    public int randomBetween(int first, int second){
+
+        return first + (int)(Math.random() * (second - first));
     }
 
 
@@ -234,14 +264,33 @@ public class Person extends Sprite{
         fixtureDef.shape = shape;
         fixtureDef.density = 1;
 
+
+
         fixture = body.createFixture(fixtureDef);
-        fixture.setUserData(healthStatus + id);
+
+        Object[] userData = new Object[3];
+        userData[0] = healthStatus;
+        userData[1] = id;
+        userData[2] = 0;
+
+        fixture.setUserData(userData);
 
         //fikir: immuneların sensorlarını kapatalım <3 - tarik
         fixture.setSensor(true);
 
         shape.dispose();
 
+    }
+
+    
+    public String makeProperIndex(int index){
+        if(index<10){
+            return "00"+index;
+        }
+        if(index<100){
+            return "0"+index;
+        }
+        return "" + index;
     }
 
     public void updatePerson(){
@@ -254,14 +303,19 @@ public class Person extends Sprite{
     
     }
 
-    public void makePatientZero(){
-        healthStatus = "Sick";
-        fixture.setUserData(healthStatus + id);
-        setTexture(new Texture("Sick.png"));
+    public void getInfected(){
+        Object[] userData = (Object[])fixture.getUserData();
+
+        healthStatus = "Infe";
+        userData[0] = healthStatus;
+    
+        fixture.setUserData(userData);
+        setTexture(new Texture("Infe.png"));
+        menu.population.infectedCount++;
     }
 
     public void updateHealthCondition(){
-        healthStatus = ((String) fixture.getUserData()).substring(0,4);
+        healthStatus = (String)(((Object[])fixture.getUserData())[0]);
         String texture = healthStatus + ".png";
         setTexture(new Texture(texture));
     }
@@ -270,17 +324,9 @@ public class Person extends Sprite{
         return body;
     }
 
-
-
     public int getImmunity() {
         return immunity;
     }
 
-    // public static void main(String[] args) {
-    //     GridMap kek = new GridMap();
-    //     new Point(4,6);
-    //     for (int i = 0; i<31; i++) {
-    //         System.out.println("buildings[" + i + "] = new Building(,"+"new Point("+(int)(kek.vertices[i].getX()) + ","+ (int)(kek.vertices[i].getY())+"));");
-    //     }
-    // }
+   
 }

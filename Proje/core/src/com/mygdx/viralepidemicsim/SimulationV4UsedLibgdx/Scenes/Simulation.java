@@ -39,7 +39,7 @@ public class Simulation implements Screen, ContactListener{
     private GameMain game;
     private Texture bg;
     private Texture gui;
-    private Population population;
+    public Population population;
     private World world;
     private OrthographicCamera box2DCamera;
     private Box2DDebugRenderer debugRenderer;
@@ -89,8 +89,7 @@ public class Simulation implements Screen, ContactListener{
 
         population = new Population(world,abstractMap,1,this);
         //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
-        population.getPopulation()[0].makePatientZero();
-        population.infectedCount++;
+        population.getPopulation()[0].getInfected();
         box2DCamera.update();
         //sound.play();
         //sound.loop();
@@ -248,17 +247,17 @@ public class Simulation implements Screen, ContactListener{
         font.draw(game.getBatch(), "Infected: " + population.infectedCount, 90, GameInfo.HEIGHT-35);
         font.draw(game.getBatch(), "Immune: " + population.immuneCount, 460, GameInfo.HEIGHT-35);
         font.draw(game.getBatch(), "Dead: " + population.deadCount, 830, GameInfo.HEIGHT-35);
-        if((int) timeSeconds%(period/24) != 0) {
-            if((int) ((int)timeSeconds/(period/24)) < 10)
-                font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)timeSeconds/(period/24)) + ":" + (int) ((60/(period/24)) * (int) (timeSeconds%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+        if((int) (timeSeconds+(period/3))%(period/24) != 0) {
+            if((int) ((int)(timeSeconds+(period/3))/(period/24)) < 10)
+                font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)(timeSeconds+(period/3)) /(period/24)) + ":" + (int) ((60/(period/24)) * (int) ((timeSeconds+(period/3))%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
-                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)timeSeconds/(period/24)) + ":" + (int) ((60/(period/24)) * (int) (timeSeconds%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)(timeSeconds+(period/3))/(period/24)) + ":" + (int) ((60/(period/24)) * (int) ((timeSeconds+(period/3))%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
         else {
-            if((int) ((int)timeSeconds/(period/24)) < 10)
-                font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)timeSeconds/(period/24)) + ":0" + (int) ((60/(period/24)) * (int) (timeSeconds%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+            if((int) ((int)(timeSeconds+(period/3))/(period/24)) < 10)
+                font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)(timeSeconds+(period/3))/(period/24)) + ":0" + (int) ((60/(period/24)) * (int) ((timeSeconds+(period/3))%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
-                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)timeSeconds/(period/24)) + ":0" + (int) ((60/(period/24)) * (int) (timeSeconds%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)(timeSeconds+(period/3))/(period/24)) + ":0" + (int) ((60/(period/24)) * (int) ((timeSeconds+(period/3))%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
 
         game.getBatch().end();
@@ -301,25 +300,48 @@ public class Simulation implements Screen, ContactListener{
         Fixture firstBody = contact.getFixtureA();
         Fixture secondBody = contact.getFixtureB();
         
-        String healthCondition1 = ((String) firstBody.getUserData()).substring(0,4);
+        Object[] firstUserData = (Object[])firstBody.getUserData();
+        Object[] secondUserData = (Object[])secondBody.getUserData();
+
+
+        String healthCondition1 = ((String) firstUserData[0]);
         
-        String healthCondition2 = ((String) secondBody.getUserData()).substring(0,4);
+        String healthCondition2 = ((String) secondUserData[0]);
 
         
         
-        if(healthCondition2.equals("Sick") && healthCondition1.equals("Heal") ){
-            int healsIndex = Integer.parseInt(((String)firstBody.getUserData()).substring(4)); 
-            population.infectedCount++;
-            firstBody.setUserData("Sick" + healsIndex);
-            population.getPopulation()[healsIndex].updateHealthCondition();
+        if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
+            
+            firstUserData[0] = "Expo";
+            population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
+            firstBody.setUserData(firstUserData);
         }
-        else if(healthCondition1.equals("Sick") && healthCondition2.equals("Heal") ){
-            int healsIndex = Integer.parseInt(((String)secondBody.getUserData()).substring(4)); 
-            population.infectedCount++;
-            secondBody.setUserData("Sick" + healsIndex);
-            population.getPopulation()[healsIndex].updateHealthCondition();
+        else if(healthCondition1.equals("Infe") && healthCondition2.equals("Susp") ){
+            secondUserData[0] = "Expo";
+            population.getPopulation()[(int)(secondUserData[1])].updateHealthCondition();
+            secondBody.setUserData(secondUserData);
         }
 
+        
+        if(healthCondition2.equals("Infe") && healthCondition1.equals("Expo") ){
+            firstUserData[2] = (int)firstUserData[2] + 1;
+            firstBody.setUserData(firstUserData); 
+        }
+        else if(healthCondition1.equals("Infe") && healthCondition2.equals("Expo") ){
+            secondUserData[2] = (int)secondUserData[2] + 1;
+            secondBody.setUserData(secondUserData);  
+        }
+
+    }
+
+    public String makeProperIndex(int index){
+        if(index<10){
+            return "00"+index;
+        }
+        if(index<100){
+            return "0"+index;
+        }
+        return "" + index;
     }
 
     @Override
