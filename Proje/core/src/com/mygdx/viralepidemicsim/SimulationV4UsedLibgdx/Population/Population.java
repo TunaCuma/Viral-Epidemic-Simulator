@@ -65,6 +65,12 @@ public class Population {
         }
     }
 
+    public void startDay(){
+        for(int i = 0; i < population.length; i++){
+            population[i].startDay();
+        }
+    }
+
     public void updatePopulation(){
         for(int i = 0; i < population.length ; i++){
             population[i].updatePerson();

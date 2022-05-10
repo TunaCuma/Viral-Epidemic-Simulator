@@ -60,6 +60,7 @@ public class Person extends Sprite{
         super(new Texture(name));
         this.menu = menu;
         this.id = numberOfPerson;
+        this.homeLocation = home;
         numberOfPerson++;
 
         this.type = type;
@@ -80,27 +81,7 @@ public class Person extends Sprite{
         
         setHome(home);
 
-        if(this.type.equals("Young")) {
-            routine = new YoungRoutine(this, menu, map);
-            taskList = ((YoungRoutine)routine).taskList;
-        }
-        else if (this.type.equals("Young Adult")) {
-            routine = new YoungAdultRoutine(this, menu, map);
-            taskList = ((YoungAdultRoutine)routine).taskList;
-        }
-        else if (this.type.equals("Adult")) {
-            routine = new AdultRoutine(this, menu, map);
-            taskList = ((AdultRoutine)routine).taskList;
-        }
-        else if (this.type.equals("Old")) {
-            routine = new OldRoutine(this, menu, map);
-            taskList = ((OldRoutine)routine).taskList;
-        }
-        else {
-            routine = new RandomRoutine(this, menu, map);
-            taskList = ((RandomRoutine)routine).taskList;
-        }        
-
+        startDay();
         
 
         //taskList[0] = new WaitTill(this, 30, menu);
@@ -120,7 +101,37 @@ public class Person extends Sprite{
 
     
 
+    }
+
+    public void startDay(){
+        currentLoc = homeLocation;
+        assignRoutine();
+        pointer=0;
         currentTask = taskList[0];
+    }
+
+
+    private void assignRoutine() {
+        if(this.type.equals("Young")) {
+            routine = new YoungRoutine(this, menu, map);
+            taskList = ((YoungRoutine)routine).taskList;
+        }
+        else if (this.type.equals("Young Adult")) {
+            routine = new YoungAdultRoutine(this, menu, map);
+            taskList = ((YoungAdultRoutine)routine).taskList;
+        }
+        else if (this.type.equals("Adult")) {
+            routine = new AdultRoutine(this, menu, map);
+            taskList = ((AdultRoutine)routine).taskList;
+        }
+        else if (this.type.equals("Old")) {
+            routine = new OldRoutine(this, menu, map);
+            taskList = ((OldRoutine)routine).taskList;
+        }
+        else {
+            routine = new RandomRoutine(this, menu, map);
+            taskList = ((RandomRoutine)routine).taskList;
+        }
     }
 
     public void setHome(int buildingIndex){

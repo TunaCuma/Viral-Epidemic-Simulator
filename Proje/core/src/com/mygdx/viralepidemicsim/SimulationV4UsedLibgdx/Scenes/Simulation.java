@@ -61,6 +61,8 @@ public class Simulation implements Screen, ContactListener{
     public float timeSeconds = 0f;
     public float period = 120f;
 
+    public int dayCount;
+
     public Simulation(GameMain game){
         this.game = game;
         font = new BitmapFont(Gdx.files.internal("InfoFont.fnt"));
@@ -85,7 +87,7 @@ public class Simulation implements Screen, ContactListener{
 
         abstractMap = new GridMap();
 
-        population = new Population(world,abstractMap,500,this);
+        population = new Population(world,abstractMap,504,this);
         //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         population.getPopulation()[0].makePatientZero();
         population.infectedCount++;
@@ -191,6 +193,10 @@ public class Simulation implements Screen, ContactListener{
         game.getBatch().draw(buildings[30],1045+45, GameInfo.HEIGHT - 740 - buildings[30].getHeight()-90);
     }
 
+    public void newDay(){
+        population.startDay();
+    }
+
     @Override
     public void show() {
   
@@ -210,6 +216,7 @@ public class Simulation implements Screen, ContactListener{
         if(timeSeconds > period){
             timeSeconds-=period;
             timeSeconds = 0f;
+            newDay();
         }
 
         population.updatePopulation();
