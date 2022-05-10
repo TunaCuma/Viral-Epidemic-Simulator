@@ -81,6 +81,8 @@ public class Person extends Sprite{
         
         setHome(home);
 
+        enterBuilding(home);
+
         startDay();
         
 
@@ -142,15 +144,29 @@ public class Person extends Sprite{
     public void executeCurrentTask(){
         if(isTaskEnd()){
             if(currentTask.toString().equals("M")){
+                System.out.println(((Moving)currentTask).targetLoc);
                 currentLoc = ((Moving)currentTask).targetLoc;
+                enterBuilding(currentLoc);
+            }
+            else if(currentTask.toString().equals("W")){
+                exitBuilding(currentLoc);
+            }
+            else if(pointer!=6 && currentTask.toString().equals("WT")){
+                exitBuilding(currentLoc);
             }
             nextTask();
-            
-
         }
         else{
             executeTask(taskList[pointer]);
         }
+    }
+
+    public void exitBuilding(int buildingVertexNumber) {
+        this.map.buildings[buildingVertexNumber].removePerson(this);
+    }
+
+    public void enterBuilding(int buildingVertexNumber) {
+        this.map.buildings[buildingVertexNumber].addPerson(this);
     }
 
     public void nextTask(){
@@ -259,4 +275,12 @@ public class Person extends Sprite{
     public int getImmunity() {
         return immunity;
     }
+
+    // public static void main(String[] args) {
+    //     GridMap kek = new GridMap();
+    //     new Point(4,6);
+    //     for (int i = 0; i<31; i++) {
+    //         System.out.println("buildings[" + i + "] = new Building(,"+"new Point("+(int)(kek.vertices[i].getX()) + ","+ (int)(kek.vertices[i].getY())+"));");
+    //     }
+    // }
 }

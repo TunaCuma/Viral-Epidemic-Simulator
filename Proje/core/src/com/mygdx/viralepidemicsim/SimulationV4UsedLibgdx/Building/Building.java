@@ -9,11 +9,21 @@ public class Building {
     int numberOfPerson;
     String name;
     //double size;
-    ArrayList<Person> persons; 
+    ArrayList<Person> persons = new ArrayList<Person>(); 
 
     public Building(String name, Point location){
         this.name = name;
         this.location = location;
+    }
+
+    public void addPerson(Person person) {
+        persons.add(person);
+        System.out.println("building 1 " + name + " has " + persons.size() + " people");
+    }
+
+    public void removePerson(Person person) {
+        persons.remove(person);
+        System.out.println("building " + name + " has " + persons.size() + " people");
     }
 
 

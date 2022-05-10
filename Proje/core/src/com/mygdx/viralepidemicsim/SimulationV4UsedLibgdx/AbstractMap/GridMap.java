@@ -2,6 +2,7 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap;
 import java.awt.Point;
 import java.util.Arrays;
 
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Building.Building;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 
 public class GridMap {
@@ -9,7 +10,7 @@ public class GridMap {
     public GridMap() {
         fillVertices();
         fillGraph();
-
+        buildingBuilder();
         for(int i = 0; i < vertices.length ; i++){
             vertices[i].y -= 90;
             vertices[i].x += 45;
@@ -20,7 +21,44 @@ public class GridMap {
         gridMap = arr;
     }
 
+    
+    public void buildingBuilder() {
+        buildings[0] = new Building("Hospital",new Point(340,9758));
+        buildings[1] = new Building("House0",new Point(450,9865));
+        buildings[2] = new Building("House1",new Point(615,9865));
+        buildings[3] = new Building("House2",new Point(780,9865));
+        buildings[4] = new Building("House3",new Point(945,9865));
+        buildings[5] = new Building("Cafe",new Point(1145,9865));
+        buildings[6] = new Building("Park0",new Point(1525,9750));
+        buildings[7] = new Building("SportCenter",new Point(1585,9710));
+        buildings[8] = new Building("House4",new Point(450,9650));
+        buildings[9] = new Building("House5",new Point(615,9650));
+        buildings[10] = new Building("Market",new Point(780,9650));
+        buildings[11] = new Building("House6",new Point(945,9650));
+        buildings[12] = new Building("House7",new Point(1145,9650));
+        buildings[13] = new Building("House8",new Point(145,9430));
+        buildings[14] = new Building("PoliceStation",new Point(400,9420));
+        buildings[15] = new Building("BowlingClub",new Point(615,9590));
+        buildings[16] = new Building("School",new Point(875,9510));
+        buildings[17] = new Building("Mosque",new Point(1195,9590));
+        buildings[18] = new Building("House9",new Point(1395,9590));
+        buildings[19] = new Building("House10",new Point(1395,9380));
+        buildings[20] = new Building("EmptyArea",new Point(1585,9410));
+        buildings[21] = new Building("House11",new Point(145,9365));
+        buildings[22] = new Building("AkgulEvYemekler",new Point(340,9210));
+        buildings[23] = new Building("House12",new Point(400,9310));
+        buildings[24] = new Building("Park1",new Point(815,9260));
+        buildings[25] = new Building("Mall",new Point(945,9320));
+        buildings[26] = new Building("GovOffice",new Point(1195,9320));
+        buildings[27] = new Building("Factory",new Point(1535,9320));
+        buildings[28] = new Building("House13",new Point(145,9070));
+        buildings[29] = new Building("WalkingPath",new Point(645,9070));
+        buildings[30] = new Building("House14",new Point(1190,9070));
+    }
 
+
+
+    public Building[] buildings = new Building[31];
     public Point[] vertices = new Point[157];
     public int[][] gridMap = new int[157][157];
 

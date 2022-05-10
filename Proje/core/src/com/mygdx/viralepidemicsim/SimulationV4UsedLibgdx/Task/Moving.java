@@ -23,6 +23,8 @@ public class Moving implements Task{
         this.gm = gm;
         this.person = person;
 
+        this.targetLoc = targetLoc;
+
         pf = new PathFinder(gm);
 
         path = pf.dijkstra(currentLoc, targetLoc);
@@ -43,6 +45,14 @@ public class Moving implements Task{
 
     public boolean isSubTaskEnd(){
         return (Math.abs(person.getX() - subTargetX) < 1 && Math.abs(person.getY() - subTargetY) < 1);
+    }
+
+    public int getTarget() {
+        return this.targetLoc;
+    }
+
+    public int getCurLoc() {
+        return this.getCurLoc();
     }
 
     public void nextSubTask(){
