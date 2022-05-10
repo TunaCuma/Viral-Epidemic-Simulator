@@ -25,7 +25,6 @@ public class HowToScreen implements Screen{
     public static Texture background;
     private ImageButton turnBack;
     private ImageButton forward;
-    private SpriteBatch batch;
     private OrthographicCamera camera;
     private String[] HowToImages;
     private GameMain game;
@@ -39,7 +38,6 @@ public class HowToScreen implements Screen{
      * @param main the GameMain object which will store this screen
      */
     public HowToScreen(GameMain main) {
-        batch = new SpriteBatch();
         game = main;
         gameViewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
         stage = new Stage(gameViewport,game.getBatch());

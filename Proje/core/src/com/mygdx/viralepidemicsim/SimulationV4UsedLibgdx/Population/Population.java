@@ -12,6 +12,7 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 
 public class Population {
     
+    public int infectedCount, immuneCount, deadCount;
     Person[] population;
     World world;
     GridMap map;

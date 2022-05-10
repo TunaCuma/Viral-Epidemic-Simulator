@@ -7,6 +7,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -32,9 +33,9 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population.Population;
 
 
-
 public class Simulation implements Screen, ContactListener{
 
+    private BitmapFont font;
     private GameMain game;
     private Texture bg;
     private Texture gui;
@@ -62,6 +63,7 @@ public class Simulation implements Screen, ContactListener{
 
     public Simulation(GameMain game){
         this.game = game;
+        font = new BitmapFont(Gdx.files.internal("InfoFont.fnt"));
         viewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport);
         createMusics();
@@ -83,9 +85,10 @@ public class Simulation implements Screen, ContactListener{
 
         abstractMap = new GridMap();
 
-        population = new Population(world,abstractMap,504,this);
+        population = new Population(world,abstractMap,500,this);
         //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         population.getPopulation()[0].makePatientZero();
+        population.infectedCount++;
         box2DCamera.update();
         //sound.play();
         //sound.loop();
@@ -234,7 +237,9 @@ public class Simulation implements Screen, ContactListener{
 
 
         
-
+        font.draw(game.getBatch(), "Infected: " + population.infectedCount, 90, GameInfo.HEIGHT-35);
+        font.draw(game.getBatch(), "Immune: " + population.immuneCount, 460, GameInfo.HEIGHT-35);
+        font.draw(game.getBatch(), "Dead: " + population.deadCount, 830, GameInfo.HEIGHT-35);
         game.getBatch().end();
         debugRenderer.render(world, box2DCamera.combined);
 
@@ -283,11 +288,13 @@ public class Simulation implements Screen, ContactListener{
         
         if(healthCondition2.equals("Sick") && healthCondition1.equals("Heal") ){
             int healsIndex = Integer.parseInt(((String)firstBody.getUserData()).substring(4)); 
+            population.infectedCount++;
             firstBody.setUserData("Sick" + healsIndex);
             population.getPopulation()[healsIndex].updateHealthCondition();
         }
         else if(healthCondition1.equals("Sick") && healthCondition2.equals("Heal") ){
             int healsIndex = Integer.parseInt(((String)secondBody.getUserData()).substring(4)); 
+            population.infectedCount++;
             secondBody.setUserData("Sick" + healsIndex);
             population.getPopulation()[healsIndex].updateHealthCondition();
         }
