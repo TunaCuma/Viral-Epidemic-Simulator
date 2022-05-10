@@ -312,17 +312,18 @@ public class Simulation implements Screen, ContactListener{
         String healthCondition2 = ((String) secondUserData[0]);
 
         
-        
-        if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
+        if(!population.getPopulation()[(int)(secondUserData[1])].isInBuilding && !population.getPopulation()[(int)(firstUserData[1])].isInBuilding) {
+            if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
             
-            firstUserData[0] = "Expo";
-            population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
-            firstBody.setUserData(firstUserData);
-        }
-        else if(healthCondition1.equals("Infe") && healthCondition2.equals("Susp") ){
-            secondUserData[0] = "Expo";
-            population.getPopulation()[(int)(secondUserData[1])].updateHealthCondition();
-            secondBody.setUserData(secondUserData);
+                firstUserData[0] = "Expo";
+                population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
+                firstBody.setUserData(firstUserData);
+            }
+            else if(healthCondition1.equals("Infe") && healthCondition2.equals("Susp") ){
+                secondUserData[0] = "Expo";
+                population.getPopulation()[(int)(secondUserData[1])].updateHealthCondition();
+                secondBody.setUserData(secondUserData);
+            }
         }
 
         

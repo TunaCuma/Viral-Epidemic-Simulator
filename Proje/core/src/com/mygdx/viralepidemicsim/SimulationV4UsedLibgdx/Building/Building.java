@@ -18,10 +18,12 @@ public class Building {
 
     public void addPerson(Person person) {
         persons.add(person);
+        person.isInBuilding = true;
     }
 
     public void removePerson(Person person) {
         persons.remove(person);
+        person.isInBuilding = false;
     }
 
 
