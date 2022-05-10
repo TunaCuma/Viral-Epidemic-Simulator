@@ -252,13 +252,13 @@ public class Simulation implements Screen, ContactListener{
             if((int) ((int)timeSeconds/(period/24)) < 10)
                 font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)timeSeconds/(period/24)) + ":" + (int) ((60/(period/24)) * (int) (timeSeconds%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
-                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)timeSeconds/(period/24)) + ":", GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)timeSeconds/(period/24)) + ":" + (int) ((60/(period/24)) * (int) (timeSeconds%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
         else {
             if((int) ((int)timeSeconds/(period/24)) < 10)
                 font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)timeSeconds/(period/24)) + ":0" + (int) ((60/(period/24)) * (int) (timeSeconds%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
-                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)timeSeconds/(period/24)) + ":0", GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)timeSeconds/(period/24)) + ":0" + (int) ((60/(period/24)) * (int) (timeSeconds%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
 
         game.getBatch().end();
