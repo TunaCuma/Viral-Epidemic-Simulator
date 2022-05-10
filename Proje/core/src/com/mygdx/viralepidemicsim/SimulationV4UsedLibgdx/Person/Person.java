@@ -57,6 +57,8 @@ public class Person extends Sprite{
 
     public Routine routine;
 
+    public double maskValue =1;
+
     
 
     public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu, int home, String type){
@@ -114,7 +116,7 @@ public class Person extends Sprite{
         if(healthStatus.equals("Expo")){
             
         
-            int possiblity = 10;
+            double possiblity = 100 * maskValue;
 
             for(int i = 0; i < (int)userData[2]; i++){
                 if(randomBetween(0, 100) < possiblity){
@@ -317,22 +319,7 @@ public class Person extends Sprite{
         menu.population.infectedCount++;
     }
     public void putMask(){
-        if (healthStatus.equals("Sick")){
-            healthStatus = "Heal";
-            fixture.setUserData(healthStatus + id);
-            new java.util.Timer().schedule( 
-             new java.util.TimerTask() {
-            @Override
-            public void run() {
-                makeImmune();
-            }
-        }, 
-        5000 
-);
-            
-            //setTexture(new Texture("Heal.png"));  Their texture will remain sick until they become immune
-        }
-        
+        this.maskValue = 0.1;        
     }
     
 
