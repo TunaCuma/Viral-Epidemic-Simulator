@@ -10,4 +10,9 @@ public class GameInfo {
         WIDTH = Gdx.graphics.getWidth();
         HEIGHT = Gdx.graphics.getHeight();
     }
+
+
+    public static int randomBetween(int first, int second){
+        return first + (int)((Math.random()) * second-first);
+    }
 }
