@@ -88,6 +88,7 @@ public class Settings implements Screen{
         });
         
 
+        volumeMusicSlider.setValue(0.5f);
         stage.addActor(volumeMusicSlider);;
         stage.addActor(sfxSlide);
 
