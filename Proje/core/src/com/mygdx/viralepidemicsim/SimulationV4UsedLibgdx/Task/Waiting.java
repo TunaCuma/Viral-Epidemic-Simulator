@@ -40,5 +40,4 @@ public class Waiting implements Task{
     public String toString() {
         return "W";
     }
-    
 }
