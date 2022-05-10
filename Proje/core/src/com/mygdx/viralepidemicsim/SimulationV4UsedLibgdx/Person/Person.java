@@ -115,18 +115,24 @@ public class Person extends Sprite{
         healthStatus = (String)((userData)[0]);
         if(healthStatus.equals("Expo")){
             
-        
+            System.out.println("Emre");
             double possiblity = 100 * maskValue;
 
+            boolean isInfected = false;
             for(int i = 0; i < (int)userData[2]; i++){
                 if(randomBetween(0, 100) < possiblity){
                     getInfected();
+                    isInfected = true;
                     break;
                 }
             }
 
-            userData[0] = "Susp";
-            userData[2] = 0;
+            if(!isInfected){
+                userData[0] = "Susp";
+                userData[2] = 0;
+            }
+            
+            updateHealthCondition();
             
             fixture.setUserData(userData);
 
@@ -178,7 +184,6 @@ public class Person extends Sprite{
     public void executeCurrentTask(){
         if(isTaskEnd()){
             if(currentTask.toString().equals("M")){
-                System.out.println(((Moving)currentTask).targetLoc);
                 currentLoc = ((Moving)currentTask).targetLoc;
                 enterBuilding(currentLoc);
             }
@@ -277,7 +282,11 @@ public class Person extends Sprite{
         userData[1] = id;
         userData[2] = 0;
 
+
         fixture.setUserData(userData);
+
+        updateHealthCondition();
+
 
         //fikir: immuneların sensorlarını kapatalım <3 - tarik
         fixture.setSensor(true);
@@ -310,12 +319,20 @@ public class Person extends Sprite{
     public void getInfected(){
         Object[] userData = (Object[])fixture.getUserData();
 
-        healthStatus = "Infe";
-        userData[0] = healthStatus;
+        
+        userData[0] = "Infe";
+        
     
         fixture.setUserData(userData);
-        setTexture(new Texture("Infe.png"));
+
+        updateHealthCondition();
+
+
+        
+
         menu.population.infectedCount++;
+
+
     }
     public void putMask(){
         this.maskValue = 0.1;        
@@ -324,6 +341,7 @@ public class Person extends Sprite{
 
     public void updateHealthCondition(){
         healthStatus = (String)(((Object[])fixture.getUserData())[0]);
+        
         String texture = healthStatus + ".png";
         setTexture(new Texture(texture));
     }
