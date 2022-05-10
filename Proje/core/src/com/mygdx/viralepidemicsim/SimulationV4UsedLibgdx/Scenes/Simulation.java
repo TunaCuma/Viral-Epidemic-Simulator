@@ -87,7 +87,7 @@ public class Simulation implements Screen, ContactListener{
 
         abstractMap = new GridMap();
 
-        population = new Population(world,abstractMap,1,this);
+        population = new Population(world,abstractMap,504,this);
         //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         population.getPopulation()[0].getInfected();
         box2DCamera.update();
@@ -211,7 +211,7 @@ public class Simulation implements Screen, ContactListener{
             musics[++currentMusic].play();
         }
         timeSeconds +=Gdx.graphics.getDeltaTime();
-        // System.out.println(timeSeconds);
+        System.out.println(timeSeconds);
         if(timeSeconds > period){
             timeSeconds-=period;
             timeSeconds = 0f;
