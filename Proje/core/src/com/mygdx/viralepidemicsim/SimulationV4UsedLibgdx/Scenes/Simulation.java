@@ -253,13 +253,13 @@ public class Simulation implements Screen, ContactListener{
         font.draw(game.getBatch(), "Dead: " + population.deadCount, 830, GameInfo.HEIGHT-35);
 
         if((int) (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))) >= 10) {
-            if((int) ((int)(timeSeconds) + 8/(period/16)) < 10)
+            if((int) ((int)(timeSeconds)/(period/16)) + 8 < 10)
                 font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)(timeSeconds) /(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
                 font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
         else {
-            if((int) ((int)(timeSeconds)/(period/16)) < 10)
+            if((int) ((int)(timeSeconds)/(period/16)) + 8 < 10)
                 font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
                 font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
