@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 
-public class OpeningScreenButtons {
+public class MainMenuButtons {
     private GameMain game;
     private Stage stage;
     private Viewport gameViewport;
@@ -34,7 +34,7 @@ public class OpeningScreenButtons {
      * Constructor
      * @param main the GameMain object which will store this screen
      */
-    public OpeningScreenButtons(GameMain game) {
+    public MainMenuButtons(GameMain game) {
         this.game = game;
 
         gameViewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());

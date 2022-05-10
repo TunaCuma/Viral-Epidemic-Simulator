@@ -7,27 +7,27 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Buttons.OpeningScreenButtons;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Buttons.MainMenuButtons;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 
-public class OpeningScreen implements Screen{
+public class MainMenu implements Screen{
 
     private BitmapFont font;
     public static Texture background;
     private OrthographicCamera camera;
     private GameMain game;
-    private OpeningScreenButtons buttons;
+    private MainMenuButtons buttons;
     private SpriteBatch batch;
 
     /**
      * Constructor
      * @param main the GameMain object which will store this screen
      */
-    public OpeningScreen(GameMain main) {
+    public MainMenu(GameMain main) {
         game = main;
         font = new BitmapFont(Gdx.files.internal("TitleFont.fnt"));
-        buttons = new OpeningScreenButtons(game);
+        buttons = new MainMenuButtons(game);
         camera = new OrthographicCamera(GameInfo.WIDTH, GameInfo.HEIGHT);
         batch = new SpriteBatch();
 
@@ -87,7 +87,7 @@ public class OpeningScreen implements Screen{
         
     } 
 
-    public OpeningScreenButtons getButtons() {
+    public MainMenuButtons getButtons() {
         return buttons;
     }
 }

@@ -14,13 +14,13 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.CreditsScreen;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.HowToScreen;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.OpeningScreen;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Settings;
 
 public class GameMain extends Game{
 
     public SpriteBatch batch;
-    public static OpeningScreen openingScreen; // 0
+    public static MainMenu openingScreen; // 0
     public static CreditsScreen creditsScreen; // 1
     public static HowToScreen howToScreen; // 2
     public static Simulation gameScreen; // 3
@@ -56,7 +56,7 @@ public class GameMain extends Game{
         gameScreen = new Simulation(this);
         settingsScreen = new Settings(this);
         howToScreen = new HowToScreen(this);
-        openingScreen = new OpeningScreen(this);
+        openingScreen = new MainMenu(this);
         setScreen(openingScreen);
     }
 }
