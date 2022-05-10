@@ -200,7 +200,7 @@ public class Person extends Sprite{
         
         
         CircleShape shape = new CircleShape();
-        shape.setRadius(getWidth() * 4 / GameInfo.PPM);
+        shape.setRadius(getWidth() * 3.2f / GameInfo.PPM);
         //shape.setAsBox((getWidth() * 10) / GameInfo.PPM, (getWidth() * 10) / GameInfo.PPM );
 
         FixtureDef fixtureDef = new FixtureDef();
