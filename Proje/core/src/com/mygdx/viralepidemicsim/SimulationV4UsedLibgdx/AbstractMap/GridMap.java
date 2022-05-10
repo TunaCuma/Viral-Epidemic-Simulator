@@ -351,7 +351,7 @@ public class GridMap {
         addEdge(121, 119,133);
         addEdge(122, 114,124,134);
         addEdge(123, 115,125,67,65,121);
-        addEdge(124, 114,122,126);
+        addEdge(124,122,126);
         addEdge(125, 109,123,71,137);
         addEdge(126, 110,138);
         addEdge(127, 111,125);
