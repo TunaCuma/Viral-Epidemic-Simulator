@@ -18,12 +18,10 @@ public class Building {
 
     public void addPerson(Person person) {
         persons.add(person);
-        System.out.println("building " + name + " has " + persons.size() + " people and 1 person entered");
     }
 
     public void removePerson(Person person) {
         persons.remove(person);
-        System.out.println("building " + name + " has " + persons.size() + " people and 1 person exited");
     }
 
 

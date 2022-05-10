@@ -214,14 +214,12 @@ public class Simulation implements Screen, ContactListener{
             musics[++currentMusic].play();
         }
         timeSeconds +=Gdx.graphics.getDeltaTime();
-        System.out.println(timeSeconds);
         
         if(timeSeconds > period){
             timeSeconds = 0f;
             dayCount++;
             newDay();
         }
-
 
         population.updatePopulation();
         population.executeTask();
