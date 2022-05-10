@@ -118,6 +118,11 @@ public class Person extends Sprite{
                 }
             }
 
+            userData[0] = "Susp";
+            userData[2] = 0;
+            
+            fixture.setUserData(userData);
+
         }
         
         
@@ -302,8 +307,6 @@ public class Person extends Sprite{
     public Body getBody(){
         return body;
     }
-
-
 
     public int getImmunity() {
         return immunity;
