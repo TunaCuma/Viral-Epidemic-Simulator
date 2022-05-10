@@ -130,8 +130,7 @@ public class Person extends Sprite{
             
             fixture.setUserData(userData);
 
-        }
-        
+        }       
         
         
         currentLoc = homeLocation;
