@@ -47,9 +47,9 @@ public class CurfewScreen implements Screen{
 
 
     private ImageButton[][] buttons = { {new ImageButton(button1,button1,button1red), new ImageButton(button1,button1,button1red), new ImageButton(button1,button1,button1red), new ImageButton(button1,button1,button1red), new ImageButton(button1,button1,button1red), new ImageButton(button1,button1,button1red), new ImageButton(button1,button1,button1red)},
-                                        {new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red)} };
+                                        {new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red)} };
     public boolean days[] = {false, false, false, false, false, false, false};
-    public boolean cases[] = {false, false, false, false, false, false, false};
+    public boolean cases[] = {false, false, false, false, false, false};
     private GameMain game;
     private Stage stage;
     private Viewport gameViewport;
@@ -123,9 +123,8 @@ public class CurfewScreen implements Screen{
         smallerFont.draw(batch, "Curfew for ages 19 - 39", GameInfo.WIDTH/2f+100, GameInfo.HEIGHT/1.2f-200);
         smallerFont.draw(batch, "Curfew for ages 40 - 65", GameInfo.WIDTH/2f+100, GameInfo.HEIGHT/1.2f-300);
         smallerFont.draw(batch, "  Curfew for ages 66+  ", GameInfo.WIDTH/2f+100, GameInfo.HEIGHT/1.2f-400);
-        smallerFont.draw(batch, "  Ban indoor gathering ", GameInfo.WIDTH/2f+100-10, GameInfo.HEIGHT/1.2f-500);
-        smallerFont.draw(batch, "      Close schools    ", GameInfo.WIDTH/2f+100-10, GameInfo.HEIGHT/1.2f-600);
-        smallerFont.draw(batch, "    Close workplaces   ", GameInfo.WIDTH/2f+100-10, GameInfo.HEIGHT/1.2f-700);
+        smallerFont.draw(batch, "      Close schools    ", GameInfo.WIDTH/2f+100-10, GameInfo.HEIGHT/1.2f-500);
+        smallerFont.draw(batch, "    Close workplaces   ", GameInfo.WIDTH/2f+100-10, GameInfo.HEIGHT/1.2f-600);
 
         batch.end();
     }
@@ -173,7 +172,6 @@ public class CurfewScreen implements Screen{
         buttons[1][3].setPosition(GameInfo.WIDTH/1.2f-570 , GameInfo.HEIGHT/1.2f-460);
         buttons[1][4].setPosition(GameInfo.WIDTH/1.2f-570 , GameInfo.HEIGHT/1.2f-560);
         buttons[1][5].setPosition(GameInfo.WIDTH/1.2f-570 , GameInfo.HEIGHT/1.2f-660);
-        buttons[1][6].setPosition(GameInfo.WIDTH/1.2f-570 , GameInfo.HEIGHT/1.2f-760);
         turnBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -289,14 +287,6 @@ public class CurfewScreen implements Screen{
                 GameMain.popSound.stop();
                 GameMain.popSound.play();
                 cases[5] = !cases[5];
-            }
-        });
-        buttons[1][6].addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                GameMain.popSound.stop();
-                GameMain.popSound.play();
-                cases[6] = !cases[6];
             }
         });
     }
