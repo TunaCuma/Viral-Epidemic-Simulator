@@ -93,6 +93,12 @@ public class Person extends Sprite{
         
         setHome(home);
 
+        if(type.equals("Adult")||type.equals("YoungAdult")){
+            assignWork();
+        }
+
+
+
         enterBuilding(home);
 
         if(id == firstPatient){
