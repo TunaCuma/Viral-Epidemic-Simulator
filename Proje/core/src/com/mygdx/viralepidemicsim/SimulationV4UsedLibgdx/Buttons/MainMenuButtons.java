@@ -91,6 +91,16 @@ public class MainMenuButtons {
                 game.setScreen(GameMain.gameScreen);
             } 
         });
+        gamee.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.play();
+                GameMain.beforeScreen = 0;
+                GameMain.stage = (Stage) GameMain.curfewScreen.getStage();
+                Gdx.input.setInputProcessor(GameMain.stage);
+                game.setScreen(GameMain.curfewScreen);
+            } 
+        });
         exit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

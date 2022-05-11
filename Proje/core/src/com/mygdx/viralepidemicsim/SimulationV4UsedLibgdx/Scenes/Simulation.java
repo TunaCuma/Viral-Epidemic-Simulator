@@ -52,7 +52,8 @@ public class Simulation implements Screen, ContactListener{
     private Viewport viewport;
     private ImageButton settings;
     private ImageButton mask;
-    
+    private SpriteDrawable maskUp;
+    private SpriteDrawable maskDown;    
 
     public boolean isMaskClicked = false;
     private Texture maskLogo = new Texture("masklogo3.png");
@@ -70,6 +71,7 @@ public class Simulation implements Screen, ContactListener{
     public float timeSeconds = period/3;
     private boolean isNewDay;
     public int dayCount;
+    public boolean noWork;
 
     public Simulation(GameMain game){
         isNewDay = true;
@@ -236,7 +238,6 @@ public class Simulation implements Screen, ContactListener{
             isNewDay = false;
         }
 
-       
 
         population.updatePopulation();
         population.executeTask();
@@ -412,7 +413,9 @@ public class Simulation implements Screen, ContactListener{
     }
 
     void addMaskButton(){
-        mask = new ImageButton(new SpriteDrawable(new Sprite(new Texture("maskbutton.png") )));
+        maskUp = new SpriteDrawable(new Sprite(new Texture("maskbutton.png") ));
+        maskDown = new SpriteDrawable(new Sprite(new Texture("maskbuttonOnClick.png") ));
+        mask = new ImageButton(maskUp, maskDown);
         mask.setPosition(100,20);
         
         mask.addListener(new ChangeListener() {

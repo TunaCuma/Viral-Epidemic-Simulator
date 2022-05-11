@@ -46,14 +46,13 @@ public class CurfewScreen implements Screen{
     private SpriteDrawable button3red = new SpriteDrawable(new Sprite(new Texture("ThirdTitleRed.png")));;
 
 
-    private ImageButton[][] buttons = { {new ImageButton(button1), new ImageButton(button1), new ImageButton(button1), new ImageButton(button1), new ImageButton(button1), new ImageButton(button1), new ImageButton(button1)},
-                                        {new ImageButton(button3), new ImageButton(button3), new ImageButton(button3), new ImageButton(button3), new ImageButton(button3)            }};
+    private ImageButton[][] buttons = { {new ImageButton(button1,button1,button1red), new ImageButton(button1,button1,button1red), new ImageButton(button1,button1,button1red), new ImageButton(button1,button1,button1red), new ImageButton(button1,button1,button1red), new ImageButton(button1,button1,button1red), new ImageButton(button1,button1,button1red)},
+                                        {new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red), new ImageButton(button3,button3,button3red)            }};
     public boolean days[] = {false, false, false, false, false, false, false};
     public boolean cases[] = {false, false, false, false, false};
     private GameMain game;
     private Stage stage;
     private Viewport gameViewport;
-
     /**
      * Constructor
      * @param main the GameMain object which will store this screen
@@ -76,7 +75,7 @@ public class CurfewScreen implements Screen{
         
         background = new Texture("BackgroundMain.jpg");
 
-        font = new BitmapFont(Gdx.files.internal("InfoFont2.fnt"), false);
+        font = new BitmapFont(Gdx.files.internal("TitleFont.fnt"), false);
         smallerFont = new BitmapFont(Gdx.files.internal("InfoFont3.fnt"), false);
 
         camera.position.set(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f, 0);
@@ -103,10 +102,10 @@ public class CurfewScreen implements Screen{
 
         batch.begin();
         stage.draw();
-        font.draw(batch, "CURFEW OPTIONS", GameInfo.WIDTH/3f-80, GameInfo.HEIGHT/1.03f);
+        //font.draw(batch, "CURFEW OPTIONS", GameInfo.WIDTH/3f-200, GameInfo.HEIGHT/1.03f);
 
-        batch.draw(buttonTexture, GameInfo.WIDTH/3f-240, GameInfo.HEIGHT/1.2f-60);
-        batch.draw(buttonTexture, GameInfo.WIDTH/2f+170, GameInfo.HEIGHT/1.2f-60);
+        batch.draw(buttonTexture, GameInfo.WIDTH/3f-440, GameInfo.HEIGHT/1.2f-85);
+        batch.draw(buttonTexture, GameInfo.WIDTH/2f-30, GameInfo.HEIGHT/1.2f-85);
 
         smallerFont.draw(batch, "SPECIFY DAYS", GameInfo.WIDTH/3f-200, GameInfo.HEIGHT/1.2f);
 
@@ -183,6 +182,7 @@ public class CurfewScreen implements Screen{
         buttons[0][0].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                buttons[0][0].getStyle().down = button1;
                 GameMain.popSound.play();
                 days[0] = !days[0];
             }

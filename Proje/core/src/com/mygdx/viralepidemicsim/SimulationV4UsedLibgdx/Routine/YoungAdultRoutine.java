@@ -26,7 +26,7 @@ public class YoungAdultRoutine implements Routine{
 
         taskList[0] = new WaitTill(person,rand.nextInt(20),sim);
 
-        temp1 = person.workLoc;
+        temp1 = person.currentLoc;
         
         if(sim.noWork){
             temp1 = buildingList[rand.nextInt(buildingList.length)];
