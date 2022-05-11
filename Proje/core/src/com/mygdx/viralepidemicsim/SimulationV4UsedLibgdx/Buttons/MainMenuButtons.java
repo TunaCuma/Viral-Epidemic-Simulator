@@ -29,6 +29,8 @@ public class MainMenuButtons {
     private ImageButton exit;
 
     private BitmapFont fontNames;
+    private boolean simInitialized;
+
     
     /**
      * Constructor
@@ -84,12 +86,24 @@ public class MainMenuButtons {
         simulation.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                GameMain.popSound.stop();
-                GameMain.popSound.play();
-                GameMain.beforeScreen = 0;
-                GameMain.stage = (Stage) GameMain.gameScreen.getStage();
-                Gdx.input.setInputProcessor(GameMain.stage);
-                game.setScreen(GameMain.gameScreen);
+                if(simInitialized){
+                    GameMain.popSound.stop();
+                    GameMain.popSound.play();
+                    GameMain.beforeScreen = 0;
+                    GameMain.stage = (Stage) GameMain.gameScreen.getStage();
+                    Gdx.input.setInputProcessor(GameMain.stage);
+                    game.setScreen(GameMain.gameScreen);
+                }
+                else{
+                    simInitialized = true;
+                    GameMain.popSound.stop();
+                    GameMain.popSound.play();
+                    GameMain.beforeScreen = 0;
+                    GameMain.stage = (Stage) GameMain.parametersScreen.getStage();
+                    Gdx.input.setInputProcessor(GameMain.stage);
+                    game.setScreen(GameMain.parametersScreen);
+                }
+                
             } 
         });
         gamee.addListener(new ChangeListener() {
@@ -98,9 +112,9 @@ public class MainMenuButtons {
                 GameMain.popSound.stop();
                 GameMain.popSound.play();
                 GameMain.beforeScreen = 0;
-                GameMain.stage = (Stage) GameMain.curfewScreen.getStage();
+                GameMain.stage = (Stage) GameMain.parametersScreen.getStage();
                 Gdx.input.setInputProcessor(GameMain.stage);
-                game.setScreen(GameMain.curfewScreen);
+                game.setScreen(GameMain.parametersScreen);
             } 
         });
         exit.addListener(new ChangeListener() {

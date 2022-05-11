@@ -177,11 +177,17 @@ public class CurfewScreen implements Screen{
             public void changed(ChangeEvent event, Actor actor) {
                 GameMain.popSound.stop();
                 GameMain.popSound.play();
-                GameMain.stage = GameMain.gameScreen.getStage();
-                Gdx.input.setInputProcessor(GameMain.stage);
-                game.setScreen(GameMain.gameScreen);
-                GameMain.gameScreen.curfews = cases;
-                GameMain.gameScreen.daysBanned = days;
+                if(GameMain.beforeScreen == 2) {
+                    GameMain.stage = GameMain.parametersScreen.getStage();
+                    Gdx.input.setInputProcessor(GameMain.stage);
+                    game.setScreen(GameMain.parametersScreen);
+                }
+                else {
+                    GameMain.stage = GameMain.gameScreen.getStage();
+                    Gdx.input.setInputProcessor(GameMain.stage);
+                    game.setScreen(GameMain.gameScreen);
+                }
+                game.gameScreen.curfews = cases;
             }
         });
         buttons[0][0].addListener(new ChangeListener() {
