@@ -34,6 +34,8 @@ public class Person extends Sprite{
     public static int numberOfPerson = 0;
     public int id;
 
+    public int healDay;
+
     public Simulation menu;
 
     private World world;
@@ -161,6 +163,9 @@ public class Person extends Sprite{
     }
 
     public void startDay(){
+        if (menu.dayCount == healDay) {
+            getImmune();
+        }
         Object[] userData = (Object[])fixture.getUserData();
         healthStatus = (String)((userData)[0]);
         
@@ -412,6 +417,8 @@ public class Person extends Sprite{
     }
 
     public void getInfected(){
+        healDay = menu.dayCount+5;
+
         Object[] userData = (Object[])fixture.getUserData();
 
         
