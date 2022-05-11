@@ -144,7 +144,7 @@ public class Simulation implements Screen, ContactListener{
         debugRenderer.setDrawInactiveBodies(false);
 
         curfews = new boolean[6];
-        daysBanned = new boolean[6];
+        daysBanned = new boolean[5];
     }
 
     
@@ -267,16 +267,11 @@ public class Simulation implements Screen, ContactListener{
             population.removeCurfewOver65();
         }
         if(curfews[4]){
-
-        }else{
-            
-        }
-        if(curfews[5]){
             closeSchool = true;
         }else{
             closeSchool= false;
         }
-        if(curfews[6]){ 
+        if(curfews[5]){ 
             noWork = true;
         }else{
             noWork = false;
