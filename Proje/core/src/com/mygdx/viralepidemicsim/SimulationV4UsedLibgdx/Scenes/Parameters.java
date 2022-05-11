@@ -1,5 +1,6 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -218,8 +219,14 @@ public class Parameters implements Screen{
 
                 GameInfo.setRateOfKill(killRate.getValue());
                 GameInfo.setRateOfSpread(spreadRate.getValue());
-
+                GameInfo.setPopulation((int)population.getValue());
                 
+
+
+                GameMain.gameScreen.population.randomInfection((int)patientNumber.getValue());
+                GameMain.gameScreen.population.randomVaccination((int)(GameInfo.population * vaccination.getValue()));
+
+
 
             }
         });

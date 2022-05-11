@@ -31,8 +31,7 @@ class emre {
  
         // Initialize all distances as
         // INFINITE and added[] as false
-        for (int vertexIndex = 0; vertexIndex < nVertices;
-                                            vertexIndex++)
+        for (int vertexIndex = 0; vertexIndex < nVertices; vertexIndex++)
         {
             shortestDistances[vertexIndex] = Integer.MAX_VALUE;
             added[vertexIndex] = false;
