@@ -282,48 +282,26 @@ public class Simulation implements Screen, ContactListener{
 
 
 
-        if(daysBanned[0]){
-            if(dayCount%7 == 0)
-                population.fullCurfew();
-            else
-                population.removeFullCurfew();
+        if(daysBanned[0] && dayCount%7 == 0){
+            population.fullCurfew();
         }
-
-        else if(daysBanned[1]){
-            if(dayCount%7 == 1)
-                population.fullCurfew();
-            else
-                population.removeFullCurfew();
+        else if(daysBanned[1] && dayCount%7 == 1){
+            population.fullCurfew();
         }
-        else if(daysBanned[2]){
-            if(dayCount%7 == 2)
-                population.fullCurfew();
-            else
-                population.removeFullCurfew();
+        else if(daysBanned[2] && dayCount%7 == 2){
+            population.fullCurfew();
         }
-        else if(daysBanned[3]){
-            if(dayCount%7 == 3)
-                population.fullCurfew();
-            else
-                population.removeFullCurfew();
+        else if(daysBanned[3] && dayCount%7 == 3){
+            population.fullCurfew();
         }
-        else if(daysBanned[4]){
-            if(dayCount%7 == 4)
-                population.fullCurfew();
-            else
-                population.removeFullCurfew();
+        else if(daysBanned[4] && dayCount%7 == 4){
+            population.fullCurfew();
         }
-        else if(daysBanned[5]){
-            if(dayCount%7 == 5)
-                population.fullCurfew();
-            else
-                population.removeFullCurfew();
+        else if(daysBanned[5] && dayCount%7 == 5){
+            population.fullCurfew();
         }
-        else if(daysBanned[6]){
-            if(dayCount%7 == 6)
-                population.fullCurfew();
-            else
-                population.removeFullCurfew();
+        else if(daysBanned[6] && dayCount%7 == 6){
+            population.fullCurfew();
         }
         
         
