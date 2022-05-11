@@ -43,7 +43,7 @@ public class Person extends Sprite{
     public Fixture fixture;
     public boolean isInBuilding;
 
-    String healthStatus;
+    public String healthStatus;
 
     GridMap map;
 
@@ -112,6 +112,10 @@ public class Person extends Sprite{
 
     
 
+    }
+
+    public void getExposed() {
+        this.healthStatus = "Expo";
     }
 
     public void startDay(){

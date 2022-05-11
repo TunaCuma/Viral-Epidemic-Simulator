@@ -23,37 +23,38 @@ public class GridMap {
 
     
     public void buildingBuilder() {
-        buildings[0] = new Building("Hospital",new Point(340,9758));
-        buildings[1] = new Building("House0",new Point(450,9865));
-        buildings[2] = new Building("House1",new Point(615,9865));
-        buildings[3] = new Building("House2",new Point(780,9865));
-        buildings[4] = new Building("House3",new Point(945,9865));
-        buildings[5] = new Building("Cafe",new Point(1145,9865));
-        buildings[6] = new Building("Park0",new Point(1525,9750));
-        buildings[7] = new Building("SportCenter",new Point(1585,9710));
-        buildings[8] = new Building("House4",new Point(450,9650));
-        buildings[9] = new Building("House5",new Point(615,9650));
-        buildings[10] = new Building("Market",new Point(780,9650));
-        buildings[11] = new Building("House6",new Point(945,9650));
-        buildings[12] = new Building("House7",new Point(1145,9650));
-        buildings[13] = new Building("House8",new Point(145,9430));
-        buildings[14] = new Building("PoliceStation",new Point(400,9420));
-        buildings[15] = new Building("BowlingClub",new Point(615,9590));
-        buildings[16] = new Building("School",new Point(875,9510));
-        buildings[17] = new Building("Mosque",new Point(1195,9590));
-        buildings[18] = new Building("House9",new Point(1395,9590));
-        buildings[19] = new Building("House10",new Point(1395,9380));
-        buildings[20] = new Building("EmptyArea",new Point(1585,9410));
-        buildings[21] = new Building("House11",new Point(145,9365));
-        buildings[22] = new Building("AkgulEvYemekler",new Point(340,9210));
-        buildings[23] = new Building("House12",new Point(400,9310));
-        buildings[24] = new Building("Park1",new Point(815,9260));
-        buildings[25] = new Building("Mall",new Point(945,9320));
-        buildings[26] = new Building("GovOffice",new Point(1195,9320));
-        buildings[27] = new Building("Factory",new Point(1535,9320));
-        buildings[28] = new Building("House13",new Point(145,9070));
-        buildings[29] = new Building("WalkingPath",new Point(645,9070));
-        buildings[30] = new Building("House14",new Point(1190,9070));
+        buildings[0] = new Building("Hospital",new Point(340,9758),250*320);
+        buildings[1] = new Building("House0",new Point(450,9865),15000);
+        buildings[2] = new Building("House1",new Point(615,9865),15000);
+        buildings[3] = new Building("House2",new Point(780,9865),15000);
+        buildings[4] = new Building("House3",new Point(945,9865),15000);
+        buildings[5] = new Building("Cafe",new Point(1145,9865),15000);
+        //parks size is too big because people should not get infected at outdoors
+        buildings[6] = new Building("Park0",new Point(1525,9750),999999);
+        buildings[7] = new Building("SportCenter",new Point(1585,9710),230*215);
+        buildings[8] = new Building("House4",new Point(450,9650),15000);
+        buildings[9] = new Building("House5",new Point(615,9650),15000);
+        buildings[10] = new Building("Market",new Point(780,9650),15000);
+        buildings[11] = new Building("House6",new Point(945,9650),15000);
+        buildings[12] = new Building("House7",new Point(1145,9650),15000);
+        buildings[13] = new Building("House8",new Point(145,9430),25000);
+        buildings[14] = new Building("PoliceStation",new Point(400,9420),21000);
+        buildings[15] = new Building("BowlingClub",new Point(615,9590),63000);
+        buildings[16] = new Building("School",new Point(875,9510),250*210);
+        buildings[17] = new Building("Mosque",new Point(1195,9590),180*210);
+        buildings[18] = new Building("House9",new Point(1395,9590),190*105);
+        buildings[19] = new Building("House10",new Point(1395,9380),190*105);
+        buildings[20] = new Building("EmptyArea",new Point(1585,9410),230*210);
+        buildings[21] = new Building("House11",new Point(145,9365),250*90);
+        buildings[22] = new Building("AkgulEvYemekler",new Point(340,9210),250*100);
+        buildings[23] = new Building("House12",new Point(400,9310),19000);
+        buildings[24] = new Building("Park1",new Point(815,9260),57000);
+        buildings[25] = new Building("Mall",new Point(945,9320),50000);
+        buildings[26] = new Building("GovOffice",new Point(1195,9320),230*135);
+        buildings[27] = new Building("Factory",new Point(1535,9320),480*250);
+        buildings[28] = new Building("House13",new Point(145,9070),250*90);
+        buildings[29] = new Building("WalkingPath",new Point(645,9070),415*90);
+        buildings[30] = new Building("House14",new Point(1190,9070),23000);
     }
 
 
