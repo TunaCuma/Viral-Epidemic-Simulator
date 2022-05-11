@@ -4,6 +4,7 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population;
 
 import java.util.Random;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
@@ -16,8 +17,10 @@ public class Population {
     public Person[] population;
     World world;
     GridMap map;
-    
-
+    public final static Texture EXPO_TEXTURE = new Texture("Expo.png");
+    public final static Texture INFE_TEXTURE = new Texture("Infe.png");
+    public final static Texture SUSP_TEXTURE = new Texture("Susp.png");
+    public final static Texture IMMU_TEXTURE = new Texture("Immu.png");
 
     public Population(World world, GridMap map, int numberOfPeople, Simulation menu){
         population = new Person[numberOfPeople];

@@ -99,9 +99,7 @@ public class Simulation implements Screen, ContactListener{
         hospital = new Texture("firsthospital.png");
         house = new Texture("firstHouse.png");
 
-
-
-
+        debugRenderer.setDrawInactiveBodies(false);
     }
 
     private void addAllListeners() {
@@ -263,7 +261,6 @@ public class Simulation implements Screen, ContactListener{
         }
 
         game.getBatch().end();
-        debugRenderer.setDrawInactiveBodies(false);
         debugRenderer.render(world, box2DCamera.combined);
 
 

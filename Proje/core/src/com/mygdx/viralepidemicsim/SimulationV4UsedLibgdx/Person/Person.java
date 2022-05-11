@@ -15,6 +15,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population.Population;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.AdultRoutine;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.CurfewRoutine;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.InfectedRoutine;
@@ -366,9 +367,14 @@ public class Person extends Sprite{
 
     public void updateHealthCondition(){
         healthStatus = (String)(((Object[])fixture.getUserData())[0]);
-        
-        String texture = healthStatus + ".png";
-        setTexture(new Texture(texture));
+        if(healthStatus.equals("Susp"))
+            setTexture(Population.SUSP_TEXTURE);
+        if(healthStatus.equals("Infe"))
+            setTexture(Population.INFE_TEXTURE);
+        if(healthStatus.equals("Expo"))
+            setTexture(Population.EXPO_TEXTURE);
+        if(healthStatus.equals("Immu"))
+            setTexture(Population.IMMU_TEXTURE);
     }
 
     public Body getBody(){
