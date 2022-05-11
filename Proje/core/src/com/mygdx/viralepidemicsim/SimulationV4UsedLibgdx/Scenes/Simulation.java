@@ -470,7 +470,7 @@ public class Simulation implements Screen, ContactListener{
 
         
         if(maskRule){
-            if(GameInfo.trueWithPossibility(10)){
+            if(GameInfo.trueWithPossibility(50)){
                 if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
             
                     firstUserData[0] = "Expo";

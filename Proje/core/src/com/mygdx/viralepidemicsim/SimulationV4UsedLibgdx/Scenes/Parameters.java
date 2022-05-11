@@ -215,6 +215,12 @@ public class Parameters implements Screen{
                 GameMain.stage = (Stage) GameMain.gameScreen.getStage();
                 Gdx.input.setInputProcessor(GameMain.stage);
                 game.setScreen(GameMain.gameScreen);
+
+                GameInfo.setRateOfKill(killRate.getValue());
+                GameInfo.setRateOfSpread(spreadRate.getValue());
+
+                
+
             }
         });
         curfew.addListener(new ChangeListener() {

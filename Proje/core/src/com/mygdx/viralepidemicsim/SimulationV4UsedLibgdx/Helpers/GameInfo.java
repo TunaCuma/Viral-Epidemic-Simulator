@@ -6,6 +6,18 @@ public class GameInfo {
     public static int WIDTH = 10000;
     public static int HEIGHT = 10000;
     public static float PPM = 1;
+    public static float rateOfSpread = 1;
+    public static float rateOfKill = 1; 
+
+
+    public static void setRateOfKill(float db){
+        rateOfKill = db;
+    }
+
+    public static void setRateOfSpread(float db){
+        rateOfSpread = db;
+    }
+
     public static void create() {
         WIDTH = Gdx.graphics.getWidth();
         HEIGHT = Gdx.graphics.getHeight();
