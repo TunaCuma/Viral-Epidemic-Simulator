@@ -83,6 +83,8 @@ public class Simulation implements Screen, ContactListener{
     public boolean noWork;
     public boolean maskRule = true;
 
+    public boolean[] curfews;
+
 
     public Simulation(GameMain game){
         isNewDay = true;
@@ -128,6 +130,8 @@ public class Simulation implements Screen, ContactListener{
         house = new Texture("firstHouse.png");
 
         debugRenderer.setDrawInactiveBodies(false);
+
+        curfews = new boolean[3];
     }
 
     
@@ -221,6 +225,26 @@ public class Simulation implements Screen, ContactListener{
     }
 
     public void newDay(){
+    
+
+        if(curfews[2]){
+            population.fullCurfew();
+        }else{
+            if(curfews[0]){
+                population.curfewUnder18();
+            }
+            else{
+                population.removeCurfewUnder18();
+            }
+            if(curfews[1]){
+                population.curfewOver65();
+            }
+            else{
+                population.removeCurfewOver65();
+            }
+        }
+
+
         population.startDay();
     }
 
@@ -250,7 +274,6 @@ public class Simulation implements Screen, ContactListener{
 
 
         population.updatePopulation();
-        population.executeTask();
 
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
