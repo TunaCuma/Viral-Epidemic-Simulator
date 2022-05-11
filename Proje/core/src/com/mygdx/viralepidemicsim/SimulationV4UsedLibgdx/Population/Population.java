@@ -129,5 +129,37 @@ public class Population {
         }
     }
 
+    public void curfew19to40() {
+        for(int i = 0; i < population.length; i++){
+            if(population[i].type.equals("YoungAdult")){
+                population[i].isInCurfew = true;
+            }
+        }
+    }
+
+    public void curfew40to65() {
+        for(int i = 0; i < population.length; i++){
+            if(population[i].type.equals("Adult")){
+                population[i].isInCurfew = true;
+            }
+        }
+    }
+
+    public void removeCurfew40to65() {
+        for(int i = 0; i < population.length; i++){
+            if(population[i].type.equals("Adult")){
+                population[i].isInCurfew = false;
+            }
+        }
+    }
+
+    public void removeCurfew19to40() {
+        for(int i = 0; i < population.length; i++){
+            if(population[i].type.equals("YoungAdult")){
+                population[i].isInCurfew = false;
+            }
+        }
+    }
+
    
 }
