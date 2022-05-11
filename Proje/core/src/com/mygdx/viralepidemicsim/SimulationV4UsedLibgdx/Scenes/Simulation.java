@@ -75,7 +75,7 @@ public class Simulation implements Screen, ContactListener{
     public float timeSeconds = 0f;
     private boolean isNewDay;
     public int dayCount;
-    public boolean noWork;
+    
 
     public boolean closeSchool;
     public boolean curfewUnder18;
