@@ -235,9 +235,7 @@ public class Simulation implements Screen, ContactListener{
 
     public void newDay(){
     
-        if(daysBanned[dayCount%7-1])
-            population.removeFullCurfew();
-
+        
 
 
         if(curfews[0]){
@@ -246,12 +244,14 @@ public class Simulation implements Screen, ContactListener{
         else{
             population.removeCurfewUnder18();
         }
+
         if(curfews[1]){
             population.curfew19to40();
         }
         else{
             population.removeCurfew19to40();
         }
+        
         if(curfews[2]){
             population.curfew40to65();
         }else{
@@ -284,24 +284,32 @@ public class Simulation implements Screen, ContactListener{
 
         if(daysBanned[0] && dayCount%7 == 0){
             population.fullCurfew();
+            System.out.println(0);
         }
         else if(daysBanned[1] && dayCount%7 == 1){
             population.fullCurfew();
+            System.out.println(1);
+            
         }
         else if(daysBanned[2] && dayCount%7 == 2){
             population.fullCurfew();
+            System.out.println(2);
         }
         else if(daysBanned[3] && dayCount%7 == 3){
             population.fullCurfew();
+            System.out.println(3);
         }
         else if(daysBanned[4] && dayCount%7 == 4){
             population.fullCurfew();
+            System.out.println(4);
         }
         else if(daysBanned[5] && dayCount%7 == 5){
             population.fullCurfew();
+            System.out.println(5);
         }
         else if(daysBanned[6] && dayCount%7 == 6){
             population.fullCurfew();
+            System.out.println(6);
         }
         
         
