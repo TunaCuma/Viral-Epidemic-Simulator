@@ -129,6 +129,20 @@ public class Population {
         }
     }
 
+    public void removeFullCurfew() {
+        for(int i = 0; i < population.length; i++){
+            population[i].isInCurfew = false;
+        }
+    }
+
+    public boolean isFullCurfew() {
+        for(int i = 0; i < population.length; i++){
+            if(population[i].isInCurfew == false)
+                return false;
+        }
+        return true;
+    }
+
     public void curfew19to40() {
         for(int i = 0; i < population.length; i++){
             if(population[i].type.equals("YoungAdult")){
