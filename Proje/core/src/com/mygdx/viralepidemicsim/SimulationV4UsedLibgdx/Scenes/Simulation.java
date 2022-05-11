@@ -57,6 +57,7 @@ public class Simulation implements Screen, ContactListener{
     private ImageButton curfew;
     private SpriteDrawable curfewUp;
     private SpriteDrawable curfewDown; 
+    private ImageButton turnBack;
 
     public boolean isMaskClicked = false;
     private Texture maskLogo = new Texture("masklogo3.png");
@@ -88,9 +89,11 @@ public class Simulation implements Screen, ContactListener{
         addAllListeners();
         addMaskButton();
         addCurfewButton();
+        addTurnBackButton();
         stage.addActor(settings);
         stage.addActor(mask);
         stage.addActor(curfew);
+        stage.addActor(turnBack);
         box2DCamera = new OrthographicCamera();
         box2DCamera.setToOrtho(false, GameInfo.WIDTH/GameInfo.PPM, GameInfo.HEIGHT/GameInfo.PPM);
         box2DCamera.position.set((GameInfo.WIDTH/2f)/GameInfo.PPM , (GameInfo.HEIGHT/2f)/GameInfo.PPM,0);
@@ -456,6 +459,21 @@ public class Simulation implements Screen, ContactListener{
                 GameMain.stage = (Stage) GameMain.curfewScreen.getStage();
                 Gdx.input.setInputProcessor(GameMain.stage);
                 game.setScreen(GameMain.curfewScreen);
+            }
+        });
+    }
+
+    private void addTurnBackButton() {
+        turnBack = new ImageButton(new SpriteDrawable(new Sprite(new Texture("SmallerTurnBack.png"))));
+        turnBack.setPosition(GameInfo.WIDTH-80,GameInfo.HEIGHT-75);
+        
+        turnBack.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {                
+                GameMain.popSound.play();
+                GameMain.stage = GameMain.openingScreen.getButtons().getStage();
+                game.setScreen(GameMain.openingScreen);
+                Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
             }
         });
     }
