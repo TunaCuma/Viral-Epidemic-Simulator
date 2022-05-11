@@ -58,9 +58,14 @@ public class Simulation implements Screen, ContactListener{
     private SpriteDrawable curfewUp;
     private SpriteDrawable curfewDown; 
     private ImageButton turnBack;
+    private ImageButton vaccButton;
+    private SpriteDrawable vaccImage;
+    private boolean isVaccClicked = false;
 
     public boolean isMaskClicked = false;
     private Texture maskLogo = new Texture("masklogo3.png");
+
+    private Texture vacBut = new Texture("vaccbut.jpg");
     
     float clock = 0;
 
@@ -99,10 +104,12 @@ public class Simulation implements Screen, ContactListener{
         addMaskButton();
         addCurfewButton();
         addTurnBackButton();
+        addVaccinationButton();
         stage.addActor(settings);
         stage.addActor(mask);
         stage.addActor(curfew);
         stage.addActor(turnBack);
+        stage.addActor(vaccButton);
         box2DCamera = new OrthographicCamera();
         box2DCamera.setToOrtho(false, GameInfo.WIDTH/GameInfo.PPM, GameInfo.HEIGHT/GameInfo.PPM);
         box2DCamera.position.set((GameInfo.WIDTH/2f)/GameInfo.PPM , (GameInfo.HEIGHT/2f)/GameInfo.PPM,0);
@@ -322,6 +329,11 @@ public class Simulation implements Screen, ContactListener{
             game.getBatch().draw(maskLogo,20 , 20);
         }
 
+        if (isVaccClicked){
+            game.getBatch().draw(vacBut,700 , 25);
+        }
+
+
         game.getBatch().end();
         debugRenderer.render(world, box2DCamera.combined);
 
@@ -519,8 +531,7 @@ public class Simulation implements Screen, ContactListener{
         
         turnBack.addListener(new ChangeListener() {
             @Override
-            public void changed(ChangeEvent event, Actor actor) { 
-                GameMain.popSound.stop();               
+            public void changed(ChangeEvent event, Actor actor) {                
                 GameMain.popSound.play();
                 GameMain.stage = GameMain.openingScreen.getButtons().getStage();
                 game.setScreen(GameMain.openingScreen);
@@ -528,5 +539,17 @@ public class Simulation implements Screen, ContactListener{
             }
         });
     }
+    private void addVaccinationButton() {
+        vaccButton = new ImageButton(new SpriteDrawable(new Sprite(new Texture("vaccination.png"))));
+        vaccButton.setPosition(760, 20);
+        
+        vaccButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {                
+                isVaccClicked = true;
+            }
+        });
+    }
+
 
 }
