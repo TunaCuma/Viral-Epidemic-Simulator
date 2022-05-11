@@ -151,6 +151,9 @@ public class Person extends Sprite{
 
     }
 
+    private void assignWork() {
+    }
+
     public void getExposed() {
         this.healthStatus = "Expo";
     }
