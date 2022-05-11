@@ -91,10 +91,8 @@ public class Simulation implements Screen, ContactListener{
         abstractMap = new GridMap();
 
         population = new Population(world,abstractMap,504,this);
-        //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
+        population.infectedCount++;
         box2DCamera.update();
-        //sound.play();
-        //sound.loop();
         createBuildings();
 
 
@@ -232,11 +230,13 @@ public class Simulation implements Screen, ContactListener{
         renderBuildings();
 
         //Drawing the population one by one
-        Person currentPerson;
         for(int i = 0; i < population.getNumberOfPeople(); i++){
-            currentPerson = population.getPopulation()[i];
-
-            game.getBatch().draw(currentPerson,(currentPerson.getX() - currentPerson.getWidth()/2), (currentPerson.getY() - currentPerson.getHeight()/2));
+            if(!population.getPopulation()[i].isInBuilding){
+                game.getBatch().draw( population.getPopulation()[i],(population.getPopulation()[i].getX() - population.getPopulation()[i].getWidth()/2), (population.getPopulation()[i].getY() - population.getPopulation()[i].getHeight()/2));
+                population.getPopulation()[i].body.setActive(true);
+            }
+            else
+                population.getPopulation()[i].body.setActive(false);
         }
 
 
@@ -263,6 +263,7 @@ public class Simulation implements Screen, ContactListener{
         }
 
         game.getBatch().end();
+        debugRenderer.setDrawInactiveBodies(false);
         debugRenderer.render(world, box2DCamera.combined);
 
 
