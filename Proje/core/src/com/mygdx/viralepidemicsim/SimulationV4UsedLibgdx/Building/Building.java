@@ -24,7 +24,7 @@ public class Building {
         this.name = name;
         this.location = location;
         this.size = size;
-        coefficient = 10;
+        coefficient = 3;
         rand =  new Random();
     }
 

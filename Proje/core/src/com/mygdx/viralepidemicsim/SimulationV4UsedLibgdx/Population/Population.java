@@ -109,6 +109,49 @@ public class Population {
         }
     }
 
+    public void updateYoungArrayList(){
+        ArrayList<Person> newYoungArr = new ArrayList<>();
+        for(int i = 0; i < youngArr.size() ; i++){
+            if((youngArr.get(i).healthStatus.equals("Susp")||youngArr.get(i).healthStatus.equals("Expo"))){
+                newYoungArr.add(youngArr.get(i));
+            }
+        }
+
+        youngArr = newYoungArr;
+    }
+
+    public void updateYoungAdultArrayList(){
+        ArrayList<Person> newYoungAdultArr = new ArrayList<>();
+        for(int i = 0; i < youngAdultArr.size(); i++){
+            if((youngAdultArr.get(i).healthStatus.equals("Susp")||youngAdultArr.get(i).healthStatus.equals("Expo"))){
+                newYoungAdultArr.add(youngAdultArr.get(i));
+            }
+        }
+
+        youngAdultArr = newYoungAdultArr;
+    }
+
+    public void updateAdultArrayList(){
+        ArrayList<Person> newAdultArr = new ArrayList<>();
+        for(int i = 0; i < adultArr.size(); i++){
+            if((adultArr.get(i).healthStatus.equals("Susp")||adultArr.get(i).healthStatus.equals("Expo"))){
+                newAdultArr.add(adultArr.get(i));
+            }
+        }
+        adultArr = newAdultArr;
+    }
+
+    public void updateOldArrayList(){
+        ArrayList<Person> newOldArr = new ArrayList<>();
+        for(int i = 0; i < oldArr.size(); i++){
+            if((oldArr.get(i).healthStatus.equals("Susp")||oldArr.get(i).healthStatus.equals("Expo"))){
+                newOldArr.add(oldArr.get(i));
+            }
+        }
+
+        oldArr = newOldArr;
+    }
+
     public void startDay(){
         for(int i = 0; i < population.length; i++){
             population[i].startDay();
@@ -225,27 +268,47 @@ public class Population {
     }
 
     public void randomYoungVaccine(){
-        int randomNumber = GameInfo.randomBetween(0, youngArr.size());
+        updateYoungArrayList();
 
-        youngArr.get(randomNumber).getImmune();
+        if(youngArr.size()>0){
+            int randomNumber = GameInfo.randomBetween(0, youngArr.size());
+
+            youngArr.get(randomNumber).getImmune();
+        }
+
     }
 
     public void randomYoungAdultVaccine(){
-        int randomNumber = GameInfo.randomBetween(0, youngAdultArr.size());
+        updateYoungAdultArrayList();
 
-        youngAdultArr.get(randomNumber).getImmune();
+        if(youngAdultArr.size()>0){
+            int randomNumber = GameInfo.randomBetween(0, youngAdultArr.size());
+
+            youngAdultArr.get(randomNumber).getImmune();
+        }
+
     }
 
     public void randomAdultVaccine(){
-        int randomNumber = GameInfo.randomBetween(0, adultArr.size());
+        updateAdultArrayList();
 
-        adultArr.get(randomNumber).getImmune();
+        if(adultArr.size()>0){
+            int randomNumber = GameInfo.randomBetween(0, adultArr.size());
+
+            adultArr.get(randomNumber).getImmune();
+        }
+
     }
 
     public void randomOldVaccine(){
-        int randomNumber = GameInfo.randomBetween(0, oldArr.size());
+        updateOldArrayList();
 
-        oldArr.get(randomNumber).getImmune();
+        if(oldArr.size()>0){
+            int randomNumber = GameInfo.randomBetween(0, oldArr.size());
+
+            oldArr.get(randomNumber).getImmune();
+        }
+        
     }
 
    

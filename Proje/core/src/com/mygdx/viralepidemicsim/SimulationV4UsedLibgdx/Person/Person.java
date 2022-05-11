@@ -108,7 +108,7 @@ public class Person extends Sprite{
         }
 
         startDay();
-        
+
     
     }
 
@@ -166,11 +166,11 @@ public class Person extends Sprite{
         
         if(healthStatus.equals("Expo")){
             
-            double possiblity = 100 ;
+            double possiblity = 100;
 
             boolean isInfected = false;
             for(int i = 0; i < (int)userData[2]; i++){
-                if(randomBetween(0, 100) < possiblity){
+                if(randomBetween(0, 100) < possiblity ){
                     getInfected();
                     isInfected = true;
                     break;
@@ -186,7 +186,25 @@ public class Person extends Sprite{
             
             fixture.setUserData(userData);
 
-        }       
+        } 
+
+        if(healthStatus.equals("Infe")){
+            
+            double possiblity = 100;
+
+            boolean isDied = false;
+            
+            if(randomBetween(0, 100) < possiblity && menu.dayCount > 1){
+                die();
+            }   
+            
+
+        
+
+
+
+        }
+        
         
         
         currentLoc = homeLocation;
@@ -447,6 +465,25 @@ public class Person extends Sprite{
 
     public int getImmunity() {
         return immunity;
+    }
+
+    public void die(){
+        Object[] userData = (Object[])fixture.getUserData();
+
+        
+        userData[0] = "Dead";
+        
+    
+        fixture.setUserData(userData);
+
+        updateHealthCondition();
+
+        body.setActive(false);
+
+
+
+        menu.population.deadCount++;
+        menu.population.infectedCount--;
     }
        
    

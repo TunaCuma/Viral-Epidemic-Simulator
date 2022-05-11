@@ -164,7 +164,7 @@ public class Simulation implements Screen, ContactListener{
         debugRenderer.setDrawInactiveBodies(false);
 
         curfews = new boolean[6];
-        daysBanned = new boolean[5];
+        daysBanned = new boolean[7];
     }
 
     
@@ -303,32 +303,25 @@ public class Simulation implements Screen, ContactListener{
 
         if(daysBanned[0] && dayCount%7 == 0){
             population.fullCurfew();
-            System.out.println(0);
         }
         else if(daysBanned[1] && dayCount%7 == 1){
             population.fullCurfew();
-            System.out.println(1);
             
         }
         else if(daysBanned[2] && dayCount%7 == 2){
             population.fullCurfew();
-            System.out.println(2);
         }
         else if(daysBanned[3] && dayCount%7 == 3){
             population.fullCurfew();
-            System.out.println(3);
         }
         else if(daysBanned[4] && dayCount%7 == 4){
             population.fullCurfew();
-            System.out.println(4);
         }
         else if(daysBanned[5] && dayCount%7 == 5){
             population.fullCurfew();
-            System.out.println(5);
         }
         else if(daysBanned[6] && dayCount%7 == 6){
             population.fullCurfew();
-            System.out.println(6);
         }
         
         
