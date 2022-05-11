@@ -112,9 +112,9 @@ public class MainMenuButtons {
                 GameMain.popSound.stop();
                 GameMain.popSound.play();
                 GameMain.beforeScreen = 0;
-                GameMain.stage = (Stage) GameMain.parametersScreen.getStage();
+                GameMain.stage = (Stage) GameMain.vaccinated.getStage();
                 Gdx.input.setInputProcessor(GameMain.stage);
-                game.setScreen(GameMain.parametersScreen);
+                game.setScreen(GameMain.vaccinated);
             } 
         });
         exit.addListener(new ChangeListener() {

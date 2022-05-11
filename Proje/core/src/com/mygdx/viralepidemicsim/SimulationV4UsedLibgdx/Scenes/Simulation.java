@@ -74,6 +74,10 @@ public class Simulation implements Screen, ContactListener{
     private ImageButton youngAdultButton;  
     private ImageButton oldButton;  
     private boolean isVaccClicked = false;
+    public static int vaccinatedYoung = 0;
+    public static int vaccinatedYoungAdult = 0;
+    public static int vaccinatedAdult = 0;
+    public static int vaccinatedOld = 0;
 
     public boolean isMaskClicked = false;
     private Texture maskLogo = new Texture("masklogo3.png");
@@ -628,14 +632,19 @@ public class Simulation implements Screen, ContactListener{
     private void addVaccinationButton() {
         vaccImage = new SpriteDrawable(new Sprite(new Texture("vaccination.png") ));
         vaccImageDown = new SpriteDrawable(new Sprite(new Texture("vaccinationdown.png") ));
-        vaccButton = new ImageButton(vaccImage, null);
+        vaccButton = new ImageButton(vaccImage, vaccImageDown);
         vaccButton.setPosition(800, 20);
         
         vaccButton.addListener(new ChangeListener() {
             @Override
-            public void changed(ChangeEvent event, Actor actor) {                
-                //isVaccClicked = true;
-            }
+            public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
+                GameMain.popSound.play();
+                GameMain.beforeScreen = 0;
+                GameMain.stage = (Stage) GameMain.vaccinated.getStage();
+                Gdx.input.setInputProcessor(GameMain.stage);
+                game.setScreen(GameMain.vaccinated);
+            } 
         });
     }
     private void addAdult() {
@@ -648,6 +657,7 @@ public class Simulation implements Screen, ContactListener{
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
                 isVaccClicked = true;
+                vaccinatedAdult++;
                 population.randomAdultVaccine();
             }
         });
@@ -662,6 +672,7 @@ public class Simulation implements Screen, ContactListener{
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
                 isVaccClicked = true;
+                vaccinatedYoung++;
                 population.randomYoungVaccine();
             }
         });
@@ -676,6 +687,7 @@ public class Simulation implements Screen, ContactListener{
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
                 isVaccClicked = true;
+                vaccinatedYoungAdult++;
                 population.randomYoungAdultVaccine();
             }
         });
@@ -690,6 +702,7 @@ public class Simulation implements Screen, ContactListener{
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
                 isVaccClicked = true;
+                vaccinatedOld++;
                 population.randomOldVaccine();
             }
         });
