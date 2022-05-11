@@ -58,14 +58,18 @@ public class Simulation implements Screen, ContactListener{
     private SpriteDrawable curfewUp;
     private SpriteDrawable curfewDown; 
     private ImageButton turnBack;
-    private ImageButton vaccButton;
+    private ImageButton vaccButton;    
     private SpriteDrawable vaccImage;
+    private SpriteDrawable vaccImageDown;
     private boolean isVaccClicked = false;
 
     public boolean isMaskClicked = false;
     private Texture maskLogo = new Texture("masklogo3.png");
 
     private Texture vacBut = new Texture("vaccbut.jpg");
+    private Texture novacBut = new Texture("novaccbut.jpg");
+    private Texture blackBar = new Texture("blackçubuk.jpg");
+
     
     float clock = 0;
 
@@ -263,11 +267,16 @@ public class Simulation implements Screen, ContactListener{
             population.removeCurfewOver65();
         }
         if(curfews[4]){
+
+        }else{
+            
+        }
+        if(curfews[5]){
             closeSchool = true;
         }else{
             closeSchool= false;
         }
-        if(curfews[5]){ 
+        if(curfews[6]){ 
             noWork = true;
         }else{
             noWork = false;
@@ -392,9 +401,16 @@ public class Simulation implements Screen, ContactListener{
         }
 
         if (isVaccClicked){
-            game.getBatch().draw(vacBut,700 , 25);
+            game.getBatch().draw(vacBut,740 , 25);
+        }
+        else{
+            game.getBatch().draw(novacBut,740 , 25);
         }
 
+      
+        game.getBatch().draw(blackBar, 400, 10);     
+        game.getBatch().draw(blackBar, 720, 10); 
+        game.getBatch().draw(blackBar, 1120, 10); 
 
         game.getBatch().end();
         debugRenderer.render(world, box2DCamera.combined);
@@ -572,7 +588,7 @@ public class Simulation implements Screen, ContactListener{
         curfewUp = new SpriteDrawable(new Sprite(new Texture("curfewbutton.png") ));
         curfewDown = new SpriteDrawable(new Sprite(new Texture("curfewbuttonOnClick.png") ));
         curfew = new ImageButton(curfewUp, curfewDown);
-        curfew.setPosition(400,20);
+        curfew.setPosition(420,20);
         
         curfew.addListener(new ChangeListener() {
             @Override
@@ -602,8 +618,10 @@ public class Simulation implements Screen, ContactListener{
         });
     }
     private void addVaccinationButton() {
-        vaccButton = new ImageButton(new SpriteDrawable(new Sprite(new Texture("vaccination.png"))));
-        vaccButton.setPosition(760, 20);
+        vaccImage = new SpriteDrawable(new Sprite(new Texture("vaccination.png") ));
+        vaccImageDown = new SpriteDrawable(new Sprite(new Texture("vaccinationdown.png") ));
+        vaccButton = new ImageButton(vaccImage, vaccImageDown);
+        vaccButton.setPosition(800, 20);
         
         vaccButton.addListener(new ChangeListener() {
             @Override
