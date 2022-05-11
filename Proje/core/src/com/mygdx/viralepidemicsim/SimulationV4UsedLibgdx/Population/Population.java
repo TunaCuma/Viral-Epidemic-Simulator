@@ -37,7 +37,7 @@ public class Population {
 
         infectedCount=1;
 
-        
+        int houseCapacity = (numberOfPeople / 14);
         
         for(int i = 0; i < population.length ; i++){
 
@@ -47,22 +47,30 @@ public class Population {
 
             int[] houseIndexes = {1,2,3,4,8,9,11,12,18,19,21,23,28,30};
 
+            int selectedHouse = i / houseCapacity;
 
-            int xPosition = (int)map.vertices[houseIndexes[i/36]].getX();
-            int yPosition = (int)map.vertices[houseIndexes[i/36]].getY();
+            if(i / houseCapacity >= houseIndexes.length ){
+                selectedHouse = houseIndexes.length-1;
+            }
+
+
+            int xPosition = (int)map.vertices[houseIndexes[selectedHouse]].getX();
+            int yPosition = (int)map.vertices[houseIndexes[selectedHouse]].getY();
+
+            
 
 
             if(randomBetween0to100 < 33.2) {
-                population[i] = new Person(world,map,"Susp.png", xPosition , yPosition , FinalVariables.YOUNG_IMMUNITY,menu,houseIndexes[i/36], "Young");
+                population[i] = new Person(world,map,"Susp.png", xPosition , yPosition , FinalVariables.YOUNG_IMMUNITY,menu,houseIndexes[selectedHouse], "Young");
             }
             else if( randomBetween0to100 < 63.1) {
-                population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, FinalVariables.YOUNG_ADULT_IMMUNITY,menu,houseIndexes[i/36], "YoungAdult");
+                population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, FinalVariables.YOUNG_ADULT_IMMUNITY,menu,houseIndexes[selectedHouse], "YoungAdult");
             }
             else if( randomBetween0to100 < 86.2 ) {
-                population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, FinalVariables.ADULT_IMMUNITY,menu,houseIndexes[i/36], "Adult");
+                population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, FinalVariables.ADULT_IMMUNITY,menu,houseIndexes[selectedHouse], "Adult");
             }
             else { //Old
-                population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, FinalVariables.OLD_IMMUNITY,menu,houseIndexes[i/36], "Old");
+                population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, FinalVariables.OLD_IMMUNITY,menu,houseIndexes[selectedHouse], "Old");
             }
 
         }
@@ -309,6 +317,21 @@ public class Population {
             oldArr.get(randomNumber).getImmune();
         }
         
+    }
+
+    public void randomVaccination(int number){
+        for(int i = 0; i < number; i++){
+            int randNum = GameInfo.randomBetween(0, population.length);
+            if((population[randNum].healthStatus.equals("Susp"))){
+                population[randNum].getImmune();
+            }
+        }
+    }
+
+    public void randomInfection(int number){
+        for(int i = 0 ; i < number ; i++){
+            population[GameInfo.randomBetween(0, population.length)].getInfected();
+        }
     }
 
    

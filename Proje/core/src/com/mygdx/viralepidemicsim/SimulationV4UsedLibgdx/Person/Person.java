@@ -168,10 +168,20 @@ public class Person extends Sprite{
         }
         Object[] userData = (Object[])fixture.getUserData();
         healthStatus = (String)((userData)[0]);
-        
-        if(healthStatus.equals("Expo")){
+
+        if(healthStatus.equals("Infe")){
             
-            double possiblity = 100;
+            double possiblity = 100 * GameInfo.rateOfKill;
+
+            
+            if(randomBetween(0, 100) < possiblity && menu.dayCount > 1){
+                die();
+            }   
+            
+        }
+        else if(healthStatus.equals("Expo")){
+            
+            double possiblity = 100 * GameInfo.rateOfSpread;
 
             boolean isInfected = false;
             for(int i = 0; i < (int)userData[2]; i++){
@@ -192,23 +202,6 @@ public class Person extends Sprite{
             fixture.setUserData(userData);
 
         } 
-
-        if(healthStatus.equals("Infe")){
-            
-            double possiblity = 100;
-
-            boolean isDied = false;
-            
-            if(randomBetween(0, 100) < possiblity && menu.dayCount > 1){
-                die();
-            }   
-            
-
-        
-
-
-
-        }
         
         
         
