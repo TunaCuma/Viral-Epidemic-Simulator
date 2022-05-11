@@ -655,6 +655,7 @@ public class Simulation implements Screen, ContactListener{
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
                 isVaccClicked = true;
+                population.randomAdultVaccine();
             }
         });
     }
@@ -668,6 +669,7 @@ public class Simulation implements Screen, ContactListener{
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
                 isVaccClicked = true;
+                population.randomYoungVaccine();
             }
         });
     }
@@ -681,6 +683,7 @@ public class Simulation implements Screen, ContactListener{
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
                 isVaccClicked = true;
+                population.randomYoungAdultVaccine();
             }
         });
     }
@@ -694,6 +697,7 @@ public class Simulation implements Screen, ContactListener{
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
                 isVaccClicked = true;
+                population.randomOldVaccine();
             }
         });
     }

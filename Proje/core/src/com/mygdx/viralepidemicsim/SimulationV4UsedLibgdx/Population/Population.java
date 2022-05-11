@@ -41,8 +41,9 @@ public class Population {
         
         for(int i = 0; i < population.length ; i++){
 
-            double tempo = Math.random();
-            float percentage = FinalVariables.YOUNG_PERCENTAGE/100;
+            int randomBetween0to100 = GameInfo.randomBetween(0, 100);
+
+        
 
             int[] houseIndexes = {1,2,3,4,8,9,11,12,18,19,21,23,28,30};
 
@@ -51,13 +52,13 @@ public class Population {
             int yPosition = (int)map.vertices[houseIndexes[i/36]].getY();
 
 
-            if(tempo < percentage) {
+            if(randomBetween0to100 < 33.2) {
                 population[i] = new Person(world,map,"Susp.png", xPosition , yPosition , FinalVariables.YOUNG_IMMUNITY,menu,houseIndexes[i/36], "Young");
             }
-            else if( tempo < (percentage += FinalVariables.YOUNG_ADULT_PERCENTAGE/100)) {
+            else if( randomBetween0to100 < 63.1) {
                 population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, FinalVariables.YOUNG_ADULT_IMMUNITY,menu,houseIndexes[i/36], "YoungAdult");
             }
-            else if( tempo < (percentage += FinalVariables.ADULT_PERCENTAGE/100)) {
+            else if( randomBetween0to100 < 86.2 ) {
                 population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, FinalVariables.ADULT_IMMUNITY,menu,houseIndexes[i/36], "Adult");
             }
             else { //Old
@@ -85,7 +86,7 @@ public class Population {
         youngAdultArr = new ArrayList<>();
         for(int i = 0; i < population.length; i++){
             if(population[i].type.equals("YoungAdult")){
-                youngArr.add(population[i]);
+                youngAdultArr.add(population[i]);
             }
         }
     }
@@ -103,7 +104,7 @@ public class Population {
         oldArr = new ArrayList<>();
         for(int i = 0; i < population.length; i++){
             if(population[i].type.equals("Old")){
-                youngArr.add(population[i]);
+                oldArr.add(population[i]);
             }
         }
     }
