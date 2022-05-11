@@ -227,22 +227,50 @@ public class Simulation implements Screen, ContactListener{
     public void newDay(){
     
 
-        if(curfews[2]){
-            population.fullCurfew();
-        }else{
-            if(curfews[0]){
-                population.curfewUnder18();
-            }
-            else{
-                population.removeCurfewUnder18();
-            }
-            if(curfews[1]){
-                population.curfewOver65();
-            }
-            else{
-                population.removeCurfewOver65();
-            }
+       
+        if(curfews[0]){
+            population.curfewUnder18();
         }
+        else{
+            population.removeCurfewUnder18();
+        }
+        if(curfews[1]){
+            population.curfew19to40();
+        }
+        else{
+            population.removeCurfew19to40();
+        }
+        if(curfews[2]){
+            population.curfew40to65();
+        }else{
+            population.removeCurfew40to65();
+        }
+        if(curfews[3]){
+            population.curfewOver65();
+        }else{
+            population.removeCurfewOver65();
+        }
+        if(curfews[4]){
+
+        }else{
+            
+        }
+        if(curfews[5]){
+            closeSchool = true;
+        }else{
+            closeSchool= false;
+        }
+        if(curfews[6]){ 
+            noWork = true;
+        }else{
+            noWork = false;
+        }
+        
+        
+        
+        
+        
+        
 
 
         population.startDay();
