@@ -133,6 +133,7 @@ public class HowToScreen implements Screen{
     }
 
     public void nextSlide(){
+        GameMain.popSound.stop();
         GameMain.popSound.play();
         if(currentBackgroundIndex+1!=HowToImages.length){
             currentBackgroundIndex++;
@@ -148,6 +149,7 @@ public class HowToScreen implements Screen{
     }
 
     public void previousSlide(){
+        GameMain.popSound.stop();
         GameMain.popSound.play();
         if(currentBackgroundIndex!=0){
             currentBackgroundIndex--;

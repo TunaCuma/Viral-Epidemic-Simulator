@@ -173,6 +173,7 @@ public class CurfewScreen implements Screen{
         turnBack.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 GameMain.stage = GameMain.gameScreen.getStage();
                 Gdx.input.setInputProcessor(GameMain.stage);
@@ -183,6 +184,7 @@ public class CurfewScreen implements Screen{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 buttons[0][0].getStyle().down = button1;
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 days[0] = !days[0];
             }
@@ -190,6 +192,7 @@ public class CurfewScreen implements Screen{
         buttons[0][1].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 days[1] = !days[1];
             }
@@ -197,6 +200,7 @@ public class CurfewScreen implements Screen{
         buttons[0][2].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 days[2] = !days[2];
             }
@@ -204,6 +208,7 @@ public class CurfewScreen implements Screen{
         buttons[0][3].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 days[3] = !days[3];
             }
@@ -211,6 +216,7 @@ public class CurfewScreen implements Screen{
         buttons[0][4].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 days[4] = !days[4];
             }
@@ -218,6 +224,7 @@ public class CurfewScreen implements Screen{
         buttons[0][5].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 days[5] = !days[5];
             }
@@ -225,6 +232,7 @@ public class CurfewScreen implements Screen{
         buttons[0][6].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 days[6] = !days[6];
             }
@@ -232,6 +240,7 @@ public class CurfewScreen implements Screen{
         buttons[1][0].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 cases[0] = !cases[0];
             }
@@ -239,6 +248,7 @@ public class CurfewScreen implements Screen{
         buttons[1][1].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 cases[1] = !cases[1];
             }
@@ -246,6 +256,7 @@ public class CurfewScreen implements Screen{
         buttons[1][2].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 cases[2] = !cases[2];
             }
@@ -253,6 +264,7 @@ public class CurfewScreen implements Screen{
         buttons[1][3].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 cases[3] = !cases[3];
             }
@@ -260,6 +272,7 @@ public class CurfewScreen implements Screen{
         buttons[1][4].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 cases[4] = !cases[4];
             }

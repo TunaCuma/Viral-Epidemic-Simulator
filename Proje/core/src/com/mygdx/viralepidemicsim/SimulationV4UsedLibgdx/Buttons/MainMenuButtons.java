@@ -84,6 +84,7 @@ public class MainMenuButtons {
         simulation.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 GameMain.beforeScreen = 0;
                 GameMain.stage = (Stage) GameMain.gameScreen.getStage();
@@ -94,6 +95,7 @@ public class MainMenuButtons {
         gamee.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 GameMain.beforeScreen = 0;
                 GameMain.stage = (Stage) GameMain.curfewScreen.getStage();
@@ -111,6 +113,7 @@ public class MainMenuButtons {
         credits.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 GameMain.beforeScreen = 0;
                 GameMain.stage = (Stage) GameMain.creditsScreen.getStage();
@@ -121,6 +124,7 @@ public class MainMenuButtons {
         howTo.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 GameMain.beforeScreen = 0;
                 GameMain.stage = (Stage) GameMain.howToScreen.getStage();
@@ -131,6 +135,7 @@ public class MainMenuButtons {
         settings.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) { 
+                GameMain.popSound.stop();
                 GameMain.popSound.play();   
                 GameMain.beforeScreen = 0;            
                 GameMain.stage = (Stage) GameMain.settingsScreen.getStage();

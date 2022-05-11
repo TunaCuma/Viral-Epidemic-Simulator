@@ -480,6 +480,7 @@ public class Simulation implements Screen, ContactListener{
         curfew.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
+                GameMain.popSound.stop();
                 GameMain.popSound.play();
                 GameMain.beforeScreen = 0;
                 GameMain.stage = (Stage) GameMain.curfewScreen.getStage();
