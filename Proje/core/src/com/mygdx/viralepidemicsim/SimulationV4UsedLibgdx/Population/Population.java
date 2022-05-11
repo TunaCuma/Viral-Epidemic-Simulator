@@ -102,4 +102,9 @@ public class Population {
             humans.putMask();
         }
     }
+    public void removeMask(){
+        for (Person humans : population){
+            humans.noMask();
+        }
+    }
 }

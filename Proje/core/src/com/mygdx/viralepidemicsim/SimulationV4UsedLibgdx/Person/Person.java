@@ -43,7 +43,7 @@ public class Person extends Sprite{
     public Fixture fixture;
     public boolean isInBuilding;
 
-    String healthStatus;
+    public String healthStatus;
 
     GridMap map;
 
@@ -93,6 +93,12 @@ public class Person extends Sprite{
         
         setHome(home);
 
+        if(type.equals("Adult")||type.equals("YoungAdult")){
+            assignWork();
+        }
+
+
+
         enterBuilding(home);
 
         if(id == firstPatient){
@@ -106,6 +112,10 @@ public class Person extends Sprite{
 
     
 
+    }
+
+    public void getExposed() {
+        this.healthStatus = "Expo";
     }
 
     public void startDay(){
@@ -363,7 +373,9 @@ public class Person extends Sprite{
     public void putMask(){
         this.maskValue = 0.1;        
     }
-    
+    public void noMask(){
+        this.maskValue = 1;
+    }
 
     public void updateHealthCondition(){
         healthStatus = (String)(((Object[])fixture.getUserData())[0]);

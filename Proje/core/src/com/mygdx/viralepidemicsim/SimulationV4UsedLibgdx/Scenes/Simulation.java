@@ -4,11 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -20,6 +22,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Tree;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
@@ -49,7 +52,11 @@ public class Simulation implements Screen, ContactListener{
     private Viewport viewport;
     private ImageButton settings;
     private ImageButton mask;
+    
 
+    public boolean isMaskClicked = false;
+    private Texture maskLogo = new Texture("masklogo3.png");
+    
     float clock = 0;
 
     GridMap abstractMap;
@@ -59,11 +66,13 @@ public class Simulation implements Screen, ContactListener{
 
     Texture[] buildings;
 
-    public float period = 128f;
-    public float timeSeconds = 0f;
+    public float period = 120f;
+    public float timeSeconds = period/3;
+    private boolean isNewDay;
     public int dayCount;
 
     public Simulation(GameMain game){
+        isNewDay = true;
         this.game = game;
         dayCount = 1;
         font = new BitmapFont(Gdx.files.internal("InfoFont.fnt"));
@@ -91,8 +100,11 @@ public class Simulation implements Screen, ContactListener{
         abstractMap = new GridMap();
 
         population = new Population(world,abstractMap,504,this);
-        population.infectedCount++;
+        //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
+        population.getPopulation()[0].getInfected();
         box2DCamera.update();
+        //sound.play();
+        //sound.loop();
         createBuildings();
 
 
@@ -202,6 +214,8 @@ public class Simulation implements Screen, ContactListener{
     @Override
     public void render(float delta) {
         
+
+        
         //manually looping the music list
         if(!musics[currentMusic].isPlaying()) {
             if(currentMusic == 4)
@@ -209,12 +223,20 @@ public class Simulation implements Screen, ContactListener{
             musics[++currentMusic].play();
         }
         timeSeconds +=Gdx.graphics.getDeltaTime();
+        System.out.println(timeSeconds);
         
         if(timeSeconds > period){
+            timeSeconds-=period;
             timeSeconds = 0f;
             dayCount++;
-            newDay();
+            isNewDay = true;
         }
+        if(timeSeconds > period/3 && isNewDay) {
+            newDay();
+            isNewDay = false;
+        }
+
+       
 
         population.updatePopulation();
         population.executeTask();
@@ -227,14 +249,17 @@ public class Simulation implements Screen, ContactListener{
         game.getBatch().draw(bg, 0, 0);
         renderBuildings();
 
+        
+
+        
+        
+
         //Drawing the population one by one
+        Person currentPerson;
         for(int i = 0; i < population.getNumberOfPeople(); i++){
-            if(!population.getPopulation()[i].isInBuilding){
-                game.getBatch().draw( population.getPopulation()[i],(population.getPopulation()[i].getX() - population.getPopulation()[i].getWidth()/2), (population.getPopulation()[i].getY() - population.getPopulation()[i].getHeight()/2));
-                population.getPopulation()[i].body.setActive(true);
-            }
-            else
-                population.getPopulation()[i].body.setActive(false);
+            currentPerson = population.getPopulation()[i];
+
+            game.getBatch().draw(currentPerson,(currentPerson.getX() - currentPerson.getWidth()/2), (currentPerson.getY() - currentPerson.getHeight()/2));
         }
 
 
@@ -246,18 +271,21 @@ public class Simulation implements Screen, ContactListener{
         font.draw(game.getBatch(), "Infected: " + population.infectedCount, 90, GameInfo.HEIGHT-35);
         font.draw(game.getBatch(), "Immune: " + population.immuneCount, 460, GameInfo.HEIGHT-35);
         font.draw(game.getBatch(), "Dead: " + population.deadCount, 830, GameInfo.HEIGHT-35);
-
-        if((int) (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))) >= 10) {
-            if((int) ((int)(timeSeconds)/(period/16)) + 8 < 10)
-                font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)(timeSeconds) /(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+        if((int) (timeSeconds)%(period/24) != 0) {
+            if((int) ((int)(timeSeconds)/(period/24)) < 10)
+                font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)(timeSeconds) /(period/24)) + ":" + (int) ((60/(period/24)) * (int) ((timeSeconds)%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
-                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)(timeSeconds)/(period/24)) + ":" + (int) ((60/(period/24)) * (int) ((timeSeconds)%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
         else {
-            if((int) ((int)(timeSeconds)/(period/16)) + 8 < 10)
-                font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+            if((int) ((int)(timeSeconds+(period/3))/(period/24)) < 10)
+                font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)(timeSeconds)/(period/24)) + ":0" + (int) ((60/(period/24)) * (int) ((timeSeconds)%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
-                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)(timeSeconds)/(period/24)) + ":0" + (int) ((60/(period/24)) * (int) ((timeSeconds)%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+        }
+
+        if (isMaskClicked){
+            game.getBatch().draw(maskLogo,20 , 20);
         }
 
         game.getBatch().end();
@@ -309,18 +337,17 @@ public class Simulation implements Screen, ContactListener{
         String healthCondition2 = ((String) secondUserData[0]);
 
         
-        if(!population.getPopulation()[(int)(secondUserData[1])].isInBuilding && !population.getPopulation()[(int)(firstUserData[1])].isInBuilding) {
-            if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
+        
+        if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
             
-                firstUserData[0] = "Expo";
-                population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
-                firstBody.setUserData(firstUserData);
-            }
-            else if(healthCondition1.equals("Infe") && healthCondition2.equals("Susp") ){
-                secondUserData[0] = "Expo";
-                population.getPopulation()[(int)(secondUserData[1])].updateHealthCondition();
-                secondBody.setUserData(secondUserData);
-            }
+            firstUserData[0] = "Expo";
+            population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
+            firstBody.setUserData(firstUserData);
+        }
+        else if(healthCondition1.equals("Infe") && healthCondition2.equals("Susp") ){
+            secondUserData[0] = "Expo";
+            population.getPopulation()[(int)(secondUserData[1])].updateHealthCondition();
+            secondBody.setUserData(secondUserData);
         }
 
         
@@ -390,10 +417,20 @@ public class Simulation implements Screen, ContactListener{
         
         mask.addListener(new ChangeListener() {
             @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                population.wearMask();
+            public void changed(ChangeEvent event, Actor actor) {                
+                if (!isMaskClicked){
+                    population.wearMask();
+                    isMaskClicked =true;
+                    
+                }
+                else{
+                    population.removeMask();
+                    isMaskClicked =false;
+                }
+                
             }
         });
+        
     }
 
 }
