@@ -27,10 +27,10 @@ public class YoungAdultRoutine implements Routine{
         taskList[0] = new WaitTill(person,rand.nextInt(20),sim);
 
         temp1 = person.workLoc;
-        
         if(sim.noWork){
             temp1 = buildingList[rand.nextInt(buildingList.length)];
         }
+
 
         taskList[1] = new Moving(person,gm , person.currentLoc , temp1);
 

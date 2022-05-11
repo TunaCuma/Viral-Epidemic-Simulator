@@ -71,6 +71,12 @@ public class Simulation implements Screen, ContactListener{
     private boolean isNewDay;
     public int dayCount;
 
+    public boolean closeSchool;
+    public boolean curfewUnder18;
+    public boolean curfewOver65;
+    public boolean noWork;
+
+
     public Simulation(GameMain game){
         isNewDay = true;
         this.game = game;
