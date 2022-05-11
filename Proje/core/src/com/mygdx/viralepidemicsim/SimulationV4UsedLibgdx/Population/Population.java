@@ -2,12 +2,14 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population;
 
 
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 
@@ -22,13 +24,20 @@ public class Population {
     public final static Texture SUSP_TEXTURE = new Texture("Susp.png");
     public final static Texture IMMU_TEXTURE = new Texture("Immu.png");
 
+    ArrayList<Person> youngArr;
+    ArrayList<Person> youngAdultArr;
+    ArrayList<Person> adultArr;
+    ArrayList<Person> oldArr;
+    
+
     public Population(World world, GridMap map, int numberOfPeople, Simulation menu){
         population = new Person[numberOfPeople];
         this.world = world; 
         this.map = map;
 
         infectedCount=1;
-    
+
+        
         
         for(int i = 0; i < population.length ; i++){
 
@@ -54,13 +63,48 @@ public class Population {
             else { //Old
                 population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, FinalVariables.OLD_IMMUNITY,menu,houseIndexes[i/36], "Old");
             }
-            
-            
-            
 
+        }
 
+        createYoungArrayList();
+        createYoungAdultArrayList();
+        createAdultArrayList();
+        createOldArrayList();
+    }
 
+    public void createYoungArrayList(){
+        youngArr = new ArrayList<>();
+        for(int i = 0; i < population.length ; i++){
+            if(population[i].type.equals("Young")){
+                youngArr.add(population[i]);
+            }
+        }
+    }
 
+    public void createYoungAdultArrayList(){
+        youngAdultArr = new ArrayList<>();
+        for(int i = 0; i < population.length; i++){
+            if(population[i].type.equals("YoungAdult")){
+                youngArr.add(population[i]);
+            }
+        }
+    }
+
+    public void createAdultArrayList(){
+        adultArr = new ArrayList<>();
+        for(int i = 0; i < population.length; i++){
+            if(population[i].type.equals("Adult")){
+                adultArr.add(population[i]);
+            }
+        }
+    }
+
+    public void createOldArrayList(){
+        oldArr = new ArrayList<>();
+        for(int i = 0; i < population.length; i++){
+            if(population[i].type.equals("Old")){
+                youngArr.add(population[i]);
+            }
         }
     }
 
@@ -177,6 +221,30 @@ public class Population {
 
     public void randomVaccine(){
         
+    }
+
+    public void randomYoungVaccine(){
+        int randomNumber = GameInfo.randomBetween(0, youngArr.size());
+
+        youngArr.get(randomNumber).getImmune();
+    }
+
+    public void randomYoungAdultVaccine(){
+        int randomNumber = GameInfo.randomBetween(0, youngAdultArr.size());
+
+        youngAdultArr.get(randomNumber).getImmune();
+    }
+
+    public void randomAdultVaccine(){
+        int randomNumber = GameInfo.randomBetween(0, adultArr.size());
+
+        adultArr.get(randomNumber).getImmune();
+    }
+
+    public void randomOldVaccine(){
+        int randomNumber = GameInfo.randomBetween(0, oldArr.size());
+
+        oldArr.get(randomNumber).getImmune();
     }
 
    
