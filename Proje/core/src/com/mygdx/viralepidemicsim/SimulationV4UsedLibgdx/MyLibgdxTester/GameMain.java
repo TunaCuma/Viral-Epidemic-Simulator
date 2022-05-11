@@ -16,6 +16,7 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.CurfewScreen;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.HowToScreen;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Parameters;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Settings;
 
 public class GameMain extends Game{
@@ -27,6 +28,7 @@ public class GameMain extends Game{
     public static Simulation gameScreen; // 3
     public static Settings settingsScreen; // 4
     public static CurfewScreen curfewScreen;
+    public static Parameters parametersScreen;
     public static Stage stage;
     public static Music popSound;
     public static int beforeScreen;
@@ -58,6 +60,7 @@ public class GameMain extends Game{
         creditsScreen = new CreditsScreen(this);
         gameScreen = new Simulation(this);
         settingsScreen = new Settings(this);
+        parametersScreen = new Parameters(this);
         howToScreen = new HowToScreen(this);
         openingScreen = new MainMenu(this);
         setScreen(openingScreen);

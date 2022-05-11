@@ -29,16 +29,21 @@ public class Parameters implements Screen{
 
     public static Texture background;
     private ImageButton turnBack;
+    private SpriteDrawable startUp;
+    private SpriteDrawable startDown;
+    private ImageButton start;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private BitmapFont font;
-    private BitmapFont musicVolume;
-    private BitmapFont sfxVolume;
-    public static Music nukeSound;
+    private BitmapFont smallFont;
 
     Skin skin = new Skin(Gdx.files.internal("pixthulhu/skin/pixthulhu-ui.json"));
-    private Slider volumeMusicSlider = new Slider( 0f, 1f, 0.1f,false, skin );
-    private Slider sfxSlide = new Slider( 0f, 1f, 0.1f,false, skin );
+
+    public Slider spreadRate = new Slider( 0f, 1f, 0.01f,false, skin );
+    public Slider population = new Slider( 0f, 500f, 1f,false, skin );
+    public Slider vaccination = new Slider( 0f, 1f, 0.01f,false, skin );
+    public Slider killRate = new Slider( 0f, 1f, 0.01f,false, skin );
+    public Slider patientNumber = new Slider( 0f, 500f, 1f,false, skin );
     
     
     private GameMain game;
@@ -50,10 +55,8 @@ public class Parameters implements Screen{
      * @param main the GameMain object which will store this screen
      */
     public Parameters(GameMain main) {
-        nukeSound = Gdx.audio.newMusic(Gdx.files.internal("nuke.mp3"));
-        nukeSound.setVolume(1f);
-        //nukeSound.play();
 
+        
         batch = new SpriteBatch();
         game = main;
         gameViewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
@@ -64,43 +67,40 @@ public class Parameters implements Screen{
         Gdx.input.setInputProcessor(stage);
 
         
-        volumeMusicSlider.setPosition(650, 550);
-        volumeMusicSlider.setWidth(600);
 
-        sfxSlide.setPosition(650, 200);
-        sfxSlide.setWidth(600);
+        population.setPosition(1220, 820);
+        population.setWidth(490);
 
-        sfxSlide.addListener(new ChangeListener(){
+        patientNumber.setPosition(1220, 630);
+        patientNumber.setWidth(490);
 
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                GameMain.popSound.setVolume(sfxSlide.getValue());
-                nukeSound.setVolume(sfxSlide.getValue());
-            }
-            
-        });
-        volumeMusicSlider.addListener(new ChangeListener(){
+        spreadRate.setPosition(245, 820);
+        spreadRate.setWidth(490);
 
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                for(int i = 0; i < Simulation.musics.length; i++)
-                    Simulation.musics[i].setVolume(volumeMusicSlider.getValue());
-            }
-        });
+        killRate.setPosition(245, 630);
+        killRate.setWidth(490);
+
+        vaccination.setPosition(245, 440);
+        vaccination.setWidth(490);
+
+
         
+        //stage.addActor(volumeMusicSlider);;
+        //stage.addActor(sfxSlide);
 
-        volumeMusicSlider.setValue(1f);
-        sfxSlide.setValue(1f);
-        stage.addActor(volumeMusicSlider);;
-        stage.addActor(sfxSlide);
+        stage.addActor(killRate);
+        stage.addActor(spreadRate);
+        stage.addActor(population);
+        stage.addActor(patientNumber);
+        stage.addActor(vaccination);
 
         stage.addActor(turnBack);
+        stage.addActor(start);
         background = new Texture("BackgroundMain.jpg");
 
         font = new BitmapFont(Gdx.files.internal("CreditsFont.fnt"), false);
-        musicVolume = new BitmapFont(Gdx.files.internal("NamesFont.fnt")); 
-        sfxVolume = new BitmapFont(Gdx.files.internal("NamesFont.fnt")); 
-
+        smallFont = new BitmapFont(Gdx.files.internal("NamesFont.fnt")); 
+        smallFont.getData().setScale(0.7f, 0.7f);
         camera.position.set(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f, 0);
 
 
@@ -124,10 +124,19 @@ public class Parameters implements Screen{
         //Draws the names of the buttons on the buttons
 
         batch.begin();
-        font.draw(batch, "SETTINGS", GameInfo.WIDTH/3.4f, GameInfo.HEIGHT/1.03f);
-        musicVolume.draw(batch, "Music Volume", GameInfo.WIDTH/2.4f, GameInfo.HEIGHT/2f+4*GameInfo.HEIGHT/20);
-        sfxVolume.draw(batch, "SFX Volume", GameInfo.WIDTH/2.35f, GameInfo.HEIGHT/3.5f+2*GameInfo.HEIGHT/20);
-        
+        smallFont.draw(batch,"" + (int) population.getValue(), population.getX() + population.getWidth() + 15, population.getY() +(population.getHeight()/2) +15);
+        smallFont.draw(batch,"" + (int) patientNumber.getValue(), patientNumber.getX() + patientNumber.getWidth() + 15, patientNumber.getY() +(patientNumber.getHeight()/2) +15);
+        smallFont.draw(batch,"%" + (int) (killRate.getValue() * 100), killRate.getX() + killRate.getWidth() + 15, killRate.getY() +(killRate.getHeight()/2) +15);
+        smallFont.draw(batch,"%" + (int) (spreadRate.getValue() * 100), spreadRate.getX() + spreadRate.getWidth() + 15, spreadRate.getY() +(spreadRate.getHeight()/2) +15);
+        smallFont.draw(batch,"%" + (int) (vaccination.getValue() * 100), vaccination.getX() + vaccination.getWidth() + 15, vaccination.getY() +(vaccination.getHeight()/2) +15);
+
+        smallFont.draw(batch, "Population", population.getX() + 15, population.getY() + population.getHeight() +40);
+        smallFont.draw(batch, "Initial Patient Number", patientNumber.getX() + 15, patientNumber.getY() + patientNumber.getHeight() +40);
+        smallFont.draw(batch, "Rate of Spread", spreadRate.getX() + 15, spreadRate.getY() + spreadRate.getHeight() +40);
+        smallFont.draw(batch, "Rate of Kill", killRate.getX() + 15, killRate.getY() + killRate.getHeight() +40);
+        smallFont.draw(batch, "Vaccination Rate", vaccination.getX() + 15, vaccination.getY() + vaccination.getHeight() +40);
+
+
         batch.end();
         
         
@@ -182,8 +191,25 @@ public class Parameters implements Screen{
                 }
             }
         });
+
+        start.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
+                GameMain.popSound.play();
+                GameMain.beforeScreen = 0;
+                GameMain.stage = (Stage) GameMain.gameScreen.getStage();
+                Gdx.input.setInputProcessor(GameMain.stage);
+                game.setScreen(GameMain.gameScreen);
+            }
+        });
+        
     }
     void createButtons() {
+        startUp = new SpriteDrawable(new Sprite(new Texture("StartButton.png")));
+        startDown = new SpriteDrawable(new Sprite(new Texture("StartButtonPressed.png")));
+        start = new ImageButton(startUp,startDown);
+        start.setPosition((GameInfo.WIDTH/2)-(start.getWidth()/2), 40);
         turnBack = new ImageButton(new SpriteDrawable(new Sprite(new Texture("TurnBack.png") )));
         turnBack.setPosition(170, GameInfo.HEIGHT*2/2f-60, Align.center);
     }
