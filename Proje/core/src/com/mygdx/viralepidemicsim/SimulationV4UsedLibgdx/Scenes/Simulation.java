@@ -519,7 +519,8 @@ public class Simulation implements Screen, ContactListener{
         
         turnBack.addListener(new ChangeListener() {
             @Override
-            public void changed(ChangeEvent event, Actor actor) {                
+            public void changed(ChangeEvent event, Actor actor) { 
+                GameMain.popSound.stop();               
                 GameMain.popSound.play();
                 GameMain.stage = GameMain.openingScreen.getButtons().getStage();
                 game.setScreen(GameMain.openingScreen);
