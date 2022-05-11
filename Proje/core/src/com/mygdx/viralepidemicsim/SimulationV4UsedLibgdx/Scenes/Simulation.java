@@ -235,7 +235,7 @@ public class Simulation implements Screen, ContactListener{
 
     public void newDay(){
     
-        if(population.isFullCurfew())
+        if(daysBanned[dayCount%7-1])
             population.removeFullCurfew();
 
 
