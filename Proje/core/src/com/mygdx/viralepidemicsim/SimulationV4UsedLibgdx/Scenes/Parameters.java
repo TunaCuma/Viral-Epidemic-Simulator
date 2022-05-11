@@ -14,7 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Container;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -36,6 +38,10 @@ public class Parameters implements Screen{
     private OrthographicCamera camera;
     private BitmapFont font;
     private BitmapFont smallFont;
+    private Dialog dialog;
+    private ImageButton curfew;
+    private SpriteDrawable curfewUp;
+    private SpriteDrawable curfewDown; 
 
     Skin skin = new Skin(Gdx.files.internal("pixthulhu/skin/pixthulhu-ui.json"));
 
@@ -44,8 +50,8 @@ public class Parameters implements Screen{
     public Slider vaccination = new Slider( 0f, 1f, 0.01f,false, skin );
     public Slider killRate = new Slider( 0f, 1f, 0.01f,false, skin );
     public Slider patientNumber = new Slider( 0f, 500f, 1f,false, skin );
-    
-    
+    public final SelectBox<String> selectBox = new SelectBox<String>(skin);
+
     private GameMain game;
     private Stage stage;
     private Viewport gameViewport;
@@ -55,8 +61,7 @@ public class Parameters implements Screen{
      * @param main the GameMain object which will store this screen
      */
     public Parameters(GameMain main) {
-
-        
+        selectBox.setItems("Tiktok","Tiktokaa","Fatih Terim");
         batch = new SpriteBatch();
         game = main;
         gameViewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
@@ -65,8 +70,9 @@ public class Parameters implements Screen{
         createButtons();       
         addAllListeners();
         Gdx.input.setInputProcessor(stage);
-
         
+        selectBox.setSize(300, population.getHeight());
+        selectBox.setPosition(1220,440);
 
         population.setPosition(1220, 820);
         population.setWidth(490);
@@ -83,16 +89,18 @@ public class Parameters implements Screen{
         vaccination.setPosition(245, 440);
         vaccination.setWidth(490);
 
+        curfew.setPosition(245, 250);
+
 
         
-        //stage.addActor(volumeMusicSlider);;
-        //stage.addActor(sfxSlide);
 
+        stage.addActor(selectBox);
         stage.addActor(killRate);
         stage.addActor(spreadRate);
         stage.addActor(population);
         stage.addActor(patientNumber);
         stage.addActor(vaccination);
+        stage.addActor(curfew);
 
         stage.addActor(turnBack);
         stage.addActor(start);
@@ -113,7 +121,7 @@ public class Parameters implements Screen{
     
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1,0,0,1);
+        Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //Draws the background
@@ -121,8 +129,11 @@ public class Parameters implements Screen{
         game.getBatch().draw(background, 0, 0);
         game.getBatch().end();
 
+        if(patientNumber.getValue()>population.getValue()){
+            patientNumber.setValue(population.getValue());
+        }
+        
         //Draws the names of the buttons on the buttons
-
         batch.begin();
         smallFont.draw(batch,"" + (int) population.getValue(), population.getX() + population.getWidth() + 15, population.getY() +(population.getHeight()/2) +15);
         smallFont.draw(batch,"" + (int) patientNumber.getValue(), patientNumber.getX() + patientNumber.getWidth() + 15, patientNumber.getY() +(patientNumber.getHeight()/2) +15);
@@ -135,13 +146,16 @@ public class Parameters implements Screen{
         smallFont.draw(batch, "Rate of Spread", spreadRate.getX() + 15, spreadRate.getY() + spreadRate.getHeight() +40);
         smallFont.draw(batch, "Rate of Kill", killRate.getX() + 15, killRate.getY() + killRate.getHeight() +40);
         smallFont.draw(batch, "Vaccination Rate", vaccination.getX() + 15, vaccination.getY() + vaccination.getHeight() +40);
+        smallFont.draw(batch, "Select From Known Viruses", selectBox.getX() + 15, selectBox.getY() + selectBox.getHeight() +40);
 
 
         batch.end();
         
         
 
+        
         //Draws the stage and the buttons in it
+        stage.act();
         stage.draw();
     }
 
@@ -203,9 +217,23 @@ public class Parameters implements Screen{
                 game.setScreen(GameMain.gameScreen);
             }
         });
+        curfew.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {                
+                GameMain.popSound.stop();
+                GameMain.popSound.play();
+                GameMain.beforeScreen = 2;
+                GameMain.stage = (Stage) GameMain.curfewScreen.getStage();
+                Gdx.input.setInputProcessor(GameMain.stage);
+                game.setScreen(GameMain.curfewScreen);
+            }
+        });
         
     }
     void createButtons() {
+        curfewUp = new SpriteDrawable(new Sprite(new Texture("CurfewButton2.png") ));
+        curfewDown = new SpriteDrawable(new Sprite(new Texture("CurfewButtonPressed2.png") ));
+        curfew = new ImageButton(curfewUp, curfewDown);
         startUp = new SpriteDrawable(new Sprite(new Texture("StartButton.png")));
         startDown = new SpriteDrawable(new Sprite(new Texture("StartButtonPressed.png")));
         start = new ImageButton(startUp,startDown);
