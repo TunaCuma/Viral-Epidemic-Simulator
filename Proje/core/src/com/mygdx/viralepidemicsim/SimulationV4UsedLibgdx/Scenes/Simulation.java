@@ -264,8 +264,8 @@ public class Simulation implements Screen, ContactListener{
         Person currentPerson;
         for(int i = 0; i < population.getNumberOfPeople(); i++){
             currentPerson = population.getPopulation()[i];
-
-            game.getBatch().draw(currentPerson,(currentPerson.getX() - currentPerson.getWidth()/2), (currentPerson.getY() - currentPerson.getHeight()/2));
+            if(!currentPerson.isInBuilding)
+                game.getBatch().draw(currentPerson,(currentPerson.getX() - currentPerson.getWidth()/2), (currentPerson.getY() - currentPerson.getHeight()/2));
         }
 
 

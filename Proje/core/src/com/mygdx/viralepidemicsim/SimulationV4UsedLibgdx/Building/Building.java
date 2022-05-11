@@ -55,6 +55,7 @@ public class Building {
     public void addPerson(Person person) {
         persons.add(person);
         person.isInBuilding = true;
+        person.body.setActive(false);
         if (persons.size()>2) {
             System.out.println("dice rolled");
             rollDice();
@@ -64,6 +65,7 @@ public class Building {
     public void removePerson(Person person) {
         persons.remove(person);
         person.isInBuilding = false;
+        person.body.setActive(true);
     }
 
 
