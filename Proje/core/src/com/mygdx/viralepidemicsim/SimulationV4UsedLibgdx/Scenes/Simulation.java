@@ -75,6 +75,7 @@ public class Simulation implements Screen, ContactListener{
     public boolean curfewUnder18;
     public boolean curfewOver65;
     public boolean noWork;
+    public boolean maskRule;
 
 
     public Simulation(GameMain game){
@@ -107,7 +108,6 @@ public class Simulation implements Screen, ContactListener{
 
         population = new Population(world,abstractMap,504,this);
         //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
-        population.getPopulation()[0].getInfected();
         box2DCamera.update();
         //sound.play();
         //sound.loop();
@@ -290,7 +290,7 @@ public class Simulation implements Screen, ContactListener{
                 font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)(timeSeconds)/(period/24)) + ":0" + (int) ((60/(period/24)) * (int) ((timeSeconds)%(period/24))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
 
-        if (isMaskClicked){
+        if (maskRule){
             game.getBatch().draw(maskLogo,20 , 20);
         }
 
@@ -343,27 +343,53 @@ public class Simulation implements Screen, ContactListener{
         String healthCondition2 = ((String) secondUserData[0]);
 
         
-        
-        if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
+        if(isMaskClicked){
+            if(GameInfo.trueWithPossibility(10)){
+                if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
             
-            firstUserData[0] = "Expo";
-            population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
-            firstBody.setUserData(firstUserData);
-        }
-        else if(healthCondition1.equals("Infe") && healthCondition2.equals("Susp") ){
-            secondUserData[0] = "Expo";
-            population.getPopulation()[(int)(secondUserData[1])].updateHealthCondition();
-            secondBody.setUserData(secondUserData);
-        }
-
+                    firstUserData[0] = "Expo";
+                    population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
+                    firstBody.setUserData(firstUserData);
+                }
+                else if(healthCondition1.equals("Infe") && healthCondition2.equals("Susp") ){
+                    secondUserData[0] = "Expo";
+                    population.getPopulation()[(int)(secondUserData[1])].updateHealthCondition();
+                    secondBody.setUserData(secondUserData);
+                }
         
-        if(healthCondition2.equals("Infe") && healthCondition1.equals("Expo") ){
-            firstUserData[2] = (int)firstUserData[2] + 1;
-            firstBody.setUserData(firstUserData); 
+                
+                if(healthCondition2.equals("Infe") && healthCondition1.equals("Expo") ){
+                    firstUserData[2] = (int)firstUserData[2] + 1;
+                    firstBody.setUserData(firstUserData); 
+                }
+                else if(healthCondition1.equals("Infe") && healthCondition2.equals("Expo") ){
+                    secondUserData[2] = (int)secondUserData[2] + 1;
+                    secondBody.setUserData(secondUserData);  
+                }
+            }
         }
-        else if(healthCondition1.equals("Infe") && healthCondition2.equals("Expo") ){
-            secondUserData[2] = (int)secondUserData[2] + 1;
-            secondBody.setUserData(secondUserData);  
+        else{
+            if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
+            
+                firstUserData[0] = "Expo";
+                population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
+                firstBody.setUserData(firstUserData);
+            }
+            else if(healthCondition1.equals("Infe") && healthCondition2.equals("Susp") ){
+                secondUserData[0] = "Expo";
+                population.getPopulation()[(int)(secondUserData[1])].updateHealthCondition();
+                secondBody.setUserData(secondUserData);
+            }
+    
+            
+            if(healthCondition2.equals("Infe") && healthCondition1.equals("Expo") ){
+                firstUserData[2] = (int)firstUserData[2] + 1;
+                firstBody.setUserData(firstUserData); 
+            }
+            else if(healthCondition1.equals("Infe") && healthCondition2.equals("Expo") ){
+                secondUserData[2] = (int)secondUserData[2] + 1;
+                secondBody.setUserData(secondUserData);  
+            }
         }
 
     }
@@ -424,14 +450,14 @@ public class Simulation implements Screen, ContactListener{
         mask.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
-                if (!isMaskClicked){
+                if (!maskRule){
                     population.wearMask();
-                    isMaskClicked =true;
+                    maskRule =true;
                     
                 }
                 else{
                     population.removeMask();
-                    isMaskClicked =false;
+                    maskRule =false;
                 }
                 
             }
