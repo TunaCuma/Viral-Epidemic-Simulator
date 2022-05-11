@@ -63,6 +63,12 @@ public class Simulation implements Screen, ContactListener{
     public float timeSeconds = 0f;
     public int dayCount;
 
+    public boolean closeSchool;
+    public boolean curfewUnder18;
+    public boolean curfewOver65;
+    public boolean noWork;
+
+
     public Simulation(GameMain game){
         this.game = game;
         dayCount = 1;

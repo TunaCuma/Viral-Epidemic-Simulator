@@ -55,7 +55,7 @@ public class Person extends Sprite{
 
     int pointer;
 
-    String type;
+    public String type;
 
     public int homeLocation;
 
@@ -65,7 +65,7 @@ public class Person extends Sprite{
 
     public static int firstPatient = GameInfo.randomBetween(0, 504);
 
-    
+    public int workLoc;
 
     public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu, int home, String type){
         super(new Texture(name));
@@ -93,6 +93,11 @@ public class Person extends Sprite{
         
         setHome(home);
 
+        if(type.equals("Adult")||type.equals("YoungAdult")){
+            assignWork();
+        }
+
+
         enterBuilding(home);
 
         if(id == firstPatient){
@@ -101,10 +106,48 @@ public class Person extends Sprite{
 
         startDay();
         
-
-
-
     
+    }
+
+    public void assignWork(){
+        int randomBetween0to100 = GameInfo.randomBetween(0, 100);
+        if(randomBetween0to100 < 45){
+            workLoc = 27;
+        }
+        else if(randomBetween0to100 < 50){
+            workLoc = 0;
+        }
+        else if(randomBetween0to100 < 55){
+            workLoc = 5;
+        }
+        else if(randomBetween0to100 < 60){
+            workLoc = 7;
+        }
+        else if(randomBetween0to100 < 65){
+            workLoc = 10;
+        }
+        else if(randomBetween0to100 < 70){
+            workLoc = 14;
+        }
+        else if(randomBetween0to100 < 75){
+            workLoc = 15;
+        }
+        else if(randomBetween0to100 < 80){
+            workLoc = 16;
+        }
+        else if(randomBetween0to100 < 85){
+            workLoc = 17;
+        }
+        else if(randomBetween0to100 < 90){
+            workLoc = 22;
+        }
+        else if(randomBetween0to100 < 95){
+            workLoc = 25;
+        }
+        else{
+            workLoc = 26;
+        }
+
 
     }
 

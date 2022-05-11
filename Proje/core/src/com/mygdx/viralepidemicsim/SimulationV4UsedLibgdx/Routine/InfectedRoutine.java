@@ -33,7 +33,6 @@ public class InfectedRoutine implements Routine{
         taskList[4] = new WaitTill(person, 130, sim);
         
 
-
     }
 
 
