@@ -191,7 +191,7 @@ public class GridMap {
         vertices[125] = new Point(1530,GameInfo.HEIGHT -310);
         vertices[126] = new Point(1775,GameInfo.HEIGHT  -315);
         vertices[127] = new Point(1780,GameInfo.HEIGHT  -310);
-        vertices[128] = new Point(40,GameInfo.HEIGHT -40);
+        vertices[128] = new Point(40,GameInfo.HEIGHT -540);
         vertices[129] = new Point(35,GameInfo.HEIGHT -535);
         vertices[130] = new Point(300,GameInfo.HEIGHT -540);
         vertices[131] = new Point(305,GameInfo.HEIGHT -535);
@@ -384,6 +384,79 @@ public class GridMap {
         addEdge(154, 90);
         addEdge(155, 151);
         addEdge(156, 41,40);
+
+        addEdge(92, 93);
+        addEdge(93, 92);
+        addEdge(94, 95);
+        addEdge(95, 94);
+        addEdge(100, 101);
+        addEdge(101, 100);
+
+        addEdge(102, 103);
+
+        addEdge(103, 102);
+
+
+        addEdge(104, 105);
+        addEdge(105, 104);
+        addEdge(106, 107);
+        addEdge(107, 106);
+        addEdge(112, 113);
+
+        addEdge(113, 112);
+        addEdge(114, 115);
+        addEdge(115, 114);
+        addEdge(108, 109);
+        addEdge(109, 108);
+        addEdge(110, 111);
+        addEdge(111, 110);
+
+        addEdge(116, 117);
+        addEdge(117, 116);
+        addEdge(118, 119);
+        addEdge(119, 118);
+        addEdge(120, 121);
+        addEdge(121, 120);
+        addEdge(122, 123);
+        addEdge(123, 122);
+        addEdge(124, 125);
+        addEdge(125, 124);
+        
+        addEdge(126, 127);
+        addEdge(127, 126);
+        addEdge(96, 97);
+        addEdge(97, 96);
+        addEdge(98, 99);
+        addEdge(99, 98);
+        addEdge(128, 129);
+        addEdge(129, 128);
+        addEdge(130, 131);
+        addEdge(131, 130);
+        addEdge(152, 153);
+        addEdge(153, 152);
+        addEdge(134, 133);
+        addEdge(133, 134);
+        addEdge(136, 137);
+        addEdge(137, 136);
+        addEdge(138, 139);
+        addEdge(139, 138);
+        addEdge(148, 149);
+        addEdge(149, 148);
+        addEdge(150, 151);
+        addEdge(151, 150);
+        addEdge(141, 140);
+        addEdge(140, 141);
+        addEdge(142, 143);
+        addEdge(143, 142);
+        addEdge(144, 145);
+        addEdge(145, 144);
+        addEdge(146, 147);
+        addEdge(147, 146);
+        addEdge(152, 153);
+        addEdge(153, 152);
+        addEdge(154, 155);
+        addEdge(155, 154);
+
     }
 
     public void addEdge(int indexFirst, int indexSecond) {
