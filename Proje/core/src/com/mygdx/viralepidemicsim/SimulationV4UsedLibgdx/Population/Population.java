@@ -58,7 +58,6 @@ public class Population {
             
             
 
-            //population[i].assignCurrentLoc(randomBetween0to30);
 
 
 
