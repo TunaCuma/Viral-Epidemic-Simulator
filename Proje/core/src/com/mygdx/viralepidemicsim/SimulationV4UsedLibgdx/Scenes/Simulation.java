@@ -74,6 +74,13 @@ public class Simulation implements Screen, ContactListener{
     private ImageButton youngAdultButton;  
     private ImageButton oldButton;  
     private boolean isVaccClicked = false;
+    private ImageButton pause;
+    private SpriteDrawable pausePressed;
+    private ImageButton continueTime;
+    private ImageButton faster;
+    private SpriteDrawable continueTimePressed;
+    private SpriteDrawable fasterPressed;
+
     public static int vaccinatedYoung = 0;
     public static int vaccinatedYoungAdult = 0;
     public static int vaccinatedAdult = 0;
@@ -121,6 +128,7 @@ public class Simulation implements Screen, ContactListener{
         stage = new Stage(viewport);
         createMusics();
         createButtons();
+        addTimeButtons();
         addAllListeners();
         addMaskButton();
         addCurfewButton();
@@ -139,6 +147,9 @@ public class Simulation implements Screen, ContactListener{
         stage.addActor(youngButton);
         stage.addActor(youngAdultButton);
         stage.addActor(oldButton);
+        stage.addActor(pause);
+        stage.addActor(continueTime);
+        stage.addActor(faster);
         box2DCamera = new OrthographicCamera();
         box2DCamera.setToOrtho(false, GameInfo.WIDTH/GameInfo.PPM, GameInfo.HEIGHT/GameInfo.PPM);
         box2DCamera.position.set((GameInfo.WIDTH/2f)/GameInfo.PPM , (GameInfo.HEIGHT/2f)/GameInfo.PPM,0);
@@ -173,6 +184,21 @@ public class Simulation implements Screen, ContactListener{
 
     
 
+    private void addTimeButtons() {
+        continueTimePressed = new SpriteDrawable(new Sprite(new Texture("ContinueButtonPressed.png")));
+        continueTime = new ImageButton(new SpriteDrawable(new Sprite(new Texture("ContinueButton.png"))),continueTimePressed,continueTimePressed);
+        continueTime.setPosition(1799, 29);
+        pausePressed = new SpriteDrawable(new Sprite(new Texture("PauseButtonPressed.png")));
+        pause = new ImageButton(new SpriteDrawable(new Sprite(new Texture("PauseButton.png"))),pausePressed,pausePressed);
+        pause.setPosition(1751, 29);
+        fasterPressed = new SpriteDrawable(new Sprite(new Texture("FastForwardButtonPressed.png")));
+        faster = new ImageButton(new SpriteDrawable(new Sprite(new Texture("FastForwardButton.png"))),fasterPressed,fasterPressed);
+        faster.setPosition(1843, 29);
+        continueTime.setChecked(true);
+    }
+
+
+
     private void addAllListeners() {
         settings.addListener(new ChangeListener() {
             @Override
@@ -182,6 +208,33 @@ public class Simulation implements Screen, ContactListener{
                 GameMain.stage = (Stage) GameMain.settingsScreen.getStage();
                 Gdx.input.setInputProcessor(GameMain.stage);
                 game.setScreen(GameMain.settingsScreen);
+            }
+        });
+        pause.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if(pause.isChecked()){
+                    continueTime.setChecked(false);
+                    faster.setChecked(false);
+                }
+            }
+        });
+        continueTime.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if(continueTime.isChecked()){
+                    pause.setChecked(false);
+                    faster.setChecked(false);
+                }
+            }
+        });
+        faster.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if(faster.isChecked()){
+                    pause.setChecked(false);
+                    continueTime.setChecked(false);
+                }
             }
         });
     }
