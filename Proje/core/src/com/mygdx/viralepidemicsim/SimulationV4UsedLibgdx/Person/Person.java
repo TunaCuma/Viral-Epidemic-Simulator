@@ -409,6 +409,22 @@ public class Person extends Sprite{
 
 
     }
+    
+    public void getImmune(){
+        Object[] userData = (Object[])fixture.getUserData();
+
+        
+        userData[0] = "Immu";
+        
+    
+        fixture.setUserData(userData);
+
+        updateHealthCondition();
+
+
+        menu.population.immuneCount++;
+
+    }
 
 
     public void updateHealthCondition(){
@@ -433,7 +449,5 @@ public class Person extends Sprite{
         return immunity;
     }
        
-    public void makeImmune(){
-        fixture.setUserData("Immu"+ id);
-    }
+   
 }

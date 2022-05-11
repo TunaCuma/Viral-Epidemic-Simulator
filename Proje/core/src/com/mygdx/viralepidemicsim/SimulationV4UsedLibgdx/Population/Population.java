@@ -175,5 +175,9 @@ public class Population {
         }
     }
 
+    public void randomVaccine(){
+        
+    }
+
    
 }
