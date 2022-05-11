@@ -40,7 +40,6 @@ public class Building {
 
     public void rollDice() {
         int num = GameInfo.randomBetween(1, (int)size);
-        System.out.println("num : " + num + "  other possibility:  " + this.coefficient * persons.size() * persons.size() * getInfectedCount());
         if (num < this.coefficient * persons.size() * persons.size() * getInfectedCount()) {
             getRandomExposed();
         }
@@ -49,7 +48,6 @@ public class Building {
     public void getRandomExposed() {
         int a = GameInfo.randomBetween(0, persons.size());
         persons.get(a).getExposed();
-        System.out.println("\na person in the building " + this.name + "has got infected.\nbuilding size: " + this.size + "\nnum of people: " + this.persons.size() + "\n");
     }
 
     public void addPerson(Person person) {
@@ -57,7 +55,6 @@ public class Building {
         person.isInBuilding = true;
         person.body.setActive(false);
         if (persons.size()>2) {
-            System.out.println("dice rolled");
             rollDice();
         }
     }

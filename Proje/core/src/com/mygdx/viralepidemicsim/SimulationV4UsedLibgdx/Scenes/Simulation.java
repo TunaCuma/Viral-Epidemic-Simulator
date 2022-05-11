@@ -75,7 +75,7 @@ public class Simulation implements Screen, ContactListener{
     public boolean curfewUnder18;
     public boolean curfewOver65;
     public boolean noWork;
-    public boolean maskRule;
+    public boolean maskRule = true;
 
 
     public Simulation(GameMain game){
