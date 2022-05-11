@@ -165,7 +165,7 @@ public class Simulation implements Screen, ContactListener{
 
         abstractMap = new GridMap();
 
-        population = new Population(world,abstractMap,504,this);
+        population = new Population(world,abstractMap,GameInfo.population,this);
         //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         box2DCamera.update();
         //sound.play();
@@ -181,7 +181,6 @@ public class Simulation implements Screen, ContactListener{
         curfews = new boolean[6];
         daysBanned = new boolean[7];
     }
-
     
 
     private void addTimeButtons() {
@@ -527,7 +526,7 @@ public class Simulation implements Screen, ContactListener{
 
         
         if(maskRule){
-            if(GameInfo.trueWithPossibility(10)){
+            if(GameInfo.trueWithPossibility(50)){
                 if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
             
                     firstUserData[0] = "Expo";

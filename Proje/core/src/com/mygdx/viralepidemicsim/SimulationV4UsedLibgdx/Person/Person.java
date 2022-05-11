@@ -34,6 +34,8 @@ public class Person extends Sprite{
     public static int numberOfPerson = 0;
     public int id;
 
+    public int healDay;
+
     public Simulation menu;
 
     private World world;
@@ -161,12 +163,25 @@ public class Person extends Sprite{
     }
 
     public void startDay(){
+        if (menu.dayCount == healDay) {
+            getImmune();
+        }
         Object[] userData = (Object[])fixture.getUserData();
         healthStatus = (String)((userData)[0]);
-        
-        if(healthStatus.equals("Expo")){
+
+        if(healthStatus.equals("Infe")){
             
-            double possiblity = 100;
+            double possiblity = 100 * GameInfo.rateOfKill;
+
+            
+            if(randomBetween(0, 100) < possiblity && menu.dayCount > 1){
+                die();
+            }   
+            
+        }
+        else if(healthStatus.equals("Expo")){
+            
+            double possiblity = 100 * GameInfo.rateOfSpread;
 
             boolean isInfected = false;
             for(int i = 0; i < (int)userData[2]; i++){
@@ -187,23 +202,6 @@ public class Person extends Sprite{
             fixture.setUserData(userData);
 
         } 
-
-        if(healthStatus.equals("Infe")){
-            
-            double possiblity = 100;
-
-            boolean isDied = false;
-            
-            if(randomBetween(0, 100) < possiblity && menu.dayCount > 1){
-                die();
-            }   
-            
-
-        
-
-
-
-        }
         
         
         
@@ -412,6 +410,8 @@ public class Person extends Sprite{
     }
 
     public void getInfected(){
+        healDay = menu.dayCount+5;
+
         Object[] userData = (Object[])fixture.getUserData();
 
         
