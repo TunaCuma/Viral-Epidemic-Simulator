@@ -61,6 +61,18 @@ public class Simulation implements Screen, ContactListener{
     private ImageButton vaccButton;    
     private SpriteDrawable vaccImage;
     private SpriteDrawable vaccImageDown;
+    private SpriteDrawable adult;
+    private SpriteDrawable adultDown;
+    private SpriteDrawable young;
+    private SpriteDrawable youngDown;
+    private SpriteDrawable youngadult;
+    private SpriteDrawable youngadultDown;
+    private SpriteDrawable old;
+    private SpriteDrawable oldDown;
+    private ImageButton adultButton;  
+    private ImageButton youngButton;  
+    private ImageButton youngAdultButton;  
+    private ImageButton oldButton;  
     private boolean isVaccClicked = false;
 
     public boolean isMaskClicked = false;
@@ -110,11 +122,19 @@ public class Simulation implements Screen, ContactListener{
         addCurfewButton();
         addTurnBackButton();
         addVaccinationButton();
+        addAdult();
+        addYoung();
+        addYoungAdult();
+        addOld();
         stage.addActor(settings);
         stage.addActor(mask);
         stage.addActor(curfew);
         stage.addActor(turnBack);
         stage.addActor(vaccButton);
+        stage.addActor(adultButton);
+        stage.addActor(youngButton);
+        stage.addActor(youngAdultButton);
+        stage.addActor(oldButton);
         box2DCamera = new OrthographicCamera();
         box2DCamera.setToOrtho(false, GameInfo.WIDTH/GameInfo.PPM, GameInfo.HEIGHT/GameInfo.PPM);
         box2DCamera.position.set((GameInfo.WIDTH/2f)/GameInfo.PPM , (GameInfo.HEIGHT/2f)/GameInfo.PPM,0);
@@ -410,7 +430,7 @@ public class Simulation implements Screen, ContactListener{
       
         game.getBatch().draw(blackBar, 400, 10);     
         game.getBatch().draw(blackBar, 720, 10); 
-        game.getBatch().draw(blackBar, 1120, 10); 
+        
 
         game.getBatch().end();
         debugRenderer.render(world, box2DCamera.combined);
@@ -620,10 +640,62 @@ public class Simulation implements Screen, ContactListener{
     private void addVaccinationButton() {
         vaccImage = new SpriteDrawable(new Sprite(new Texture("vaccination.png") ));
         vaccImageDown = new SpriteDrawable(new Sprite(new Texture("vaccinationdown.png") ));
-        vaccButton = new ImageButton(vaccImage, vaccImageDown);
+        vaccButton = new ImageButton(vaccImage, null);
         vaccButton.setPosition(800, 20);
         
         vaccButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {                
+                //isVaccClicked = true;
+            }
+        });
+    }
+    private void addAdult() {
+        adult = new SpriteDrawable(new Sprite(new Texture("Adult.JPG") ));
+        adultDown = new SpriteDrawable(new Sprite(new Texture("AdultDown.JPG") ));                
+        adultButton = new ImageButton(adult,adultDown);
+        adultButton.setPosition(1110, 20);
+        
+        adultButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {                
+                isVaccClicked = true;
+            }
+        });
+    }
+    private void addYoung() {
+        young = new SpriteDrawable(new Sprite(new Texture("Young.JPG") ));        
+        youngDown = new SpriteDrawable(new Sprite(new Texture("YoungDown.JPG") ));        
+        youngButton = new ImageButton(young,youngDown);
+        youngButton.setPosition(1170, 20);
+        
+        youngButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {                
+                isVaccClicked = true;
+            }
+        });
+    }
+    private void addYoungAdult() {
+        youngadult = new SpriteDrawable(new Sprite(new Texture("YoungAdult.JPG") ));        
+        youngadultDown = new SpriteDrawable(new Sprite(new Texture("YoungAdultDown.JPG") ));  
+        youngAdultButton = new ImageButton(youngadult,youngadultDown);
+        youngAdultButton.setPosition(1230, 20);
+        
+        youngAdultButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {                
+                isVaccClicked = true;
+            }
+        });
+    }
+    private void addOld() {
+        old = new SpriteDrawable(new Sprite(new Texture("Old.JPG") ));  
+        oldDown = new SpriteDrawable(new Sprite(new Texture("OldDown.JPG") ));              
+        oldButton = new ImageButton(old,oldDown);
+        oldButton.setPosition(1290, 20);
+        
+        oldButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
                 isVaccClicked = true;
