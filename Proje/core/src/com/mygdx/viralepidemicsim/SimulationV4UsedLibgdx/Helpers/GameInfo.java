@@ -13,7 +13,7 @@ public class GameInfo {
 
 
     public static int randomBetween(int first, int second){
-        return first + (int)((Math.random()) * second-first);
+        return first + (int)((Math.random()) * (second-first));
     }
 
     public static boolean trueWithPossibility(int num){

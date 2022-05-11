@@ -335,7 +335,7 @@ public class Simulation implements Screen, ContactListener{
         String healthCondition2 = ((String) secondUserData[0]);
 
         
-        if(isMaskClicked){
+        if(maskRule){
             if(GameInfo.trueWithPossibility(10)){
                 if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
             
@@ -443,12 +443,12 @@ public class Simulation implements Screen, ContactListener{
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
                 if (!maskRule){
-                    population.wearMask();
+                   
                     maskRule =true;
                     
                 }
                 else{
-                    population.removeMask();
+            
                     maskRule =false;
                 }
                 

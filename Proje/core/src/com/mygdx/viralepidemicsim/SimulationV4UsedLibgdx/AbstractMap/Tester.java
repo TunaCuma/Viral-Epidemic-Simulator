@@ -3,6 +3,7 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap;
 import java.awt.Point;
 
 import com.badlogic.gdx.ai.btree.leaf.Wait;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Waiting;
 public class Tester {
@@ -17,6 +18,11 @@ public class Tester {
 
         GridMap gm = new GridMap();
 
+        for(int i = 0; i < 30; i++){
+            System.out.println(    GameInfo.trueWithPossibility(10) );
+
+        }
+       
     
     }
 }

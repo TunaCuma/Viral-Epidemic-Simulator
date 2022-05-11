@@ -27,13 +27,10 @@ public class Population {
         this.world = world; 
         this.map = map;
 
-        Random rand = new Random();
-
-        int randomBetween0to30;
+        infectedCount=1;
     
         
         for(int i = 0; i < population.length ; i++){
-            randomBetween0to30 =  0;
 
             double tempo = Math.random();
             float percentage = FinalVariables.YOUNG_PERCENTAGE/100;
@@ -97,14 +94,5 @@ public class Population {
     public void executeTask(){
         
     }
-    public void wearMask(){
-        for (Person humans : population){
-            humans.putMask();
-        }
-    }
-    public void removeMask(){
-        for (Person humans : population){
-            humans.noMask();
-        }
-    }
+   
 }

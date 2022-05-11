@@ -161,7 +161,7 @@ public class Person extends Sprite{
         
         if(healthStatus.equals("Expo")){
             
-            double possiblity = 100 * maskValue;
+            double possiblity = 100 ;
 
             boolean isInfected = false;
             for(int i = 0; i < (int)userData[2]; i++){
@@ -406,13 +406,6 @@ public class Person extends Sprite{
 
     }
 
-
-    public void putMask(){
-        this.maskValue = 0.1;        
-    }
-    public void noMask(){
-        this.maskValue = 1;
-    }
 
     public void updateHealthCondition(){
         healthStatus = (String)(((Object[])fixture.getUserData())[0]);
