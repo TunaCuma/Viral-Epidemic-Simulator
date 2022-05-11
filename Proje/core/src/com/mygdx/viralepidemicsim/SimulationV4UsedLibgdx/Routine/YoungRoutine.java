@@ -26,18 +26,13 @@ public class YoungRoutine implements Routine{
 
         taskList[0] = new WaitTill(person,rand.nextInt(20),sim);
 
-        temp1 = 16;
-
-        if(sim.closeSchool){
-            temp1 = buildingList[rand.nextInt(buildingList.length)];
-        }
+        temp1 = buildingList[rand.nextInt(buildingList.length)];
 
         taskList[1] = new Moving(person,gm , person.currentLoc , temp1);
 
-        taskList[2] = new Waiting(person, rand.nextInt(20), sim);
+        taskList[2] = new Waiting(person, rand.nextInt(12), sim);
 
         temp2 = buildingList[rand.nextInt(buildingList.length)];
-        
         taskList[3] = new Moving(person, gm, temp1, temp2);
 
         taskList[4] = new Waiting(person, rand.nextInt(12), sim);
