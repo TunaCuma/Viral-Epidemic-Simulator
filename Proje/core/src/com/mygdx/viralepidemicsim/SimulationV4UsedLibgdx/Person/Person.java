@@ -67,6 +67,9 @@ public class Person extends Sprite{
 
     public int workLoc;
 
+    public boolean isInCurfew;
+
+
     public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu, int home, String type){
         super(new Texture(name));
         isInBuilding = true;
@@ -204,7 +207,6 @@ public class Person extends Sprite{
         Object[] userData = (Object[])fixture.getUserData();
         healthStatus = (String)((userData)[0]);
 
-        boolean isInCurfew = false;
         if(healthStatus.equals("Infe")){
             routine = new InfectedRoutine(this, menu, map);
             taskList =  ((InfectedRoutine)routine).taskList;

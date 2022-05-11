@@ -178,6 +178,7 @@ public class CurfewScreen implements Screen{
                 GameMain.stage = GameMain.gameScreen.getStage();
                 Gdx.input.setInputProcessor(GameMain.stage);
                 game.setScreen(GameMain.gameScreen);
+                game.gameScreen.curfews = cases;
             }
         });
         buttons[0][0].addListener(new ChangeListener() {

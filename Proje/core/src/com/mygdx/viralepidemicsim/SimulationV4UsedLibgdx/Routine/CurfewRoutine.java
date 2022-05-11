@@ -13,10 +13,11 @@ public class CurfewRoutine implements Routine{
 
     public CurfewRoutine(Person person, Simulation menu, GridMap map) {
 
-        taskList = new Task[1];
+        taskList = new Task[2];
 
         taskList[0] = new WaitTill(person, GameInfo.randomBetween(0, 130), menu);
 
+        taskList[1] = new WaitTill(person, 150, menu);
 
 
     }

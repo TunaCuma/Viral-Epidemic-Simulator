@@ -91,8 +91,43 @@ public class Population {
         }
     }
 
-    public void executeTask(){
-        
+    public void curfewUnder18(){
+        for(int i = 0; i < population.length; i++){
+            if(population[i].type.equals("Young")){
+                population[i].isInCurfew = true;
+            }
+        }
     }
+
+    public void removeCurfewUnder18(){
+        for(int i = 0; i < population.length; i++){
+            if(population[i].type.equals("Young")){
+                population[i].isInCurfew = false;
+            }
+        }
+    }
+
+    public void curfewOver65(){
+        for(int i = 0; i < population.length; i++){
+            if(population[i].type.equals("Old")){
+                population[i].isInCurfew = true;
+            }
+        }
+    }
+
+    public void removeCurfewOver65(){
+        for(int i = 0; i < population.length; i++){
+            if(population[i].type.equals("Old")){
+                population[i].isInCurfew = false;
+            }
+        }
+    }
+
+    public void fullCurfew(){
+        for(int i = 0; i < population.length; i++){
+            population[i].isInCurfew = true;
+        }
+    }
+
    
 }
