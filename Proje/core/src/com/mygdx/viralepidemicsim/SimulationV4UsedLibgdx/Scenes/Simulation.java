@@ -84,6 +84,7 @@ public class Simulation implements Screen, ContactListener{
     public boolean maskRule = true;
 
     public boolean[] curfews;
+    public boolean[] daysBanned;
 
 
     public Simulation(GameMain game){
@@ -131,7 +132,8 @@ public class Simulation implements Screen, ContactListener{
 
         debugRenderer.setDrawInactiveBodies(false);
 
-        curfews = new boolean[3];
+        curfews = new boolean[6];
+        daysBanned = new boolean[6];
     }
 
     
@@ -226,8 +228,11 @@ public class Simulation implements Screen, ContactListener{
 
     public void newDay(){
     
+        if(population.isFullCurfew())
+            population.removeFullCurfew();
 
-       
+
+
         if(curfews[0]){
             population.curfewUnder18();
         }
@@ -264,6 +269,54 @@ public class Simulation implements Screen, ContactListener{
             noWork = true;
         }else{
             noWork = false;
+        }
+
+
+
+
+
+        if(daysBanned[0]){
+            if(dayCount%7 == 0)
+                population.fullCurfew();
+            else
+                population.removeFullCurfew();
+        }
+
+        else if(daysBanned[1]){
+            if(dayCount%7 == 1)
+                population.fullCurfew();
+            else
+                population.removeFullCurfew();
+        }
+        else if(daysBanned[2]){
+            if(dayCount%7 == 2)
+                population.fullCurfew();
+            else
+                population.removeFullCurfew();
+        }
+        else if(daysBanned[3]){
+            if(dayCount%7 == 3)
+                population.fullCurfew();
+            else
+                population.removeFullCurfew();
+        }
+        else if(daysBanned[4]){
+            if(dayCount%7 == 4)
+                population.fullCurfew();
+            else
+                population.removeFullCurfew();
+        }
+        else if(daysBanned[5]){
+            if(dayCount%7 == 5)
+                population.fullCurfew();
+            else
+                population.removeFullCurfew();
+        }
+        else if(daysBanned[6]){
+            if(dayCount%7 == 6)
+                population.fullCurfew();
+            else
+                population.removeFullCurfew();
         }
         
         
