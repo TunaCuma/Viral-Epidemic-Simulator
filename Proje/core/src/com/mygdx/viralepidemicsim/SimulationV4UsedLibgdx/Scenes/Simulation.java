@@ -219,9 +219,7 @@ public class Simulation implements Screen, ContactListener{
                 if(pause.isChecked()){
                     continueTime.setChecked(false);
                     faster.setChecked(false);
-                    
                 }
-                
             }
         });
         continueTime.addListener(new ChangeListener() {

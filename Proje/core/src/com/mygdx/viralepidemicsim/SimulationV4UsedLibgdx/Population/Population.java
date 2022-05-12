@@ -15,6 +15,7 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 
 public class Population {
     
+    //instantiative variables
     public int infectedCount, immuneCount, deadCount;
     public Person[] population;
     World world;
@@ -30,6 +31,13 @@ public class Population {
     ArrayList<Person> oldArr;
     
 
+    /**
+     * constructs the population objects
+     * @param world world of the population
+     * @param map map of the simulation
+     * @param numberOfPeople desired number of the people
+     * @param menu 
+     */
     public Population(World world, GridMap map, int numberOfPeople, Simulation menu){
         population = new Person[numberOfPeople];
         this.world = world; 
@@ -81,6 +89,9 @@ public class Population {
         createOldArrayList();
     }
 
+    /**
+     * creates young arrL
+     */
     public void createYoungArrayList(){
         youngArr = new ArrayList<>();
         for(int i = 0; i < population.length ; i++){
@@ -90,6 +101,9 @@ public class Population {
         }
     }
 
+    /**
+     * creates young adult arrL
+     */
     public void createYoungAdultArrayList(){
         youngAdultArr = new ArrayList<>();
         for(int i = 0; i < population.length; i++){
@@ -99,6 +113,9 @@ public class Population {
         }
     }
 
+    /**
+     * creates adult arrayList
+     */
     public void createAdultArrayList(){
         adultArr = new ArrayList<>();
         for(int i = 0; i < population.length; i++){
@@ -108,6 +125,9 @@ public class Population {
         }
     }
 
+    /**
+     * creates old arrL
+     */
     public void createOldArrayList(){
         oldArr = new ArrayList<>();
         for(int i = 0; i < population.length; i++){
@@ -117,6 +137,9 @@ public class Population {
         }
     }
 
+    /**
+     * Updates young arraylist 
+     */
     public void updateYoungArrayList(){
         ArrayList<Person> newYoungArr = new ArrayList<>();
         for(int i = 0; i < youngArr.size() ; i++){
@@ -128,6 +151,9 @@ public class Population {
         youngArr = newYoungArr;
     }
 
+    /**
+     * updates young adult arraylist
+     */
     public void updateYoungAdultArrayList(){
         ArrayList<Person> newYoungAdultArr = new ArrayList<>();
         for(int i = 0; i < youngAdultArr.size(); i++){
@@ -149,6 +175,9 @@ public class Population {
         adultArr = newAdultArr;
     }
 
+    /**
+     * updates old arrayList
+     */
     public void updateOldArrayList(){
         ArrayList<Person> newOldArr = new ArrayList<>();
         for(int i = 0; i < oldArr.size(); i++){
@@ -160,12 +189,18 @@ public class Population {
         oldArr = newOldArr;
     }
 
+    /**
+     * starts the day for every person of the population array
+     */
     public void startDay(){
         for(int i = 0; i < population.length; i++){
             population[i].startDay();
         }
     }
 
+    /**
+     * calls the updatePerson() and executeCurrentTask() methods for every person object stored in the population array
+     */
     public void updatePopulation(){
         for(int i = 0; i < population.length ; i++){
             population[i].updatePerson();
@@ -187,6 +222,9 @@ public class Population {
         }
     }
 
+    /**
+     * gets every person under 18 in curfew
+     */
     public void curfewUnder18(){
         for(int i = 0; i < population.length; i++){
             if(population[i].type.equals("Young")){
@@ -195,6 +233,9 @@ public class Population {
         }
     }
 
+    /**
+     * removes Curfew under 18
+     */
     public void removeCurfewUnder18(){
         for(int i = 0; i < population.length; i++){
             if(population[i].type.equals("Young")){
@@ -203,6 +244,9 @@ public class Population {
         }
     }
 
+    /**
+     * starts curfew for the people ove 65 years
+     */
     public void curfewOver65(){
         for(int i = 0; i < population.length; i++){
             if(population[i].type.equals("Old")){
@@ -211,6 +255,9 @@ public class Population {
         }
     }
 
+    /**
+     * cancels the remove for the people over the age of 65
+     */
     public void removeCurfewOver65(){
         for(int i = 0; i < population.length; i++){
             if(population[i].type.equals("Old")){
@@ -219,18 +266,27 @@ public class Population {
         }
     }
 
+    /**
+     * gets everyone in the curfew
+     */
     public void fullCurfew(){
         for(int i = 0; i < population.length; i++){
             population[i].isInCurfew = true;
         }
     }
 
+    /**
+     * removes curfew for every person
+     */
     public void removeFullCurfew() {
         for(int i = 0; i < population.length; i++){
             population[i].isInCurfew = false;
         }
     }
 
+    /**
+     * @return if every one is in curfew
+     */
     public boolean isFullCurfew() {
         for(int i = 0; i < population.length; i++){
             if(population[i].isInCurfew == false)
@@ -275,6 +331,9 @@ public class Population {
         
     }
 
+    /**
+     * vaccinates a randomly selected young person
+     */
     public void randomYoungVaccine(){
         updateYoungArrayList();
 
@@ -286,6 +345,9 @@ public class Population {
 
     }
 
+    /**
+     * vaccinates a randomly selected young adult person
+     */
     public void randomYoungAdultVaccine(){
         updateYoungAdultArrayList();
 
@@ -297,6 +359,9 @@ public class Population {
 
     }
 
+    /**
+     * vaccinates a randomly selected adult person
+     */
     public void randomAdultVaccine(){
         updateAdultArrayList();
 
@@ -308,6 +373,20 @@ public class Population {
 
     }
 
+    // public void createRandom() {
+    //     population[]
+    // }
+
+    public void killRandom() {
+        int ran = GameInfo.randomBetween(0, population.length);
+        if (population[ran].body.isActive()) {
+        population[ran].die();
+        }
+    }
+
+    /**
+     * vaccinates a randomly selected old person
+     */
     public void randomOldVaccine(){
         updateOldArrayList();
 
@@ -319,6 +398,9 @@ public class Population {
         
     }
 
+    /**
+     * vaccinates a randomly selected person
+     */
     public void randomVaccination(int number){
         for(int i = 0; i < number; i++){
             int randNum = GameInfo.randomBetween(0, population.length);
@@ -328,10 +410,24 @@ public class Population {
         }
     }
 
+    /**
+     * gets a random person infected
+     * @param number
+     */
     public void randomInfection(int number){
         for(int i = 0 ; i < number ; i++){
             population[GameInfo.randomBetween(0, population.length)].getInfected();
         }
+    }
+
+    public int isActiveCount() {
+        int counter = 0;
+        for (int i = 0; i<population.length; i++) {
+            if (population[i].body.isActive()) {
+                counter++;
+            }
+        }
+        return counter;
     }
 
    
