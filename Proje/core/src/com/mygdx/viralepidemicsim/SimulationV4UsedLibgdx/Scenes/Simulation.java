@@ -80,6 +80,8 @@ public class Simulation implements Screen, ContactListener{
     private ImageButton faster;
     private SpriteDrawable continueTimePressed;
     private SpriteDrawable fasterPressed;
+    private Texture fog;
+
 
     public static int vaccinatedYoung = 0;
     public static int vaccinatedYoungAdult = 0;
@@ -162,6 +164,7 @@ public class Simulation implements Screen, ContactListener{
 
         bg = new Texture("MapBackground.png");
         gui = new Texture("SimulationGui.png");
+        fog = new Texture("Adsız.png");
 
         abstractMap = new GridMap();
 
@@ -417,13 +420,19 @@ public class Simulation implements Screen, ContactListener{
 
         population.updatePopulation();
 
-        Gdx.gl.glClearColor(1,0,0,1);
+        Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //Drawing the background
         game.getBatch().begin();
         game.getBatch().draw(bg, 0, 0);
+        Color c = game.getBatch().getColor();
         renderBuildings();
+        if(timeSeconds/period>0.67){
+            game.getBatch().setColor(c.r, c.g, c.b, (float) 0.6 * (timeSeconds/period));//set alpha to 0.3
+            game.getBatch().draw(fog, 0, 0, 1920, 1080);
+        }
+        System.out.println(timeSeconds/period);
 
         
 
@@ -439,7 +448,7 @@ public class Simulation implements Screen, ContactListener{
         }
 
 
-
+        game.getBatch().setColor(c.r, c.g, c.b, 1f);//set alpha to 0.3
         game.getBatch().draw(gui, 0, 0);
 
 
