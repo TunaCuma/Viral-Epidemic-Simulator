@@ -5,8 +5,14 @@ import java.util.Arrays;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Building.Building;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 
+/**
+ * this class is the map for the simulation
+ */
 public class GridMap {
 
+    /**
+     * constructs the GridMap object, and calls the methods to build the map
+     */
     public GridMap() {
         fillVertices();
         fillGraph();
@@ -21,7 +27,9 @@ public class GridMap {
         gridMap = arr;
     }
 
-    
+    /**
+     * Creates building objects and stores them in the buildings array
+     */
     public void buildingBuilder() {
         buildings[0] = new Building("Hospital",new Point(340,9758),250*320);
         buildings[1] = new Building("House0",new Point(450,9865),15000);
@@ -58,11 +66,14 @@ public class GridMap {
     }
 
 
-
+    //instantiative variables
     public Building[] buildings = new Building[31];
     public Point[] vertices = new Point[157];
     public int[][] gridMap = new int[157][157];
 
+    /**
+     * fills the map with map's vertices
+     */
     public void fillVertices() {
         vertices[0] = new Point(295,GameInfo.HEIGHT - 152);
         vertices[1] = new Point(405,GameInfo.HEIGHT -45); 
@@ -223,6 +234,9 @@ public class GridMap {
         vertices[156] = new Point(1100,GameInfo.HEIGHT -35);
     }
 
+    /**
+     * this methd adds directed edges to the grap
+     */
     public void fillGraph(){
         addEdge(0,31 );
         addEdge(0,32 );
@@ -460,6 +474,11 @@ public class GridMap {
 
     }
 
+    /**
+     * this method adds directed lines to the graph(map).
+     * @param indexFirst base point of the edge
+     * @param indexSecond destination point of the edge
+     */
     public void addEdge(int indexFirst, int indexSecond) {
         this.gridMap[indexFirst][indexSecond] =
         (int)(vertices[indexFirst].distance(vertices[indexSecond]));

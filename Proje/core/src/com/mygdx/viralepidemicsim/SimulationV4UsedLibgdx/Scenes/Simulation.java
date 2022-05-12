@@ -30,6 +30,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.GraphPlotter.java.GraphPlotter;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
@@ -127,7 +128,7 @@ public class Simulation implements Screen, ContactListener{
     public Simulation(GameMain game){
         isNewDay = true;
         this.game = game;
-        dayCount = 1;
+        dayCount = 0;
         font = new BitmapFont(Gdx.files.internal("InfoFont.fnt"));
         viewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport);
@@ -416,6 +417,15 @@ public class Simulation implements Screen, ContactListener{
 
 
         population.startDay();
+
+
+        GraphPlotter.dataSaver[dayCount][1] = 5;
+        GraphPlotter.dataSaver[dayCount][2] = population.infectedCount;
+        GraphPlotter.dataSaver[dayCount][3] = population.immuneCount;
+        
+
+
+        
     }
 
     @Override
@@ -790,6 +800,8 @@ public class Simulation implements Screen, ContactListener{
                 isVaccClicked = true;
                 vaccinatedOld++;
                 population.randomOldVaccine();
+                GraphPlotter.plotGraph();
+
             }
         });
     }
