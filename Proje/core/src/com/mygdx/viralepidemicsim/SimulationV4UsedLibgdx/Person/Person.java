@@ -431,6 +431,7 @@ public class Person extends Sprite{
     public void getImmune(){
         Object[] userData = (Object[])fixture.getUserData();
 
+        menu.population.infectedCount--;
         
         userData[0] = "Immu";
         
