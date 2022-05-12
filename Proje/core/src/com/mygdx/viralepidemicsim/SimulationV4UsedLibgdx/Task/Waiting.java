@@ -1,7 +1,5 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task;
 
-import com.badlogic.gdx.ai.btree.leaf.Wait;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 

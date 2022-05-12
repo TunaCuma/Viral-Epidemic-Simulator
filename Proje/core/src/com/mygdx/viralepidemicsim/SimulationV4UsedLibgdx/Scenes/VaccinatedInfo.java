@@ -25,10 +25,6 @@ public class VaccinatedInfo implements Screen{
     private SpriteBatch batch;
     private ImageButton turnBack;
     private OrthographicCamera camera;
-    private BitmapFont fontCredits;
-    private BitmapFont fontNames;
-    private String creditsString;
-    private String faik, tarik, emre, tuna, gun;
     private GameMain game;
     private Stage stage;
     private Viewport gameViewport;

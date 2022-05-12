@@ -3,7 +3,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.badlogic.gdx.Game;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
 public class Building {

@@ -1,10 +1,7 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,9 +10,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Container;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -38,9 +32,7 @@ public class Parameters implements Screen{
     private ImageButton start;
     private SpriteBatch batch;
     private OrthographicCamera camera;
-    private BitmapFont font;
     private BitmapFont smallFont;
-    private Dialog dialog;
     private ImageButton curfew;
     private SpriteDrawable curfewUp;
     private SpriteDrawable curfewDown; 
@@ -108,7 +100,6 @@ public class Parameters implements Screen{
         stage.addActor(start);
         background = new Texture("BackgroundMain.jpg");
 
-        font = new BitmapFont(Gdx.files.internal("CreditsFont.fnt"), false);
         smallFont = new BitmapFont(Gdx.files.internal("NamesFont.fnt")); 
         smallFont.getData().setScale(0.7f, 0.7f);
         camera.position.set(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f, 0);
@@ -219,8 +210,8 @@ public class Parameters implements Screen{
                 
 
 
-                GameMain.gameScreen.population.randomInfection((int)patientNumber.getValue());
-                GameMain.gameScreen.population.randomVaccination((int)(GameInfo.population * vaccination.getValue()));
+                Simulation.population.randomInfection((int)patientNumber.getValue());
+                Simulation.population.randomVaccination((int)(GameInfo.population * vaccination.getValue()));
 
                 MainMenuButtons.simInitialized = true;
             }

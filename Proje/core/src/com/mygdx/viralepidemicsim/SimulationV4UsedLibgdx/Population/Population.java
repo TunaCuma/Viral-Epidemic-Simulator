@@ -1,9 +1,6 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population;
 
-
-
 import java.util.ArrayList;
-import java.util.Random;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.World;

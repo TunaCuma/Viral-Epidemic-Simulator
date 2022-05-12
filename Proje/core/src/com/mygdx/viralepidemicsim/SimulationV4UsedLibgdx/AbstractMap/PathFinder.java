@@ -1,7 +1,6 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class PathFinder {
  

@@ -1,8 +1,6 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person;
 
 import java.awt.Point;
-import java.util.Random;
-import java.util.logging.Handler;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -27,7 +25,6 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.YoungRoutine;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Moving;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Task;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.WaitTill;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Waiting;
 
 public class Person extends Sprite{
@@ -437,7 +434,7 @@ public class Person extends Sprite{
         updateHealthCondition();
 
 
-        menu.population.infectedCount++;
+        Simulation.population.infectedCount++;
 
 
     }
@@ -454,7 +451,7 @@ public class Person extends Sprite{
         updateHealthCondition();
 
 
-        menu.population.immuneCount++;
+        Simulation.population.immuneCount++;
 
     }
 
@@ -496,8 +493,8 @@ public class Person extends Sprite{
 
 
 
-        menu.population.deadCount++;
-        menu.population.infectedCount--;
+        Simulation.population.deadCount++;
+        Simulation.population.infectedCount--;
     }
        
    
