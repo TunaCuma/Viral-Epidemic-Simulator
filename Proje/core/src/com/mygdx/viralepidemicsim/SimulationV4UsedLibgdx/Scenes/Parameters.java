@@ -62,7 +62,7 @@ public class Parameters implements Screen{
      * @param main the GameMain object which will store this screen
      */
     public Parameters(GameMain main) {
-        selectBox.setItems("Tiktok","Tiktokaa","Fatih Terim");
+        selectBox.setItems("Influenza","SARS-CoV-2","Rabies");
         batch = new SpriteBatch();
         game = main;
         gameViewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
