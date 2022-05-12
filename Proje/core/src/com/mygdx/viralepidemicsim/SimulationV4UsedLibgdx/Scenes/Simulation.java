@@ -58,9 +58,12 @@ public class Simulation implements Screen, ContactListener{
     private SpriteDrawable curfewUp;
     private SpriteDrawable curfewDown; 
     private ImageButton turnBack;
-    private ImageButton vaccButton;    
+    private ImageButton vaccButton;
     private SpriteDrawable vaccImage;
     private SpriteDrawable vaccImageDown;
+    private ImageButton analyzeButton;
+    private SpriteDrawable analyzeImage;
+    private SpriteDrawable analyzeImageDown;
     private SpriteDrawable adult;
     private SpriteDrawable adultDown;
     private SpriteDrawable young;
@@ -136,6 +139,7 @@ public class Simulation implements Screen, ContactListener{
         addCurfewButton();
         addTurnBackButton();
         addVaccinationButton();
+        addAnalyzeButton();
         addAdult();
         addYoung();
         addYoungAdult();
@@ -145,6 +149,7 @@ public class Simulation implements Screen, ContactListener{
         stage.addActor(curfew);
         stage.addActor(turnBack);
         stage.addActor(vaccButton);
+        stage.addActor(analyzeButton);
         stage.addActor(adultButton);
         stage.addActor(youngButton);
         stage.addActor(youngAdultButton);
@@ -185,6 +190,26 @@ public class Simulation implements Screen, ContactListener{
         daysBanned = new boolean[7];
     }
     
+
+    private void addAnalyzeButton() {
+        analyzeImage = new SpriteDrawable(new Sprite(new Texture("analyze.png") ));
+        analyzeImageDown = new SpriteDrawable(new Sprite(new Texture("analyzedown.png") ));
+        analyzeButton = new ImageButton(analyzeImage, analyzeImageDown);
+        analyzeButton.setPosition(1390, 20);
+        
+        analyzeButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                GameMain.popSound.stop();
+                GameMain.popSound.play();
+                GameMain.beforeScreen = 0;
+                GameMain.stage = (Stage) GameMain.vaccinated.getStage();
+                Gdx.input.setInputProcessor(GameMain.stage);
+                game.setScreen(GameMain.vaccinated);
+            } 
+        });
+    }
+
 
     private void addTimeButtons() {
         continueTimePressed = new SpriteDrawable(new Sprite(new Texture("ContinueButtonPressed.png")));
