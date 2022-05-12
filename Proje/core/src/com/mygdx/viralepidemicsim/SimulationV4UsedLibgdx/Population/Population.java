@@ -46,7 +46,7 @@ public class Population {
         this.world = world; 
         this.map = map;
 
-        infectedCount=1;
+        
 
         int houseCapacity = (numberOfPeople / 14);
         

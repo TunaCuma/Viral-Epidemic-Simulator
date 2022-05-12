@@ -65,7 +65,6 @@ public class Person extends Sprite{
 
     public double maskValue =1;
 
-    public static int firstPatient = GameInfo.randomBetween(0, 504);
 
     public int workLoc;
 
@@ -119,11 +118,8 @@ public class Person extends Sprite{
 
         enterBuilding(home);
 
-        if(id == firstPatient){
-            firstInfection();
-        }
 
-        
+
 
         startDay();
 
