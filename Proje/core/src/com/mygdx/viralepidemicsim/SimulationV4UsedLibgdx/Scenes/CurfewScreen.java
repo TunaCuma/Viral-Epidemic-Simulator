@@ -110,7 +110,7 @@ public class CurfewScreen implements Screen{
         smallerFont.draw(batch, "SPECIFY DAYS", GameInfo.WIDTH/3f-200, GameInfo.HEIGHT/1.2f);
 
         smallerFont.draw(batch, "   Monday   ", GameInfo.WIDTH/3f-200, GameInfo.HEIGHT/1.2f-100);
-        smallerFont.draw(batch, "  Tuseday   ", GameInfo.WIDTH/3f-200+9, GameInfo.HEIGHT/1.2f-200);
+        smallerFont.draw(batch, "  Tuesday   ", GameInfo.WIDTH/3f-200+9, GameInfo.HEIGHT/1.2f-200);
         smallerFont.draw(batch, " Wednesday  ", GameInfo.WIDTH/3f-200, GameInfo.HEIGHT/1.2f-300);
         smallerFont.draw(batch, "  Thursday  ", GameInfo.WIDTH/3f-200, GameInfo.HEIGHT/1.2f-400);
         smallerFont.draw(batch, "    Friday   ", GameInfo.WIDTH/3f-200, GameInfo.HEIGHT/1.2f-500);
