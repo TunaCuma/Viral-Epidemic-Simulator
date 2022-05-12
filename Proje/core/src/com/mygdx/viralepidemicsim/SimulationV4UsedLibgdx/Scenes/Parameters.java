@@ -62,7 +62,7 @@ public class Parameters implements Screen{
      * @param main the GameMain object which will store this screen
      */
     public Parameters(GameMain main) {
-        selectBox.setItems("Tiktok","Tiktokaa","Fatih Terim");
+        selectBox.setItems("Influenza","SARS-CoV-2","Rabies");
         batch = new SpriteBatch();
         game = main;
         gameViewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
@@ -239,6 +239,24 @@ public class Parameters implements Screen{
                 GameMain.stage = (Stage) GameMain.curfewScreen.getStage();
                 Gdx.input.setInputProcessor(GameMain.stage);
                 game.setScreen(GameMain.curfewScreen);
+            }
+        });
+        
+        selectBox.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {                
+                if(selectBox.getSelected().equals("SARS-CoV-2")){
+                    killRate.setValue(0.33f);
+                    spreadRate.setValue(0.22f);
+                }
+                else if(selectBox.getSelected().equals("Influenza")){
+                    killRate.setValue(0.53f);
+                    spreadRate.setValue(0.33f);
+                }
+                else if(selectBox.getSelected().equals("Rabies")){
+                    killRate.setValue(0.13f);
+                    spreadRate.setValue(0.74f);
+                }
             }
         });
         
