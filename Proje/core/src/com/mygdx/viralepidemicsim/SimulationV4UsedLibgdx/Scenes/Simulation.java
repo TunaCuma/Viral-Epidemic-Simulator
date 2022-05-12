@@ -464,10 +464,9 @@ public class Simulation implements Screen, ContactListener{
         Color c = game.getBatch().getColor();
         renderBuildings();
         if(timeSeconds/period>0.67){
-            game.getBatch().setColor(c.r, c.g, c.b, (float) 0.6 * (timeSeconds/period));//set alpha to 0.3
+            game.getBatch().setColor(c.r, c.g, c.b, (float) (0.6 * ((timeSeconds/period-0.67)*3)));//set alpha to 0.3
             game.getBatch().draw(fog, 0, 0, 1920, 1080);
         }
-        System.out.println(timeSeconds/period);
 
         
 
@@ -518,7 +517,7 @@ public class Simulation implements Screen, ContactListener{
       
         game.getBatch().draw(blackBar, 400, 10);     
         game.getBatch().draw(blackBar, 720, 10); 
-        
+        game.getBatch().draw(blackBar, 1355, 10);         
 
         game.getBatch().end();
         debugRenderer.render(world, box2DCamera.combined);

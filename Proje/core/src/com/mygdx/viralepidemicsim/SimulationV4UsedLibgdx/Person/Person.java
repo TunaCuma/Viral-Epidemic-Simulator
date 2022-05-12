@@ -34,7 +34,7 @@ public class Person extends Sprite{
     public static int numberOfPerson = 0;
     public int id;
 
-    public int healDay;
+    public int healDay = 1000;
 
     public Simulation menu;
 
