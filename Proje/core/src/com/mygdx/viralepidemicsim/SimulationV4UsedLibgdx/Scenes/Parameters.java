@@ -25,6 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Buttons.MainMenuButtons;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 
@@ -194,16 +195,9 @@ public class Parameters implements Screen{
             public void changed(ChangeEvent event, Actor actor) {
                 GameMain.popSound.stop();
                 GameMain.popSound.play();
-                if(GameMain.beforeScreen == 3) {
-                    GameMain.stage = GameMain.gameScreen.getStage();
-                    Gdx.input.setInputProcessor(GameMain.stage);
-                    game.setScreen(GameMain.gameScreen);
-                }
-                else {
-                    GameMain.stage = GameMain.openingScreen.getButtons().getStage();
-                    Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
-                    game.setScreen(GameMain.openingScreen);
-                }
+                GameMain.stage = GameMain.openingScreen.getButtons().getStage();
+                Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
+                game.setScreen(GameMain.openingScreen);
             }
         });
 
@@ -228,8 +222,7 @@ public class Parameters implements Screen{
                 GameMain.gameScreen.population.randomInfection((int)patientNumber.getValue());
                 GameMain.gameScreen.population.randomVaccination((int)(GameInfo.population * vaccination.getValue()));
 
-
-
+                MainMenuButtons.simInitialized = true;
             }
         });
         curfew.addListener(new ChangeListener() {
