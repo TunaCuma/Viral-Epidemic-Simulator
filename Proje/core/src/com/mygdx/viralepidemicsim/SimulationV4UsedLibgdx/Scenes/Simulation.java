@@ -43,7 +43,7 @@ public class Simulation implements Screen, ContactListener{
     private GameMain game;
     private Texture bg;
     private Texture gui;
-    public Population population;
+    public static Population population;
     private World world;
     private OrthographicCamera box2DCamera;
     private Box2DDebugRenderer debugRenderer;
