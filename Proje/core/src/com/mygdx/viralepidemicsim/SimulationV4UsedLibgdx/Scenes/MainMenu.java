@@ -51,7 +51,6 @@ public class MainMenu implements Screen{
         batch.begin();
         
         font.draw(batch, "VIRAL EPIDEMIC\n   SIMULATOR", GameInfo.WIDTH/3.7f, GameInfo.HEIGHT/1.2f);
-        
         //Drawing the names for the buttons
         buttons.getFontNames().draw(batch, "SIMULATION  ", GameInfo.WIDTH/2f-GameInfo.WIDTH/6.12f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/27f);
         buttons.getFontNames().draw(batch, "        RESET SIM", GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/27f);
