@@ -244,18 +244,23 @@ public class Parameters implements Screen{
         
         selectBox.addListener(new ChangeListener() {
             @Override
+            /**
+             * SCIENTIFIC METHOD
+             * @param event
+             * @param actor
+             */
             public void changed(ChangeEvent event, Actor actor) {                
                 if(selectBox.getSelected().equals("SARS-CoV-2")){
-                    killRate.setValue(0.33f);
-                    spreadRate.setValue(0.22f);
+                    killRate.setValue(0.25f);
+                    spreadRate.setValue(0.65f);
                 }
                 else if(selectBox.getSelected().equals("Influenza")){
-                    killRate.setValue(0.53f);
+                    killRate.setValue(0.01f);
                     spreadRate.setValue(0.33f);
                 }
                 else if(selectBox.getSelected().equals("Rabies")){
-                    killRate.setValue(0.13f);
-                    spreadRate.setValue(0.74f);
+                    killRate.setValue(0.40f);
+                    spreadRate.setValue(0.15f);
                 }
             }
         });
