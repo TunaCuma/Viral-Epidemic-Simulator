@@ -242,6 +242,16 @@ public class Parameters implements Screen{
             }
         });
         
+        selectBox.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {                
+                if(selectBox.getSelected().equals("SARS-CoV-2")){
+                    killRate.setValue(3f);
+                    spreadRate.setValue(2f);
+                }
+            }
+        });
+        
     }
     void createButtons() {
         curfewUp = new SpriteDrawable(new Sprite(new Texture("CurfewButton2.png") ));
