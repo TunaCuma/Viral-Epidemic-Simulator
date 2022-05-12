@@ -237,17 +237,17 @@ public class Parameters implements Screen{
              */
             public void changed(ChangeEvent event, Actor actor) {                
                 if(selectBox.getSelected().equals("SARS-CoV-2")){
-                    killRate.setValue(0.3f);
-                    spreadRate.setValue(0.70f);
+                    killRate.setValue(0.02f);
+                    spreadRate.setValue(0.45f);
     
                 }
                 else if(selectBox.getSelected().equals("Influenza")){
-                    killRate.setValue(0.01f);
-                    spreadRate.setValue(0.33f);
+                    killRate.setValue(0.05f);
+                    spreadRate.setValue(0.55f);
                 }
                 else if(selectBox.getSelected().equals("Rabies")){
-                    killRate.setValue(0.40f);
-                    spreadRate.setValue(0.15f);
+                    killRate.setValue(0.01f);
+                    spreadRate.setValue(0.25f);
                 }
             }
         });
