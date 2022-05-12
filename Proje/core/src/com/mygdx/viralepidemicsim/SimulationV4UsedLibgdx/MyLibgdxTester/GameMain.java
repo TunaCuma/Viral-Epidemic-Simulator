@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Cursor;
@@ -15,6 +16,7 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.CreditsScreen;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.CurfewScreen;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.HowToScreen;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.VaccinatedInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.MainMenu;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Parameters;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Settings;
@@ -29,6 +31,7 @@ public class GameMain extends Game{
     public static Settings settingsScreen; // 4
     public static CurfewScreen curfewScreen;
     public static Parameters parametersScreen;
+    public static VaccinatedInfo vaccinated;
     public static Stage stage;
     public static Music popSound;
     public static int beforeScreen;
@@ -59,6 +62,7 @@ public class GameMain extends Game{
         curfewScreen = new CurfewScreen(this);
         creditsScreen = new CreditsScreen(this);
         gameScreen = new Simulation(this);
+        vaccinated = new VaccinatedInfo(this);
         settingsScreen = new Settings(this);
         parametersScreen = new Parameters(this);
         howToScreen = new HowToScreen(this);
