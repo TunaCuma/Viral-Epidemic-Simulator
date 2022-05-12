@@ -207,6 +207,8 @@ public class Simulation implements Screen, ContactListener{
                 GameMain.stage = (Stage) GameMain.vaccinated.getStage();
                 Gdx.input.setInputProcessor(GameMain.stage);
                 game.setScreen(GameMain.vaccinated);
+                GraphPlotter.plotGraph();
+
             } 
         });
     }
@@ -244,6 +246,7 @@ public class Simulation implements Screen, ContactListener{
                 if(pause.isChecked()){
                     continueTime.setChecked(false);
                     faster.setChecked(false);
+                    pause();
                 }
             }
         });
@@ -419,9 +422,9 @@ public class Simulation implements Screen, ContactListener{
         population.startDay();
 
 
-        GraphPlotter.dataSaver[dayCount][1] = 5;
+        GraphPlotter.dataSaver[dayCount][1] = population.susceptibleCount;
         GraphPlotter.dataSaver[dayCount][2] = population.infectedCount;
-        GraphPlotter.dataSaver[dayCount][3] = population.immuneCount;
+        GraphPlotter.dataSaver[dayCount][3] = population.removedCount;
         
 
 
@@ -492,7 +495,7 @@ public class Simulation implements Screen, ContactListener{
         font.draw(game.getBatch(), "Dead: " + population.deadCount, 830, GameInfo.HEIGHT-35);
         if((int) (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))) >= 10) {
             if((int) ((int)(timeSeconds)/(period/16)) + 8 < 10)
-                font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)(timeSeconds) /(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + dayCount + " / 0"  + (int) ((int)(timeSeconds) /(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
                 font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
@@ -617,16 +620,6 @@ public class Simulation implements Screen, ContactListener{
             }
         }
 
-    }
-
-    public String makeProperIndex(int index){
-        if(index<10){
-            return "00"+index;
-        }
-        if(index<100){
-            return "0"+index;
-        }
-        return "" + index;
     }
 
     @Override
@@ -799,7 +792,6 @@ public class Simulation implements Screen, ContactListener{
                 isVaccClicked = true;
                 vaccinatedOld++;
                 population.randomOldVaccine();
-                GraphPlotter.plotGraph();
 
             }
         });

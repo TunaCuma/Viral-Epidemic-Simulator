@@ -34,7 +34,7 @@ public class Person extends Sprite{
     public static int numberOfPerson = 0;
     public int id;
 
-    public int healDay = 1000;
+    public int healDay = 10;
 
     public Simulation menu;
 
@@ -71,6 +71,8 @@ public class Person extends Sprite{
 
     public boolean isInCurfew;
 
+    public float dieCoefficient;
+
 
     public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu, int home, String type){
         super(new Texture(name));
@@ -81,6 +83,18 @@ public class Person extends Sprite{
         numberOfPerson++;
 
         this.type = type;
+        if(type.equals("Young")){
+            dieCoefficient = 0.3f;
+        }
+        else if(type.equals("YoungAdult")){
+            dieCoefficient = 0.4f;
+        }
+        else if(type.equals("Adult")){
+            dieCoefficient = 0.7f;
+        }
+        else{
+            dieCoefficient = 1;
+        }
 
         this.world = world;
         bodyDef = new BodyDef();
@@ -108,6 +122,8 @@ public class Person extends Sprite{
         if(id == firstPatient){
             firstInfection();
         }
+
+        
 
         startDay();
 
@@ -171,7 +187,7 @@ public class Person extends Sprite{
 
         if(healthStatus.equals("Infe")){
             
-            double possiblity = 100 * GameInfo.rateOfKill;
+            double possiblity = 100 * GameInfo.rateOfKill * dieCoefficient;
 
             
             if(randomBetween(0, 100) < possiblity && menu.dayCount > 1){
