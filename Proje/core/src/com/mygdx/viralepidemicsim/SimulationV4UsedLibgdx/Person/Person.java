@@ -177,6 +177,8 @@ public class Person extends Sprite{
     public void startDay(){
         if (menu.dayCount == healDay) {
             getImmune();
+            Simulation.population.infectedCount--;
+
         }
         Object[] userData = (Object[])fixture.getUserData();
         healthStatus = (String)((userData)[0]);
@@ -443,7 +445,6 @@ public class Person extends Sprite{
     public void getImmune(){
         Object[] userData = (Object[])fixture.getUserData();
 
-        menu.population.infectedCount--;
         
         userData[0] = "Immu";
         
