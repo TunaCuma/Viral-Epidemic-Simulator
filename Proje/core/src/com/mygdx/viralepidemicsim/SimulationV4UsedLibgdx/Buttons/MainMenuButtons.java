@@ -22,7 +22,6 @@ public class MainMenuButtons {
     private Viewport gameViewport;
 
     private ImageButton simulation;
-    private ImageButton resetSimulation;
     private ImageButton howTo;
     private ImageButton credits;
     private ImageButton settings;
@@ -53,7 +52,6 @@ public class MainMenuButtons {
         stage.addActor(credits);
         stage.addActor(settings);
         stage.addActor(exit);
-        stage.addActor(resetSimulation);
     }
     public Stage getStage() {
         return this.stage;
@@ -64,14 +62,12 @@ public class MainMenuButtons {
      */
     void createButtons() {
         simulation = new ImageButton(template);
-        resetSimulation = new ImageButton(template);
         howTo = new ImageButton(template);
         credits = new ImageButton(template);
         settings = new ImageButton(template);
         exit = new ImageButton(template);
 
-        simulation.setPosition(GameInfo.WIDTH/2f-GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/20f, Align.center);
-        resetSimulation.setPosition(GameInfo.WIDTH/2f+GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/20f, Align.center);
+        simulation.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/20f, Align.center);
         howTo.setPosition(GameInfo.WIDTH/2f-GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-3*GameInfo.HEIGHT/20f, Align.center);
         credits.setPosition(GameInfo.WIDTH/2f +GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-3*GameInfo.HEIGHT/20f, Align.center);
         settings.setPosition(GameInfo.WIDTH/2f-GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-5*GameInfo.HEIGHT/20f, Align.center);
@@ -144,14 +140,6 @@ public class MainMenuButtons {
                 GameMain.stage = (Stage) GameMain.settingsScreen.getStage();
                 Gdx.input.setInputProcessor(GameMain.stage);
                 game.setScreen(GameMain.settingsScreen);
-            }
-        });
-        resetSimulation.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                GameMain.popSound.stop();
-                GameMain.beforeScreen = 0;
-                GameMain.gameScreen.reset();
             }
         });
     }

@@ -3,14 +3,12 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -22,15 +20,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Tree;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Buttons.MainMenuButtons;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.GraphPlotter.java.GraphPlotter;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
@@ -114,7 +108,6 @@ public class Simulation implements Screen, ContactListener{
 
     public float period = 128f;
     public float timeSeconds = 0f;
-    private boolean isNewDay;
     public int dayCount;
     
 
@@ -129,7 +122,6 @@ public class Simulation implements Screen, ContactListener{
 
 
     public Simulation(GameMain game){
-        isNewDay = true;
         this.game = game;
         dayCount = 0;
         font = fontInfo;
@@ -796,31 +788,5 @@ public class Simulation implements Screen, ContactListener{
 
             }
         });
-    }
-
-
-    public void reset() {
-        MainMenuButtons.simInitialized = false;
-        GameMain.parametersScreen.reset();
-        isNewDay = true;
-        dayCount = 0;
-        vaccinatedYoung = 0;
-        vaccinatedYoungAdult = 0;
-        vaccinatedAdult = 0;
-        vaccinatedOld = 0;
-
-        population.resetPopulation();
-        buildings[].resetBuildings();
-        
-        period = 128f;
-        timeSeconds = 0f;
-        curfews = new boolean[6];
-        daysBanned = new boolean[7];
-    }
-
-    private void resetButtons() {
-        isVaccClicked = false;
-        isMaskClicked = false;
-        maskRule = false;
     }
 }
