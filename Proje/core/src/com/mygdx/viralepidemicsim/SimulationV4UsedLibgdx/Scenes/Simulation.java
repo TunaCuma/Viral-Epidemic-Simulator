@@ -119,7 +119,7 @@ public class Simulation implements Screen, ContactListener{
     public boolean curfewUnder18;
     public boolean curfewOver65;
     public boolean noWork;
-    public boolean maskRule = true;
+    public boolean maskRule;
 
     public boolean[] curfews;
     public boolean[] daysBanned;
@@ -207,7 +207,6 @@ public class Simulation implements Screen, ContactListener{
                 GameMain.stage = (Stage) GameMain.vaccinated.getStage();
                 Gdx.input.setInputProcessor(GameMain.stage);
                 game.setScreen(GameMain.vaccinated);
-                GraphPlotter.plotGraph();
 
             } 
         });
@@ -495,15 +494,15 @@ public class Simulation implements Screen, ContactListener{
         font.draw(game.getBatch(), "Dead: " + population.deadCount, 830, GameInfo.HEIGHT-35);
         if((int) (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))) >= 10) {
             if((int) ((int)(timeSeconds)/(period/16)) + 8 < 10)
-                font.draw(game.getBatch(),"Day: " + dayCount + " / 0"  + (int) ((int)(timeSeconds) /(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + (dayCount + 1) + " / 0"  + (int) ((int)(timeSeconds) /(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
-                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + (dayCount + 1) + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
         else {
             if((int) ((int)(timeSeconds)/(period/16)) + 8 < 10)
-                font.draw(game.getBatch(),"Day: " + dayCount + " / 0" + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + (dayCount + 1) + " / 0" + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
-                font.draw(game.getBatch(),"Day: " + dayCount + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + (dayCount + 1) + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
 
         if (maskRule){
@@ -570,11 +569,35 @@ public class Simulation implements Screen, ContactListener{
         
         String healthCondition2 = ((String) secondUserData[0]);
 
-        
-        if(maskRule){
-            if(GameInfo.trueWithPossibility(50)){
-                if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
+        if(GameInfo.trueWithPossibility((int)(GameInfo.rateOfSpread * 100))){
+            if(maskRule){
+                if(GameInfo.trueWithPossibility(50)){
+                    if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
+                
+                        firstUserData[0] = "Expo";
+                        population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
+                        firstBody.setUserData(firstUserData);
+                    }
+                    else if(healthCondition1.equals("Infe") && healthCondition2.equals("Susp") ){
+                        secondUserData[0] = "Expo";
+                        population.getPopulation()[(int)(secondUserData[1])].updateHealthCondition();
+                        secondBody.setUserData(secondUserData);
+                    }
             
+                    
+                    if(healthCondition2.equals("Infe") && healthCondition1.equals("Expo") ){
+                        firstUserData[2] = (int)firstUserData[2] + 1;
+                        firstBody.setUserData(firstUserData); 
+                    }
+                    else if(healthCondition1.equals("Infe") && healthCondition2.equals("Expo") ){
+                        secondUserData[2] = (int)secondUserData[2] + 1;
+                        secondBody.setUserData(secondUserData);  
+                    }
+                }
+            }
+            else{
+                if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
+                
                     firstUserData[0] = "Expo";
                     population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
                     firstBody.setUserData(firstUserData);
@@ -596,29 +619,8 @@ public class Simulation implements Screen, ContactListener{
                 }
             }
         }
-        else{
-            if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
-            
-                firstUserData[0] = "Expo";
-                population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
-                firstBody.setUserData(firstUserData);
-            }
-            else if(healthCondition1.equals("Infe") && healthCondition2.equals("Susp") ){
-                secondUserData[0] = "Expo";
-                population.getPopulation()[(int)(secondUserData[1])].updateHealthCondition();
-                secondBody.setUserData(secondUserData);
-            }
-    
-            
-            if(healthCondition2.equals("Infe") && healthCondition1.equals("Expo") ){
-                firstUserData[2] = (int)firstUserData[2] + 1;
-                firstBody.setUserData(firstUserData); 
-            }
-            else if(healthCondition1.equals("Infe") && healthCondition2.equals("Expo") ){
-                secondUserData[2] = (int)secondUserData[2] + 1;
-                secondBody.setUserData(secondUserData);  
-            }
-        }
+
+        
 
     }
 
