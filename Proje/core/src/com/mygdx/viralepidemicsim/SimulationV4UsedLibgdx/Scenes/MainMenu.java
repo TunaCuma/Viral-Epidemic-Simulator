@@ -52,8 +52,12 @@ public class MainMenu implements Screen{
         
         font.draw(batch, "VIRAL EPIDEMIC\n   SIMULATOR", GameInfo.WIDTH/3.7f, GameInfo.HEIGHT/1.2f);
         //Drawing the names for the buttons
+<<<<<<< HEAD
         buttons.getFontNames().draw(batch, "SIMULATION  ", GameInfo.WIDTH/2f-GameInfo.WIDTH/6.12f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/27f);
         buttons.getFontNames().draw(batch, "        RESET SIM", GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/27f);
+=======
+        buttons.getFontNames().draw(batch, "    SIMULATION    ", GameInfo.WIDTH/2.43f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/27f);
+>>>>>>> RouteImplementation
         buttons.getFontNames().draw(batch, "   HOW TO    ", GameInfo.WIDTH/2f-GameInfo.WIDTH/6.12f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/7.4f);
         buttons.getFontNames().draw(batch, "         CREDITS", GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/7.4f);
         buttons.getFontNames().draw(batch, "  SETTINGS   ", GameInfo.WIDTH/2f-GameInfo.WIDTH/6.12f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/4.23f);
