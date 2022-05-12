@@ -186,14 +186,14 @@ public class Person extends Sprite{
             double possiblity = 100 * GameInfo.rateOfKill * dieCoefficient;
 
             
-            if(randomBetween(0, 100) < possiblity && menu.dayCount > 1){
+            if(randomBetween(0, 100) < possiblity && menu.dayCount > 0){
                 die();
             }   
             
         }
         else if(healthStatus.equals("Expo")){
             
-            double possiblity = 100 * GameInfo.rateOfSpread;
+            double possiblity = 100 * GameInfo.rateOfSpread ;
 
             boolean isInfected = false;
             for(int i = 0; i < (int)userData[2]; i++){

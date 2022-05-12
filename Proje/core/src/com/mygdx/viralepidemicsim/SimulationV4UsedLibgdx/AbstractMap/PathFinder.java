@@ -119,20 +119,5 @@ public class PathFinder {
 
 
  
-    public static void main(String[] args)
-    {
-        GridMap gm = new GridMap();
-
-        PathFinder pf = new PathFinder(gm);
-
-
-        
-
-
-        System.out.println(pf.dijkstra(30, 12));
-
-
-    
-    }
 }
  

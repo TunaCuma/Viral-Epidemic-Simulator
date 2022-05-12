@@ -219,6 +219,8 @@ public class Parameters implements Screen{
 
                 GameInfo.setRateOfKill(killRate.getValue());
                 GameInfo.setRateOfSpread(spreadRate.getValue());
+                GameInfo.setRateOfSpread(0.11f);
+
                 GameInfo.setPopulation((int)population.getValue());
                 
 
@@ -251,8 +253,9 @@ public class Parameters implements Screen{
              */
             public void changed(ChangeEvent event, Actor actor) {                
                 if(selectBox.getSelected().equals("SARS-CoV-2")){
-                    killRate.setValue(0.25f);
-                    spreadRate.setValue(0.65f);
+                    killRate.setValue(0.3f);
+                    spreadRate.setValue(0.70f);
+    
                 }
                 else if(selectBox.getSelected().equals("Influenza")){
                     killRate.setValue(0.01f);
