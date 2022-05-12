@@ -30,6 +30,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Buttons.MainMenuButtons;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.GraphPlotter.java.GraphPlotter;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
@@ -99,6 +100,8 @@ public class Simulation implements Screen, ContactListener{
     private Texture novacBut = new Texture("novaccbut.jpg");
     private Texture blackBar = new Texture("blackçubuk.jpg");
 
+    private BitmapFont fontInfo = new BitmapFont(Gdx.files.internal("InfoFont.fnt"));
+
     
     float clock = 0;
 
@@ -129,7 +132,7 @@ public class Simulation implements Screen, ContactListener{
         isNewDay = true;
         this.game = game;
         dayCount = 0;
-        font = new BitmapFont(Gdx.files.internal("InfoFont.fnt"));
+        font = fontInfo;
         viewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport);
         createMusics();
@@ -573,7 +576,6 @@ public class Simulation implements Screen, ContactListener{
             if(maskRule){
                 if(GameInfo.trueWithPossibility(50)){
                     if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
-                
                         firstUserData[0] = "Expo";
                         population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
                         firstBody.setUserData(firstUserData);
@@ -673,12 +675,9 @@ public class Simulation implements Screen, ContactListener{
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
                 if (!maskRule){
-                   
                     maskRule =true;
-                    
                 }
                 else{
-            
                     maskRule =false;
                 }
                 
@@ -800,4 +799,28 @@ public class Simulation implements Screen, ContactListener{
     }
 
 
+    public void reset() {
+        MainMenuButtons.simInitialized = false;
+        GameMain.parametersScreen.reset();
+        isNewDay = true;
+        dayCount = 0;
+        vaccinatedYoung = 0;
+        vaccinatedYoungAdult = 0;
+        vaccinatedAdult = 0;
+        vaccinatedOld = 0;
+
+        population.resetPopulation();
+        buildings[].resetBuildings();
+        
+        period = 128f;
+        timeSeconds = 0f;
+        curfews = new boolean[6];
+        daysBanned = new boolean[7];
+    }
+
+    private void resetButtons() {
+        isVaccClicked = false;
+        isMaskClicked = false;
+        maskRule = false;
+    }
 }

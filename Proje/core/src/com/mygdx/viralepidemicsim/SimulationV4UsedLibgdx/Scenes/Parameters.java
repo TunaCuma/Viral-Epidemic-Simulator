@@ -279,4 +279,7 @@ public class Parameters implements Screen{
         return stage;
     }
 
+    public void reset() {
+    }
+
 }
