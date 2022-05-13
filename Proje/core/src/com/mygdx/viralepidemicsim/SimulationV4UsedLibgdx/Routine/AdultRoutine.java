@@ -16,8 +16,7 @@ public class AdultRoutine implements Routine{
     //tasklist for the routine
     public Task[] taskList;
 
-    //building list for the adult routine (numbers are the vertices of buildings in the gridMap)
-    public int buildingList[] = new int[]{5,7,10,0,15,16,22,24,25,27};
+    public int buildingList[] = new int[]{5,7,10,15,16,22,24,25,27};
 
     /**
      * constructor for adult routine. Assigns 7 different tasks. assigns tasks from the buildingList specified for the adultRoutine class
