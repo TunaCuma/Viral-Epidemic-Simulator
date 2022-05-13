@@ -340,9 +340,8 @@ public class Simulation implements Screen, ContactListener{
     }
 
     public void newDay(){
-    
-        
-
+        curfews = GameMain.curfewScreen.cases;
+        daysBanned = GameMain.curfewScreen.days;
 
         if(curfews[0]){
             population.curfewUnder18();

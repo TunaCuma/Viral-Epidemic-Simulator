@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 
@@ -194,7 +195,8 @@ public class Population {
      */
     public void startDay(){
         for(int i = 0; i < population.length; i++){
-            population[i].startDay();
+            if (!population[i].isInCurfew  || (population[i].isInCurfew && population[i].healthStatus.equals("Infe")) || GameMain.gameScreen.dayCount != population[i].healDay);
+                population[i].startDay();
         }
     }
 
