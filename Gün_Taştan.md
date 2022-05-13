@@ -1,6 +1,6 @@
 Week 1 / 03.24.2022
 
-        From now on, we're splitting into two groups to make things go easy and fast. One group will do the coding, the other the user interfaces and screens. Since I am also in the group that makes GUIs, I started to discover what screens are and how to create them in the game engine we use. I started watching videos on Youtube, practical applications from stackOverflow and the course that Emre Akgül (our teammate) bought.    
+        We started to plan the classes that will take place in our project, their features and their relations with each other. Additions and subtractions will be made, but we question what is needed for the basis of the project. Since our project is a game, we decided to use the engine called libGDX in the questions we asked our TA.  
 
 Week 2 / 03.31.2022
         
