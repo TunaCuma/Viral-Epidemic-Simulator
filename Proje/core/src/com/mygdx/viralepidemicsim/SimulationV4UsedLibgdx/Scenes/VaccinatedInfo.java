@@ -89,9 +89,9 @@ public class VaccinatedInfo implements Screen{
         batch.draw(old, GameInfo.WIDTH/3f, GameInfo.HEIGHT/1.2f-440);
         font.draw(batch, ": " + Simulation.vaccinatedOld, GameInfo.WIDTH/3f + 55,  GameInfo.HEIGHT/1.2f-388);
 
-        font.draw(batch, "Infected: " + Simulation.population.infectedCount, GameInfo.WIDTH/3f + 325, GameInfo.HEIGHT/1.2f-248);
-        font.draw(batch, "Immune: " + Simulation.population.immuneCount, GameInfo.WIDTH/3f + 325, GameInfo.HEIGHT/1.2f-318);
-        font.draw(batch, "Dead: " + Simulation.population.deadCount, GameInfo.WIDTH/3f + 325, GameInfo.HEIGHT/1.2f-388);
+        font.draw(batch, "Susceptible: " + Simulation.population.susceptibleCount, GameInfo.WIDTH/3f + 250, GameInfo.HEIGHT/1.2f-248);
+        font.draw(batch, "Immune: " + Simulation.population.immuneCount, GameInfo.WIDTH/3f + 250, GameInfo.HEIGHT/1.2f-318);
+        font.draw(batch, "Removed: " + Simulation.population.removedCount, GameInfo.WIDTH/3f + 250, GameInfo.HEIGHT/1.2f-388);
         batch.end();
 
         //Draws the stage and the buttons in it

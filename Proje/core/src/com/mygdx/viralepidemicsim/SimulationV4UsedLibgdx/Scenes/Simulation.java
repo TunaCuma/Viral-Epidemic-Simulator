@@ -157,7 +157,6 @@ public class Simulation implements Screen, ContactListener{
         stage.addActor(oldButton);
         stage.addActor(pause);
         stage.addActor(continueTime);
-        stage.addActor(faster);
         box2DCamera = new OrthographicCamera();
         box2DCamera.setToOrtho(false, GameInfo.WIDTH, GameInfo.HEIGHT);
         box2DCamera.position.set((GameInfo.WIDTH/2f), (GameInfo.HEIGHT/2f),0);
@@ -224,8 +223,7 @@ public class Simulation implements Screen, ContactListener{
             public void changed(ChangeEvent event, Actor actor) {
                 if(pause.isChecked()){
                     continueTime.setChecked(false);
-                    faster.setChecked(false);
-                    pause();
+                    Person.targetSpeed = 0;
                 }
             }
         });
@@ -234,16 +232,7 @@ public class Simulation implements Screen, ContactListener{
             public void changed(ChangeEvent event, Actor actor) {
                 if(continueTime.isChecked()){
                     pause.setChecked(false);
-                    faster.setChecked(false);
-                }
-            }
-        });
-        faster.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                if(faster.isChecked()){
-                    pause.setChecked(false);
-                    continueTime.setChecked(false);
+                    Person.targetSpeed = 5f;
                 }
             }
         });
@@ -410,7 +399,11 @@ public class Simulation implements Screen, ContactListener{
                 currentMusic = -1;
             musics[++currentMusic].play();
         }
-        timeSeconds +=Gdx.graphics.getDeltaTime();
+
+        if(continueTime.isChecked()){
+            timeSeconds +=Gdx.graphics.getDeltaTime();
+
+        }
         
         if(timeSeconds > period){
             timeSeconds = 0f;
