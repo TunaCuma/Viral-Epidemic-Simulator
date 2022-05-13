@@ -41,7 +41,8 @@ public class Moving implements Task{
     }
 
     /**
-     * task executer method which calls the nextSubTask
+     * This method executes every subtask in order. If the current task end pass to next subtask.
+     * Subtask basically mean going from one location to other.
      */
     public void executeTaskOnBody(){
         if(isSubTaskEnd()){
@@ -51,7 +52,8 @@ public class Moving implements Task{
     }
 
     /**
-     * @return returns true if subTask is ended
+     * @return returns true if subTask is ended. 
+     * Every subtask is going from one vertex to another in graph.
      */
     public boolean isSubTaskEnd(){
         return (Math.abs(person.getX() - subTargetX) < 1 && Math.abs(person.getY() - subTargetY) < 1);
@@ -71,6 +73,11 @@ public class Moving implements Task{
         return this.getCurLoc();
     }
 
+    /**
+     * This method allow us to pass next subtask.
+     * For example lets say current subtask is going from 1 to 3 and next subtask is going from 3 to 5. 
+     * After firs subtask is finished this method allow to set subtask to going from 3 to 5.
+     */
     public void nextSubTask(){
         if(isTaskEnd()){
 
@@ -82,6 +89,9 @@ public class Moving implements Task{
         }
     }
 
+    /**
+     * @return if task end.
+     */
     public boolean isTaskEnd(){
         if(pointer==path.size()-1){
             return isSubTaskEnd();
