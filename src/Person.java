@@ -471,7 +471,7 @@ public class Person extends Sprite{
      * This method infect person.
      */
     public void getInfected(){
-        healDay = menu.dayCount + 7;
+        healDay = menu.dayCount+7;
 
         Object[] userData = (Object[])fixture.getUserData();
 
