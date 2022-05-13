@@ -40,10 +40,10 @@ public class Parameters implements Screen{
     Skin skin = new Skin(Gdx.files.internal("pixthulhu/skin/pixthulhu-ui.json"));
 
     public Slider spreadRate = new Slider( 0f, 1f, 0.01f,false, skin );
-    public Slider population = new Slider( 0f, 500f, 1f,false, skin );
+    public Slider population = new Slider( 0f, 504f, 1f,false, skin );
     public Slider vaccination = new Slider( 0f, 1f, 0.01f,false, skin );
     public Slider killRate = new Slider( 0f, 1f, 0.01f,false, skin );
-    public Slider patientNumber = new Slider( 0f, 500f, 1f,false, skin );
+    public Slider patientNumber = new Slider( 0f, 504f, 1f,false, skin );
     public final SelectBox<String> selectBox = new SelectBox<String>(skin);
 
     private GameMain game;
@@ -55,7 +55,7 @@ public class Parameters implements Screen{
      * @param main the GameMain object which will store this screen
      */
     public Parameters(GameMain main) {
-        population.setValue(500f);
+        population.setValue(504f);
         population.setDisabled(true);
         selectBox.setItems("Influenza","SARS-CoV-2","Rabies");
         batch = new SpriteBatch();
