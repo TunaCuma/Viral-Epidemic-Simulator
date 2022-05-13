@@ -1,4 +1,4 @@
-package com.mygdx.viralepidemicsim.FirstVersion;
+package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx;
 
 public interface FinalVariables {
     /**
