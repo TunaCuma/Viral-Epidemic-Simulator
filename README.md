@@ -1,2 +1,5 @@
-Viral Epidemic Simulator
-TEST - Tarik Ucur
+To run our project, it is necessary to download one of the IDEs such as Visual Studio Code, Eclipse, IntelliJ. Through one of them, it is necessary to enter the Project folder from the IDE project explorer screen, then the desktop folder, then the src folder. At the last stage, our simulation will run when you run the DesktopLauncher.java file, which is the only file in the src folder.
+(System location where the user is installed the project\Project\desktop\src\com\mygdx\viralepidemicsim\DesktopLauncher.java)
+The program was written in Java version 11 and the libGDX game engine developed with the Java programming language was used.
+Since our project is programmed with the Java software language, the JVM system file is required to run it.
+650 megabytes of RAM is used at maximum while the application is running.
