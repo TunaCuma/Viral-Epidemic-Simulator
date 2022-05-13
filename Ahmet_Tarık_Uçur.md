@@ -52,4 +52,6 @@ Week 7 / 05.05.2022
     functions are done except for the simulation and game screens.
 
 Week 8 / 05.12.2022
-        THE PROJECT IS DONE! (will be done this week).
+        I worked on the timer and some curfew options. I managed to fix some of the wrong
+    imports and specialized some functional classes. Also, I added some good-looking features to make it more fun to use the application. Then, I fixed most of the bugs
+    we had during and after our presentation.
