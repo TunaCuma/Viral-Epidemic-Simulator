@@ -31,7 +31,7 @@ public class Person extends Sprite{
     public static int numberOfPerson = 0;
     public int id;
 
-    public int healDay = 10;
+    public int healDay = -1;
 
     public Simulation menu;
 
@@ -183,7 +183,6 @@ public class Person extends Sprite{
         if (menu.dayCount == healDay) {
             getImmune();
             Simulation.population.infectedCount--;
-
         }
         Object[] userData = (Object[])fixture.getUserData();
         healthStatus = (String)((userData)[0]);
@@ -200,11 +199,11 @@ public class Person extends Sprite{
         }
         else if(healthStatus.equals("Expo")){
             
-            double possiblity = 100 * GameInfo.rateOfSpread ;
+            double possiblity = 100;
 
             boolean isInfected = false;
             for(int i = 0; i < (int)userData[2]; i++){
-                if(GameInfo.randomBetween(0, 100) < possiblity ){
+                if(GameInfo.trueWithPossibility((int)possiblity) ){
                     getInfected();
                     isInfected = true;
                     break;
@@ -472,7 +471,7 @@ public class Person extends Sprite{
      * This method infect person.
      */
     public void getInfected(){
-        healDay = menu.dayCount+5;
+        healDay = menu.dayCount+7;
 
         Object[] userData = (Object[])fixture.getUserData();
 
@@ -497,17 +496,18 @@ public class Person extends Sprite{
      *  */    
     public void getImmune(){
         Object[] userData = (Object[])fixture.getUserData();
+        if(!userData[0].equals("Immu")){
 
-        
-        userData[0] = "Immu";
+            userData[0] = "Immu";
         
     
-        fixture.setUserData(userData);
+            fixture.setUserData(userData);
 
-        updateHealthCondition();
+            updateHealthCondition();
 
 
-        Simulation.population.immuneCount++;
+            Simulation.population.immuneCount++;
+        }
 
     }
 
