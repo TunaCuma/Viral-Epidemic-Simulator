@@ -3,14 +3,12 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -22,13 +20,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Tree;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.viralepidemicsim.FirstVersion.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.GraphPlotter.java.GraphPlotter;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
@@ -99,6 +94,8 @@ public class Simulation implements Screen, ContactListener{
     private Texture novacBut = new Texture("novaccbut.jpg");
     private Texture blackBar = new Texture("blackçubuk.jpg");
 
+    private BitmapFont fontInfo = new BitmapFont(Gdx.files.internal("InfoFont.fnt"));
+
     
     float clock = 0;
 
@@ -111,7 +108,6 @@ public class Simulation implements Screen, ContactListener{
 
     public float period = 128f;
     public float timeSeconds = 0f;
-    private boolean isNewDay;
     public int dayCount;
     
 
@@ -126,10 +122,9 @@ public class Simulation implements Screen, ContactListener{
 
 
     public Simulation(GameMain game){
-        isNewDay = true;
         this.game = game;
         dayCount = 0;
-        font = new BitmapFont(Gdx.files.internal("InfoFont.fnt"));
+        font = fontInfo;
         viewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport);
         createMusics();
@@ -573,7 +568,6 @@ public class Simulation implements Screen, ContactListener{
             if(maskRule){
                 if(GameInfo.trueWithPossibility(50)){
                     if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){
-                
                         firstUserData[0] = "Expo";
                         population.getPopulation()[(int)(firstUserData[1])].updateHealthCondition();
                         firstBody.setUserData(firstUserData);
@@ -647,7 +641,7 @@ public class Simulation implements Screen, ContactListener{
     }
 
     private void createMusics() {
-        currentMusic = 0;
+        currentMusic = 3;
         musics = new Music[5];
         musics[0] = Gdx.audio.newMusic(Gdx.files.internal("music1.mp3"));
         musics[1] = Gdx.audio.newMusic(Gdx.files.internal("music2.mp3"));
@@ -673,12 +667,9 @@ public class Simulation implements Screen, ContactListener{
             @Override
             public void changed(ChangeEvent event, Actor actor) {                
                 if (!maskRule){
-                   
                     maskRule =true;
-                    
                 }
                 else{
-            
                     maskRule =false;
                 }
                 
@@ -798,6 +789,4 @@ public class Simulation implements Screen, ContactListener{
             }
         });
     }
-
-
 }

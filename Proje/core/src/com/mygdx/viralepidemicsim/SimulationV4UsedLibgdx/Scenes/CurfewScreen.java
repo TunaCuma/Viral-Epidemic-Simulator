@@ -3,8 +3,6 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,14 +11,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Container;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -34,12 +26,10 @@ public class CurfewScreen implements Screen{
     private ImageButton turnBack;
     private SpriteBatch batch;
     private OrthographicCamera camera;
-    private BitmapFont font;
     private BitmapFont smallerFont;
     public static Music nukeSound;
     private Texture buttonTexture = new Texture("MainTitle.png");
     private SpriteDrawable button1 = new SpriteDrawable(new Sprite(new Texture("SecondTitle.png")));
-    private SpriteDrawable button = new SpriteDrawable(new Sprite(new Texture("MainTitle.png")));
     private SpriteDrawable button3 = new SpriteDrawable(new Sprite(new Texture("ThirdTitle.png")));
 
     private SpriteDrawable button1red = new SpriteDrawable(new Sprite(new Texture("SecondTitleRed.png")));;
@@ -74,8 +64,6 @@ public class CurfewScreen implements Screen{
                 stage.addActor(buttons[i][j]);
         
         background = new Texture("BackgroundMain.jpg");
-
-        font = new BitmapFont(Gdx.files.internal("TitleFont.fnt"), false);
         smallerFont = new BitmapFont(Gdx.files.internal("InfoFont3.fnt"), false);
 
         camera.position.set(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f, 0);
@@ -187,7 +175,7 @@ public class CurfewScreen implements Screen{
                     Gdx.input.setInputProcessor(GameMain.stage);
                     game.setScreen(GameMain.gameScreen);
                 }
-                game.gameScreen.curfews = cases;
+                GameMain.gameScreen.curfews = cases;
             }
         });
         buttons[0][0].addListener(new ChangeListener() {

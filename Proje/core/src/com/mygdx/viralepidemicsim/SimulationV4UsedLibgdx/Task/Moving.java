@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.PathFinder;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 
 public class Moving implements Task{

@@ -1,10 +1,7 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,9 +10,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Container;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -25,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Buttons.MainMenuButtons;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 
@@ -37,9 +32,7 @@ public class Parameters implements Screen{
     private ImageButton start;
     private SpriteBatch batch;
     private OrthographicCamera camera;
-    private BitmapFont font;
     private BitmapFont smallFont;
-    private Dialog dialog;
     private ImageButton curfew;
     private SpriteDrawable curfewUp;
     private SpriteDrawable curfewDown; 
@@ -107,7 +100,6 @@ public class Parameters implements Screen{
         stage.addActor(start);
         background = new Texture("BackgroundMain.jpg");
 
-        font = new BitmapFont(Gdx.files.internal("CreditsFont.fnt"), false);
         smallFont = new BitmapFont(Gdx.files.internal("NamesFont.fnt")); 
         smallFont.getData().setScale(0.7f, 0.7f);
         camera.position.set(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f, 0);
@@ -194,16 +186,9 @@ public class Parameters implements Screen{
             public void changed(ChangeEvent event, Actor actor) {
                 GameMain.popSound.stop();
                 GameMain.popSound.play();
-                if(GameMain.beforeScreen == 3) {
-                    GameMain.stage = GameMain.gameScreen.getStage();
-                    Gdx.input.setInputProcessor(GameMain.stage);
-                    game.setScreen(GameMain.gameScreen);
-                }
-                else {
-                    GameMain.stage = GameMain.openingScreen.getButtons().getStage();
-                    Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
-                    game.setScreen(GameMain.openingScreen);
-                }
+                GameMain.stage = GameMain.openingScreen.getButtons().getStage();
+                Gdx.input.setInputProcessor(GameMain.openingScreen.getButtons().getStage());
+                game.setScreen(GameMain.openingScreen);
             }
         });
 
@@ -225,11 +210,10 @@ public class Parameters implements Screen{
                 
 
 
-                GameMain.gameScreen.population.randomInfection((int)patientNumber.getValue());
-                GameMain.gameScreen.population.randomVaccination((int)(GameInfo.population * vaccination.getValue()));
+                Simulation.population.randomInfection((int)patientNumber.getValue());
+                Simulation.population.randomVaccination((int)(GameInfo.population * vaccination.getValue()));
 
-
-
+                MainMenuButtons.simInitialized = true;
             }
         });
         curfew.addListener(new ChangeListener() {
@@ -253,17 +237,17 @@ public class Parameters implements Screen{
              */
             public void changed(ChangeEvent event, Actor actor) {                
                 if(selectBox.getSelected().equals("SARS-CoV-2")){
-                    killRate.setValue(0.3f);
-                    spreadRate.setValue(0.70f);
+                    killRate.setValue(0.05f);
+                    spreadRate.setValue(0.55f);
     
                 }
                 else if(selectBox.getSelected().equals("Influenza")){
-                    killRate.setValue(0.01f);
-                    spreadRate.setValue(0.33f);
+                    killRate.setValue(0.02f);
+                    spreadRate.setValue(0.45f);
                 }
                 else if(selectBox.getSelected().equals("Rabies")){
-                    killRate.setValue(0.40f);
-                    spreadRate.setValue(0.15f);
+                    killRate.setValue(0.01f);
+                    spreadRate.setValue(0.25f);
                 }
             }
         });
@@ -284,6 +268,9 @@ public class Parameters implements Screen{
 
     public Stage getStage() {
         return stage;
+    }
+
+    public void reset() {
     }
 
 }

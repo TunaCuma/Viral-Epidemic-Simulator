@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.ai.pfa.Graph;
-
 public class GraphPlotter {
     
     public static int[][] dataSaver = new int[100][4];

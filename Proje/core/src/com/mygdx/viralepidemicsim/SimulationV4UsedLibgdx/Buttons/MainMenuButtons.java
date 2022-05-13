@@ -22,14 +22,14 @@ public class MainMenuButtons {
     private Viewport gameViewport;
 
     private ImageButton simulation;
-    private ImageButton gamee;
     private ImageButton howTo;
     private ImageButton credits;
     private ImageButton settings;
     private ImageButton exit;
 
+    private SpriteDrawable template = new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png")));
     private BitmapFont fontNames;
-    private boolean simInitialized;
+    public static boolean simInitialized;
 
     
     /**
@@ -48,7 +48,6 @@ public class MainMenuButtons {
         Gdx.input.setInputProcessor(stage);
 
         stage.addActor(simulation);
-        stage.addActor(gamee);
         stage.addActor(howTo);
         stage.addActor(credits);
         stage.addActor(settings);
@@ -62,15 +61,13 @@ public class MainMenuButtons {
      * Creating new buttons with their names and positioning them
      */
     void createButtons() {
-        simulation = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
-        gamee = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
-        howTo = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
-        credits = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
-        settings = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
-        exit = new ImageButton(new SpriteDrawable(new Sprite(new Texture("BiggerMainButton.png"))));
+        simulation = new ImageButton(template);
+        howTo = new ImageButton(template);
+        credits = new ImageButton(template);
+        settings = new ImageButton(template);
+        exit = new ImageButton(template);
 
-        simulation.setPosition(GameInfo.WIDTH/2f-GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/20f, Align.center);
-        gamee.setPosition(GameInfo.WIDTH/2f +GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-GameInfo.HEIGHT/20f, Align.center);
+        simulation.setPosition(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/20f, Align.center);
         howTo.setPosition(GameInfo.WIDTH/2f-GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-3*GameInfo.HEIGHT/20f, Align.center);
         credits.setPosition(GameInfo.WIDTH/2f +GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-3*GameInfo.HEIGHT/20f, Align.center);
         settings.setPosition(GameInfo.WIDTH/2f-GameInfo.WIDTH/9.6f, GameInfo.HEIGHT/2f-5*GameInfo.HEIGHT/20f, Align.center);
@@ -95,7 +92,6 @@ public class MainMenuButtons {
                     game.setScreen(GameMain.gameScreen);
                 }
                 else{
-                    simInitialized = true;
                     GameMain.popSound.stop();
                     GameMain.popSound.play();
                     GameMain.beforeScreen = 0;
@@ -104,17 +100,6 @@ public class MainMenuButtons {
                     game.setScreen(GameMain.parametersScreen);
                 }
                 
-            } 
-        });
-        gamee.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                GameMain.popSound.stop();
-                GameMain.popSound.play();
-                GameMain.beforeScreen = 0;
-                GameMain.stage = (Stage) GameMain.vaccinated.getStage();
-                Gdx.input.setInputProcessor(GameMain.stage);
-                game.setScreen(GameMain.vaccinated);
             } 
         });
         exit.addListener(new ChangeListener() {
