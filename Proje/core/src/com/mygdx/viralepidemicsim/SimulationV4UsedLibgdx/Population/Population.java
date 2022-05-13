@@ -90,8 +90,8 @@ public class Population {
         createOldArrayList();
     }
 
-    /**
-     * creates young arrL
+   /**
+     * Creates an arraylist that contain all young persons in population.
      */
     public void createYoungArrayList(){
         youngArr = new ArrayList<>();
@@ -103,7 +103,7 @@ public class Population {
     }
 
     /**
-     * creates young adult arrL
+     * Creates an arraylist that contain all young adult persons in population.
      */
     public void createYoungAdultArrayList(){
         youngAdultArr = new ArrayList<>();
@@ -115,7 +115,7 @@ public class Population {
     }
 
     /**
-     * creates adult arrayList
+     * Creates an arraylist that contain all adult persons in population.
      */
     public void createAdultArrayList(){
         adultArr = new ArrayList<>();
@@ -127,7 +127,7 @@ public class Population {
     }
 
     /**
-     * creates old arrL
+     * Creates an arraylist that contain all old persons in population.
      */
     public void createOldArrayList(){
         oldArr = new ArrayList<>();
@@ -139,7 +139,8 @@ public class Population {
     }
 
     /**
-     * Updates young arraylist 
+     * After young array list created arraylist will be used for containing susceptible and exposed people. This method
+     * updates young arraylist accordingly.
      */
     public void updateYoungArrayList(){
         ArrayList<Person> newYoungArr = new ArrayList<>();
@@ -153,7 +154,8 @@ public class Population {
     }
 
     /**
-     * updates young adult arraylist
+     * After young adult array list created arraylist will be used for containing susceptible and exposed people. This method
+     * updates young adult arraylist accordingly.
      */
     public void updateYoungAdultArrayList(){
         ArrayList<Person> newYoungAdultArr = new ArrayList<>();
@@ -166,6 +168,10 @@ public class Population {
         youngAdultArr = newYoungAdultArr;
     }
 
+    /**
+     * After adult array list created arraylist will be used for containing susceptible and exposed people. This method
+     * updates adult arraylist accordingly.
+     */
     public void updateAdultArrayList(){
         ArrayList<Person> newAdultArr = new ArrayList<>();
         for(int i = 0; i < adultArr.size(); i++){
@@ -210,18 +216,20 @@ public class Population {
         }
     }
 
+    /**
+     * 
+     * @return number of people
+     */
     public int getNumberOfPeople(){
         return population.length;
     }
 
+    /**
+     * 
+     * @return array that contains persons in population.
+     */
     public Person[] getPopulation(){
         return population;
-    }
-
-    public void healthUpdate(){
-        for(int i = 0; i < population.length ; i++){
-            population[i].updateHealthCondition();
-        }
     }
 
     /**
@@ -297,6 +305,9 @@ public class Population {
         return true;
     }
 
+    /**
+     * Quarantines those aged 19 to 40.
+     */
     public void curfew19to40() {
         for(int i = 0; i < population.length; i++){
             if(population[i].type.equals("YoungAdult")){
@@ -305,6 +316,9 @@ public class Population {
         }
     }
 
+    /**
+     * Quarantines those aged 19 to 40.
+     */
     public void curfew40to65() {
         for(int i = 0; i < population.length; i++){
             if(population[i].type.equals("Adult")){
@@ -313,6 +327,9 @@ public class Population {
         }
     }
 
+    /**
+     * Removes quarantines those aged 40 to 65.
+     */
     public void removeCurfew40to65() {
         for(int i = 0; i < population.length; i++){
             if(population[i].type.equals("Adult")){
@@ -321,6 +338,10 @@ public class Population {
         }
     }
 
+    
+    /**
+     * Removes quarantines those aged 19 to 40.
+     */
     public void removeCurfew19to40() {
         for(int i = 0; i < population.length; i++){
             if(population[i].type.equals("YoungAdult")){
@@ -329,8 +350,24 @@ public class Population {
         }
     }
 
+    /**
+     * Vaccinates a random person.
+     */
     public void randomVaccine(){
-        
+        int random = GameInfo.randomBetween(0, 4);
+
+        if(random == 0){
+            randomYoungVaccine();
+        }
+        else if(random ==1){
+            randomYoungAdultVaccine();
+        }
+        else if(random == 2){
+            randomAdultVaccine();
+        }
+        else{
+            randomOldVaccine();
+        }
     }
 
     /**
@@ -375,10 +412,9 @@ public class Population {
 
     }
 
-    // public void createRandom() {
-    //     population[]
-    // }
-
+    /**
+     * Kill a random person.
+     */
     public void killRandom() {
         int ran = GameInfo.randomBetween(0, population.length);
         if (population[ran].body.isActive()) {
@@ -422,6 +458,9 @@ public class Population {
         }
     }
 
+    /**
+     * @return return number of active person in population.
+     */
     public int isActiveCount() {
         int counter = 0;
         for (int i = 0; i<population.length; i++) {
