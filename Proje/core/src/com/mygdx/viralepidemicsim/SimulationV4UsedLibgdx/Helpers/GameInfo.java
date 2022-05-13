@@ -13,7 +13,6 @@ public class GameInfo {
     //instantiative variables
     public static int WIDTH = 10000;
     public static int HEIGHT = 10000;
-    public static float PPM = 1;
     public static float rateOfSpread = 1;
     public static float rateOfKill = 1; 
     public static int population = 504;

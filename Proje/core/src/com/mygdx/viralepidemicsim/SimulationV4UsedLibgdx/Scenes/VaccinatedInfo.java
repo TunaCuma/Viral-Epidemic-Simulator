@@ -35,6 +35,7 @@ public class VaccinatedInfo implements Screen{
     private Texture old;
     private Texture adult;
 
+    GameMain main;
     /**
      * Constructor
      * @param main the GameMain object which will store this screen
@@ -59,6 +60,8 @@ public class VaccinatedInfo implements Screen{
         background = new Texture("BackgroundMain.jpg");
 
         camera.position.set(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f, 0);
+
+        main = this.main;
     }
 
     @Override
@@ -76,6 +79,8 @@ public class VaccinatedInfo implements Screen{
         game.getBatch().draw(background, 0, 0);
         game.getBatch().end();
 
+        GameMain.gameScreen.population.updateCounts();
+
         //Draws the names of the buttons on the buttons
         batch.begin();
         batch.draw(infoCard, (GameInfo.WIDTH/2)-418, GameInfo.HEIGHT/2-150);
@@ -90,9 +95,10 @@ public class VaccinatedInfo implements Screen{
         font.draw(batch, ": " + Simulation.vaccinatedOld, GameInfo.WIDTH/3f + 55,  GameInfo.HEIGHT/1.2f-388);
 
         font.draw(batch, "Susceptible: " + Simulation.population.susceptibleCount, GameInfo.WIDTH/3f + 250, GameInfo.HEIGHT/1.2f-248);
-        font.draw(batch, "Immune: " + Simulation.population.immuneCount, GameInfo.WIDTH/3f + 250, GameInfo.HEIGHT/1.2f-318);
+        font.draw(batch, "Infected: " + Simulation.population.immuneCount, GameInfo.WIDTH/3f + 250, GameInfo.HEIGHT/1.2f-318);
         font.draw(batch, "Removed: " + Simulation.population.removedCount, GameInfo.WIDTH/3f + 250, GameInfo.HEIGHT/1.2f-388);
         batch.end();
+
 
         //Draws the stage and the buttons in it
         stage.draw();

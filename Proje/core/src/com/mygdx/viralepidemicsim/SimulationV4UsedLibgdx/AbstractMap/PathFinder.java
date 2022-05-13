@@ -104,16 +104,6 @@ public class PathFinder {
     }
 
 
-    public void createEveryPath(){
-        for(int i = 0; i < 31; i++){
-            for(int j = 0; j < 31; j++){
-                if(i==j){
-                    continue;
-                }
-                everyPath.add((dijkstra(i, j)));
-            }
-        }
-    }
  
 }
  

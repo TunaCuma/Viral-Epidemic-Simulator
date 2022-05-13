@@ -95,6 +95,11 @@ public class Population {
         createOldArrayList();
     }
 
+    public void updateCounts(){
+        removedCount = immuneCount + deadCount;
+        susceptibleCount = GameInfo.population - infectedCount - removedCount;
+    }
+
    /**
      * Creates an arraylist that contain all young persons in population.
      */

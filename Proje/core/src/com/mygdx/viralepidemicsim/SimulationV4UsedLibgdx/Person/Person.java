@@ -406,13 +406,13 @@ public class Person extends Sprite{
         //a static body does not affected by gravity or other forces.
         bodyDef.type = BodyDef.BodyType.DynamicBody;
 
-        bodyDef.position.set(getX() / GameInfo.PPM , getY() / GameInfo.PPM);
+        bodyDef.position.set(getX() , getY() );
 
         body = world.createBody(bodyDef);
         
         
         CircleShape shape = new CircleShape();
-        shape.setRadius(getWidth() * 3.2f / GameInfo.PPM);
+        shape.setRadius(getWidth() * 3.2f );
         //shape.setAsBox((getWidth() * 10) / GameInfo.PPM, (getWidth() * 10) / GameInfo.PPM );
 
         FixtureDef fixtureDef = new FixtureDef();
@@ -447,10 +447,10 @@ public class Person extends Sprite{
      */
     public void updatePerson(){
         if(body.getLinearVelocity().x > 0){
-            setPosition((body.getPosition().x )* GameInfo.PPM, body.getPosition().y * GameInfo.PPM);
+            setPosition((body.getPosition().x ), body.getPosition().y );
         }
         else if(body.getLinearVelocity().x < 0){
-            setPosition((body.getPosition().x )* GameInfo.PPM, body.getPosition().y * GameInfo.PPM);
+            setPosition((body.getPosition().x ), body.getPosition().y );
         }
     }
 
