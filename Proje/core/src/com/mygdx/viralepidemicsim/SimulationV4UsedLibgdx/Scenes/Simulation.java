@@ -42,7 +42,7 @@ public class Simulation implements Screen, ContactListener{
     private OrthographicCamera box2DCamera;
     private Box2DDebugRenderer debugRenderer;
     protected static Music[] musics;
-    private int currentMusic;
+    private static int currentMusic;
     private Stage stage;
     private Viewport viewport;
     private ImageButton settings;
@@ -390,11 +390,7 @@ public class Simulation implements Screen, ContactListener{
 
         
         //manually looping the music list
-        if(!musics[currentMusic].isPlaying()) {
-            if(currentMusic == 4)
-                currentMusic = -1;
-            musics[++currentMusic].play();
-        }
+        musicPlayer();
 
         if(continueTime.isChecked()){
             timeSeconds +=Gdx.graphics.getDeltaTime();
@@ -625,7 +621,7 @@ public class Simulation implements Screen, ContactListener{
         musics[0] = Gdx.audio.newMusic(Gdx.files.internal("music1.mp3"));
         musics[1] = Gdx.audio.newMusic(Gdx.files.internal("music2.mp3"));
         musics[2] = Gdx.audio.newMusic(Gdx.files.internal("music3.mp3"));
-        musics[3] = Gdx.audio.newMusic(Gdx.files.internal("music4.mp3"));
+        musics[3] = Gdx.audio.newMusic(Gdx.files.internal("NewDaySound.mp3"));
         musics[4] = Gdx.audio.newMusic(Gdx.files.internal("music5.mp3"));
         newDaySound = Gdx.audio.newMusic(Gdx.files.internal("NewDaySound.mp3"));
 
@@ -769,5 +765,12 @@ public class Simulation implements Screen, ContactListener{
 
             }
         });
+    }
+    public static void musicPlayer() {
+        if(!musics[currentMusic].isPlaying()) {
+            if(currentMusic == 4)
+                currentMusic = -1;
+            musics[++currentMusic].play();
+        }
     }
 }
