@@ -80,6 +80,8 @@ public class Simulation implements Screen, ContactListener{
     private SpriteDrawable continueTimePressed;
     private SpriteDrawable fasterPressed;
     private Texture fog;
+    private Person currentPerson;
+
 
 
     public static int vaccinatedYoung = 0;
@@ -464,13 +466,7 @@ public class Simulation implements Screen, ContactListener{
             game.getBatch().draw(fog, 0, 0, 1920, 1080);
         }
 
-        
-
-        
-        
-
         //Drawing the population one by one
-        Person currentPerson;
         for(int i = 0; i < population.getNumberOfPeople(); i++){
             currentPerson = population.getPopulation()[i];
             if(!currentPerson.isInBuilding)
