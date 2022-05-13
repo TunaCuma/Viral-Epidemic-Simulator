@@ -51,6 +51,8 @@ public class GameMain extends Game{
         pixmap.dispose();
         popSound = Gdx.audio.newMusic(Gdx.files.internal("popSound.mp3"));
         Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+        Gdx.graphics.setWindowedMode(1920, 1080);
+        
         batch = new SpriteBatch();
         GameInfo.create();
         createScreens();
