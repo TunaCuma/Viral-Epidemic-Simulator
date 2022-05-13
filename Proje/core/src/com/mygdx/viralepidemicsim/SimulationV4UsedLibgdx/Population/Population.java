@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.FinalVariables;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
@@ -17,6 +16,12 @@ public class Population {
     public int infectedCount, immuneCount, deadCount;
     public int removedCount = immuneCount + deadCount;
     public int susceptibleCount = GameInfo.population - infectedCount - removedCount;
+
+    public final static double ratioOfYoung = 33.2;
+    public final static double ratioOfYoungAdult = 29.9;
+    public final static double ratioOfAdult = 23.1;
+    public final static double ratioOfOld = 13.8;
+
 
     public Person[] population;
     World world;
@@ -31,6 +36,7 @@ public class Population {
     ArrayList<Person> adultArr;
     ArrayList<Person> oldArr;
     
+
 
     /**
      * constructs the population objects
@@ -69,17 +75,17 @@ public class Population {
             
 
 
-            if(randomBetween0to100 < 33.2) {
-                population[i] = new Person(world,map,"Susp.png", xPosition , yPosition , FinalVariables.YOUNG_IMMUNITY,menu,houseIndexes[selectedHouse], "Young");
+            if(randomBetween0to100 < GameInfo.ratioOfYoung) {
+                population[i] = new Person(world,map,"Susp.png", xPosition , yPosition , menu,houseIndexes[selectedHouse], "Young");
             }
-            else if( randomBetween0to100 < 63.1) {
-                population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, FinalVariables.YOUNG_ADULT_IMMUNITY,menu,houseIndexes[selectedHouse], "YoungAdult");
+            else if( randomBetween0to100 < GameInfo.ratioOfYoung + GameInfo.ratioOfYoungAdult) {
+                population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, menu,houseIndexes[selectedHouse], "YoungAdult");
             }
-            else if( randomBetween0to100 < 86.2 ) {
-                population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, FinalVariables.ADULT_IMMUNITY,menu,houseIndexes[selectedHouse], "Adult");
+            else if( randomBetween0to100 < GameInfo.ratioOfYoung + GameInfo.ratioOfYoungAdult + GameInfo.ratioOfAdult ) {
+                population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, menu,houseIndexes[selectedHouse], "Adult");
             }
             else { //Old
-                population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, FinalVariables.OLD_IMMUNITY,menu,houseIndexes[selectedHouse], "Old");
+                population[i] = new Person(world,map,"Susp.png", xPosition, yPosition, menu,houseIndexes[selectedHouse], "Old");
             }
 
         }
