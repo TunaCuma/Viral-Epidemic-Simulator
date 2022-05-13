@@ -393,7 +393,7 @@ public class Person extends Sprite{
         Vector2 desiredVelocity = direction.scl(speedToUse);
         Vector2 changeInVelocity = desiredVelocity.sub(body.getLinearVelocity());
         
-        Vector2 force = changeInVelocity.scl(body.getMass()*60.0f);
+        Vector2 force = changeInVelocity.scl(body.getMass()*30.0f);
         body.applyForce(force, body.getWorldCenter(), true);
     }
 
