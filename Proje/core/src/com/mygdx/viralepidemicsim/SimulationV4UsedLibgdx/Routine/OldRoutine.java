@@ -14,7 +14,7 @@ public class OldRoutine implements Routine {
             
 
     public Task[] taskList;
-    public int buildingList[] = new int[]{0,10,17,20,22,24,26,29};
+    public int buildingList[] = new int[]{10,17,20,22,24,26,29};
 
     public OldRoutine(Person person, Simulation sim,GridMap gm){
 

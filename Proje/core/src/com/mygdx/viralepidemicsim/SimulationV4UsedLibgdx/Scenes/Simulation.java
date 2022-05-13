@@ -543,7 +543,7 @@ public class Simulation implements Screen, ContactListener{
         
         String healthCondition2 = ((String) secondUserData[0]);
 
-        if(GameInfo.trueWithPossibility((int)(GameInfo.rateOfSpread * 100))){
+        if(GameInfo.trueWithPossibility((int)(GameInfo.rateOfSpread * 10))){
             if(maskRule){
                 if(GameInfo.trueWithPossibility(50)){
                     if(healthCondition2.equals("Infe") && healthCondition1.equals("Susp") ){

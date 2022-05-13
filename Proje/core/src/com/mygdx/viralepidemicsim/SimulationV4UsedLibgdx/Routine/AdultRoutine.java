@@ -15,7 +15,7 @@ public class AdultRoutine implements Routine{
 
     public Task[] taskList;
 
-    public int buildingList[] = new int[]{5,7,10,0,15,16,22,24,25,27};
+    public int buildingList[] = new int[]{5,7,10,15,16,22,24,25,27};
 
     public AdultRoutine(Person person, Simulation sim,GridMap gm){
 

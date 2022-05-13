@@ -13,7 +13,7 @@ public class YoungRoutine implements Routine{
             
 
     public Task[] taskList;
-    public int buildingList[] = new int[]{0,7,10,15,16,22,24,25,29};
+    public int buildingList[] = new int[]{7,10,15,16,22,24,25,29};
 
     public YoungRoutine(Person person, Simulation sim,GridMap gm){
 
