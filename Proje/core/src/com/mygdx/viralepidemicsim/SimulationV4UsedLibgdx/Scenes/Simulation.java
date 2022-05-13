@@ -159,8 +159,8 @@ public class Simulation implements Screen, ContactListener{
         stage.addActor(continueTime);
         stage.addActor(faster);
         box2DCamera = new OrthographicCamera();
-        box2DCamera.setToOrtho(false, GameInfo.WIDTH/GameInfo.PPM, GameInfo.HEIGHT/GameInfo.PPM);
-        box2DCamera.position.set((GameInfo.WIDTH/2f)/GameInfo.PPM , (GameInfo.HEIGHT/2f)/GameInfo.PPM,0);
+        box2DCamera.setToOrtho(false, GameInfo.WIDTH, GameInfo.HEIGHT);
+        box2DCamera.position.set((GameInfo.WIDTH/2f), (GameInfo.HEIGHT/2f),0);
 
         debugRenderer = new Box2DDebugRenderer(); 
 
@@ -191,26 +191,6 @@ public class Simulation implements Screen, ContactListener{
         daysBanned = new boolean[7];
     }
     
-
-    private void addAnalyzeButton() {
-        //analyzeImage = new SpriteDrawable(new Sprite(new Texture("analyze.png") ));
-        //analyzeImageDown = new SpriteDrawable(new Sprite(new Texture("analyzedown.png") ));
-        //analyzeButton = new ImageButton(analyzeImage, analyzeImageDown);
-        //analyzeButton.setPosition(1390, 20);
-        //
-        //analyzeButton.addListener(new ChangeListener() {
-        //    @Override
-        //    public void changed(ChangeEvent event, Actor actor) {
-        //        GameMain.popSound.stop();
-        //        GameMain.popSound.play();
-        //        GameMain.beforeScreen = 0;
-        //        GameMain.stage = (Stage) GameMain.vaccinated.getStage();
-        //        Gdx.input.setInputProcessor(GameMain.stage);
-        //        game.setScreen(GameMain.vaccinated);
-        //
-        //    } 
-        //});
-    }
 
 
     private void addTimeButtons() {
