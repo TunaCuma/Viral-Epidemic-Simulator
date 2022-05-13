@@ -31,7 +31,6 @@ public class Settings implements Screen{
     private BitmapFont font;
     private BitmapFont musicVolume;
     private BitmapFont sfxVolume;
-    public static Music nukeSound;
 
     Skin skin = new Skin(Gdx.files.internal("pixthulhu/skin/pixthulhu-ui.json"));
     private Slider volumeMusicSlider = new Slider( 0f, 1f, 0.1f,false, skin );
@@ -47,8 +46,6 @@ public class Settings implements Screen{
      * @param main the GameMain object which will store this screen
      */
     public Settings(GameMain main) {
-        nukeSound = Gdx.audio.newMusic(Gdx.files.internal("nuke.mp3"));
-        nukeSound.setVolume(1f);
         //nukeSound.play();
 
         batch = new SpriteBatch();
@@ -72,7 +69,7 @@ public class Settings implements Screen{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 GameMain.popSound.setVolume(sfxSlide.getValue());
-                nukeSound.setVolume(sfxSlide.getValue());
+                Simulation.newDaySound.setVolume(sfxSlide.getValue());
             }
             
         });
