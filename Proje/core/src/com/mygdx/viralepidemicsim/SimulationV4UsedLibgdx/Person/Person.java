@@ -123,6 +123,10 @@ public class Person extends Sprite{
     
     }
 
+    /**
+     * This method assign a work to person. Currently assigning work basicly means assigning a workplace.
+     * Every person will go to their workplace in the begining of day then spend a considerable amount of time there.
+     */
     public void assignWork(){
         int randomBetween0to100 = GameInfo.randomBetween(0, 100);
         if(randomBetween0to100 < 45){
@@ -166,11 +170,17 @@ public class Person extends Sprite{
     }
 
     
-
+    /**
+     * This method get person exposed. It is called when susceptible person encounter with infected person.
+     */
     public void getExposed() {
         this.healthStatus = "Expo";
     }
 
+    /**
+     * In the start of everyday this method is called for every person.
+     * To do..
+     */
     public void startDay(){
         if (menu.dayCount == healDay) {
             getImmune();
@@ -185,7 +195,7 @@ public class Person extends Sprite{
             double possiblity = 100 * GameInfo.rateOfKill * dieCoefficient;
 
             
-            if(randomBetween(0, 100) < possiblity && menu.dayCount > 0){
+            if(GameInfo.randomBetween(0, 100) < possiblity && menu.dayCount > 0){
                 die();
             }   
             
@@ -196,7 +206,7 @@ public class Person extends Sprite{
 
             boolean isInfected = false;
             for(int i = 0; i < (int)userData[2]; i++){
-                if(randomBetween(0, 100) < possiblity ){
+                if(GameInfo.randomBetween(0, 100) < possiblity ){
                     getInfected();
                     isInfected = true;
                     break;
@@ -224,12 +234,19 @@ public class Person extends Sprite{
 
     }
 
-    public int randomBetween(int first, int second){
 
-        return first + (int)(Math.random() * (second - first));
-    }
-
-
+    /**
+     * Everyday person objects will have a routine.
+     * This method assign a routine to the person.
+     * These are the current routine choices.
+     * 
+     * Standard routines are assigned if there is no curfew and person is not infected.
+     * Standard routines : YoungRoutine - YoungAdultRoutine - AdultRoutine - OldRoutine 
+     * 
+     * Infected routine : If person is infected this routine will be assigned.
+     * 
+     * Curfew routine : If person is not infected and there is a curfew going on this routine will be assigned.
+     */
     private void assignRoutine() {
         Object[] userData = (Object[])fixture.getUserData();
         healthStatus = (String)((userData)[0]);
@@ -268,11 +285,22 @@ public class Person extends Sprite{
         
     }
 
+    /**
+     * 
+     * @param buildingIndex index of building to set as home.
+     * This method will be called in the constructor and set persons home.
+     * Every person will start the day in his/her home and end it in again.
+     * 
+     */
     public void setHome(int buildingIndex){
         homeLocation = buildingIndex;
         currentLoc = homeLocation;
     }
 
+    /**
+     *  This method execute current task if current task is not end.
+     * Will pass to next task if current task end.
+     */
     public void executeCurrentTask(){
         if(isTaskEnd()){
             if(currentTask.toString().equals("M")){
@@ -291,15 +319,27 @@ public class Person extends Sprite{
             executeTask(taskList[pointer]);
         }
     }
-
+    
+    /**
+     * todo
+     * @param buildingVertexNumber
+     */
     public void exitBuilding(int buildingVertexNumber) {
         this.map.buildings[buildingVertexNumber].removePerson(this);
     }
 
+    /**
+     * todo
+     * @param buildingVertexNumber
+     */
     public void enterBuilding(int buildingVertexNumber) {
         this.map.buildings[buildingVertexNumber].addPerson(this);
     }
 
+    /**
+     * This method allow person to pass next task.
+     * It will be called in execute current task.
+     */
     public void nextTask(){
         pointer++;
         currentTask = taskList[pointer];
@@ -310,14 +350,27 @@ public class Person extends Sprite{
 
     }
     
+    /**
+     * @return if current task end.
+     */
     public boolean isTaskEnd(){
         return currentTask.isTaskEnd();
     }
 
+    /**
+     * 
+     * @param task task to execute.
+     * This method allow task to be executed in the body.
+     * 
+     */
     public void executeTask(Task task){
         task.executeTaskOnBody();
     }
     
+    /**
+     * todo
+     * @param target
+     */
     public void goLocation(Point target) {
         Vector2 targetPosition = new Vector2((float)target.getX(),(float)target.getY());
         float targetSpeed = 5f;
@@ -346,7 +399,9 @@ public class Person extends Sprite{
     }
 
 
-
+    /**
+     * todo
+     */
     void createBody(){
 
         //a static body does not affected by gravity or other forces.
@@ -387,17 +442,10 @@ public class Person extends Sprite{
 
     }
 
-    
-    public String makeProperIndex(int index){
-        if(index<10){
-            return "00"+index;
-        }
-        if(index<100){
-            return "0"+index;
-        }
-        return "" + index;
-    }
-
+    /**
+     * This method allow us to set persons location to bodys location.
+     * 
+     */
     public void updatePerson(){
         if(body.getLinearVelocity().x > 0){
             setPosition((body.getPosition().x )* GameInfo.PPM, body.getPosition().y * GameInfo.PPM);
@@ -405,9 +453,11 @@ public class Person extends Sprite{
         else if(body.getLinearVelocity().x < 0){
             setPosition((body.getPosition().x )* GameInfo.PPM, body.getPosition().y * GameInfo.PPM);
         }
-    
     }
 
+    /**
+     * This method will  be called in constructor. Infect person.
+     */
     public void firstInfection(){
         Object[] userData = (Object[])fixture.getUserData();
 
@@ -420,6 +470,9 @@ public class Person extends Sprite{
         updateHealthCondition();
     }
 
+    /**
+     * This method infect person.
+     */
     public void getInfected(){
         healDay = menu.dayCount+5;
 
@@ -439,6 +492,11 @@ public class Person extends Sprite{
 
     }
     
+
+    /**
+     * This method allow person to get immunity.
+     * Immune persons will not affected by infection.
+     *  */    
     public void getImmune(){
         Object[] userData = (Object[])fixture.getUserData();
 
@@ -455,7 +513,10 @@ public class Person extends Sprite{
 
     }
 
-
+    /**
+     * This method updates health condition of person according to its fixture.
+     * Fixture is updating in the simulation every time there is a necessary change.
+     */
     public void updateHealthCondition(){
         healthStatus = (String)(((Object[])fixture.getUserData())[0]);
         if(healthStatus.equals("Susp"))
@@ -468,16 +529,18 @@ public class Person extends Sprite{
             setTexture(Population.IMMU_TEXTURE);
     }
 
+    /**
+     * 
+     * @return body of person.
+     */
     public Body getBody(){
         return body;
     }
 
-
-
-    public int getImmunity() {
-        return immunity;
-    }
-
+    /**
+     * This method is for killing person. Person will die after this method called and
+     * there wont be any change in that person.
+     */
     public void die(){
         Object[] userData = (Object[])fixture.getUserData();
 
