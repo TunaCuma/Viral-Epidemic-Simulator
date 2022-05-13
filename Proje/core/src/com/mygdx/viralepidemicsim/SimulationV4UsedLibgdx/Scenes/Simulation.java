@@ -25,7 +25,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.GraphPlotter.java.GraphPlotter;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
@@ -375,9 +374,6 @@ public class Simulation implements Screen, ContactListener{
             population.fullCurfew();
         }
         population.startDay();
-        GraphPlotter.dataSaver[dayCount][1] = population.susceptibleCount;
-        GraphPlotter.dataSaver[dayCount][2] = population.infectedCount;
-        GraphPlotter.dataSaver[dayCount][3] = population.removedCount;
         newDayFont.setColor(newDayFont.getColor().r, newDayFont.getColor().g, newDayFont.getColor().b, 1f);
         temp = 1;
         newDaySound.play();
