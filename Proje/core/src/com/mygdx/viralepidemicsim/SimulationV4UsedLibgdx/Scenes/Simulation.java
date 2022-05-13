@@ -57,9 +57,9 @@ public class Simulation implements Screen, ContactListener{
     private ImageButton vaccButton;
     private SpriteDrawable vaccImage;
     private SpriteDrawable vaccImageDown;
-    private ImageButton analyzeButton;
-    private SpriteDrawable analyzeImage;
-    private SpriteDrawable analyzeImageDown;
+    //private ImageButton analyzeButton;
+    //private SpriteDrawable analyzeImage;
+    //private SpriteDrawable analyzeImageDown;
     private SpriteDrawable adult;
     private SpriteDrawable adultDown;
     private SpriteDrawable young;
@@ -138,7 +138,7 @@ public class Simulation implements Screen, ContactListener{
         addCurfewButton();
         addTurnBackButton();
         addVaccinationButton();
-        addAnalyzeButton();
+        //addAnalyzeButton();
         addAdult();
         addYoung();
         addYoungAdult();
@@ -148,7 +148,7 @@ public class Simulation implements Screen, ContactListener{
         stage.addActor(curfew);
         stage.addActor(turnBack);
         stage.addActor(vaccButton);
-        stage.addActor(analyzeButton);
+        //stage.addActor(analyzeButton);
         stage.addActor(adultButton);
         stage.addActor(youngButton);
         stage.addActor(youngAdultButton);
@@ -191,23 +191,23 @@ public class Simulation implements Screen, ContactListener{
     
 
     private void addAnalyzeButton() {
-        analyzeImage = new SpriteDrawable(new Sprite(new Texture("analyze.png") ));
-        analyzeImageDown = new SpriteDrawable(new Sprite(new Texture("analyzedown.png") ));
-        analyzeButton = new ImageButton(analyzeImage, analyzeImageDown);
-        analyzeButton.setPosition(1390, 20);
-        
-        analyzeButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                GameMain.popSound.stop();
-                GameMain.popSound.play();
-                GameMain.beforeScreen = 0;
-                GameMain.stage = (Stage) GameMain.vaccinated.getStage();
-                Gdx.input.setInputProcessor(GameMain.stage);
-                game.setScreen(GameMain.vaccinated);
-
-            } 
-        });
+        //analyzeImage = new SpriteDrawable(new Sprite(new Texture("analyze.png") ));
+        //analyzeImageDown = new SpriteDrawable(new Sprite(new Texture("analyzedown.png") ));
+        //analyzeButton = new ImageButton(analyzeImage, analyzeImageDown);
+        //analyzeButton.setPosition(1390, 20);
+        //
+        //analyzeButton.addListener(new ChangeListener() {
+        //    @Override
+        //    public void changed(ChangeEvent event, Actor actor) {
+        //        GameMain.popSound.stop();
+        //        GameMain.popSound.play();
+        //        GameMain.beforeScreen = 0;
+        //        GameMain.stage = (Stage) GameMain.vaccinated.getStage();
+        //        Gdx.input.setInputProcessor(GameMain.stage);
+        //        game.setScreen(GameMain.vaccinated);
+        //
+        //    } 
+        //});
     }
 
 
@@ -449,8 +449,6 @@ public class Simulation implements Screen, ContactListener{
             game.getBatch().setColor(c.r, c.g, c.b, (float) (0.6 * ((timeSeconds/period-0.67)*3)));//set alpha to 0.3
             game.getBatch().draw(fog, 0, 0, 1920, 1080);
         }
-        
-        game.getBatch().setColor(c.r, c.g, c.b, 1f);//set alpha to 0.3
 
         //Drawing the population one by one
         for(int i = 0; i < population.getNumberOfPeople(); i++){
@@ -460,6 +458,7 @@ public class Simulation implements Screen, ContactListener{
         }
 
 
+        game.getBatch().setColor(c.r, c.g, c.b, 1f);//set alpha to 0.3
         game.getBatch().draw(gui, 0, 0);
 
 
@@ -480,7 +479,29 @@ public class Simulation implements Screen, ContactListener{
                 font.draw(game.getBatch(),"Day: " + (dayCount + 1) + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
 
-        if (maskRule){
+        if(dayCount%7 == 0){
+            font.draw(game.getBatch(), "Monday", 1415, 60);
+        }
+        else if(dayCount%7 == 1){
+            font.draw(game.getBatch(), "Monday", 1415, 60);            
+        }
+        else if(dayCount%7 == 2){
+            font.draw(game.getBatch(), "Monday", 1415, 60);
+        }
+        else if(dayCount%7 == 3){
+            font.draw(game.getBatch(), "Monday", 1415, 60);
+        }
+        else if(dayCount%7 == 4){
+            font.draw(game.getBatch(), "Monday", 1415, 60);
+        }
+        else if(dayCount%7 == 5){
+            font.draw(game.getBatch(), "Monday", 1415, 60);
+        }
+        else if(dayCount%7 == 6){
+            font.draw(game.getBatch(), "Monday", 1415, 60);
+        }
+            
+            if (maskRule){
             game.getBatch().draw(maskLogo,20 , 20);
         }
 
@@ -633,7 +654,7 @@ public class Simulation implements Screen, ContactListener{
         for(int i = 0; i < musics.length; i++) 
             musics[i].setVolume(1f);
         newDaySound.setVolume(1f);
-    }
+     }
 
     public Stage getStage() {
         return stage;
