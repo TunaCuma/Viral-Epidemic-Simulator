@@ -54,9 +54,7 @@ public class Parameters implements Screen{
      * Constructor
      * @param main the GameMain object which will store this screen
      */
-    public Parameters(GameMain main) {
-        population.setValue(504f);
-        population.setDisabled(true);
+    public Parameters(GameMain main) {        
         selectBox.setItems("Influenza","SARS-CoV-2","Rabies");
         batch = new SpriteBatch();
         game = main;
@@ -69,9 +67,7 @@ public class Parameters implements Screen{
         
         selectBox.setSize(300, population.getHeight());
         selectBox.setPosition(1220,440);
-
-        population.setPosition(1220, 820);
-        population.setWidth(490);
+        
 
         patientNumber.setPosition(1220, 630);
         patientNumber.setWidth(490);
@@ -82,18 +78,17 @@ public class Parameters implements Screen{
         killRate.setPosition(245, 630);
         killRate.setWidth(490);
 
-        vaccination.setPosition(245, 440);
+        vaccination.setPosition(1220, 820);
         vaccination.setWidth(490);
 
-        curfew.setPosition(245, 250);
+        curfew.setPosition(245, 440);
 
 
         
 
         stage.addActor(selectBox);
         stage.addActor(killRate);
-        stage.addActor(spreadRate);
-        stage.addActor(population);
+        stage.addActor(spreadRate);        
         stage.addActor(patientNumber);
         stage.addActor(vaccination);
         stage.addActor(curfew);
@@ -130,13 +125,13 @@ public class Parameters implements Screen{
         
         //Draws the names of the buttons on the buttons
         batch.begin();
-        smallFont.draw(batch,"" + (int) population.getValue(), population.getX() + population.getWidth() + 15, population.getY() +(population.getHeight()/2) +15);
+        
         smallFont.draw(batch,"" + (int) patientNumber.getValue(), patientNumber.getX() + patientNumber.getWidth() + 15, patientNumber.getY() +(patientNumber.getHeight()/2) +15);
         smallFont.draw(batch,"%" + (int) (killRate.getValue() * 100), killRate.getX() + killRate.getWidth() + 15, killRate.getY() +(killRate.getHeight()/2) +15);
         smallFont.draw(batch,"%" + (int) (spreadRate.getValue() * 100), spreadRate.getX() + spreadRate.getWidth() + 15, spreadRate.getY() +(spreadRate.getHeight()/2) +15);
         smallFont.draw(batch,"%" + (int) (vaccination.getValue() * 100), vaccination.getX() + vaccination.getWidth() + 15, vaccination.getY() +(vaccination.getHeight()/2) +15);
 
-        smallFont.draw(batch, "Population", population.getX() + 15, population.getY() + population.getHeight() +40);
+       
         smallFont.draw(batch, "Initial Patient Number", patientNumber.getX() + 15, patientNumber.getY() + patientNumber.getHeight() +40);
         smallFont.draw(batch, "Rate of Spread", spreadRate.getX() + 15, spreadRate.getY() + spreadRate.getHeight() +40);
         smallFont.draw(batch, "Rate of Kill", killRate.getX() + 15, killRate.getY() + killRate.getHeight() +40);
