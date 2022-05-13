@@ -15,7 +15,7 @@ public class CurfewRoutine implements Routine{
 
         taskList = new Task[2];
 
-        taskList[0] = new WaitTill(person, GameInfo.randomBetween(0, 130), menu);
+        taskList[0] = new WaitTill(person,200, menu);
 
         taskList[1] = new WaitTill(person, 150, menu);
 

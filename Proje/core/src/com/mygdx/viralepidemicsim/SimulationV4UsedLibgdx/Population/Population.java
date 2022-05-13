@@ -195,8 +195,8 @@ public class Population {
      */
     public void startDay(){
         for(int i = 0; i < population.length; i++){
-            if (!population[i].isInCurfew  || (population[i].isInCurfew && population[i].healthStatus.equals("Infe")) || GameMain.gameScreen.dayCount != population[i].healDay);
-                population[i].startDay();
+            
+            population[i].startDay();
         }
     }
 
