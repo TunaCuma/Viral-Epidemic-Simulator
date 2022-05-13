@@ -68,7 +68,7 @@ public class Person extends Sprite{
 
     public float dieCoefficient;
 
-    public static float targetSpeed = 5f;
+    public static float targetSpeed = 10f;
 
 
     public Person(World world, GridMap gm, String name, float x, float y, Simulation menu, int home, String type){
