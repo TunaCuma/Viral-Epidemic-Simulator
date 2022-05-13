@@ -34,7 +34,7 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population.Population;
 
 public class Simulation implements Screen, ContactListener{
 
-    private BitmapFont font;
+    private BitmapFont font, newDayFont;
     private GameMain game;
     private Texture bg;
     private Texture gui;
@@ -98,7 +98,7 @@ public class Simulation implements Screen, ContactListener{
     private Texture blackBar = new Texture("blackçubuk.jpg");
 
     private BitmapFont fontInfo = new BitmapFont(Gdx.files.internal("InfoFont.fnt"));
-
+    private BitmapFont fontInfoNewDay = new BitmapFont(Gdx.files.internal("NewDay.fnt"));
     
     float clock = 0;
 
@@ -128,6 +128,7 @@ public class Simulation implements Screen, ContactListener{
         this.game = game;
         dayCount = 0;
         font = fontInfo;
+        newDayFont = fontInfoNewDay;
         viewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport);
         createMusics();
@@ -443,6 +444,7 @@ public class Simulation implements Screen, ContactListener{
         //Drawing the background
         game.getBatch().begin();
         game.getBatch().draw(bg, 0, 0);
+
         Color c = game.getBatch().getColor();
         renderBuildings();
         if(timeSeconds/period>0.67){
@@ -495,7 +497,8 @@ public class Simulation implements Screen, ContactListener{
         game.getBatch().draw(blackBar, 400, 10);     
         game.getBatch().draw(blackBar, 720, 10); 
         game.getBatch().draw(blackBar, 1355, 10);         
-
+        if(newDaySound.isPlaying()) 
+            newDayFont.draw(game.getBatch(), "DAY " + dayCount, GameInfo.WIDTH/2-150, GameInfo.HEIGHT/2+150);
         game.getBatch().end();
         debugRenderer.render(world, box2DCamera.combined);
 
