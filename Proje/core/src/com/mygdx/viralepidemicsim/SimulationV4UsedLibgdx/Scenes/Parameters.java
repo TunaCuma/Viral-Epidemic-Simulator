@@ -40,7 +40,6 @@ public class Parameters implements Screen{
     Skin skin = new Skin(Gdx.files.internal("pixthulhu/skin/pixthulhu-ui.json"));
 
     public Slider spreadRate = new Slider( 0f, 1f, 0.01f,false, skin );
-    public Slider population = new Slider( 0f, 504f, 1f,false, skin );
     public Slider vaccination = new Slider( 0f, 1f, 0.01f,false, skin );
     public Slider killRate = new Slider( 0f, 1f, 0.01f,false, skin );
     public Slider patientNumber = new Slider( 0f, 504f, 1f,false, skin );
@@ -65,7 +64,7 @@ public class Parameters implements Screen{
         addAllListeners();
         Gdx.input.setInputProcessor(stage);
         
-        selectBox.setSize(300, population.getHeight());
+        selectBox.setSize(300, 60);
         selectBox.setPosition(1220,440);
         
 
@@ -119,8 +118,8 @@ public class Parameters implements Screen{
         game.getBatch().draw(background, 0, 0);
         game.getBatch().end();
 
-        if(patientNumber.getValue()>population.getValue()){
-            patientNumber.setValue(population.getValue());
+        if(patientNumber.getValue()>504){
+            patientNumber.setValue(504);
         }
         
         //Draws the names of the buttons on the buttons
@@ -202,7 +201,7 @@ public class Parameters implements Screen{
                 GameInfo.setRateOfKill(killRate.getValue());
                 GameInfo.setRateOfSpread(spreadRate.getValue());
 
-                GameInfo.setPopulation((int)population.getValue());
+                GameInfo.setPopulation(504);
                 
 
 
