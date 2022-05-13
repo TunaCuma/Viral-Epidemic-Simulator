@@ -11,6 +11,12 @@ public class CurfewRoutine implements Routine{
 
     public Task[] taskList;
 
+    /**
+     * constructor for curfew routine. Assigns 2 different tasks. waittills for 2 times
+     * @param person Person whose routine will be determined
+     * @param sim simulation object
+     * @param gm GridMap object
+     */
     public CurfewRoutine(Person person, Simulation menu, GridMap map) {
 
         taskList = new Task[2];

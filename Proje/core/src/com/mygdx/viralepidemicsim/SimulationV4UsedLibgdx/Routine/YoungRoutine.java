@@ -15,6 +15,12 @@ public class YoungRoutine implements Routine{
     public Task[] taskList;
     public int buildingList[] = new int[]{7,10,15,16,22,24,25,29};
 
+    /**
+     * constructor for adult routine. Assigns 7 different tasks. assigns tasks from the buildingList specified for the YoungRoutine class
+     * @param person Person whose routine will be determined
+     * @param sim simulation object
+     * @param gm GridMap object
+     */
     public YoungRoutine(Person person, Simulation sim,GridMap gm){
 
         taskList = new Task[7];

@@ -13,10 +13,17 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Waiting;
 public class AdultRoutine implements Routine{
         
 
+    //tasklist for the routine
     public Task[] taskList;
 
     public int buildingList[] = new int[]{5,7,10,15,16,22,24,25,27};
 
+    /**
+     * constructor for adult routine. Assigns 7 different tasks. assigns tasks from the buildingList specified for the adultRoutine class
+     * @param person Person whose routine will be determined
+     * @param sim simulation object
+     * @param gm GridMap object
+     */
     public AdultRoutine(Person person, Simulation sim,GridMap gm){
 
         taskList = new Task[7];

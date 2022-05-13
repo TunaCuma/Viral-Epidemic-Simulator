@@ -143,7 +143,7 @@ public class CurfewScreen implements Screen{
     } 
 
     /**
-     * Adds functionality to the button
+     * Adds functionality to the button by adding listeners
      */
     void addAllListeners() {
         buttons[0][0].setPosition(GameInfo.WIDTH/3f-200, GameInfo.HEIGHT/1.2f-160);
@@ -285,6 +285,9 @@ public class CurfewScreen implements Screen{
         });
     }
 
+    /**
+     * creates buttons 
+     */
     void createButtons() {
         turnBack = new ImageButton(new SpriteDrawable(new Sprite(new Texture("TurnBack.png") )));
         turnBack.setPosition(170, GameInfo.HEIGHT*2/2f-60, Align.center);

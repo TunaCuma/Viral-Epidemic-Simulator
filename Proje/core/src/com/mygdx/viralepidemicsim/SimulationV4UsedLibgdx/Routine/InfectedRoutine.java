@@ -11,10 +11,18 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Task.Waiting;
 
 public class InfectedRoutine implements Routine{
     
+    //Task array for the routine
     public Task[] taskList;
 
+    //hospital location as int for the vertex index of the map
     public int hospitalLoc = 0;
 
+    /**
+     * constructor for adult routine. Assigns 5 different tasks. assigns tasks for the person to go to the hospital and back to the house assigned
+     * @param person Person whose routine will be determined
+     * @param sim simulation object
+     * @param gm GridMap object
+     */
     public InfectedRoutine(Person person, Simulation sim, GridMap gm){
      
         taskList = new Task[5];

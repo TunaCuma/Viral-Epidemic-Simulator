@@ -9,7 +9,4 @@ public interface Task {
 
     @Override
     String toString();
-
-    
-
 }

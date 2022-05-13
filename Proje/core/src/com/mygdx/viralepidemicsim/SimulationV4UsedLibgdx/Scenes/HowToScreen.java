@@ -19,7 +19,10 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain
 
 public class HowToScreen implements Screen{
 
+    //static variable
     public static Texture background;
+
+    //instantiative variables
     private ImageButton turnBack;
     private ImageButton forward;
     private OrthographicCamera camera;
@@ -58,6 +61,9 @@ public class HowToScreen implements Screen{
 
 
     }
+    /**
+     * creates button
+     */
     void createButtons() {
         turnBack = new ImageButton(new SpriteDrawable(new Sprite(new Texture("TurnBack.png") )));
         turnBack.setPosition(170, 60, Align.center);

@@ -19,7 +19,10 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Settings;
 
 public class GameMain extends Game{
 
+    //instantiative variables
     public SpriteBatch batch;
+
+    //static variables
     public static MainMenu openingScreen; // 0
     public static CreditsScreen creditsScreen; // 1
     public static HowToScreen howToScreen; // 2
@@ -33,6 +36,14 @@ public class GameMain extends Game{
     public static int beforeScreen;
 
     @Override
+    /**
+     * creates pixmap
+     * creates cursor
+     * sets cursor
+     * disposes pixmap
+     * calls createScreen method
+     * starts music
+     */
     public void create() {
         Pixmap pixmap = new Pixmap(Gdx.files.internal("cursor.png"));
         Cursor cursor = Gdx.graphics.newCursor(pixmap, 0, 0);
@@ -54,6 +65,9 @@ public class GameMain extends Game{
         return this.batch;
     }
 
+    /**
+     * creates screens of the game
+     */
     void createScreens() {
         curfewScreen = new CurfewScreen(this);
         creditsScreen = new CreditsScreen(this);
