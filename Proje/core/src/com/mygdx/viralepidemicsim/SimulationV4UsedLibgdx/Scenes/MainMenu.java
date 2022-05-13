@@ -1,166 +1,91 @@
 package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.Manifold;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.ui.Value.Fixed;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Buttons.MainMenuButtons;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population.Population;
 
+public class MainMenu implements Screen{
 
-
-public class MainMenu implements Screen, ContactListener{
-
+    private BitmapFont font;
+    public static Texture background;
+    private OrthographicCamera camera;
     private GameMain game;
+    private MainMenuButtons buttons;
+    private SpriteBatch batch;
 
-    private Texture bg;
+    /**
+     * Constructor
+     * @param main the GameMain object which will store this screen
+     */
+    public MainMenu(GameMain main) {
+        game = main;
+        font = new BitmapFont(Gdx.files.internal("TitleFont.fnt"));
+        buttons = new MainMenuButtons(game);
+        camera = new OrthographicCamera(GameInfo.WIDTH, GameInfo.HEIGHT);
+        batch = new SpriteBatch();
 
-    private Person player;
-
-    private Population population;
-    
-    private World world;
-
-    private OrthographicCamera box2DCamera;
-    private Box2DDebugRenderer debugRenderer;
-
-
-
-    public MainMenu(GameMain game){
-        this.game = game;
-
-        box2DCamera = new OrthographicCamera();
-        box2DCamera.setToOrtho(false, GameInfo.WIDTH, GameInfo.HEIGHT);
-        box2DCamera.position.set((GameInfo.WIDTH/2f) / GameInfo.PPM , (GameInfo.HEIGHT/2f) / GameInfo.PPM,0);
-
-        debugRenderer = new Box2DDebugRenderer(); 
-
-        world = new World(new Vector2(0,0), true);
-
-        world.setContactListener(this);
-
-        bg = new Texture("BlackBg.png");
-
-        population = new Population(world,50);
-
-        population.getPopulation()[0].getSick();
-
+        background = new Texture("BackgroundMain.jpg");
+        camera.position.set(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f, 0);
     }
-
     @Override
     public void show() {
-        // TODO Auto-generated method stub
-        
     }
 
     @Override
     public void render(float delta) {
-
-        population.updatePopulation();
-        population.checkBorder();
-
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
         game.getBatch().begin();
-        game.getBatch().draw(bg, 0, 0);
-        Person currentPerson;
-        for(int i = 0; i < population.getNumberOfPeople(); i++){
-            currentPerson = population.getPopulation()[i];
-
-            game.getBatch().draw(currentPerson,(currentPerson.getX() - currentPerson.getWidth()/2), (currentPerson.getY() - currentPerson.getHeight()/2));
-        }
-
-
+        game.getBatch().draw(background, 0, 0);
         game.getBatch().end();
-
-        debugRenderer.render(world, box2DCamera.combined);
-
-        world.step(Gdx.graphics.getDeltaTime(), 6, 2);
+        game.getBatch().setProjectionMatrix(buttons.getStage().getCamera().combined);
+        buttons.getStage().draw();
+        batch.begin();
         
+        font.draw(batch, "VIRAL EPIDEMIC\n   SIMULATOR", GameInfo.WIDTH/3.7f, GameInfo.HEIGHT/1.2f);
+        //Drawing the names for the buttons
+        buttons.getFontNames().draw(batch, "SIMULATION  ", GameInfo.WIDTH/2.28f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/27f);
+        buttons.getFontNames().draw(batch, "   HOW TO    ", GameInfo.WIDTH/2f-GameInfo.WIDTH/6.12f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/7.4f);
+        buttons.getFontNames().draw(batch, "         CREDITS", GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/7.4f);
+        buttons.getFontNames().draw(batch, "  SETTINGS   ", GameInfo.WIDTH/2f-GameInfo.WIDTH/6.12f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/4.23f);
+        buttons.getFontNames().draw(batch, "  EXIT TO DESKTOP", GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f -GameInfo.HEIGHT/4.23f);
+        batch.end();
     }
 
     @Override
     public void resize(int width, int height) {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void pause() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void resume() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void hide() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void dispose() {
-        // TODO Auto-generated method stub
         
+    } 
+
+    public MainMenuButtons getButtons() {
+        return buttons;
     }
-
-    @Override
-    public void beginContact(Contact contact) {
-        Fixture firstBody = contact.getFixtureA();
-        Fixture secondBody = contact.getFixtureB();
-
-
-        if(firstBody.getUserData() == ("Healthy") && secondBody.getUserData() == ("Sick")){
-
-        }
-        else if(firstBody.getUserData() == ("Sick") && secondBody.getUserData() == ("Healthy")){
-
-        }
-
-
-    }
-
-    @Override
-    public void endContact(Contact contact) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void preSolve(Contact contact, Manifold oldManifold) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void postSolve(Contact contact, ContactImpulse impulse) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    public World getWorld(){
-        return world;
-    }
-    
 }

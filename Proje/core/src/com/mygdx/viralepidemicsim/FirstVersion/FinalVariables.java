@@ -14,6 +14,7 @@ public interface FinalVariables {
      * Immunity level percentage and their change over time.
      * http://www.h-ls.jp/measurement07e.html
      */
+    final byte YOUNG_IMMUNITY = 92;
     final byte YOUNG_ADULT_IMMUNITY = 88;
     final byte YOUNG_ADULT_IMMUNITY_LAST = 76;
     final byte ADULT_IMMUNITY = 75;
@@ -36,7 +37,7 @@ public interface FinalVariables {
      * Age groups as string
      */
     final String YOUNG = "Young";
-    final String YOUNG_ADULT_NAME = "Young adult";
+    final String YOUNG_ADULT_NAME = "Young Adult";
     final String ADULT_NAME = "Adult";
     final String OLD_NAME = "Old";
 }
