@@ -81,6 +81,7 @@ public class Simulation implements Screen, ContactListener{
     private SpriteDrawable fasterPressed;
     private Texture fog;
     private Person currentPerson;
+    protected static Music newDaySound;
 
 
 
@@ -380,10 +381,6 @@ public class Simulation implements Screen, ContactListener{
             noWork = false;
         }
 
-
-
-
-
         if(daysBanned[0] && dayCount%7 == 0){
             population.fullCurfew();
         }
@@ -406,24 +403,11 @@ public class Simulation implements Screen, ContactListener{
         else if(daysBanned[6] && dayCount%7 == 6){
             population.fullCurfew();
         }
-        
-        
-        
-        
-        
-        
-
-
         population.startDay();
-
-
         GraphPlotter.dataSaver[dayCount][1] = population.susceptibleCount;
         GraphPlotter.dataSaver[dayCount][2] = population.infectedCount;
         GraphPlotter.dataSaver[dayCount][3] = population.removedCount;
-        
-
-
-        
+        newDaySound.play();
     }
 
     @Override
@@ -643,9 +627,11 @@ public class Simulation implements Screen, ContactListener{
         musics[2] = Gdx.audio.newMusic(Gdx.files.internal("music3.mp3"));
         musics[3] = Gdx.audio.newMusic(Gdx.files.internal("music4.mp3"));
         musics[4] = Gdx.audio.newMusic(Gdx.files.internal("music5.mp3"));
+        newDaySound = Gdx.audio.newMusic(Gdx.files.internal("NewDaySound.mp3"));
 
         for(int i = 0; i < musics.length; i++) 
-            musics[i].setVolume(0.5f);
+            musics[i].setVolume(1f);
+        newDaySound.setVolume(1f);
     }
 
     public Stage getStage() {
