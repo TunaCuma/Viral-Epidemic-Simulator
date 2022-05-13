@@ -55,6 +55,8 @@ public class Parameters implements Screen{
      * @param main the GameMain object which will store this screen
      */
     public Parameters(GameMain main) {
+        population.setValue(500f);
+        population.setDisabled(true);
         selectBox.setItems("Influenza","SARS-CoV-2","Rabies");
         batch = new SpriteBatch();
         game = main;
