@@ -621,7 +621,7 @@ public class Simulation implements Screen, ContactListener{
         musics[0] = Gdx.audio.newMusic(Gdx.files.internal("music1.mp3"));
         musics[1] = Gdx.audio.newMusic(Gdx.files.internal("music2.mp3"));
         musics[2] = Gdx.audio.newMusic(Gdx.files.internal("music3.mp3"));
-        musics[3] = Gdx.audio.newMusic(Gdx.files.internal("NewDaySound.mp3"));
+        musics[3] = Gdx.audio.newMusic(Gdx.files.internal("music4.mp3"));
         musics[4] = Gdx.audio.newMusic(Gdx.files.internal("music5.mp3"));
         newDaySound = Gdx.audio.newMusic(Gdx.files.internal("NewDaySound.mp3"));
 
