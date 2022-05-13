@@ -383,26 +383,26 @@ public class Simulation implements Screen, ContactListener{
             noWork = false;
         }
 
-        if(daysBanned[0] && dayCount%7 == 0){
+        if(daysBanned[6] && dayCount%7 == 0){
             population.fullCurfew();
         }
-        else if(daysBanned[1] && dayCount%7 == 1){
+        else if(daysBanned[0] && dayCount%7 == 1){
             population.fullCurfew();
             
         }
-        else if(daysBanned[2] && dayCount%7 == 2){
+        else if(daysBanned[1] && dayCount%7 == 2){
             population.fullCurfew();
         }
-        else if(daysBanned[3] && dayCount%7 == 3){
+        else if(daysBanned[2] && dayCount%7 == 3){
             population.fullCurfew();
         }
-        else if(daysBanned[4] && dayCount%7 == 4){
+        else if(daysBanned[3] && dayCount%7 == 4){
             population.fullCurfew();
         }
-        else if(daysBanned[5] && dayCount%7 == 5){
+        else if(daysBanned[4] && dayCount%7 == 5){
             population.fullCurfew();
         }
-        else if(daysBanned[6] && dayCount%7 == 6){
+        else if(daysBanned[5] && dayCount%7 == 6){
             population.fullCurfew();
         }
         population.startDay();
@@ -485,25 +485,25 @@ public class Simulation implements Screen, ContactListener{
         }
 
         if(dayCount%7 == 0){
-            font.draw(game.getBatch(), "Monday", 1415, 60);
+            font.draw(game.getBatch(), "Sunday", 1415, 60);
         }
         else if(dayCount%7 == 1){
             font.draw(game.getBatch(), "Monday", 1415, 60);            
         }
         else if(dayCount%7 == 2){
-            font.draw(game.getBatch(), "Monday", 1415, 60);
+            font.draw(game.getBatch(), "Tuesday", 1415, 60);
         }
         else if(dayCount%7 == 3){
-            font.draw(game.getBatch(), "Monday", 1415, 60);
+            font.draw(game.getBatch(), "Wednesday", 1415, 60);
         }
         else if(dayCount%7 == 4){
-            font.draw(game.getBatch(), "Monday", 1415, 60);
+            font.draw(game.getBatch(), "Thursday", 1415, 60);
         }
         else if(dayCount%7 == 5){
-            font.draw(game.getBatch(), "Monday", 1415, 60);
+            font.draw(game.getBatch(), "Friday", 1415, 60);
         }
         else if(dayCount%7 == 6){
-            font.draw(game.getBatch(), "Monday", 1415, 60);
+            font.draw(game.getBatch(), "Saturday", 1415, 60);
         }
             
             if (maskRule){
