@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
-import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 
