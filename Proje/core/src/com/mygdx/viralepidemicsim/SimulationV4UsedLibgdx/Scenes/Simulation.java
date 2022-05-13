@@ -126,7 +126,7 @@ public class Simulation implements Screen, ContactListener{
 
     public Simulation(GameMain game){
         this.game = game;
-        dayCount = 0;
+        dayCount = 1;
         font = fontInfo;
         newDayFont = fontInfoNewDay;
         viewport = new FitViewport(GameInfo.WIDTH, GameInfo.HEIGHT, new OrthographicCamera());
@@ -471,15 +471,15 @@ public class Simulation implements Screen, ContactListener{
         font.draw(game.getBatch(), "Dead: " + population.deadCount, 830, GameInfo.HEIGHT-35);
         if((int) (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))) >= 10) {
             if((int) ((int)(timeSeconds)/(period/16)) + 8 < 10)
-                font.draw(game.getBatch(),"Day: " + (dayCount + 1) + " / 0"  + (int) ((int)(timeSeconds) /(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + (dayCount) + " / 0"  + (int) ((int)(timeSeconds) /(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
-                font.draw(game.getBatch(),"Day: " + (dayCount + 1) + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + (dayCount) + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
         else {
             if((int) ((int)(timeSeconds)/(period/16)) + 8 < 10)
-                font.draw(game.getBatch(),"Day: " + (dayCount + 1) + " / 0" + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + (dayCount) + " / 0" + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
             else
-                font.draw(game.getBatch(),"Day: " + (dayCount + 1) + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
+                font.draw(game.getBatch(),"Day: " + (dayCount) + " / " + (int) ((int)(timeSeconds)/(period/16)+ 8) + ":0" + (int) ((60/(period/16)) * (int) ((timeSeconds)%(period/16))), GameInfo.WIDTH-400, GameInfo.HEIGHT-35);
         }
 
         if (maskRule){
