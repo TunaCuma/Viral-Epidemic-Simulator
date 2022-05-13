@@ -40,7 +40,6 @@ public class Parameters implements Screen{
     Skin skin = new Skin(Gdx.files.internal("pixthulhu/skin/pixthulhu-ui.json"));
 
     public Slider spreadRate = new Slider( 0f, 1f, 0.01f,false, skin );
-    public Slider population = new Slider( 0f, 504f, 1f,false, skin );
     public Slider vaccination = new Slider( 0f, 1f, 0.01f,false, skin );
     public Slider killRate = new Slider( 0f, 1f, 0.01f,false, skin );
     public Slider patientNumber = new Slider( 0f, 504f, 1f,false, skin );
@@ -54,9 +53,7 @@ public class Parameters implements Screen{
      * Constructor
      * @param main the GameMain object which will store this screen
      */
-    public Parameters(GameMain main) {
-        population.setValue(504f);
-        population.setDisabled(true);
+    public Parameters(GameMain main) {        
         selectBox.setItems("Influenza","SARS-CoV-2","Rabies");
         batch = new SpriteBatch();
         game = main;
@@ -67,11 +64,9 @@ public class Parameters implements Screen{
         addAllListeners();
         Gdx.input.setInputProcessor(stage);
         
-        selectBox.setSize(300, population.getHeight());
+        selectBox.setSize(300, 60);
         selectBox.setPosition(1220,440);
-
-        population.setPosition(1220, 820);
-        population.setWidth(490);
+        
 
         patientNumber.setPosition(1220, 630);
         patientNumber.setWidth(490);
@@ -82,18 +77,17 @@ public class Parameters implements Screen{
         killRate.setPosition(245, 630);
         killRate.setWidth(490);
 
-        vaccination.setPosition(245, 440);
+        vaccination.setPosition(1220, 820);
         vaccination.setWidth(490);
 
-        curfew.setPosition(245, 250);
+        curfew.setPosition(245, 440);
 
 
         
 
         stage.addActor(selectBox);
         stage.addActor(killRate);
-        stage.addActor(spreadRate);
-        stage.addActor(population);
+        stage.addActor(spreadRate);        
         stage.addActor(patientNumber);
         stage.addActor(vaccination);
         stage.addActor(curfew);
@@ -124,19 +118,19 @@ public class Parameters implements Screen{
         game.getBatch().draw(background, 0, 0);
         game.getBatch().end();
 
-        if(patientNumber.getValue()>population.getValue()){
-            patientNumber.setValue(population.getValue());
+        if(patientNumber.getValue()>504){
+            patientNumber.setValue(504);
         }
         
         //Draws the names of the buttons on the buttons
         batch.begin();
-        smallFont.draw(batch,"" + (int) population.getValue(), population.getX() + population.getWidth() + 15, population.getY() +(population.getHeight()/2) +15);
+        
         smallFont.draw(batch,"" + (int) patientNumber.getValue(), patientNumber.getX() + patientNumber.getWidth() + 15, patientNumber.getY() +(patientNumber.getHeight()/2) +15);
         smallFont.draw(batch,"%" + (int) (killRate.getValue() * 100), killRate.getX() + killRate.getWidth() + 15, killRate.getY() +(killRate.getHeight()/2) +15);
         smallFont.draw(batch,"%" + (int) (spreadRate.getValue() * 100), spreadRate.getX() + spreadRate.getWidth() + 15, spreadRate.getY() +(spreadRate.getHeight()/2) +15);
         smallFont.draw(batch,"%" + (int) (vaccination.getValue() * 100), vaccination.getX() + vaccination.getWidth() + 15, vaccination.getY() +(vaccination.getHeight()/2) +15);
 
-        smallFont.draw(batch, "Population", population.getX() + 15, population.getY() + population.getHeight() +40);
+       
         smallFont.draw(batch, "Initial Patient Number", patientNumber.getX() + 15, patientNumber.getY() + patientNumber.getHeight() +40);
         smallFont.draw(batch, "Rate of Spread", spreadRate.getX() + 15, spreadRate.getY() + spreadRate.getHeight() +40);
         smallFont.draw(batch, "Rate of Kill", killRate.getX() + 15, killRate.getY() + killRate.getHeight() +40);
@@ -207,7 +201,7 @@ public class Parameters implements Screen{
                 GameInfo.setRateOfKill(killRate.getValue());
                 GameInfo.setRateOfSpread(spreadRate.getValue());
 
-                GameInfo.setPopulation((int)population.getValue());
+                GameInfo.setPopulation(504);
                 
 
 
