@@ -27,7 +27,7 @@ public class InfectedRoutine implements Routine{
      
         taskList = new Task[5];
 
-        taskList[0] = new WaitTill(person,GameInfo.randomBetween(0, 15),sim);
+        taskList[0] = new WaitTill(person,GameInfo.randomBetween(0, 18),sim);
 
         taskList[1] = new Moving(person, gm, person.homeLocation, hospitalLoc);
 

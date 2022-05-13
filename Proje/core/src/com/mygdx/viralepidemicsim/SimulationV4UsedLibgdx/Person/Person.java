@@ -179,7 +179,15 @@ public class Person extends Sprite{
 
     /**
      * In the start of everyday this method is called for every person.
-     * To do..
+     * Method is mainly responsible for updating health status accordingly.
+     * Method checks if person will infect, heal or die. Infection and dying is
+     * depends on possibility.
+     * In addition It checks and enforces curfews according to age ranges from the array 
+     * called curfews and starts a new day for the population. For example, 
+     * if it has decided to apply curfew under the age of 18, it applies it to 
+     * that age group and starts the new day. 
+     * And lastly assign routine to the person according to its health condition. 
+     *
      */
     public void startDay(){
         if (menu.dayCount == healDay) {

@@ -30,7 +30,7 @@ public class YoungRoutine implements Routine{
 
         Random rand = new Random();
 
-        taskList[0] = new WaitTill(person,rand.nextInt(20),sim);
+        taskList[0] = new WaitTill(person,rand.nextInt(23),sim);
 
         temp1 = 16;
 
@@ -46,7 +46,7 @@ public class YoungRoutine implements Routine{
         
         taskList[3] = new Moving(person, gm, temp1, temp2);
 
-        taskList[4] = new Waiting(person, rand.nextInt(12), sim);
+        taskList[4] = new Waiting(person, rand.nextInt(16), sim);
 
         taskList[5] = new Moving(person, gm, temp2, person.homeLocation);
 
