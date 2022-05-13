@@ -95,8 +95,6 @@ public class Settings implements Screen{
         sfxVolume = new BitmapFont(Gdx.files.internal("NamesFont.fnt")); 
 
         camera.position.set(GameInfo.WIDTH/2f, GameInfo.HEIGHT/2f, 0);
-
-
     }    
 
     @Override

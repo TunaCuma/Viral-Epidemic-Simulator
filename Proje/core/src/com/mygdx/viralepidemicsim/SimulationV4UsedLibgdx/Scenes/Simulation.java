@@ -30,9 +30,7 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Person.Person;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population.Population;
 
-
 public class Simulation implements Screen, ContactListener{
-
     private BitmapFont font, newDayFont;
     private GameMain game;
     private Texture bg;
@@ -56,9 +54,6 @@ public class Simulation implements Screen, ContactListener{
     private ImageButton vaccButton;
     private SpriteDrawable vaccImage;
     private SpriteDrawable vaccImageDown;
-    //private ImageButton analyzeButton;
-    //private SpriteDrawable analyzeImage;
-    //private SpriteDrawable analyzeImageDown;
     private SpriteDrawable adult;
     private SpriteDrawable adultDown;
     private SpriteDrawable young;
@@ -82,8 +77,6 @@ public class Simulation implements Screen, ContactListener{
     private Person currentPerson;
     private float temp;
     protected static Music newDaySound;
-
-
 
     public static int vaccinatedYoung = 0;
     public static int vaccinatedYoungAdult = 0;
@@ -112,7 +105,6 @@ public class Simulation implements Screen, ContactListener{
     public float period = 128f;
     public float timeSeconds = 0f;
     public int dayCount;
-    
 
     public boolean closeSchool;
     public boolean curfewUnder18;
@@ -122,7 +114,6 @@ public class Simulation implements Screen, ContactListener{
 
     public boolean[] curfews;
     public boolean[] daysBanned;
-
 
     public Simulation(GameMain game){
         this.game = game;
@@ -139,7 +130,6 @@ public class Simulation implements Screen, ContactListener{
         addCurfewButton();
         addTurnBackButton();
         addVaccinationButton();
-        //addAnalyzeButton();
         addAdult();
         addYoung();
         addYoungAdult();
@@ -149,7 +139,6 @@ public class Simulation implements Screen, ContactListener{
         stage.addActor(curfew);
         stage.addActor(turnBack);
         stage.addActor(vaccButton);
-        //stage.addActor(analyzeButton);
         stage.addActor(adultButton);
         stage.addActor(youngButton);
         stage.addActor(youngAdultButton);
@@ -171,25 +160,15 @@ public class Simulation implements Screen, ContactListener{
         fog = new Texture("Adsız.png");
 
         abstractMap = new GridMap();
-
         population = new Population(world,abstractMap,GameInfo.population,this);
-        //sound = Gdx.audio.newSound(Gdx.files.internal("Age Of War song.mp3"));
         box2DCamera.update();
-        //sound.play();
-        //sound.loop();
         createBuildings();
-
-
         hospital = new Texture("firsthospital.png");
         house = new Texture("firstHouse.png");
-
         debugRenderer.setDrawInactiveBodies(false);
-
         curfews = new boolean[6];
         daysBanned = new boolean[7];
     }
-    
-
 
     private void addTimeButtons() {
         continueTimePressed = new SpriteDrawable(new Sprite(new Texture("ContinueButtonPressed.png")));
@@ -203,8 +182,6 @@ public class Simulation implements Screen, ContactListener{
         faster.setPosition(1843, 29);
         continueTime.setChecked(true);
     }
-
-
 
     private void addAllListeners() {
         settings.addListener(new ChangeListener() {
@@ -278,7 +255,6 @@ public class Simulation implements Screen, ContactListener{
     }
 
     public void renderBuildings(){
-
         game.getBatch().draw(buildings[0], 45  +45, GameInfo.HEIGHT - 45 - buildings[0].getHeight()-90);
         game.getBatch().draw(buildings[1], 355 +45, GameInfo.HEIGHT - 45 - buildings[1].getHeight()-90);
         game.getBatch().draw(buildings[2], 520 +45, GameInfo.HEIGHT - 45- buildings[2].getHeight()-90);
@@ -315,14 +291,12 @@ public class Simulation implements Screen, ContactListener{
     public void newDay(){
         curfews = GameMain.curfewScreen.cases;
         daysBanned = GameMain.curfewScreen.days;
-
         if(curfews[0]){
             population.curfewUnder18();
         }
         else{
             population.removeCurfewUnder18();
         }
-
         if(curfews[1]){
             population.curfew19to40();
         }
@@ -350,7 +324,6 @@ public class Simulation implements Screen, ContactListener{
         }else{
             noWork = false;
         }
-
         if(daysBanned[6] && dayCount%7 == 0){
             population.fullCurfew();
         }
@@ -380,21 +353,13 @@ public class Simulation implements Screen, ContactListener{
     }
 
     @Override
-    public void show() {
-
-    }
-
+    public void show() {}
     @Override
     public void render(float delta) {
-        
-
-        
         //manually looping the music list
         musicPlayer();
-
         if(continueTime.isChecked()){
             timeSeconds +=Gdx.graphics.getDeltaTime();
-
         }
         
         if(timeSeconds > period){
@@ -402,7 +367,6 @@ public class Simulation implements Screen, ContactListener{
             dayCount++;
             newDay();
         }
-
 
         population.updatePopulation();
 
@@ -420,19 +384,14 @@ public class Simulation implements Screen, ContactListener{
             game.getBatch().draw(fog, 0, 0, 1920, 1080);
         }
         game.getBatch().setColor(c.r, c.g, c.b, 1f);
-
         //Drawing the population one by one
         for(int i = 0; i < population.getNumberOfPeople(); i++){
             currentPerson = population.getPopulation()[i];
             if(!currentPerson.isInBuilding)
                 game.getBatch().draw(currentPerson,(currentPerson.getX() - currentPerson.getWidth()/2), (currentPerson.getY() - currentPerson.getHeight()/2));
         }
-
-
         game.getBatch().draw(gui, 0, 0);
 
-
-        
         font.draw(game.getBatch(), "Infected: " + population.infectedCount, 90, GameInfo.HEIGHT-35);
         font.draw(game.getBatch(), "Immune: " + population.immuneCount, 460, GameInfo.HEIGHT-35);
         font.draw(game.getBatch(), "Dead: " + population.deadCount, 830, GameInfo.HEIGHT-35);
@@ -470,8 +429,7 @@ public class Simulation implements Screen, ContactListener{
         else if(dayCount%7 == 6){
             font.draw(game.getBatch(), "Saturday", 1415, 60);
         }
-            
-            if (maskRule){
+        if (maskRule){
             game.getBatch().draw(maskLogo,20 , 20);
         }
 
@@ -482,7 +440,6 @@ public class Simulation implements Screen, ContactListener{
             game.getBatch().draw(novacBut,740 , 25);
         }
 
-      
         game.getBatch().draw(blackBar, 400, 10);     
         game.getBatch().draw(blackBar, 720, 10); 
         game.getBatch().draw(blackBar, 1355, 10);         
@@ -494,7 +451,6 @@ public class Simulation implements Screen, ContactListener{
         game.getBatch().end();
         debugRenderer.render(world, box2DCamera.combined);
 
-
         world.step(Gdx.graphics.getDeltaTime(), 6, 2);
         box2DCamera.update();
 
@@ -502,29 +458,15 @@ public class Simulation implements Screen, ContactListener{
     }
 
     @Override
-    public void resize(int width, int height) {
-
-    }
-
+    public void resize(int width, int height) {}
     @Override
-    public void pause() {
-
-    }
-
+    public void pause() {}
     @Override
-    public void resume() {
-
-    }
-
+    public void resume() {}
     @Override
-    public void hide() {
-
-    }
-
+    public void hide() {}
     @Override
-    public void dispose() {
-
-    }
+    public void dispose() {}
 
     @Override
     public void beginContact(Contact contact) {
@@ -534,9 +476,7 @@ public class Simulation implements Screen, ContactListener{
         Object[] firstUserData = (Object[])firstBody.getUserData();
         Object[] secondUserData = (Object[])secondBody.getUserData();
 
-
         String healthCondition1 = ((String) firstUserData[0]);
-        
         String healthCondition2 = ((String) secondUserData[0]);
 
         if(GameInfo.trueWithPossibility((int)(GameInfo.rateOfSpread * 10))){
@@ -552,8 +492,6 @@ public class Simulation implements Screen, ContactListener{
                         population.getPopulation()[(int)(secondUserData[1])].updateHealthCondition();
                         secondBody.setUserData(secondUserData);
                     }
-            
-                    
                     if(healthCondition2.equals("Infe") && healthCondition1.equals("Expo") ){
                         firstUserData[2] = (int)firstUserData[2] + 1;
                         firstBody.setUserData(firstUserData); 
@@ -576,8 +514,6 @@ public class Simulation implements Screen, ContactListener{
                     population.getPopulation()[(int)(secondUserData[1])].updateHealthCondition();
                     secondBody.setUserData(secondUserData);
                 }
-        
-                
                 if(healthCondition2.equals("Infe") && healthCondition1.equals("Expo") ){
                     firstUserData[2] = (int)firstUserData[2] + 1;
                     firstBody.setUserData(firstUserData); 
@@ -588,9 +524,6 @@ public class Simulation implements Screen, ContactListener{
                 }
             }
         }
-
-        
-
     }
 
     @Override
@@ -762,7 +695,6 @@ public class Simulation implements Screen, ContactListener{
                 isVaccClicked = true;
                 vaccinatedOld++;
                 population.randomOldVaccine();
-
             }
         });
     }
