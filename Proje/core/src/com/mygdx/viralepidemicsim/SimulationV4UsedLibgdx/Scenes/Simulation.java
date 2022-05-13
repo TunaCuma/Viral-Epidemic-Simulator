@@ -627,7 +627,7 @@ public class Simulation implements Screen, ContactListener{
         musics[2] = Gdx.audio.newMusic(Gdx.files.internal("music3.mp3"));
         musics[3] = Gdx.audio.newMusic(Gdx.files.internal("music4.mp3"));
         musics[4] = Gdx.audio.newMusic(Gdx.files.internal("music5.mp3"));
-        newDaySound = Gdx.audio.newMusic(Gdx.files.internal("newDaySound.mp3"));
+        newDaySound = Gdx.audio.newMusic(Gdx.files.internal("NewDaySound.mp3"));
 
         for(int i = 0; i < musics.length; i++) 
             musics[i].setVolume(1f);
