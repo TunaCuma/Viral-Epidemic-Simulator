@@ -81,6 +81,7 @@ public class Simulation implements Screen, ContactListener{
     private SpriteDrawable fasterPressed;
     private Texture fog;
     private Person currentPerson;
+    private float temp;
     protected static Music newDaySound;
 
 
@@ -408,6 +409,8 @@ public class Simulation implements Screen, ContactListener{
         GraphPlotter.dataSaver[dayCount][1] = population.susceptibleCount;
         GraphPlotter.dataSaver[dayCount][2] = population.infectedCount;
         GraphPlotter.dataSaver[dayCount][3] = population.removedCount;
+        newDayFont.setColor(newDayFont.getColor().r, newDayFont.getColor().g, newDayFont.getColor().b, 1f);
+        temp = 1;
         newDaySound.play();
     }
 
@@ -518,8 +521,11 @@ public class Simulation implements Screen, ContactListener{
         game.getBatch().draw(blackBar, 400, 10);     
         game.getBatch().draw(blackBar, 720, 10); 
         game.getBatch().draw(blackBar, 1355, 10);         
-        if(newDaySound.isPlaying()) 
+        if(newDaySound.isPlaying()){
+            temp = newDayFont.getColor().a;
             newDayFont.draw(game.getBatch(), "DAY " + dayCount, GameInfo.WIDTH/2-150, GameInfo.HEIGHT/2+150);
+            newDayFont.setColor(newDayFont.getColor().r, newDayFont.getColor().g, newDayFont.getColor().b, temp -0.003f);
+        }
         game.getBatch().end();
         debugRenderer.render(world, box2DCamera.combined);
 
