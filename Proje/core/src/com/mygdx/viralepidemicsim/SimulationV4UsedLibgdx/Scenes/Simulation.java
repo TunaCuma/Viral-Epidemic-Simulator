@@ -449,6 +449,8 @@ public class Simulation implements Screen, ContactListener{
             game.getBatch().setColor(c.r, c.g, c.b, (float) (0.6 * ((timeSeconds/period-0.67)*3)));//set alpha to 0.3
             game.getBatch().draw(fog, 0, 0, 1920, 1080);
         }
+        
+        game.getBatch().setColor(c.r, c.g, c.b, 1f);//set alpha to 0.3
 
         //Drawing the population one by one
         for(int i = 0; i < population.getNumberOfPeople(); i++){
@@ -458,7 +460,6 @@ public class Simulation implements Screen, ContactListener{
         }
 
 
-        game.getBatch().setColor(c.r, c.g, c.b, 1f);//set alpha to 0.3
         game.getBatch().draw(gui, 0, 0);
 
 
