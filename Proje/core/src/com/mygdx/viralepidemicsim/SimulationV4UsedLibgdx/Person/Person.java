@@ -68,6 +68,8 @@ public class Person extends Sprite{
 
     public float dieCoefficient;
 
+    public static float targetSpeed = 5f;
+
 
     public Person(World world, GridMap gm, String name, float x, float y, Simulation menu, int home, String type){
         super(new Texture(name));
@@ -370,7 +372,7 @@ public class Person extends Sprite{
      */
     public void goLocation(Point target) {
         Vector2 targetPosition = new Vector2((float)target.getX(),(float)target.getY());
-        float targetSpeed = 5f;
+        
 
         Vector2 direction = targetPosition.sub(body.getPosition());
 
