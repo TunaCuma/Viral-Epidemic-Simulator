@@ -469,6 +469,8 @@ public class Person extends Sprite{
 
     /**
      * This method infect person.
+     * Infecting a person basically means changing persons fixtures userDatas first index (health status) to "Infe".
+     * By changing fixture health status of the person will be reachable from simulation.
      */
     public void getInfected(){
         healDay = menu.dayCount + 7;
