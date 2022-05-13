@@ -455,6 +455,9 @@ public class Population {
             if((population[randNum].healthStatus.equals("Susp"))){
                 population[randNum].getImmune();
             }
+            else{
+                i--;
+            }
         }
     }
 
