@@ -3,6 +3,11 @@ package com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers;
 import com.badlogic.gdx.Gdx;
 
 public class GameInfo {
+    public final static double ratioOfYoung = 33.2;
+    public final static double ratioOfYoungAdult = 29.9;
+    public final static double ratioOfAdult = 23.1;
+    public final static double ratioOfOld = 13.8;
+    
     public static int WIDTH = 10000;
     public static int HEIGHT = 10000;
     public static float PPM = 1;

@@ -37,7 +37,6 @@ public class Person extends Sprite{
 
     private World world;
     public Body body;
-    private int immunity;
     BodyDef bodyDef;
     public Fixture fixture;
     public boolean isInBuilding;
@@ -70,7 +69,7 @@ public class Person extends Sprite{
     public float dieCoefficient;
 
 
-    public Person(World world, GridMap gm, String name, float x, float y, int immunity, Simulation menu, int home, String type){
+    public Person(World world, GridMap gm, String name, float x, float y, Simulation menu, int home, String type){
         super(new Texture(name));
         isInBuilding = true;
         this.menu = menu;
@@ -95,7 +94,6 @@ public class Person extends Sprite{
         this.world = world;
         bodyDef = new BodyDef();
 
-        this.immunity = immunity;
 
         this.map = gm;
 
