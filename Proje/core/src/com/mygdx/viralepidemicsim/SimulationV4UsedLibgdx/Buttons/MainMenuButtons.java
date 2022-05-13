@@ -17,6 +17,8 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 
 public class MainMenuButtons {
+    
+    //instantiative variables
     private GameMain game;
     private Stage stage;
     private Viewport gameViewport;
@@ -77,7 +79,7 @@ public class MainMenuButtons {
 
     }
     /**
-     * Adding functionality to the buttons
+     * Adding functionality to the buttons by adding listeners
      */
     void addAllListeners() {
         simulation.addListener(new ChangeListener() {

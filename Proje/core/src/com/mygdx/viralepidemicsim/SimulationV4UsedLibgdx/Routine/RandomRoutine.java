@@ -15,7 +15,12 @@ public class RandomRoutine implements Routine {
 
     public Task[] taskList;
 
-
+    /**
+     * constructor for adult routine. Assigns 7 different tasks. assigns tasks from the buildingList specified for the RandomRoutine class
+     * @param person Person whose routine will be determined
+     * @param sim simulation object
+     * @param gm GridMap object
+     */
     public RandomRoutine(Person person, Simulation sim,GridMap gm){
 
         taskList = new Task[7];

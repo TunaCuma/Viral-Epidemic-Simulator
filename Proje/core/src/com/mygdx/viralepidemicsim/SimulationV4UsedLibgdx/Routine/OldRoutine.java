@@ -16,6 +16,12 @@ public class OldRoutine implements Routine {
     public Task[] taskList;
     public int buildingList[] = new int[]{0,10,17,20,22,24,26,29};
 
+    /**
+     * constructor for adult routine. Assigns 7 different tasks. assigns tasks from the buildingList specified for the oldRoutine class
+     * @param person Person whose routine will be determined
+     * @param sim simulation object
+     * @param gm GridMap object
+     */
     public OldRoutine(Person person, Simulation sim,GridMap gm){
 
         taskList = new Task[7];

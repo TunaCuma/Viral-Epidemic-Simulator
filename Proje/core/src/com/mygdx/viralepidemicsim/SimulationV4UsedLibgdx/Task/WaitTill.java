@@ -5,11 +5,17 @@ import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Scenes.Simulation;
 
 public class WaitTill implements Task{
 
-
+    //instantiative variables
     int targetTime;
     Person person;
     Simulation sim;
 
+    /**
+     * Person that will wait till
+     * @param person Person object that will use this method
+     * @param time Time to wait till
+     * @param simulation Simulation object
+     */
     public WaitTill(Person person, int time,Simulation simulation){
         targetTime = time;
 
