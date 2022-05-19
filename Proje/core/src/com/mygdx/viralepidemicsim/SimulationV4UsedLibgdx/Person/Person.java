@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.AbstractMap.GridMap;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Helpers.GameInfo;
+import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.MyLibgdxTester.GameMain;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Population.Population;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.AdultRoutine;
 import com.mygdx.viralepidemicsim.SimulationV4UsedLibgdx.Routine.CurfewRoutine;
@@ -182,12 +183,14 @@ public class Person extends Sprite{
      * To do..
      */
     public void startDay(){
-        if (menu.dayCount == healDay) {
+        Object[] userData = (Object[])fixture.getUserData();
+        healthStatus = (String)((userData)[0]);
+
+        if (menu.dayCount == healDay && healthStatus.equals("Infe") ) {
             getImmune();
             Simulation.population.infectedCount--;
         }
-        Object[] userData = (Object[])fixture.getUserData();
-        healthStatus = (String)((userData)[0]);
+        
 
         if(healthStatus.equals("Infe")){
             
@@ -250,7 +253,7 @@ public class Person extends Sprite{
         Object[] userData = (Object[])fixture.getUserData();
         healthStatus = (String)((userData)[0]);
 
-        if(healthStatus.equals("Infe")){
+        if(healthStatus.equals("Infe" ) && GameMain.gameScreen.dayCount > healDay - 5){
             routine = new InfectedRoutine(this, menu, map);
             taskList =  ((InfectedRoutine)routine).taskList;
         }

@@ -467,7 +467,13 @@ public class Population {
      */
     public void randomInfection(int number){
         for(int i = 0 ; i < number ; i++){
-            population[GameInfo.randomBetween(0, population.length)].getInfected();
+            int index = GameInfo.randomBetween(0, population.length);
+            if(!population[index].healthStatus.equals("Infe")){
+                population[index].getInfected();
+            }
+            else{
+                i--;
+            }
         }
     }
 

@@ -207,7 +207,6 @@ public class Parameters implements Screen{
                 GameInfo.setRateOfKill(killRate.getValue());
                 GameInfo.setRateOfSpread(spreadRate.getValue());
 
-                GameInfo.setPopulation((int)population.getValue());
                 
 
 

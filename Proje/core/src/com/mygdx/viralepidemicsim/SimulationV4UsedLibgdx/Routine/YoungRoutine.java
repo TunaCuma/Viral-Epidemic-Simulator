@@ -46,7 +46,7 @@ public class YoungRoutine implements Routine{
         
         taskList[3] = new Moving(person, gm, temp1, temp2);
 
-        taskList[4] = new Waiting(person, rand.nextInt(12), sim);
+        taskList[4] = new Waiting(person, rand.nextInt(14), sim);
 
         taskList[5] = new Moving(person, gm, temp2, person.homeLocation);
 
