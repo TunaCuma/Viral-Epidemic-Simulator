@@ -1,6 +1,6 @@
 # Viral Epidemic Simulator
-Demonstration Video: https://youtu.be/Ssm7TqgCORI
-Group project presentation: https://www.youtube.com/watch?v=LxpPP_UAmjA
+## Demonstration Video: https://youtu.be/Ssm7TqgCORI
+## Group project presentation: https://www.youtube.com/watch?v=LxpPP_UAmjA
 ![Ekran görüntüsü 2023-02-27 165033](https://user-images.githubusercontent.com/62616668/221581277-b975a98e-620c-4e38-81fc-f96f37410e66.png)
 ![Ekran görüntüsü 2022-10-10 181820](https://user-images.githubusercontent.com/62616668/221580921-12b4a316-1b00-4255-aa76-570508dec7fd.png)
 
